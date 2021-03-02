@@ -1,14 +1,21 @@
-# Keytar Hero
-Keytar Hero is a Javascript and HTML Canvas game that imitates Guitar Hero. Players play through a song by timing the correct keypresses for each note at the right time.
+# Simple Node API Backend
 
-## Features
-* Instructions modal
-* Option to mute or change the volume of the song
-* Play the game by timing notes that correspond to a keypress.
+Simple Node Backend for avoiding CORS issues in development
+- npm install
+- npm run build
+- npm start
 
-An additional feature will include the option to pause the game.
+Technologies
+- express
+- axios
+- webpack
 
-## Technologies
-Javascript
-HTML
-CSS
+Implementation
+
+This project allows you to serve your HTML and JS from a custom backend that performs API requests to an external API.
+
+app.js contains the routes that you need to get your data. Customize them according to the paths you wish to use in your code, and the API you wish to access
+
+Write your JS in the javascripts folder; your entry file is index.js.
+
+In the entry file 
