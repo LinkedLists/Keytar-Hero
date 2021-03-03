@@ -7,7 +7,6 @@ export default class Note {
     this.generateNote = this.generateNote.bind(this);
     this.update = this.update.bind(this);
     this.checkBounds = this.checkBounds.bind(this);
-    // this.generateNote(x, y)
 
     this.dy = 5;
     // this.animate = this.animate.bind(this)
@@ -15,7 +14,7 @@ export default class Note {
 
   generateNote(x, y) {
     this.c.beginPath();
-    this.c.rect(x, y, 200, 75);
+    this.c.rect(x, y, 60, 75);
     this.c.stroke();
   }
 
@@ -33,6 +32,6 @@ export default class Note {
   // }
 
   checkBounds() {
-    return this.y + 200 >= innerHeight ? false : true
+    return this.y + 120 >= innerHeight ? false : true
   }
 }
