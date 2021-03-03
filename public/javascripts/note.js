@@ -31,7 +31,8 @@ export default class Note {
   //   }
   // }
 
-  checkBounds() {
-    return this.y + 120 >= innerHeight ? false : true
+  checkBounds(y) {
+    // if (y) console.log(this.note.y)
+    return this.y + 50 >= y ? false : true
   }
 }
