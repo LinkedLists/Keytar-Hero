@@ -30,7 +30,8 @@ export default class Game {
     this.scoreboard = this.scoreboard.bind(this)
     this.generateSong = this.generateSong.bind(this)
     // setTimeout(this.generateSong, 100);
-    this.animate()
+    this.animate();
+    this.generateSong();
   }
 
   animate() {
@@ -59,7 +60,7 @@ export default class Game {
         subArr.shift();
       }
     })
-    if (this.notes[0].length === 0) this.generateSong()
+    // if (this.notes[0].length === 0) this.generateSong()
     requestAnimationFrame(this.animate)
   }
 
@@ -116,11 +117,15 @@ export default class Game {
   }
 
   generateSong() {
-    if (song.length > 0) {
-      let noteParams = song.shift();
-      let note = new Note(noteParams.x, noteParams.y, this.c)
-      this.notes[noteParams.pos].push(note)
-    }
+    setInterval( () => {
+      if (song.length > 0) {
+        let noteParams = song.shift();
+        let note = new Note(noteParams.x, noteParams.y, this.c)
+        this.notes[noteParams.pos].push(note)
+        console.log(this.notes)
+      }
+      // console.log(this.notes)
+    }, 1000)
   }
 
   bandAidFix(c) {

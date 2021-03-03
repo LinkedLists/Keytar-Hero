@@ -9,7 +9,7 @@ export default class Note {
     this.outOfBounds = this.outOfBounds.bind(this);
     this.inBounds = this.inBounds.bind(this);
 
-    this.dy = 5;
+    this.dy = 8;
   }
 
   generateNote(x, y) {
