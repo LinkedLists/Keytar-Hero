@@ -7,8 +7,10 @@ export default class Game {
     this.c = canvas.getContext('2d');
     this.dimensions = { width: canvas.width, height: canvas.height};
     this.notes = []
-    this.note = new Note(30, 0, this.c)
-    this.notes.push(this.note)
+    this.note1 = new Note(30, 0, this.c)
+    this.note2 = new Note(390, 0, this.c)
+    this.notes.push(this.note1)
+    this.notes.push(this.note2)
     this.score = 0;
     
     this.addListeners = this.addListeners.bind(this)
@@ -24,9 +26,13 @@ export default class Game {
     this.scoreboard()
     drawTargets(this.c);
 
+    this.notes.forEach( note => {
+      note.update();
+    })
+
     if (this.notes[0]) {    
       if (this.notes[0].checkBounds(this.dimensions.height)) {
-        this.notes[0].update();
+        // this.notes[0].update();
       } else {
         console.log("note is unshifted");
         this.notes.shift();
@@ -43,26 +49,33 @@ export default class Game {
     requestAnimationFrame(this.animate)
   }
 
-  checkCollision() {
-    if (this.notes[0] && this.notes[0].checkBounds(this.dimensions.height)) {
-      console.log("hit")
-      this.score += 1;
-      this.notes.shift();
+  checkCollision(x) {
+    if (
+      this.notes[0] && 
+      this.notes[0].checkBounds(this.dimensions.height) && 
+      this.notes[0].x === x) {
+        console.log("hit")
+        this.score += 1;
+        this.notes.shift();
     }
   }
 
   addListeners() {
     addEventListener('keydown', e => {
       if (e.key == "1") {
-        this.checkCollision()
+        this.checkCollision(30)
       } 
       if (e.key == "2") {
+        this.checkCollision(150)
       } 
       if (e.key == "3") {
+        this.checkCollision(270)
       } 
       if (e.key == "4") {
+        this.checkCollision(390)
       } 
       if (e.key == "5") {
+        this.checkCollision(510)
       } 
     })
   }
