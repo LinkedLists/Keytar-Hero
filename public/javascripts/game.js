@@ -31,6 +31,14 @@ export default class Game {
   }
 
   animate() {
+
+
+    ////////////////////////
+    //FIGURE OUT WHY//////////
+    this.bandAidFix(this.c)
+    //////////////////////////////
+
+
     this.c.clearRect(0, 0, innerWidth, innerHeight);
     this.scoreboard()
     drawTargets(this.c);
@@ -63,6 +71,7 @@ export default class Game {
           this.notes[x].shift();
         }
     }
+
   }
 
   addListeners() {
@@ -102,5 +111,11 @@ export default class Game {
       notes[i] = new Array();
     }
     return notes
+  }
+
+  bandAidFix(c) {
+    c.beginPath();
+    c.rect(0, 0, 0, 0);
+    c.stroke();
   }
 } 
