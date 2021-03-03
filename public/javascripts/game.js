@@ -1,5 +1,6 @@
 import Note from './note'
 import { drawTargets } from './target'
+import { song } from './song/test'
 // import { scoreboard } from './score'
 
 const CONSTANTS = {
@@ -25,9 +26,11 @@ export default class Game {
     this.addListeners = this.addListeners.bind(this)
     this.addListeners()
     this.animate = this.animate.bind(this)
-    this.animate()
     this.checkCollision = this.checkCollision.bind(this)
     this.scoreboard = this.scoreboard.bind(this)
+    this.generateSong = this.generateSong.bind(this)
+    // setTimeout(this.generateSong, 100);
+    this.animate()
   }
 
   animate() {
@@ -53,11 +56,10 @@ export default class Game {
       // if the first note in each subArr is out of bounds then clear it
       if (subArr[0] !== undefined && subArr[0].outOfBounds(800)) {
         console.log("note is unshifted");
-        console.log(subArr[0])
         subArr.shift();
       }
     })
-
+    if (this.notes[0].length === 0) this.generateSong()
     requestAnimationFrame(this.animate)
   }
 
@@ -113,9 +115,18 @@ export default class Game {
     return notes
   }
 
+  generateSong() {
+    if (song.length > 0) {
+      let noteParams = song.shift();
+      let note = new Note(noteParams.x, noteParams.y, this.c)
+      this.notes[noteParams.pos].push(note)
+    }
+  }
+
   bandAidFix(c) {
     c.beginPath();
     c.rect(0, 0, 0, 0);
     c.stroke();
   }
+  
 } 

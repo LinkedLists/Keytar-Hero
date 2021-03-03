@@ -14,7 +14,7 @@ export default class Note {
 
   generateNote(x, y) {
     this.c.beginPath();
-    this.c.rect(x, y, 60, 75);
+    this.c.rect(x, y - 75, 60, 75);
     this.c.stroke();
   }
 
@@ -25,11 +25,11 @@ export default class Note {
 
   // Is out of bounds of the target?
   outOfBounds(y) {
-    return this.y + 40 >= y ? true : false
+    return this.y + 40 - 75 >= y ? true : false
   }
 
   // In bounds of the target?
   inBounds(y) {
-    return this.y + 150 >= y ? true : false
+    return this.y + 150 -75 >= y ? true : false
   }
 }
