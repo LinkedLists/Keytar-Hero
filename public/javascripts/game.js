@@ -9,6 +9,7 @@ export default class Game {
 
     this.note = new Note(0, 0, this.c)
     this.note.animate()
-
+    
   }
+
 } 
