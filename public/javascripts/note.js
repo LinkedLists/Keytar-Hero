@@ -10,7 +10,7 @@ export default class Note {
     // this.generateNote(x, y)
 
     this.dy = 5;
-    this.animate = this.animate.bind(this)
+    // this.animate = this.animate.bind(this)
   }
 
   generateNote(x, y) {

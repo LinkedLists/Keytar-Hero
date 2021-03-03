@@ -1,4 +1,5 @@
 import Note from './note'
+import { drawTargets } from './target'
 
 export default class Game {
   constructor(canvas) {
@@ -11,35 +12,20 @@ export default class Game {
     // this.note.animate()
     
     this.addListeners = this.addListeners.bind(this)
-    this.drawTargets = this.drawTargets.bind(this)
+    // this.drawTargets = this.drawTargets.bind(this)
     this.addListeners()
     // this.drawTargets()
     this.animate = this.animate.bind(this)
     this.animate()
-
-  }
-
-  drawTargets() {
-    this.c.beginPath()
-    this.c.arc(100, 100, 50, 0, Math.PI * 2, false)
-    // this.c.fillStyle("black")
-    // this.c.stroke()
-    // this.c.beginPath()
-    // this.c.arc(100, 100, 30, 0, Math.PI * 2, false)
-    // this.c.fillStyle("gray")
-    // // this.c.strokeStyle = "blue";
-    this.c.stroke()
   }
 
   animate() {
     this.c.clearRect(0, 0, innerWidth, innerHeight);
-    this.drawTargets();
+    drawTargets(this.c);
     this.note.update();
     
     requestAnimationFrame(this.animate)
-
   }
-
 
   addListeners() {
     addEventListener('keydown', e => {
@@ -54,6 +40,9 @@ export default class Game {
       } 
       if (e.key == "4") {
         console.log("4")
+      } 
+      if (e.key == "5") {
+        console.log("5")
       } 
     })
   }
