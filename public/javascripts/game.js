@@ -7,21 +7,12 @@ export default class Game {
     this.c.fillStyle = 'lightgray';
     this.c.fillRect(100, 100, 600, 600);
 
-    // this.c.beginPath();
-    // this.c.rect(150, 100, 50, 100);
-    // this.c.stroke();
-    this.animate = this.animate.bind(this)
     this.note = new Note(150, 100, this.c)
-    
+    this.note.animate()
 
-    let x = 150
-    this.animate(x);
+    this.x = 150
+    this.y = 100
+
   }
 
-  animate(x) {
-    this.note.generateNote(x, 100);
-    requestAnimationFrame(this.animate)
-    this.c.clearRect(0, 0, this.c.innerWidth, this.c.innerHeight)
-    console.log('ooo')
-  }
 } 
