@@ -35,37 +35,20 @@ export default class Game {
     this.scoreboard()
     drawTargets(this.c);
 
-    // this.notes.forEach( note => {
-    //   note.update();
-    // })
+    // this.notes is a 2D array to handle simultaneous inputs
+    // this updates all notes and clears any notes that are
+    // out of bounds
     this.notes.forEach( subArr => {
-      // if (subArr.length > 0) {
-        subArr.forEach( note => {
-          note.update()
-        })
-        if (subArr[0] !== undefined && subArr[0].outOfBounds(800)) {
-          console.log("note is unshifted");
-          console.log(subArr[0])
-          subArr.shift();
-        }
-      // }
+      subArr.forEach( note => {
+        note.update()
+      })
+      // if the first note in each subArr is out of bounds then clear it
+      if (subArr[0] !== undefined && subArr[0].outOfBounds(800)) {
+        console.log("note is unshifted");
+        console.log(subArr[0])
+        subArr.shift();
+      }
     })
-
-    // if (this.notes[0]) {    
-    //   if (this.notes[0].outOfBounds(this.dimensions.height)) {
-    //     console.log("note is unshifted");
-    //     this.notes.shift();
-    //   }
-    // }
-
-    // this.notes.forEach( note => {
-    //   if (note) {    
-    //     if (!note.update()) {
-    //       console.log("note is unshifted");
-    //       this.notes.shift();
-    //     } 
-    //   }
-    // })
 
     requestAnimationFrame(this.animate)
   }
@@ -80,15 +63,6 @@ export default class Game {
           this.notes[x].shift();
         }
     }
-    // if (
-    //   this.notes[0] && 
-    //   this.notes[0].x === x) {
-    //     if (this.notes[0].inBounds(this.dimensions.height)) {
-    //       console.log("hit")
-    //       this.score += 1;
-    //       this.notes.shift();
-    //     }
-    // }
   }
 
   addListeners() {

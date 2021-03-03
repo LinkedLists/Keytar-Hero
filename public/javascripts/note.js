@@ -21,7 +21,6 @@ export default class Note {
   update() {
     this.generateNote(this.x, this.y);
     this.y += this.dy;
-    // return this.outOfBounds()
   }
 
   // Is out of bounds of the target?
