@@ -7,11 +7,8 @@ export default class Game {
     // this.c.fillStyle = 'lightgray';
     // this.c.fillRect(100, 100, 600, 600);
 
-    this.note = new Note(150, 100, this.c)
+    this.note = new Note(0, 0, this.c)
     this.note.animate()
-
-    this.x = 150
-    this.y = 100
 
   }
 } 
