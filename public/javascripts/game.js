@@ -6,12 +6,14 @@ export default class Game {
   constructor(canvas) {
     this.c = canvas.getContext('2d');
     this.dimensions = { width: canvas.width, height: canvas.height};
+    this.score = 0;
+
     this.notes = []
     this.note1 = new Note(30, 0, this.c)
     this.note2 = new Note(390, 0, this.c)
     this.notes.push(this.note1)
     this.notes.push(this.note2)
-    this.score = 0;
+    
     
     this.addListeners = this.addListeners.bind(this)
     this.addListeners()
@@ -31,32 +33,33 @@ export default class Game {
     })
 
     if (this.notes[0]) {    
-      if (this.notes[0].checkBounds(this.dimensions.height)) {
-        // this.notes[0].update();
-      } else {
+      if (this.notes[0].outOfBounds(this.dimensions.height)) {
         console.log("note is unshifted");
         this.notes.shift();
       }
     }
-    // if (this.note.checkBounds(this.dimensions.height)) {
-    //   this.note.update();
-    // } else {
-    //   console.log("here")
-    //   delete this.note.y
-    // }
-    
-    
+
+    // this.notes.forEach( note => {
+    //   if (note) {    
+    //     if (!note.update()) {
+    //       console.log("note is unshifted");
+    //       this.notes.shift();
+    //     } 
+    //   }
+    // })
+
     requestAnimationFrame(this.animate)
   }
 
   checkCollision(x) {
     if (
       this.notes[0] && 
-      this.notes[0].checkBounds(this.dimensions.height) && 
       this.notes[0].x === x) {
-        console.log("hit")
-        this.score += 1;
-        this.notes.shift();
+        if (this.notes[0].inBounds(this.dimensions.height)) {
+          console.log("hit")
+          this.score += 1;
+          this.notes.shift();
+        }
     }
   }
 

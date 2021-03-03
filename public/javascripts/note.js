@@ -6,10 +6,10 @@ export default class Note {
     this.c = context
     this.generateNote = this.generateNote.bind(this);
     this.update = this.update.bind(this);
-    this.checkBounds = this.checkBounds.bind(this);
+    this.outOfBounds = this.outOfBounds.bind(this);
+    this.inBounds = this.inBounds.bind(this);
 
     this.dy = 5;
-    // this.animate = this.animate.bind(this)
   }
 
   generateNote(x, y) {
@@ -21,18 +21,16 @@ export default class Note {
   update() {
     this.generateNote(this.x, this.y);
     this.y += this.dy;
+    // return this.outOfBounds()
   }
 
-  // animate() {
-  //   this.c.clearRect(0, 0, innerWidth, innerHeight);
-  //   this.update();
-  //   if (this.checkBounds()) {
-  //     requestAnimationFrame(this.animate)
-  //   }
-  // }
+  // Is out of bounds of the target?
+  outOfBounds(y) {
+    return this.y + 40 >= y ? true : false
+  }
 
-  checkBounds(y) {
-    // if (y) console.log(this.note.y)
-    return this.y + 50 >= y ? false : true
+  // In bounds of the target?
+  inBounds(y) {
+    return this.y + 150 >= y ? true : false
   }
 }
