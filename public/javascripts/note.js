@@ -15,24 +15,24 @@ export default class Note {
 
   generateNote(x, y) {
     this.c.beginPath();
-    this.c.rect(x, y, 100, 100);
+    this.c.rect(x, y, 200, 75);
     this.c.stroke();
   }
 
   update() {
+    this.generateNote(this.x, this.y);
     this.y += this.dy;
   }
 
-  animate() {
-    this.c.clearRect(0, 0, innerWidth, innerHeight);
-    this.generateNote(this.x, this.y);
-    this.update();
-    if (this.checkBounds()) {
-      requestAnimationFrame(this.animate)
-    }
-  }
+  // animate() {
+  //   this.c.clearRect(0, 0, innerWidth, innerHeight);
+  //   this.update();
+  //   if (this.checkBounds()) {
+  //     requestAnimationFrame(this.animate)
+  //   }
+  // }
 
   checkBounds() {
-    return this.y + 100 >= innerHeight ? false : true
+    return this.y + 200 >= innerHeight ? false : true
   }
 }

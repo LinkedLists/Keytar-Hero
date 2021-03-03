@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // });
 
     const canvas = document.getElementById('canvas');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // canvas.width = window.innerWidth;
+    // canvas.height = window.innerHeight;
     new Game(canvas);
     console.log('hi')
     
