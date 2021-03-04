@@ -22,7 +22,8 @@ export default class Game {
     this.addListeners = this.addListeners.bind(this)
     this.addListeners()
     this.animate = this.animate.bind(this)
-    this.checkCollision = this.checkCollision.bind(this)
+    this.checkCollisionDown = this.checkCollisionDown.bind(this)
+    this.checkCollisionUp = this.checkCollisionUp.bind(this)
     this.scoreboard = this.scoreboard.bind(this)
     this.generateNotes = this.generateNotes.bind(this)
     this.playSong = this.playSong.bind(this)
@@ -50,41 +51,79 @@ export default class Game {
         note.update()
       })
       // if the first note in each subArr is out of bounds then clear it
-      if (subArr[0] !== undefined && subArr[0].outOfBounds(800)) {
-        console.log("note is unshifted");
-        subArr.shift();
+      if (subArr[0] !== undefined) {
+        if (subArr[0].holdValue !== 0 && subArr[0].outOfBoundsTail(this.dimensions.height)) {
+          console.log("note is unshifted");
+          subArr.shift();
+        }
+        else if (subArr[0].outOfBounds(this.dimensions.height)) {
+          console.log("note is unshifted");
+          subArr.shift();
+        }
       }
     })
 
     requestAnimationFrame(this.animate)
   }
 
-  checkCollision(x) {
+  checkCollisionDown(x, holdFlag) {
     if (
       this.notes[x][0] && 
       this.notes[x][0].inBounds(this.dimensions.height)) {
-        console.log("hit")
-        this.score += 1;
-        this.notes[x].shift();
+        if (this.notes[x][0].holdValue !== 0) {
+          holdFlag = true;
+          return
+        } else {
+          console.log("hit")
+          this.score += 1;
+          this.notes[x].shift();
+        }
       }
   }
 
+  checkCollisionUp(x, holdFlag) {
+    if (holdFlag && this.notes[x][0].inBoundsTail(this.dimensions.height)) {
+      console.log("hit")
+      this.score += 1;
+      this.notes[x].shift();
+      holdFlag = false;
+    }
+  }
+
   addListeners() {
+    let holdFlag = false;
     addEventListener('keydown', e => {
       if (e.key == "1") {
-        this.checkCollision(0)
+        this.checkCollisionDown(0, holdFlag)
       } 
       if (e.key == "2") {
-        this.checkCollision(1)
+        this.checkCollisionDown(1, holdFlag)
       } 
       if (e.key == "3") {
-        this.checkCollision(2)
+        this.checkCollisionDown(2, holdFlag)
       } 
       if (e.key == "4") {
-        this.checkCollision(3)
+        this.checkCollisionDown(3, holdFlag)
       } 
       if (e.key == "5") {
-        this.checkCollision(4)
+        this.checkCollisionDown(4, holdFlag)
+      } 
+    })
+    addEventListener('keyup', e => {
+      if (e.key == "1") {
+        this.checkCollisionUp(0, holdFlag)
+      } 
+      if (e.key == "2") {
+        this.checkCollisionUp(1, holdFlag)
+      } 
+      if (e.key == "3") {
+        this.checkCollisionUp(2, holdFlag)
+      } 
+      if (e.key == "4") {
+        this.checkCollisionUp(3, holdFlag)
+      } 
+      if (e.key == "5") {
+        this.checkCollisionUp(4, holdFlag)
       } 
     })
   }

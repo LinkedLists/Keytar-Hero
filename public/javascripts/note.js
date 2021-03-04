@@ -1,16 +1,19 @@
 
 export default class Note {
-  constructor(x, y, context, color, holdValue) {
+  constructor(x, y, context, color, holdValue = 0) {
     this.x = x;
     this.y = y;
     this.c = context
     this.holdValue = holdValue
+    this.extenstionLength = 0;
     this.color = color;
     this.generateNote = this.generateNote.bind(this);
     this.generateHoldingNote = this.generateHoldingNote.bind(this);
     this.update = this.update.bind(this);
     this.outOfBounds = this.outOfBounds.bind(this);
     this.inBounds = this.inBounds.bind(this);
+    this.outOfBoundsTail = this.outOfBoundsTail.bind(this);
+    this.inBoundsTail = this.inBoundsTail.bind(this);
 
 
     // I want a note to be playable after being rendered to have a 
@@ -29,11 +32,11 @@ export default class Note {
 
   generateHoldingNote(x, y) {
     const beatMultiplier = 38.28
-    const extenstionLength = this.holdValue * beatMultiplier * 4 - 80
+    this.extenstionLength = this.holdValue * beatMultiplier * 4 - 80
     this.c.beginPath();
-    this.c.arc(x + 30, y - extenstionLength, 30, 0, Math.PI, true);
+    this.c.arc(x + 30, y - this.extenstionLength, 30, 0, Math.PI, true);
     this.c.lineTo(x, y)
-    this.c.moveTo(x + 60, y - extenstionLength)
+    this.c.moveTo(x + 60, y - this.extenstionLength)
     this.c.lineTo(x + 60, y)
     this.c.arc(x + 30, y , 30, 0, -Math.PI, false);
     this.c.fillStyle = this.color;
@@ -55,8 +58,17 @@ export default class Note {
     return this.y -15 >= y ? true : false
   }
 
+  outOfBoundsTail(y) {
+    return this.y - this.extenstionLength -15 >= y ? true : false
+  }
+
   // In bounds of the target?
   inBounds(y) {
     return this.y + 100 >= y ? true : false
   }
+
+  inBoundsTail(y) {
+    return this.y - this.extenstionLength + 100 >= y ? true : false
+  }
+
 }
