@@ -17,12 +17,8 @@ export default class Game {
     this.dimensions = { width: canvas.width, height: canvas.height};
     this.score = 0;
     this.song;
-
+    this.isPlaying = false;
     this.notes = this.generateNoteArray();
-    // this.note1 = new Note(CONSTANTS.pos1, 0, this.c)
-    // this.note2 = new Note(CONSTANTS.pos4, 0, this.c)
-    // this.notes[0].push(this.note1)
-    // this.notes[3].push(this.note2)
     
     this.addListeners = this.addListeners.bind(this)
     this.addListeners()
@@ -41,11 +37,12 @@ export default class Game {
     this.bandAidFix(this.c)
     //////////////////////////////
 
-
+    
+    
     this.c.clearRect(0, 0, canvas.width, canvas.height);
     this.scoreboard()
     drawTargets(this.c);
-
+    
     // this.notes is a 2D array to handle simultaneous inputs
     // this updates all notes and clears any notes that are
     // out of bounds
@@ -59,8 +56,7 @@ export default class Game {
         subArr.shift();
       }
     })
-    // const elapsed = new Date().getTime() - start;
-    // console.log(elapsed) 
+
     requestAnimationFrame(this.animate)
   }
 
@@ -116,7 +112,7 @@ export default class Game {
   }
 
   generateNotes() {
-    if (song.length > 0) {
+    // if (song.length > 0) {
       setInterval( () => {
         // if (song.length > 0) {
           let noteParams = song.shift();
@@ -125,7 +121,7 @@ export default class Game {
         // }
         // console.log(this.notes)
       }, 638)
-    }
+    // }
   }
 
   playSong() {
@@ -142,13 +138,25 @@ export default class Game {
     console.log(this.song);
     let start = document.getElementById('start');
     let pause = document.getElementById('pause');
+    let resume = document.getElementById('resume');
     start.addEventListener('click', () => {
       setTimeout(this.generateNotes, 3604);
       document.getElementById('audio').play();
+      this.isPlaying = true;
+      // this.animate()
     });
     pause.addEventListener('click', () => {
       document.getElementById('audio').pause();
+      this.isPlaying = false;
+      clearInterval(this.generateNotes)
+      // cancelAnimationFrame(this.animate)
+      cancelAnimationFrame(drawTargets)
     });
+    resume.addEventListener('click', () => {
+      document.getElementById('audio').play();
+      this.isPlaying = true;
+      requestAnimationFrame(this.animate)
+    })
 }
 
   bandAidFix(c) {
