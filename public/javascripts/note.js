@@ -46,6 +46,8 @@ export default class Note {
     this.c.fill();
     this.c.stroke();
 
+
+    // pinning the head and tail
     this.c.beginPath();
     this.c.arc(x, y, 5, 0, Math.PI * 2, true);
     this.c.fillStyle = "black";
@@ -75,7 +77,7 @@ export default class Note {
   }
 
   outOfBoundsTail(y) {
-    return this.y - this.extenstionLength -15 >= y ? true : false
+    return this.y - this.extenstionLength -150 >= y ? true : false
   }
 
   // In bounds of the target?

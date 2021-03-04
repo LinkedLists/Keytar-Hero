@@ -27,6 +27,7 @@ export default class Game {
     this.scoreboard = this.scoreboard.bind(this)
     this.generateNotes = this.generateNotes.bind(this)
     this.playSong = this.playSong.bind(this)
+    this.tempoSetter = this.tempoSetter.bind(this)
     this.animate();
     this.playSong();
   }
@@ -156,20 +157,46 @@ export default class Game {
 
   generateNotes() {
     // will need to decrese setInterval time to allow for eigth notes
-      setInterval( () => {
-        if (song.length > 0) {
-          let noteParams = song.shift();
-          let note = new Note(noteParams.x, noteParams.y, this.c, this.returnColor(noteParams.x), noteParams.hold)
-          this.notes[noteParams.pos].push(note)
+      // setInterval( () => {
+      //   if (song.length > 0) {
+      //     let noteParams = song.shift();
+      //     let note = new Note(noteParams.x, noteParams.y, this.c, this.returnColor(noteParams.x), noteParams.hold)
+      //     this.notes[noteParams.pos].push(note)
           
-          if (noteParams.chain) {
-            let noteParams2 = song.shift();
-            let note2 = new Note(noteParams2.x, noteParams2.y, this.c, this.returnColor(noteParams2.x), noteParams.hold)
-            this.notes[noteParams2.pos].push(note2)
-          }
+      //     if (noteParams.chain) {
+      //       let noteParams2 = song.shift();
+      //       let note2 = new Note(noteParams2.x, noteParams2.y, this.c, this.returnColor(noteParams2.x), noteParams.hold)
+      //       this.notes[noteParams2.pos].push(note2)
+      //     }
           
+      //   }
+      // }, 638)
+    let counter = 0
+    setInterval( () => {
+      counter++
+      if (song.length > 0) {
+        if (counter === 1 && song[0].tempo > 1) {
+          this.tempoSetter();
+          // counter = 0
         }
-      }, 638)
+        else if (counter === 2) {
+          this.tempoSetter();
+          counter = 0
+        }
+      }
+    }, 319)
+  }
+      
+  tempoSetter(dispose) {
+    let noteParams = song.shift();
+    let note = new Note(noteParams.x, noteParams.y, this.c, this.returnColor(noteParams.x), noteParams.hold)
+    this.notes[noteParams.pos].push(note)
+    if (noteParams.chain) {
+      let noteParams2 = song.shift();
+      let note2 = new Note(noteParams2.x, noteParams2.y, this.c, this.returnColor(noteParams2.x), noteParams.hold)
+      this.notes[noteParams2.pos].push(note2)
+    }
+    clearInterval(this.generateNotes)
   }
 
   returnColor(pos) {
