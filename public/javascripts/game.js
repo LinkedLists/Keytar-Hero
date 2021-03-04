@@ -175,19 +175,27 @@ export default class Game {
     setInterval( () => {
       counter++
       if (song.length > 0) {
+        if (song[0].rest) {
+          counter -= song[0].tempo
+          song.shift()
+        }
+        if (song[0].kill) {
+          counter += 1
+          song.shift()
+        }
         if (counter === 1 && song[0].tempo > 1) {
           this.tempoSetter();
-          // counter = 0
+          counter = 0
         }
         else if (counter === 2) {
-          this.tempoSetter();
           counter = 0
+          this.tempoSetter();
         }
       }
     }, 319)
   }
       
-  tempoSetter(dispose) {
+  tempoSetter() {
     let noteParams = song.shift();
     let note = new Note(noteParams.x, noteParams.y, this.c, this.returnColor(noteParams.x), noteParams.hold)
     this.notes[noteParams.pos].push(note)
