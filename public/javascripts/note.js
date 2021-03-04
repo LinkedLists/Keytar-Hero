@@ -7,6 +7,7 @@ export default class Note {
     this.holdValue = holdValue
     this.extenstionLength = 0;
     this.color = color;
+    this.originalColor;
     this.holdFlag = false;
 
 
@@ -18,11 +19,18 @@ export default class Note {
     this.outOfBoundsTail = this.outOfBoundsTail.bind(this);
     this.inBoundsTail = this.inBoundsTail.bind(this);
 
+    // need to make target object to get back original color
+    this.setOriginalColor = this.setOriginalColor.bind(this);
+    this.setOriginalColor();
 
     // I want a note to be playable after being rendered to have a 
     // constant delay of about 2.1 seconds regardless of monitor size
     // this.dy = innerHeight / 126.25;
     this.dy = 8;
+  }
+
+  setOriginalColor() {
+    this.originalColor = this.color;
   }
 
   generateNote(x, y) {

@@ -70,13 +70,14 @@ export default class Game {
   }
 
   checkCollisionDown(x) {
+    let note = this.notes[x][0];
     if (
-      this.notes[x][0] && 
-      this.notes[x][0].inBounds(this.dimensions.height)) {
-        if (this.notes[x][0].holdValue !== 0) {
+      note && 
+      note.inBounds(this.dimensions.height)) {
+        if (note.holdValue !== 0) {
           console.log("holding")
-          this.notes[x][0].holdFlag = true;
-          this.notes[x][0].color = 'purple';
+          note.holdFlag = true;
+          note.color = 'purple';
         } else {
           console.log("hit")
           this.score += 1;
@@ -84,16 +85,19 @@ export default class Game {
         }
       }
   }
+
   ///////////////////////////////
-  // ERROR keydown continues to listen
+  // keydown continues to listen
   ///////////////////////////////
   checkCollisionUp(x) {
+    let note = this.notes[x][0];
     // make sure there is a note to look at when a keyup occurs
-    if (this.notes[x][0]) {
-      if (this.notes[x][0].holdFlag && this.notes[x][0].inBoundsTail(this.dimensions.height)) {
+    if (note) {
+      note.color = note.originalColor;
+      if (note.holdFlag && note.inBoundsTail(this.dimensions.height)) {
         console.log("hold released")
         this.score += 1;
-        this.notes[x][0].holdFlag = false;
+        note.holdFlag = false;
         this.notes[x].shift();
       }
     }
