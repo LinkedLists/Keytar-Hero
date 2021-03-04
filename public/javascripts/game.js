@@ -1,7 +1,6 @@
 import Note from './note'
 import { drawTargets } from './target'
 import { song } from './song/test'
-// import { scoreboard } from './score'
 
 const CONSTANTS = {
   pos1: 30,
@@ -62,14 +61,12 @@ export default class Game {
 
   checkCollision(x) {
     if (
-      this.notes[x][0]) 
-      {
-        if (this.notes[x][0].inBounds(this.dimensions.height)) {
-          console.log("hit")
-          this.score += 1;
-          this.notes[x].shift();
-        }
-    }
+      this.notes[x][0] && 
+      this.notes[x][0].inBounds(this.dimensions.height)) {
+        console.log("hit")
+        this.score += 1;
+        this.notes[x].shift();
+      }
   }
 
   addListeners() {
@@ -112,16 +109,13 @@ export default class Game {
   }
 
   generateNotes() {
-    if (song.length > 0) {
       setInterval( () => {
-        // if (song.length > 0) {
+        if (song.length > 0) {
           let noteParams = song.shift();
           let note = new Note(noteParams.x, noteParams.y, this.c, this.returnColor(noteParams.x))
           this.notes[noteParams.pos].push(note)
-        // }
-        // console.log(this.notes)
+        }
       }, 638)
-    }
   }
 
   returnColor(pos) {
@@ -146,7 +140,6 @@ export default class Game {
     // * 1000 to change to ms
 
     this.song = document.getElementById('audio');
-    console.log(this.song);
     let start = document.getElementById('start');
     let pause = document.getElementById('pause');
     let resume = document.getElementById('resume');
