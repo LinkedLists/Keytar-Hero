@@ -1,5 +1,6 @@
 import Note from './note'
 import { drawTargets } from './target'
+import Target from './target'
 import { song } from './song/test'
 
 const CONSTANTS = {
@@ -28,6 +29,8 @@ export default class Game {
     this.generateNotes = this.generateNotes.bind(this)
     this.playSong = this.playSong.bind(this)
     this.tempoSetter = this.tempoSetter.bind(this)
+    this.generateTargets = this.generateTargets.bind(this);
+    this.targets = this.generateTargets()
     this.animate();
     this.playSong();
   }
@@ -42,7 +45,10 @@ export default class Game {
     
     this.c.clearRect(0, 0, canvas.width, canvas.height);
     this.scoreboard()
-    drawTargets(this.c);
+    // drawTargets(this.c);
+    this.targets.forEach( target => {
+      target.displayTarget()
+    })
     
     // this.notes is a 2D array to handle simultaneous inputs
     // this updates all notes and clears any notes that are
@@ -82,8 +88,10 @@ export default class Game {
             note.color = 'purple';
           } else {
             console.log("hit")
+            this.targets[x].successfulHit = true
             this.score += 1;
             this.notes[x].shift();
+            setTimeout(() => {this.targets[x].successfulHit = false}, 50)
           }
         }
       }
@@ -247,12 +255,23 @@ export default class Game {
       this.isPlaying = true;
       requestAnimationFrame(this.animate)
     })
-}
+  }
+
+
+  generateTargets() {
+    const targets = []
+    for(let i = 1; i < 6; i++) {
+      targets.push(new Target(this.c, i))
+    }
+    return targets
+  }
 
   bandAidFix(c) {
     c.beginPath();
     c.rect(0, 0, 0, 0);
     c.stroke();
   }
+
+
   
 } 
