@@ -4,6 +4,14 @@ let color3 = 'lightgray'
 let color4 = 'lightgray'
 let color5 = 'lightgray'
 
+const COLORS = {
+  1: 'green',
+  2: 'red',
+  3: 'yellow',
+  4: 'blue',
+  5: 'orange',
+}
+
 setColor()
 
 export const drawTargets = (context) => {
@@ -144,39 +152,108 @@ export const drawTargets = (context) => {
   // // console.log(color)
 
 
-// export default class Target {
-//   constructor(context) {
-//     this.context = context;
-//     this.color = 'lightgray'
+class Target {
+  constructor(context, num) {
+    this.context = context;
+    this.color = 'lightgray';
+    this.num = num;
+    this.pressedFlag = false;
 
 
-//     this.context.beginPath();
-//     this.context.arc(60, 740, 50, 0, Math.PI * 2, false);
-//     this.context.fillStyle = "black";
-//     this.context.fill();
-//     this.context.stroke();
+    this.setTarget = this.setTarget.bind(this);
+    this.setPressed = this.setPressed.bind(this);
+    this.displayTarget = this.displayTarget.bind(this);
+    this.addListeners = this.addListeners.bind(this);
+    this.addListeners();
+  }
 
-//     this.context.beginPath();
-//     this.context.arc(60, 740, 45, 0, Math.PI * 2, false);
-//     this.context.fillStyle = "green";
-//     this.context.fill();
-//     this.context.stroke();
+  displayTarget() {
+    if (this.pressedFlag) {
+      this.setPressed();
+    } else {
+      this.setTarget();
+    }
+  }
+
+  setPressed(){
+    this.context.beginPath();
+    this.context.arc(60 * this.num, 725, 50, 0, Math.PI * 2, false);
+    this.context.fillStyle = "black";
+    this.context.fill();
+    this.context.stroke();
+
+    this.context.beginPath();
+    this.context.arc(60 * this.num, 725, 45, 0, Math.PI * 2, false);
+    this.context.fillStyle = COLORS[this.num];
+    this.context.fill();
+    this.context.stroke();
     
-//     this.context.beginPath();
-//     this.context.arc(60, 740, 30, 0, Math.PI * 2, false);
-//     this.context.fillStyle = this.color;
-//     this.context.fill();
-//     this.context.stroke();
-//   }
+    this.context.beginPath();
+    this.context.arc(60 * this.num, 725, 30, 0, Math.PI * 2, false);
+    this.context.fillStyle = this.color;
+    this.context.fill();
+    this.context.stroke();
+  }
 
-//   addEventListener('keydown', e => {
-//     if (e.key == "1") {
-//       setColor()
-//     } 
-//   })
+  setTarget(){
+    this.context.beginPath();
+    this.context.arc(60 * this.num, 740, 50, 0, Math.PI * 2, false);
+    this.context.fillStyle = "black";
+    this.context.fill();
+    this.context.stroke();
 
-//   function setColor() {
-//     // console.log(color)
-//     color = 'black'
-//   }
-// }
+    this.context.beginPath();
+    this.context.arc(60 * this.num, 740, 45, 0, Math.PI * 2, false);
+    this.context.fillStyle = COLORS[this.num];
+    this.context.fill();
+    this.context.stroke();
+    
+    this.context.beginPath();
+    this.context.arc(60 * this.num, 740, 30, 0, Math.PI * 2, false);
+    this.context.fillStyle = this.color;
+    this.context.fill();
+    this.context.stroke();
+  }
+
+  setGlow(){}
+  
+  killGlow(){}
+
+  
+  addListeners() {
+    addEventListener('keydown', e => {
+      if (e.key == "1") {
+        this.color = 'black'
+      } 
+      if (e.key == "2") {
+        this.color = 'black'
+      } 
+      if (e.key == "3") {
+        this.color = 'black'
+      } 
+      if (e.key == "4") {
+        this.color = 'black'
+      } 
+      if (e.key == "5") {
+        this.color = 'black'
+      } 
+    }),
+    addEventListener('keyup', e => {
+      if (e.key == "1") {
+        this.color = 'lightgray'
+      } 
+      if (e.key == "2") {
+        this.color = 'lightgray'
+      } 
+      if (e.key == "3") {
+        this.color = 'lightgray'
+      } 
+      if (e.key == "4") {
+        this.color = 'lightgray'
+      } 
+      if (e.key == "5") {
+        this.color = 'lightgray'
+      } 
+    })
+  }
+}
