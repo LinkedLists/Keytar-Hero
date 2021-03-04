@@ -19,12 +19,6 @@ export default class Note {
   }
 
   generateNote(x, y) {
-    // this.c.beginPath();
-    // this.c.rect(x, y - 75, 60, 75);
-    // this.c.fillStyle = this.color;
-    // this.c.fill();
-    // this.c.stroke();
-
     this.c.beginPath();
     this.c.arc(x + 30, y, 30, 0, Math.PI * 2, false);
     this.c.fillStyle = this.color;
@@ -34,10 +28,11 @@ export default class Note {
 
   generateHoldingNote(x, y, holdValue = 1) {
     const beatMultiplier = 38.28
+    const extenstionLength = holdValue * beatMultiplier * 4 + 30
     this.c.beginPath();
-    this.c.arc(x + 30, y - holdValue * beatMultiplier * 2, 30, 0, Math.PI, true);
+    this.c.arc(x + 30, y - extenstionLength, 30, 0, Math.PI, true);
     this.c.lineTo(x, y)
-    this.c.moveTo(x + 60, y - holdValue * beatMultiplier * 2)
+    this.c.moveTo(x + 60, y - extenstionLength)
     this.c.lineTo(x + 60, y)
     this.c.arc(x + 30, y , 30, 0, -Math.PI, false);
     this.c.fillStyle = this.color;
@@ -46,17 +41,17 @@ export default class Note {
   }
 
   update() {
-    this.generateHoldingNote(this.x, this.y);
+    this.generateNote(this.x, this.y);
     this.y += this.dy;
   }
 
   // Is out of bounds of the target?
   outOfBounds(y) {
-    return this.y -20 >= y ? true : false
+    return this.y -15 >= y ? true : false
   }
 
   // In bounds of the target?
   inBounds(y) {
-    return this.y + 90 >= y ? true : false
+    return this.y + 100 >= y ? true : false
   }
 }

@@ -109,11 +109,19 @@ export default class Game {
   }
 
   generateNotes() {
+    // will need to decrese setInterval time to allow for eigth notes
       setInterval( () => {
         if (song.length > 0) {
           let noteParams = song.shift();
           let note = new Note(noteParams.x, noteParams.y, this.c, this.returnColor(noteParams.x))
           this.notes[noteParams.pos].push(note)
+          
+          if (noteParams.chain) {
+            let noteParams2 = song.shift();
+            let note2 = new Note(noteParams2.x, noteParams2.y, this.c, this.returnColor(noteParams2.x))
+            this.notes[noteParams2.pos].push(note2)
+          }
+          
         }
       }, 638)
   }
