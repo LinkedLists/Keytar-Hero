@@ -129,7 +129,6 @@ export default class Game {
           let noteParams = song.shift();
           let note = new Note(noteParams.x, noteParams.y, this.c)
           this.notes[noteParams.pos].push(note)
-          console.log(this.notes)
         // }
         // console.log(this.notes)
       }, 638)
@@ -137,22 +136,26 @@ export default class Game {
   }
 
   playSong() {
-    const delay = (innerHeight / 8) * 60 ;
-    // intro takes 5709ms and it takes 1667ms for the first
-    // note to be playable => 4042
+    const delay = 5709 - (innerHeight / 8) / 60 * 1000 ;
+    console.log(delay)
+    console.log(innerHeight)
+    // intro takes 5709ms until a note should be playble
+
+    // (innerHeight / 8) / 60 is the time it takes for the note
+    // to become playable assuming 60 fps
+    // * 1000 to change to ms
 
     this.song = document.getElementById('audio');
     console.log(this.song);
     let start = document.getElementById('start');
     let pause = document.getElementById('pause');
     start.addEventListener('click', () => {
-      setTimeout(this.generateNotes, 3709);
+      setTimeout(this.generateNotes, delay);
       document.getElementById('audio').play();
     });
     pause.addEventListener('click', () => {
       document.getElementById('audio').pause();
     });
-
 }
 
   bandAidFix(c) {
