@@ -6,7 +6,7 @@ export default class Note {
     this.c = context
     this.color = color;
     this.generateNote = this.generateNote.bind(this);
-    this.generateHoldingNote = this.generateHoldingNote.bind(this);
+    // this.generateHoldingNote = this.generateHoldingNote.bind(this);
     this.update = this.update.bind(this);
     this.outOfBounds = this.outOfBounds.bind(this);
     this.inBounds = this.inBounds.bind(this);
@@ -26,19 +26,19 @@ export default class Note {
     this.c.stroke();
   }
 
-  generateHoldingNote(x, y, holdValue = 1) {
-    const beatMultiplier = 38.28
-    const extenstionLength = holdValue * beatMultiplier * 4 + 30
-    this.c.beginPath();
-    this.c.arc(x + 30, y - extenstionLength, 30, 0, Math.PI, true);
-    this.c.lineTo(x, y)
-    this.c.moveTo(x + 60, y - extenstionLength)
-    this.c.lineTo(x + 60, y)
-    this.c.arc(x + 30, y , 30, 0, -Math.PI, false);
-    this.c.fillStyle = this.color;
-    this.c.fill();
-    this.c.stroke();
-  }
+  // generateHoldingNote(x, y, holdValue = 1) {
+  //   const beatMultiplier = 38.28
+  //   const extenstionLength = holdValue * beatMultiplier * 4 + 30
+  //   this.c.beginPath();
+  //   this.c.arc(x + 30, y - extenstionLength, 30, 0, Math.PI, true);
+  //   this.c.lineTo(x, y)
+  //   this.c.moveTo(x + 60, y - extenstionLength)
+  //   this.c.lineTo(x + 60, y)
+  //   this.c.arc(x + 30, y , 30, 0, -Math.PI, false);
+  //   this.c.fillStyle = this.color;
+  //   this.c.fill();
+  //   this.c.stroke();
+  // }
 
   update() {
     this.generateNote(this.x, this.y);

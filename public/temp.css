@@ -30,6 +30,7 @@ canvas {
   left: 0;
   /* right: 0; */
   /* margin: 0 auto; */
+  background: cornsilk;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -45,7 +46,11 @@ canvas {
   border-radius: 50%;
   position: relative;
   display: inline-block;
-  margin-bottom: 5vmin;
+  margin: 5vmin auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 35px;
 }
 
 #target-1 {
