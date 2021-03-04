@@ -113,12 +113,12 @@ export default class Game {
       setInterval( () => {
         if (song.length > 0) {
           let noteParams = song.shift();
-          let note = new Note(noteParams.x, noteParams.y, this.c, this.returnColor(noteParams.x))
+          let note = new Note(noteParams.x, noteParams.y, this.c, this.returnColor(noteParams.x), noteParams.hold)
           this.notes[noteParams.pos].push(note)
           
           if (noteParams.chain) {
             let noteParams2 = song.shift();
-            let note2 = new Note(noteParams2.x, noteParams2.y, this.c, this.returnColor(noteParams2.x))
+            let note2 = new Note(noteParams2.x, noteParams2.y, this.c, this.returnColor(noteParams2.x), noteParams.hold)
             this.notes[noteParams2.pos].push(note2)
           }
           
