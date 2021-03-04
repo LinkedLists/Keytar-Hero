@@ -36,8 +36,13 @@ export default class Game {
   }
 
   animate() {
+    let start
+    start = new Date().getTime();
+    if (start === undefined) {
 
-
+      let start = start = new Date().getTime();
+      
+    }
     ////////////////////////
     //FIGURE OUT WHY//////////
     this.bandAidFix(this.c)
@@ -61,6 +66,8 @@ export default class Game {
         subArr.shift();
       }
     })
+    // const elapsed = new Date().getTime() - start;
+    // console.log(elapsed) 
     requestAnimationFrame(this.animate)
   }
 
@@ -125,33 +132,26 @@ export default class Game {
           console.log(this.notes)
         // }
         // console.log(this.notes)
-      }, 638.3)
+      }, 638)
     }
   }
 
-  // playSong() {
-  //   // intro takes 5709ms and it takes 1667ms for the first
-  //   // note to be playable => 4042
-  //   setTimeout(this.generateNotes, 4042)
-  //   this.song = document.createElement("audio");
-  //   this.song.src = "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Marshmello+Halsey++Be+Kind+Halsey+Lyric+Video.mp3";
-  //   document.body.appendChild(this.song);
-  //   this.song.style.display = "none";
-  //   this.song.play()
-  // }
-
-
   playSong() {
-    // this.song = document.createElement("audio");
-    // this.song.src = "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Marshmello+Halsey++Be+Kind+Halsey+Lyric+Video.mp3";
+    const delay = (innerHeight / 8) * 60 ;
+    // intro takes 5709ms and it takes 1667ms for the first
+    // note to be playable => 4042
+
     this.song = document.getElementById('audio');
     console.log(this.song);
-    let button = document.getElementById('start');
-    button.addEventListener('click', () => {
-      setTimeout(this.generateNotes, 4042);
+    let start = document.getElementById('start');
+    let pause = document.getElementById('pause');
+    start.addEventListener('click', () => {
+      setTimeout(this.generateNotes, 3709);
       document.getElementById('audio').play();
     });
-    // this.song.play();
+    pause.addEventListener('click', () => {
+      document.getElementById('audio').pause();
+    });
 
 }
 
