@@ -53,10 +53,12 @@ export default class Game {
       // if the first note in each subArr is out of bounds then clear it
       if (subArr[0] !== undefined) {
         if (subArr[0].holdValue !== 0 && subArr[0].outOfBoundsTail(this.dimensions.height)) {
+          subArr[0].color = 'gray';
           console.log("note is unshifted");
           subArr.shift();
         }
         else if (subArr[0].holdValue === 0 && subArr[0].outOfBounds(this.dimensions.height)) {
+          subArr[0].color = 'gray';
           console.log("note is unshifted");
           subArr.shift();
         }
@@ -73,6 +75,7 @@ export default class Game {
         if (this.notes[x][0].holdValue !== 0) {
           console.log("holding")
           this.notes[x][0].holdFlag = true;
+          this.notes[x][0].color = 'purple';
         } else {
           console.log("hit")
           this.score += 1;
@@ -80,7 +83,9 @@ export default class Game {
         }
       }
   }
-
+  ///////////////////////////////
+  // ERROR keydown continues to listen
+  ///////////////////////////////
   checkCollisionUp(x) {
     // make sure there is a note to look at when a keyup occurs
     if (this.notes[x][0]) {
@@ -94,39 +99,38 @@ export default class Game {
   }
 
   addListeners() {
-    let holdFlag = false;
     addEventListener('keydown', e => {
       if (e.key == "1") {
-        this.checkCollisionDown(0, holdFlag)
+        this.checkCollisionDown(0)
       } 
       if (e.key == "2") {
-        this.checkCollisionDown(1, holdFlag)
+        this.checkCollisionDown(1)
       } 
       if (e.key == "3") {
-        this.checkCollisionDown(2, holdFlag)
+        this.checkCollisionDown(2)
       } 
       if (e.key == "4") {
-        this.checkCollisionDown(3, holdFlag)
+        this.checkCollisionDown(3)
       } 
       if (e.key == "5") {
-        this.checkCollisionDown(4, holdFlag)
+        this.checkCollisionDown(4)
       } 
     })
     addEventListener('keyup', e => {
       if (e.key == "1") {
-        this.checkCollisionUp(0, holdFlag)
+        this.checkCollisionUp(0)
       } 
       if (e.key == "2") {
-        this.checkCollisionUp(1, holdFlag)
+        this.checkCollisionUp(1)
       } 
       if (e.key == "3") {
-        this.checkCollisionUp(2, holdFlag)
+        this.checkCollisionUp(2)
       } 
       if (e.key == "4") {
-        this.checkCollisionUp(3, holdFlag)
+        this.checkCollisionUp(3)
       } 
       if (e.key == "5") {
-        this.checkCollisionUp(4, holdFlag)
+        this.checkCollisionUp(4)
       } 
     })
   }
