@@ -28,10 +28,9 @@ export default class Game {
     this.animate = this.animate.bind(this)
     this.checkCollision = this.checkCollision.bind(this)
     this.scoreboard = this.scoreboard.bind(this)
-    this.generateSong = this.generateSong.bind(this)
-    // setTimeout(this.generateSong, 100);
+    this.generateNotes = this.generateNotes.bind(this)
     this.animate();
-    this.generateSong();
+    this.generateNotes();
   }
 
   animate() {
@@ -60,7 +59,6 @@ export default class Game {
         subArr.shift();
       }
     })
-    // if (this.notes[0].length === 0) this.generateSong()
     requestAnimationFrame(this.animate)
   }
 
@@ -74,7 +72,6 @@ export default class Game {
           this.notes[x].shift();
         }
     }
-
   }
 
   addListeners() {
@@ -116,16 +113,18 @@ export default class Game {
     return notes
   }
 
-  generateSong() {
-    setInterval( () => {
-      if (song.length > 0) {
-        let noteParams = song.shift();
-        let note = new Note(noteParams.x, noteParams.y, this.c)
-        this.notes[noteParams.pos].push(note)
-        console.log(this.notes)
-      }
-      // console.log(this.notes)
-    }, 1000)
+  generateNotes() {
+    if (song.length > 0) {
+      setInterval( () => {
+        // if (song.length > 0) {
+          let noteParams = song.shift();
+          let note = new Note(noteParams.x, noteParams.y, this.c)
+          this.notes[noteParams.pos].push(note)
+          console.log(this.notes)
+        // }
+        // console.log(this.notes)
+      }, 1000 * song[0].tempo)
+    }
   }
 
   bandAidFix(c) {
