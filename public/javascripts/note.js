@@ -9,7 +9,12 @@ export default class Note {
     this.outOfBounds = this.outOfBounds.bind(this);
     this.inBounds = this.inBounds.bind(this);
 
+
+    // I want a note to be playable after being rendered to have a 
+    // constant delay of about 2.1 seconds regardless of monitor size
+    // this.dy = innerHeight / 126.25;
     this.dy = 8;
+    console.log(this.dy)
   }
 
   generateNote(x, y) {

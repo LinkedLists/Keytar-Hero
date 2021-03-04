@@ -36,20 +36,13 @@ export default class Game {
   }
 
   animate() {
-    let start
-    start = new Date().getTime();
-    if (start === undefined) {
-
-      let start = start = new Date().getTime();
-      
-    }
     ////////////////////////
     //FIGURE OUT WHY//////////
     this.bandAidFix(this.c)
     //////////////////////////////
 
 
-    this.c.clearRect(0, 0, innerWidth, innerHeight);
+    this.c.clearRect(0, 0, canvas.width, canvas.height);
     this.scoreboard()
     drawTargets(this.c);
 
@@ -150,7 +143,7 @@ export default class Game {
     let start = document.getElementById('start');
     let pause = document.getElementById('pause');
     start.addEventListener('click', () => {
-      setTimeout(this.generateNotes, delay);
+      setTimeout(this.generateNotes, 3604);
       document.getElementById('audio').play();
     });
     pause.addEventListener('click', () => {
