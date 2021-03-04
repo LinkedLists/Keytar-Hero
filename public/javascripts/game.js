@@ -56,7 +56,7 @@ export default class Game {
           console.log("note is unshifted");
           subArr.shift();
         }
-        else if (subArr[0].outOfBounds(this.dimensions.height)) {
+        else if (subArr[0].holdValue === 0 && subArr[0].outOfBounds(this.dimensions.height)) {
           console.log("note is unshifted");
           subArr.shift();
         }
@@ -66,13 +66,13 @@ export default class Game {
     requestAnimationFrame(this.animate)
   }
 
-  checkCollisionDown(x, holdFlag) {
+  checkCollisionDown(x) {
     if (
       this.notes[x][0] && 
       this.notes[x][0].inBounds(this.dimensions.height)) {
         if (this.notes[x][0].holdValue !== 0) {
-          holdFlag = true;
-          return
+          console.log("holding")
+          this.notes[x][0].holdFlag = true;
         } else {
           console.log("hit")
           this.score += 1;
@@ -81,12 +81,15 @@ export default class Game {
       }
   }
 
-  checkCollisionUp(x, holdFlag) {
-    if (holdFlag && this.notes[x][0].inBoundsTail(this.dimensions.height)) {
-      console.log("hit")
-      this.score += 1;
-      this.notes[x].shift();
-      holdFlag = false;
+  checkCollisionUp(x) {
+    // make sure there is a note to look at when a keyup occurs
+    if (this.notes[x][0]) {
+      if (this.notes[x][0].holdFlag && this.notes[x][0].inBoundsTail(this.dimensions.height)) {
+        console.log("hold released")
+        this.score += 1;
+        this.notes[x][0].holdFlag = false;
+        this.notes[x].shift();
+      }
     }
   }
 

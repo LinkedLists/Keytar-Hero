@@ -7,6 +7,9 @@ export default class Note {
     this.holdValue = holdValue
     this.extenstionLength = 0;
     this.color = color;
+    this.holdFlag = false;
+
+
     this.generateNote = this.generateNote.bind(this);
     this.generateHoldingNote = this.generateHoldingNote.bind(this);
     this.update = this.update.bind(this);
@@ -42,6 +45,19 @@ export default class Note {
     this.c.fillStyle = this.color;
     this.c.fill();
     this.c.stroke();
+
+    this.c.beginPath();
+    this.c.arc(x, y, 5, 0, Math.PI * 2, true);
+    this.c.fillStyle = "black";
+    this.c.fill();
+    this.c.stroke();
+
+    this.c.beginPath();
+    this.c.arc(x, y - this.extenstionLength, 5, 0, Math.PI * 2, true);
+    this.c.fillStyle = "black";
+    this.c.fill();
+    this.c.stroke();
+
   }
 
   update() {
