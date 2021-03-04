@@ -112,16 +112,27 @@ export default class Game {
   }
 
   generateNotes() {
-    // if (song.length > 0) {
+    if (song.length > 0) {
       setInterval( () => {
         // if (song.length > 0) {
           let noteParams = song.shift();
-          let note = new Note(noteParams.x, noteParams.y, this.c)
+          let note = new Note(noteParams.x, noteParams.y, this.c, this.returnColor(noteParams.x))
           this.notes[noteParams.pos].push(note)
         // }
         // console.log(this.notes)
       }, 638)
-    // }
+    }
+  }
+
+  returnColor(pos) {
+    const colorCode = {
+      30: "green",
+      150: "red",
+      270: "yellow",
+      390: "blue",
+      510: "orange",
+    }
+    return colorCode[pos]
   }
 
   playSong() {
@@ -143,13 +154,14 @@ export default class Game {
       setTimeout(this.generateNotes, 3604);
       document.getElementById('audio').play();
       this.isPlaying = true;
-      // this.animate()
+      // requestAnimationFrame(this.animate)
     });
     pause.addEventListener('click', () => {
       document.getElementById('audio').pause();
       this.isPlaying = false;
       clearInterval(this.generateNotes)
-      // cancelAnimationFrame(this.animate)
+      console.log("wtf")
+      cancelAnimationFrame(this.animate)
       cancelAnimationFrame(drawTargets)
     });
     resume.addEventListener('click', () => {

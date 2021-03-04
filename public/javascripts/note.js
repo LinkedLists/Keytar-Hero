@@ -1,9 +1,10 @@
 
 export default class Note {
-  constructor(x, y, context) {
+  constructor(x, y, context, color) {
     this.x = x;
     this.y = y;
     this.c = context
+    this.color = color;
     this.generateNote = this.generateNote.bind(this);
     this.update = this.update.bind(this);
     this.outOfBounds = this.outOfBounds.bind(this);
@@ -14,12 +15,19 @@ export default class Note {
     // constant delay of about 2.1 seconds regardless of monitor size
     // this.dy = innerHeight / 126.25;
     this.dy = 8;
-    console.log(this.dy)
   }
 
   generateNote(x, y) {
+    // this.c.beginPath();
+    // this.c.rect(x, y - 75, 60, 75);
+    // this.c.fillStyle = this.color;
+    // this.c.fill();
+    // this.c.stroke();
+
     this.c.beginPath();
-    this.c.rect(x, y - 75, 60, 75);
+    this.c.arc(x + 30, y, 30, 0, Math.PI * 2, false);
+    this.c.fillStyle = this.color;
+    this.c.fill();
     this.c.stroke();
   }
 
