@@ -71,17 +71,20 @@ export default class Game {
 
   checkCollisionDown(x) {
     let note = this.notes[x][0];
+    
     if (
       note && 
       note.inBounds(this.dimensions.height)) {
-        if (note.holdValue !== 0) {
-          console.log("holding")
-          note.holdFlag = true;
-          note.color = 'purple';
-        } else {
-          console.log("hit")
-          this.score += 1;
-          this.notes[x].shift();
+        if (note.color !== "black") {
+          if (note.holdValue !== 0) {
+            console.log("holding")
+            note.holdFlag = true;
+            note.color = 'purple';
+          } else {
+            console.log("hit")
+            this.score += 1;
+            this.notes[x].shift();
+          }
         }
       }
   }
@@ -93,12 +96,17 @@ export default class Game {
     let note = this.notes[x][0];
     // make sure there is a note to look at when a keyup occurs
     if (note) {
-      note.color = note.originalColor;
       if (note.holdFlag && note.inBoundsTail(this.dimensions.height)) {
         console.log("hold released")
         this.score += 1;
         note.holdFlag = false;
         this.notes[x].shift();
+      }
+      else if (note.holdFlag && !note.inBoundsTail(this.dimensions.height)) {
+        note.color = 'black';
+        console.log("missed")
+        note.holdFlag = false;
+        // this.notes[x].shift();
       }
     }
   }
@@ -183,7 +191,7 @@ export default class Game {
           counter -= song[0].tempo
           song.shift()
         }
-        if (song[0].kill) {
+        else if (song[0].kill) {
           counter += 1
           song.shift()
         }
