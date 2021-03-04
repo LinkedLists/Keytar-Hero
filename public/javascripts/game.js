@@ -16,12 +16,13 @@ export default class Game {
     this.c = canvas.getContext('2d');
     this.dimensions = { width: canvas.width, height: canvas.height};
     this.score = 0;
+    this.song;
 
     this.notes = this.generateNoteArray();
-    this.note1 = new Note(CONSTANTS.pos1, 0, this.c)
-    this.note2 = new Note(CONSTANTS.pos4, 0, this.c)
-    this.notes[0].push(this.note1)
-    this.notes[3].push(this.note2)
+    // this.note1 = new Note(CONSTANTS.pos1, 0, this.c)
+    // this.note2 = new Note(CONSTANTS.pos4, 0, this.c)
+    // this.notes[0].push(this.note1)
+    // this.notes[3].push(this.note2)
     
     this.addListeners = this.addListeners.bind(this)
     this.addListeners()
@@ -29,8 +30,9 @@ export default class Game {
     this.checkCollision = this.checkCollision.bind(this)
     this.scoreboard = this.scoreboard.bind(this)
     this.generateNotes = this.generateNotes.bind(this)
+    this.playSong = this.playSong.bind(this)
     this.animate();
-    this.generateNotes();
+    this.playSong();
   }
 
   animate() {
@@ -123,9 +125,35 @@ export default class Game {
           console.log(this.notes)
         // }
         // console.log(this.notes)
-      }, 1000 * song[0].tempo)
+      }, 638.3)
     }
   }
+
+  // playSong() {
+  //   // intro takes 5709ms and it takes 1667ms for the first
+  //   // note to be playable => 4042
+  //   setTimeout(this.generateNotes, 4042)
+  //   this.song = document.createElement("audio");
+  //   this.song.src = "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Marshmello+Halsey++Be+Kind+Halsey+Lyric+Video.mp3";
+  //   document.body.appendChild(this.song);
+  //   this.song.style.display = "none";
+  //   this.song.play()
+  // }
+
+
+  playSong() {
+    // this.song = document.createElement("audio");
+    // this.song.src = "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Marshmello+Halsey++Be+Kind+Halsey+Lyric+Video.mp3";
+    this.song = document.getElementById('audio');
+    console.log(this.song);
+    let button = document.getElementById('start');
+    button.addEventListener('click', () => {
+      setTimeout(this.generateNotes, 4042);
+      document.getElementById('audio').play();
+    });
+    // this.song.play();
+
+}
 
   bandAidFix(c) {
     c.beginPath();
