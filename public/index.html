@@ -10,19 +10,23 @@
   <body>
     <!-- <main id='main'></main> -->
     <audio id='audio' src="https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Marshmello+Halsey++Be+Kind+Halsey+Lyric+Video.mp3"></audio>
-    <button id='start'>start</button>
-    <button id='pause'>pause</button>
-    <button id='resume'>resume</button>
-    <div class='score-board'></div>
     <div class="canvas-wrapper">
-      <canvas id="canvas" width="600" height="800"></canvas>
+      <div class='score-board'>
+        <div>score</div>
+        <button id='start'>start</button>
+        <button id='pause'>pause</button>
+        <button id='resume'>resume</button>
+      </div>
+      <div class="canvas-container">
+        <canvas id="canvas" width="600" height="800"></canvas>
+      </div>
       <div class="target-container"> 
         hi
-          <div class="target" id="target-1"><div class='test'>1</div></div>
-          <div class="target" id="target-2">2</div>
-          <div class="target" id="target-3">3</div>
-          <div class="target" id="target-4">4</div>
-          <div class="target" id="target-5">5</div>
+        <div class="target" id="target-1"><div class='test'>1</div></div>
+        <div class="target" id="target-2">2</div>
+        <div class="target" id="target-3">3</div>
+        <div class="target" id="target-4">4</div>
+        <div class="target" id="target-5">5</div>
       </div>
     </div>
   </body>

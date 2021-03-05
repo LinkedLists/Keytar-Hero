@@ -91,20 +91,20 @@ export default class Note {
 
   // Is out of bounds of the target?
   outOfBounds(y) {
-    return this.y - 15 >= y ? true : false
+    return this.y - 75 >= y ? true : false
   }
 
   outOfBoundsTail(y) {
-    return this.y - this.extenstionLength - 160 >= y ? true : false
+    return this.y - this.extenstionLength - 210 >= y ? true : false
   }
 
   // In bounds of the target?
   inBounds(y) {
-    return this.y + 120 >= y ? true : false
+    return this.y + 170 >= y ? true : false
   }
 
   inBoundsTail(y) {
-    return this.y - this.extenstionLength + 120 >= y ? true : false
+    return this.y - this.extenstionLength + 170 >= y ? true : false
   }
 
 }

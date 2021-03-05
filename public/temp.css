@@ -1,10 +1,22 @@
+body {
+  background-image: url('./assets//pexels-wendy-wei-1190297.jpg');
+  background-size: cover
+}
+
 .canvas-wrapper {
   top: 0;
+}
+
+.canvas-container {
+
+  background-image: url('./assets/dc32d9w-010c26cb-3234-4da1-af86-5d6f6498b1e2.png');
+  background-size:cover;
 }
 
 canvas {
   position: absolute;
   z-index: 1000;
+
   /* top: 0; */
   left: 0;
   right: 0;
@@ -14,20 +26,24 @@ canvas {
   margin-right: auto;
   display: block;
   /* width: 33vw; */
-  height: 90vh;
-  background-color: lightgray;
+  height: 100%;
+  /* background-color: lightgray; */
   /* opacity: 0.7; */
 }
 
 .target-container {
   position: absolute;
-  bottom: 0;
+  /* bottom: 0; */
   /* left: 0; */
   /* width: 100%; */
   width: 33vw;
   left: 0;
+  /* top: 0; */
+  /* bottom: 0; */
+  margin: auto 0;
   /* right: 0; */
   /* margin: 0 auto; */
+  /* align-self: center; */
   background: cornsilk;
   display: flex;
   flex-direction: row;
@@ -75,5 +91,9 @@ canvas {
   width: 200px;
   height: 250px;
   border: 1px solid black;
+  bottom: 0;
   position: absolute;
+  /* display: flex;
+  flex-direction: column;
+  align-content: flex-end; */
 }
