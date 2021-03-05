@@ -86,7 +86,8 @@ export default class Game {
             this.score += 5;
             this.targets[x].successfulHit = true
           } else {
-            this.streak += 1
+            this.streak += 1;
+            if (this.streak > this.maxStreak) this.maxStreak = this.streak;
             console.log("hit")
             this.targets[x].successfulHit = true
             this.score += 20;
@@ -104,6 +105,7 @@ export default class Game {
     if (note) {
       if (note.holdFlag && note.inBoundsTail(this.dimensions.height)) {
         this.streak += 1;
+        if (this.streak > this.maxStreak) this.maxStreak = this.streak;
         console.log("hold released")
         this.score += 1;
         note.holdFlag = false;
@@ -159,8 +161,8 @@ export default class Game {
     const x = this.dimensions.width / 20;
     const y = this.dimensions.height / 10;
     let score = document.getElementById('score'); 
-    let streak = document.getElementById('streak'); 
     score.innerHTML = this.score
+
     this.c.font = "bold 50px Arial";
     this.c.fillStyle = "white";
     this.c.fillText("score", x, y);
@@ -178,6 +180,16 @@ export default class Game {
     let max = document.getElementById('max-streak'); 
     streak.innerHTML = this.streak;
     max.innerHTML = this.maxStreak;
+    let img = document.getElementById('streak-img')
+    if ( this.streak >=1 && this.streak < 30) {
+      img.src = 'http://localhost:8000/assets/1.png';
+    }
+    if ( this.streak >=30 && this.streak < 75) {
+      img.src = 'http://localhost:8000/assets/2.gif';
+    }
+    if ( this.streak >=75) {
+      img.src = 'http://localhost:8000/assets/3.png';
+    }
     this.c.font = "bold 50px Arial";
     this.c.fillStyle = "white";
     this.c.fillText("streak", x, y);
@@ -189,8 +201,10 @@ export default class Game {
   }
 
   resetStreak() {
-    this.streak = 0;
-    if (this.maxStreak < this.streak) this.maxStreak = this.streak;
+    if (this.maxStreak < this.streak) {
+      this.maxStreak = this.streak
+      this.streak = 0;
+    };
   }
 
   generateNoteArray() {
