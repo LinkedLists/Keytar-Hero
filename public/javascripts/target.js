@@ -178,11 +178,10 @@ export default class Target {
 
   setPressed(){
     if (this.successfulHit) {
-      this.context.beginPath();
-      this.context.arc(this.pos, 728, 60, 0, Math.PI * 2, false);
-      this.context.fillStyle = "yellow";
-      this.context.fill();
-      this.context.stroke();
+      this.context.shadowBlur = 30;
+      this.context.shadowOffsetX = 3;
+      this.context.shadowOffsetY = 3;
+      this.context.shadowColor = "yellow";
     }
     this.context.beginPath();
     this.context.arc(this.pos, 728, 50, 0, Math.PI * 2, false);
@@ -201,6 +200,7 @@ export default class Target {
     this.context.fillStyle = this.color;
     this.context.fill();
     this.context.stroke();
+    this.context.shadowBlur = 0;
   }
 
   setTarget(){

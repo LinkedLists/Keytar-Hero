@@ -46,10 +46,12 @@ export default class Game {
     this.c.clearRect(0, 0, canvas.width, canvas.height);
     this.scoreboard()
     // drawTargets(this.c);
-    this.targets.forEach( target => {
-      target.displayTarget()
-    })
     
+    this.targets.forEach( target => {
+      this.c.save();
+      target.displayTarget()
+      this.c.restore();
+    })
     // this.notes is a 2D array to handle simultaneous inputs
     // this updates all notes and clears any notes that are
     // out of bounds
@@ -86,6 +88,7 @@ export default class Game {
             console.log("holding")
             note.holdFlag = true;
             note.color = 'purple';
+            this.targets[x].successfulHit = true
           } else {
             console.log("hit")
             this.targets[x].successfulHit = true
@@ -102,6 +105,7 @@ export default class Game {
   ///////////////////////////////
   checkCollisionUp(x) {
     let note = this.notes[x][0];
+    this.targets[x].successfulHit = false;
     // make sure there is a note to look at when a keyup occurs
     if (note) {
       if (note.holdFlag && note.inBoundsTail(this.dimensions.height)) {

@@ -44,6 +44,12 @@ export default class Note {
   generateHoldingNote(x, y) {
     const beatMultiplier = 38.28
     this.extenstionLength = this.holdValue * beatMultiplier * 4 - 80
+    if (this.holdFlag) {
+      this.c.shadowBlur = 30;
+      this.c.shadowOffsetX = 3;
+      this.c.shadowOffsetY = 3;
+      this.c.shadowColor = "orange";
+    }
     this.c.beginPath();
     this.c.arc(x + 30, y - this.extenstionLength, 30, 0, Math.PI, true);
     this.c.lineTo(x, y)
@@ -52,6 +58,7 @@ export default class Note {
     this.c.arc(x + 30, y , 30, 0, -Math.PI, false);
     this.c.fillStyle = this.color;
     this.c.fill();
+    this.c.shadowBlur = 0;
     this.c.stroke();
 
 
@@ -71,12 +78,15 @@ export default class Note {
   }
 
   update() {
+    this.c.save();
+    // this.c.translate(this.x, this.y);
     if (this.holdValue !== 0) {
       this.generateHoldingNote(this.x, this.y)
     } else {
       this.generateNote(this.x, this.y);
     }
     this.y += this.dy;
+    this.c.restore();
   }
 
   // Is out of bounds of the target?
