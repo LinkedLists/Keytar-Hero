@@ -63,17 +63,17 @@ export default class Note {
 
 
     // pinning the head and tail
-    this.c.beginPath();
-    this.c.arc(x, y, 5, 0, Math.PI * 2, true);
-    this.c.fillStyle = "black";
-    this.c.fill();
-    this.c.stroke();
+    // this.c.beginPath();
+    // this.c.arc(x, y, 5, 0, Math.PI * 2, true);
+    // this.c.fillStyle = "black";
+    // this.c.fill();
+    // this.c.stroke();
 
-    this.c.beginPath();
-    this.c.arc(x, y - this.extenstionLength, 5, 0, Math.PI * 2, true);
-    this.c.fillStyle = "black";
-    this.c.fill();
-    this.c.stroke();
+    // this.c.beginPath();
+    // this.c.arc(x, y - this.extenstionLength, 5, 0, Math.PI * 2, true);
+    // this.c.fillStyle = "black";
+    // this.c.fill();
+    // this.c.stroke();
 
   }
 
