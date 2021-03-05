@@ -11,7 +11,7 @@ export default class Target {
     this.context = context;
     this.color = 'lightgray';
     this.num = num;
-    this.pos = (num - 1) * 120 + 60;
+    this.pos = (num - 1) * 120 + 110;
     this.pressedFlag = false;
     this.successfulHit = false;
 
@@ -37,7 +37,6 @@ export default class Target {
       this.context.shadowOffsetY = 3;
       this.context.shadowColor = "yellow";
     }
-    // 728
     this.context.beginPath();
     this.context.arc(this.pos, 678, 50, 0, Math.PI * 2, false);
     this.context.fillStyle = "black";
@@ -59,7 +58,6 @@ export default class Target {
   }
 
   setTarget(){
-    // 740
     this.context.beginPath();
     this.context.arc(this.pos, 690, 50, 0, Math.PI * 2, false);
     this.context.fillStyle = "black";

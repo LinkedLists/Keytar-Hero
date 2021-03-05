@@ -35,7 +35,7 @@ export default class Note {
 
   generateNote(x, y) {
     this.c.beginPath();
-    this.c.arc(x + 30, y, 30, 0, Math.PI * 2, false);
+    this.c.arc(x + 80, y, 30, 0, Math.PI * 2, false);
     this.c.fillStyle = this.color;
     this.c.fill();
     this.c.stroke();
@@ -51,11 +51,11 @@ export default class Note {
       this.c.shadowColor = "orange";
     }
     this.c.beginPath();
-    this.c.arc(x + 30, y - this.extenstionLength, 30, 0, Math.PI, true);
-    this.c.lineTo(x, y)
-    this.c.moveTo(x + 60, y - this.extenstionLength)
-    this.c.lineTo(x + 60, y)
-    this.c.arc(x + 30, y , 30, 0, -Math.PI, false);
+    this.c.arc(x + 80, y - this.extenstionLength, 30, 0, Math.PI, true);
+    this.c.lineTo(x + 50, y)
+    this.c.moveTo(x + 110, y - this.extenstionLength)
+    this.c.lineTo(x + 110, y)
+    this.c.arc(x + 80, y , 30, 0, -Math.PI, false);
     this.c.fillStyle = this.color;
     this.c.fill();
     this.c.shadowBlur = 0;

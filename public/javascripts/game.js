@@ -3,14 +3,6 @@ import { drawTargets } from './target'
 import Target from './target'
 import { song } from './song/test'
 
-const CONSTANTS = {
-  pos1: 30,
-  pos2: 150,
-  pos3: 270,
-  pos4: 390,
-  pos5: 510,
-}
-
 export default class Game {
   constructor(canvas) {
     this.c = canvas.getContext('2d');
@@ -97,9 +89,6 @@ export default class Game {
       }
   }
 
-  ///////////////////////////////
-  // keydown continues to listen
-  ///////////////////////////////
   checkCollisionUp(x) {
     let note = this.notes[x][0];
     this.targets[x].successfulHit = false;
