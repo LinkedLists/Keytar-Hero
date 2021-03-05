@@ -1,5 +1,5 @@
 import Note from './note'
-import { drawTargets } from './target'
+// import { drawTargets } from './target'
 import Target from './target'
 import { song } from './song/test'
 
