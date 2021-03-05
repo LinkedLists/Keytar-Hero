@@ -8,6 +8,8 @@ export default class Game {
     this.c = canvas.getContext('2d');
     this.dimensions = { width: canvas.width, height: canvas.height};
     this.score = 0;
+    this.streak = 0;
+    this.maxStreak = 0;
     this.song;
     this.isPlaying = false;
     this.notes = this.generateNoteArray();
@@ -22,7 +24,9 @@ export default class Game {
     this.playSong = this.playSong.bind(this)
     this.tempoSetter = this.tempoSetter.bind(this)
     this.generateTargets = this.generateTargets.bind(this);
-    this.targets = this.generateTargets()
+    this.targets = this.generateTargets();
+    this.streakBoard = this.streakBoard.bind(this)
+    this.resetStreak = this.resetStreak.bind(this)
     this.animate();
     this.playSong();
   }
@@ -34,7 +38,8 @@ export default class Game {
     //////////////////////////////
     
     this.c.clearRect(0, 0, canvas.width, canvas.height);
-    this.scoreboard()
+    this.scoreboard();
+    this.streakBoard();
     
     this.targets.forEach( target => {
       this.c.save();
@@ -51,11 +56,13 @@ export default class Game {
       // if the first note in each subArr is out of bounds then clear it
       if (subArr[0] !== undefined) {
         if (subArr[0].holdValue !== 0 && subArr[0].outOfBoundsTail(this.dimensions.height)) {
+          this.resetStreak();
           subArr[0].color = 'gray';
           console.log("note is unshifted");
           subArr.shift();
         }
         else if (subArr[0].holdValue === 0 && subArr[0].outOfBounds(this.dimensions.height)) {
+          this.resetStreak();
           subArr[0].color = 'gray';
           console.log("note is unshifted");
           subArr.shift();
@@ -79,6 +86,7 @@ export default class Game {
             this.score += 5;
             this.targets[x].successfulHit = true
           } else {
+            this.streak += 1
             console.log("hit")
             this.targets[x].successfulHit = true
             this.score += 20;
@@ -95,12 +103,14 @@ export default class Game {
     // make sure there is a note to look at when a keyup occurs
     if (note) {
       if (note.holdFlag && note.inBoundsTail(this.dimensions.height)) {
+        this.streak += 1;
         console.log("hold released")
         this.score += 1;
         note.holdFlag = false;
         this.notes[x].shift();
       }
       else if (note.holdFlag && !note.inBoundsTail(this.dimensions.height)) {
+        this.resetStreak();
         note.color = 'black';
         console.log("missed")
         note.holdFlag = false;
@@ -147,15 +157,40 @@ export default class Game {
 
   scoreboard() {
     const x = this.dimensions.width / 20;
-    const y = this.dimensions.height / 10
-    let score = document.getElementsByClassName('score-board') 
+    const y = this.dimensions.height / 10;
+    let score = document.getElementById('score'); 
+    let streak = document.getElementById('streak'); 
     score.innerHTML = this.score
     this.c.font = "bold 50px Arial";
     this.c.fillStyle = "white";
-    this.c.fillText(this.score, x, y);
+    this.c.fillText("score", x, y);
+    this.c.fillText(this.score, x + 30, y + 50);
     this.c.lineWidth = 2;
-    this.c.strokeText(this.score, x, y);
+    this.c.strokeText("score", x, y);
+    this.c.strokeText(this.score, x + 30, y + 50);
     this.c.stroke();
+  }
+
+  streakBoard() {
+    const x = this.dimensions.width - 200;
+    const y = this.dimensions.height / 10;
+    let streak = document.getElementById('streak'); 
+    let max = document.getElementById('max-streak'); 
+    streak.innerHTML = this.streak;
+    max.innerHTML = this.maxStreak;
+    this.c.font = "bold 50px Arial";
+    this.c.fillStyle = "white";
+    this.c.fillText("streak", x, y);
+    this.c.fillText(this.streak, x + 30, y + 50);
+    this.c.lineWidth = 2;
+    this.c.strokeText("streak", x, y);
+    this.c.strokeText(this.streak, x + 30, y + 50);
+    this.c.stroke();
+  }
+
+  resetStreak() {
+    this.streak = 0;
+    if (this.maxStreak < this.streak) this.maxStreak = this.streak;
   }
 
   generateNoteArray() {

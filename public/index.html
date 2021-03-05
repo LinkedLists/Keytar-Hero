@@ -4,27 +4,43 @@
     <meta charset="utf-8">
     <title>Keytar Hero</title>
     <script type="text/javascript" src="./bundle.js"></script>
-    <link rel="stylesheet" href="temp.css">
+    <link rel="stylesheet" href="./stylesheets/uhh.css">
     <link rel="shortcut icon" href="#">
   </head>
   <body>
     <!-- <main id='main'></main> -->
     <audio id='audio' src="https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Marshmello+Halsey++Be+Kind+Halsey+Lyric+Video.mp3"></audio>
     <div class="canvas-wrapper">
-      <div class='score-board'>
-        <div>score</div>
-        <button id='start'>start</button>
-        <button id='pause'>pause</button>
-        <button id='resume'>resume</button>
-      </div>
       <canvas id="canvas" width="700" height="800"></canvas>
+    </div>
+    
+    <div class="modal open">
       <div class="target-container"> 
-        hi modal
         <div class="target" id="target-1"><div class='test'>1</div></div>
         <div class="target" id="target-2">2</div>
         <div class="target" id="target-3">3</div>
         <div class="target" id="target-4">4</div>
         <div class="target" id="target-5">5</div>
+      </div>
+    </div>
+
+
+    <div class='score-board'>
+      <div class='score-wrapper'>
+        <div class='score'>Score </div>
+        <div class='score' id='score'></div>
+      </div>
+      <button class="game-btns" id='start'>start</button>
+      <button class="game-btns" id='pause'>pause</button>
+      <button class="game-btns" id='resume'>resume</button>
+    </div>
+
+    <div class='streak-board'>
+      <div class='streak-wrapper'>
+        <div class='streak'>Streak </div>
+        <div class='streak' id='streak'></div>
+        <div class='streak'>Max Streak</div>
+        <div class='streak' id='max-streak'></div>
       </div>
     </div>
   </body>
