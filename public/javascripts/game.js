@@ -40,12 +40,9 @@ export default class Game {
     //FIGURE OUT WHY//////////
     this.bandAidFix(this.c)
     //////////////////////////////
-
-    
     
     this.c.clearRect(0, 0, canvas.width, canvas.height);
     this.scoreboard()
-    // drawTargets(this.c);
     
     this.targets.forEach( target => {
       this.c.save();
@@ -79,7 +76,6 @@ export default class Game {
 
   checkCollisionDown(x) {
     let note = this.notes[x][0];
-    
     if (
       note && 
       note.inBounds(this.dimensions.height)) {
@@ -88,13 +84,14 @@ export default class Game {
             console.log("holding")
             note.holdFlag = true;
             note.color = 'purple';
+            this.score += 5;
             this.targets[x].successfulHit = true
           } else {
             console.log("hit")
             this.targets[x].successfulHit = true
-            this.score += 1;
+            this.score += 20;
             this.notes[x].shift();
-            setTimeout(() => {this.targets[x].successfulHit = false}, 50)
+            setTimeout(() => {this.targets[x].successfulHit = false}, 80)
           }
         }
       }
@@ -162,6 +159,8 @@ export default class Game {
   scoreboard() {
     const x = this.dimensions.width / 20;
     const y = this.dimensions.height / 10
+    let score = document.getElementsByClassName('score-board') 
+    score.innerHTML = this.score
     this.c.font = "bold 50px Arial";
     this.c.fillStyle = "white";
     this.c.fillText(this.score, x, y);
