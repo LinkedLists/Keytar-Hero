@@ -2,7 +2,7 @@
 @import 'scoreboard.css';
 
 body {
-  background-image: url('../assets/pexels-wendy-wei-1190297.jpg');
+  background-image: url('https://keytar-hero-seed.s3-us-west-1.amazonaws.com/background.jpg');
   background-size: cover;
 }
 
@@ -15,7 +15,7 @@ body {
 }
 
 #canvas {
-  background-image: url('../assets/canvas.png');
+  background-image: url('https://keytar-hero-seed.s3-us-west-1.amazonaws.com/canvas.png');
   background-size: cover;
   position: absolute;
   /* z-index: 1000; */
