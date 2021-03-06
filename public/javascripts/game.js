@@ -181,13 +181,13 @@ export default class Game {
     streak.innerHTML = this.streak;
     max.innerHTML = this.maxStreak;
     let img = document.getElementById('streak-img')
-    if ( this.streak >=1 && this.streak < 30) {
+    if ( this.streak >=5 && this.streak < 20) {
       img.src = 'http://localhost:8000/assets/1.png';
     }
-    if ( this.streak >=30 && this.streak < 75) {
+    if ( this.streak >= 20 && this.streak < 65) {
       img.src = 'http://localhost:8000/assets/2.gif';
     }
-    if ( this.streak >=75) {
+    if ( this.streak >=65) {
       img.src = 'http://localhost:8000/assets/3.png';
     }
     this.c.font = "bold 50px Arial";
@@ -203,8 +203,8 @@ export default class Game {
   resetStreak() {
     if (this.maxStreak < this.streak) {
       this.maxStreak = this.streak
-      this.streak = 0;
     };
+    this.streak = 0;
   }
 
   generateNoteArray() {
