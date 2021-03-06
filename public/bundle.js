@@ -75,7 +75,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('canvas');
-    canvas.style.background = "url('../assets/canvas.png') no-repeat center";
+    canvas.style.background = "url('http://localhost:8000/assets/canvas.png') no-repeat center";
     // canvas.style.backgroundSize = "contain";
 
     canvas.style.backgroundSize = "100% 100%";
