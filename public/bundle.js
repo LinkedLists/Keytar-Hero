@@ -75,7 +75,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('canvas');
-    canvas.style.background = "url('http://localhost:8000/assets/canvas.png') no-repeat center";
+    canvas.style.background = "url('../assets/canvas.png') no-repeat center";
     // canvas.style.backgroundSize = "contain";
 
     canvas.style.backgroundSize = "100% 100%";
@@ -279,13 +279,13 @@ class Game {
     max.innerHTML = this.maxStreak;
     let img = document.getElementById('streak-img')
     if ( this.streak >=5 && this.streak < 20) {
-      img.src = 'http://localhost:8000/assets/1.png';
+      img.src = '../assets/1.png';
     }
     if ( this.streak >= 20 && this.streak < 65) {
-      img.src = 'http://localhost:8000/assets/2.gif';
+      img.src = '../assets/2.gif';
     }
     if ( this.streak >=65) {
-      img.src = 'http://localhost:8000/assets/3.png';
+      img.src = '../assets/3.png';
     }
     this.c.font = "bold 50px Arial";
     this.c.fillStyle = "white";
@@ -409,9 +409,6 @@ class Game {
     c.rect(0, 0, 0, 0);
     c.stroke();
   }
-
-
-  
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Game;
  
