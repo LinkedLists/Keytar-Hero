@@ -182,13 +182,13 @@ export default class Game {
     max.innerHTML = this.maxStreak;
     let img = document.getElementById('streak-img')
     if ( this.streak >=5 && this.streak < 20) {
-      img.src = '../assets/1.png';
+      img.src = './assets/1.png';
     }
     if ( this.streak >= 20 && this.streak < 65) {
-      img.src = '../assets/2.gif';
+      img.src = './assets/2.gif';
     }
     if ( this.streak >=65) {
-      img.src = '../assets/3.png';
+      img.src = './assets/3.png';
     }
     this.c.font = "bold 50px Arial";
     this.c.fillStyle = "white";
