@@ -42,13 +42,13 @@
 
 .instructions-header {
   margin-top: 20px;
-  font-size: 30px;
+  font-size: 40px;
 }
 
 .instructions {
   display: inline-block;
   padding: 8px;
-  margin: 10px auto;
+  margin: 5px auto;
 }
 
 .target-container {
@@ -100,7 +100,7 @@
 
 .holding-img {
   width: 90%;
-  margin: 10px auto;
-  margin-bottom: 20px;
+  margin: 0 auto;
+  margin-bottom: 10px;
 }
 

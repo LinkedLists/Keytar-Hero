@@ -105,6 +105,7 @@ class Game {
     this.song;
     this.isPlaying = false;
     this.notes = this.generateNoteArray();
+    this.deadNotes = [];
     
     this.addListeners = this.addListeners.bind(this)
     this.addListeners()
@@ -131,10 +132,7 @@ class Game {
 
 
   animate() {
-    ////////////////////////
-    //FIGURE OUT WHY//////////
     this.bandAidFix(this.c)
-    //////////////////////////////
     this.c.clearRect(0, 0, canvas.width, canvas.height);
     this.scoreboard();
     this.streakBoard();
@@ -149,9 +147,14 @@ class Game {
     // which allows for simultaneous inputs.
     // This updates all notes and clears any notes that are
     // out of bounds
+
+    this.deadNotes.forEach( note => {
+      note.update();
+    })
+
     this.notes.forEach( (subArr, i) => {
       subArr.forEach( note => {
-        note.update()
+        note.update();
       })
 
       // if the first note in each subArr is out of bounds then clear it
@@ -161,7 +164,7 @@ class Game {
           this.resetStreak();
           subArr[0].color = 'gray';
           console.log("note is unshifted");
-          subArr.shift();
+          this.deadNotes.push(subArr.shift());
 
           // If a holding note was held for too long then clear the 
           // successful hit glow indicator from the target
@@ -181,6 +184,7 @@ class Game {
           !subArr[0].holdFlag) {
             if (subArr[0].color !== 'black') subArr[0].color = 'gray';
             this.resetStreak();
+            this.deadNotes.push(subArr.shift())
         }
       }
     })
