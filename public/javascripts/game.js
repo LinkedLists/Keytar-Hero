@@ -1,7 +1,6 @@
 import Note from './note'
-// import { drawTargets } from './target'
 import Target from './target'
-import { song } from './song/test'
+import { song } from './song/song'
 
 export default class Game {
   constructor(canvas) {
@@ -215,7 +214,7 @@ export default class Game {
       img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/1.png';
     }
     if ( this.streak >= 20 && this.streak < 65) {
-      img.src = './public/assets/2.gif';
+      img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/2.png';
     }
     if ( this.streak >=65) {
       img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/3.png';
