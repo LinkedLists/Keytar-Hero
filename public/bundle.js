@@ -73,7 +73,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modal__ = __webpack_require__(5);
 
 
-// import Game from Board.js
 
 document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('canvas');
