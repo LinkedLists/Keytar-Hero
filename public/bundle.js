@@ -175,6 +175,12 @@ class Game {
           subArr[0].color = 'gray';
           console.log("note is unshifted");
           this.missedNotes.push(subArr.shift());
+          
+          if(i === 0) clearInterval(this.score1)
+          if(i === 1) clearInterval(this.score2)
+          if(i === 2) clearInterval(this.score3)
+          if(i === 3) clearInterval(this.score4)
+          if(i === 4) clearInterval(this.score5)
 
           // If a holding note was held for too long then clear the 
           // successful hit glow indicator from the target
