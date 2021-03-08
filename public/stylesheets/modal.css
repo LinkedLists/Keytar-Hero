@@ -16,12 +16,27 @@
   z-index: 2;
 }
 
-.target-container {
+.instructions-container {
+  /* width: 400px; */
+  height: 600px;
+  width: 30%;
+  border: 1px solid white;
+  background: black;
   position: absolute;
-  width: 28%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 3;
+}
+
+.target-container {
+  /* position: absolute; */
+  width: 100%;
   left: 0;
   margin: auto 0;
-  background: cornsilk;
+  background: green;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -30,8 +45,8 @@
 }
 
 .target {
-  width: 12vmin;
-  height: 12vmin;
+  width: 10vmin;
+  height: 10vmin;
   background: lightgray;
   box-sizing: border-box;
   border: 1vmin solid black;

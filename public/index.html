@@ -14,13 +14,15 @@
       <canvas id="canvas" width="700" height="800"></canvas>
     </div>
     
-    <div class="modal">
-      <div class="target-container"> 
-        <div class="target" id="target-1">1</div>
-        <div class="target" id="target-2">2</div>
-        <div class="target" id="target-3">3</div>
-        <div class="target" id="target-4">4</div>
-        <div class="target" id="target-5">5</div>
+    <div class="modal open">
+      <div class="instructions-container">
+        <div class="target-container"> 
+          <div class="target" id="target-1">1</div>
+          <div class="target" id="target-2">2</div>
+          <div class="target" id="target-3">3</div>
+          <div class="target" id="target-4">4</div>
+          <div class="target" id="target-5">5</div>
+        </div>
       </div>
       <div class="modal-screen"></div>
     </div>
@@ -38,6 +40,7 @@
         <button class="game-btns" id='start'>start</button>
         <button class="game-btns" id='pause'>pause (only after notes are generated pls)</button>
         <button class="game-btns" id='resume'>resume</button>
+        <button class="game-btns" id='open-modal'>instructions</button>
       </div>
       <div class='score-wrapper'>
         <div class='score'>Score </div>
@@ -46,6 +49,7 @@
     </div>
     <div class='streak-board'>
       <div class='streak-container'>
+        <div style="color: white">streak meter placeholder</div>
         <img src='./assets/uhh.png' id='streak-img' />
         <div class='streak-wrapper'>
           <div class='streak'>Streak </div>

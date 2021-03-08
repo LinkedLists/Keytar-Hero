@@ -70,25 +70,18 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__game__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modal__ = __webpack_require__(5);
+
 
 // import Game from Board.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementsByClassName("modal");
-    
     const canvas = document.getElementById('canvas');
-    // canvas.style.background = "url('../assets/canvas.png') no-repeat center";
-    // canvas.style.backgroundSize = "contain";
-
     canvas.style.backgroundSize = "100% 100%";
-    // canvas.width = window.innerWidth;
-    // canvas.height = window.innerHeight;
     new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas);
-    console.log('hi')
-    
+
+    Object(__WEBPACK_IMPORTED_MODULE_1__modal__["a" /* modalHandler */])()
 })
-
-
 
 
 /***/ }),
@@ -123,7 +116,7 @@ class Game {
     this.scoreboard = this.scoreboard.bind(this)
     this.generateNotes = this.generateNotes.bind(this)
     this.playSong = this.playSong.bind(this)
-    this.tempoSetter = this.tempoSetter.bind(this)
+    this.noteGrabber = this.noteGrabber.bind(this)
     this.generateTargets = this.generateTargets.bind(this);
     this.targets = this.generateTargets();
     this.streakBoard = this.streakBoard.bind(this)
@@ -133,9 +126,11 @@ class Game {
     this.counter = 0;
     this.noteDelay = null;
 
+
     this.animate();
     this.playSong();
   }
+
 
   animate() {
     ////////////////////////
@@ -263,24 +258,11 @@ class Game {
   }
 
   scoreboard() {
-    // const x = this.dimensions.width / 20;
-    // const y = this.dimensions.height / 10;
     let score = document.getElementById('score'); 
     score.innerHTML = this.score
-
-    // this.c.font = "bold 50px Arial";
-    // this.c.fillStyle = "white";
-    // this.c.fillText("score", x, y);
-    // this.c.fillText(this.score, x + 30, y + 50);
-    // this.c.lineWidth = 2;
-    // this.c.strokeText("score", x, y);
-    // this.c.strokeText(this.score, x + 30, y + 50);
-    // this.c.stroke();
   }
 
   streakBoard() {
-    // const x = this.dimensions.width - 200;
-    // const y = this.dimensions.height / 10;
     let streak = document.getElementById('streak'); 
     let max = document.getElementById('max-streak'); 
     streak.innerHTML = this.streak;
@@ -295,14 +277,6 @@ class Game {
     if ( this.streak >=65) {
       img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/3.png';
     }
-    // this.c.font = "bold 50px Arial";
-    // this.c.fillStyle = "white";
-    // this.c.fillText("streak", x, y);
-    // this.c.fillText(this.streak, x + 30, y + 50);
-    // this.c.lineWidth = 2;
-    // this.c.strokeText("streak", x, y);
-    // this.c.strokeText(this.streak, x + 30, y + 50);
-    // this.c.stroke();
   }
 
   resetStreak() {
@@ -324,7 +298,6 @@ class Game {
     // let counter = 0
     this.noteDelay = null;
     this.callGenerateNotes = setInterval( () => {
-      console.log("wow")
       this.counter++
       if (__WEBPACK_IMPORTED_MODULE_2__song_test__["a" /* song */].length > 0) {
         if (__WEBPACK_IMPORTED_MODULE_2__song_test__["a" /* song */][0].rest) {
@@ -336,18 +309,18 @@ class Game {
           __WEBPACK_IMPORTED_MODULE_2__song_test__["a" /* song */].shift()
         }
         if (this.counter === 1 && __WEBPACK_IMPORTED_MODULE_2__song_test__["a" /* song */][0].tempo > 1) {
-          this.tempoSetter();
+          this.noteGrabber();
           this.counter = 0
         }
         else if (this.counter === 2) {
           this.counter = 0
-          this.tempoSetter();
+          this.noteGrabber();
         }
       }
     }, 319)
   }
       
-  tempoSetter() {
+  noteGrabber() {
     let noteParams = __WEBPACK_IMPORTED_MODULE_2__song_test__["a" /* song */].shift();
     let note = new __WEBPACK_IMPORTED_MODULE_0__note__["a" /* default */](noteParams.x, noteParams.y, this.c, this.returnColor(noteParams.x), noteParams.hold)
     this.notes[noteParams.pos].push(note)
@@ -356,7 +329,6 @@ class Game {
       let note2 = new __WEBPACK_IMPORTED_MODULE_0__note__["a" /* default */](noteParams2.x, noteParams2.y, this.c, this.returnColor(noteParams2.x), noteParams.hold)
       this.notes[noteParams2.pos].push(note2)
     }
-    // clearInterval(this.callGenerateNotes)
   }
 
   returnColor(pos) {
@@ -438,7 +410,6 @@ class Game {
       // } else {
         let dif = stopButton()
         setTimeout(this.callGenerateNotes = setInterval( () => {
-          console.log("wow")
           this.counter++
           if (__WEBPACK_IMPORTED_MODULE_2__song_test__["a" /* song */].length > 0) {
             if (__WEBPACK_IMPORTED_MODULE_2__song_test__["a" /* song */][0].rest) {
@@ -450,19 +421,17 @@ class Game {
               __WEBPACK_IMPORTED_MODULE_2__song_test__["a" /* song */].shift()
             }
             if (this.counter === 1 && __WEBPACK_IMPORTED_MODULE_2__song_test__["a" /* song */][0].tempo > 1) {
-              this.tempoSetter();
+              this.noteGrabber();
               this.counter = 0
             }
             else if (this.counter === 2) {
               this.counter = 0
-              this.tempoSetter();
+              this.noteGrabber();
             }
           }
         }, 319), dif)
-      // }
     })
   }
-
 
   generateTargets() {
     const targets = []
@@ -1321,6 +1290,30 @@ const song = [
 ]
 /* harmony export (immutable) */ __webpack_exports__["a"] = song;
 
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const modalHandler = () => {
+  const openBtn = document.getElementById("open-modal");
+  const modalScreen = document.getElementsByClassName("modal-screen")[0];
+  const modal = document.getElementsByClassName("modal")[0];
+  
+  modalScreen.onclick = e => {
+    if (e.target === modalScreen) {
+      modal.classList.remove("open")
+    }
+  }
+  
+  openBtn.onclick = e => {
+      console.log("aweta")
+      modal.classList.add('open')
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = modalHandler;
 
 
 /***/ })

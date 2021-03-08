@@ -22,7 +22,7 @@ export default class Game {
     this.scoreboard = this.scoreboard.bind(this)
     this.generateNotes = this.generateNotes.bind(this)
     this.playSong = this.playSong.bind(this)
-    this.tempoSetter = this.tempoSetter.bind(this)
+    this.noteGrabber = this.noteGrabber.bind(this)
     this.generateTargets = this.generateTargets.bind(this);
     this.targets = this.generateTargets();
     this.streakBoard = this.streakBoard.bind(this)
@@ -32,9 +32,11 @@ export default class Game {
     this.counter = 0;
     this.noteDelay = null;
 
+
     this.animate();
     this.playSong();
   }
+
 
   animate() {
     ////////////////////////
@@ -162,24 +164,11 @@ export default class Game {
   }
 
   scoreboard() {
-    // const x = this.dimensions.width / 20;
-    // const y = this.dimensions.height / 10;
     let score = document.getElementById('score'); 
     score.innerHTML = this.score
-
-    // this.c.font = "bold 50px Arial";
-    // this.c.fillStyle = "white";
-    // this.c.fillText("score", x, y);
-    // this.c.fillText(this.score, x + 30, y + 50);
-    // this.c.lineWidth = 2;
-    // this.c.strokeText("score", x, y);
-    // this.c.strokeText(this.score, x + 30, y + 50);
-    // this.c.stroke();
   }
 
   streakBoard() {
-    // const x = this.dimensions.width - 200;
-    // const y = this.dimensions.height / 10;
     let streak = document.getElementById('streak'); 
     let max = document.getElementById('max-streak'); 
     streak.innerHTML = this.streak;
@@ -194,14 +183,6 @@ export default class Game {
     if ( this.streak >=65) {
       img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/3.png';
     }
-    // this.c.font = "bold 50px Arial";
-    // this.c.fillStyle = "white";
-    // this.c.fillText("streak", x, y);
-    // this.c.fillText(this.streak, x + 30, y + 50);
-    // this.c.lineWidth = 2;
-    // this.c.strokeText("streak", x, y);
-    // this.c.strokeText(this.streak, x + 30, y + 50);
-    // this.c.stroke();
   }
 
   resetStreak() {
@@ -223,7 +204,6 @@ export default class Game {
     // let counter = 0
     this.noteDelay = null;
     this.callGenerateNotes = setInterval( () => {
-      console.log("wow")
       this.counter++
       if (song.length > 0) {
         if (song[0].rest) {
@@ -235,18 +215,18 @@ export default class Game {
           song.shift()
         }
         if (this.counter === 1 && song[0].tempo > 1) {
-          this.tempoSetter();
+          this.noteGrabber();
           this.counter = 0
         }
         else if (this.counter === 2) {
           this.counter = 0
-          this.tempoSetter();
+          this.noteGrabber();
         }
       }
     }, 319)
   }
       
-  tempoSetter() {
+  noteGrabber() {
     let noteParams = song.shift();
     let note = new Note(noteParams.x, noteParams.y, this.c, this.returnColor(noteParams.x), noteParams.hold)
     this.notes[noteParams.pos].push(note)
@@ -255,7 +235,6 @@ export default class Game {
       let note2 = new Note(noteParams2.x, noteParams2.y, this.c, this.returnColor(noteParams2.x), noteParams.hold)
       this.notes[noteParams2.pos].push(note2)
     }
-    // clearInterval(this.callGenerateNotes)
   }
 
   returnColor(pos) {
@@ -337,7 +316,6 @@ export default class Game {
       // } else {
         let dif = stopButton()
         setTimeout(this.callGenerateNotes = setInterval( () => {
-          console.log("wow")
           this.counter++
           if (song.length > 0) {
             if (song[0].rest) {
@@ -349,19 +327,17 @@ export default class Game {
               song.shift()
             }
             if (this.counter === 1 && song[0].tempo > 1) {
-              this.tempoSetter();
+              this.noteGrabber();
               this.counter = 0
             }
             else if (this.counter === 2) {
               this.counter = 0
-              this.tempoSetter();
+              this.noteGrabber();
             }
           }
         }, 319), dif)
-      // }
     })
   }
-
 
   generateTargets() {
     const targets = []
