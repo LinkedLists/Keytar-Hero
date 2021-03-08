@@ -60,26 +60,10 @@ export default class Note {
     this.c.fill();
     this.c.shadowBlur = 0;
     this.c.stroke();
-
-
-    // pinning the head and tail
-    // this.c.beginPath();
-    // this.c.arc(x, y, 5, 0, Math.PI * 2, true);
-    // this.c.fillStyle = "black";
-    // this.c.fill();
-    // this.c.stroke();
-
-    // this.c.beginPath();
-    // this.c.arc(x, y - this.extenstionLength, 5, 0, Math.PI * 2, true);
-    // this.c.fillStyle = "black";
-    // this.c.fill();
-    // this.c.stroke();
-
   }
 
   update() {
     this.c.save();
-    // this.c.translate(this.x, this.y);
     if (this.holdValue !== 0) {
       this.generateHoldingNote(this.x, this.y)
     } else {

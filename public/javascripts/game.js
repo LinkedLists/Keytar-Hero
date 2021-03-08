@@ -127,37 +127,55 @@ export default class Game {
   }
 
   addListeners() {
+    // Keydown will continue to listen if pressed
+    // so keyLock will prevent the event from continuing
+    let keyLock1 = false;
+    let keyLock2 = false;
+    let keyLock3 = false;
+    let keyLock4 = false;
+    let keyLock5 = false;
+
     addEventListener('keydown', e => {
-      if (e.key == "1") {
+      if (e.key == "1" && !keyLock1) {
+        keyLock1 = true;
         this.checkCollisionDown(0)
       } 
-      if (e.key == "2") {
+      if (e.key == "2" && !keyLock2) {
+        keyLock2 = true;
         this.checkCollisionDown(1)
       } 
-      if (e.key == "3") {
+      if (e.key == "3" && !keyLock3) {
+        keyLock3 = true;
         this.checkCollisionDown(2)
       } 
-      if (e.key == "4") {
+      if (e.key == "4" && !keyLock4) {
+        keyLock4 = true;
         this.checkCollisionDown(3)
       } 
-      if (e.key == "5") {
+      if (e.key == "5" && !keyLock5) {
+        keyLock5 = true;
         this.checkCollisionDown(4)
       } 
     })
     addEventListener('keyup', e => {
       if (e.key == "1") {
+        keyLock1 = false;
         this.checkCollisionUp(0)
       } 
       if (e.key == "2") {
+        keyLock2 = false;
         this.checkCollisionUp(1)
       } 
       if (e.key == "3") {
+        keyLock3 = false;
         this.checkCollisionUp(2)
       } 
       if (e.key == "4") {
+        keyLock4 = false;
         this.checkCollisionUp(3)
       } 
       if (e.key == "5") {
+        keyLock5 = false;
         this.checkCollisionUp(4)
       } 
     })
@@ -250,8 +268,8 @@ export default class Game {
 
   playSong() {
     const delay = 5709 - (innerHeight / 8) / 60 * 1000 ;
-    console.log(delay)
-    console.log(innerHeight)
+    console.log("intro delay is " + delay)
+    console.log("your canvas height in pixels is " + innerHeight)
     // intro takes 5709ms until a note should be playble
 
     // (innerHeight / 8) / 60 is the time it takes for the note
