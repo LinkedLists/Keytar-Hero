@@ -36,12 +36,29 @@
 }
 
 .game-btns {
+  color: white;
+  background: black;
+  width: 100%;
   font-size: 20px;
-  padding: 5px;
+  padding: 10px 5px;
   margin: 10px auto;
+  outline: 0;
+  border-style: outset;
+  border: none; 
+}
+
+.game-btns:hover {
+  background: rgb(65, 65, 65);
+  cursor: pointer;
+}
+
+.game-btns:active {
+  background: rgb(112, 112, 112);
 }
 
 .streak-container {
+  height: 100%;
+  width: 250px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -76,14 +93,15 @@
 
 .streak {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bold;
   color: white;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-content: flex-end;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  text-align: center;
   margin: 5px;
   padding: 5px;
 }
