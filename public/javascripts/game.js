@@ -57,7 +57,7 @@ export default class Game {
     // which allows for simultaneous inputs.
     // This updates all notes and clears any notes that are
     // out of bounds
-    this.notes.forEach( subArr => {
+    this.notes.forEach( (subArr, i) => {
       subArr.forEach( note => {
         note.update()
       })
@@ -70,9 +70,10 @@ export default class Game {
           subArr[0].color = 'gray';
           console.log("note is unshifted");
           subArr.shift();
-          
-          // if 
-          // setTimeout(() => {this.targets[x].successfulHit = false}, 80)
+
+          // If a holding note was held for too long then clear the 
+          // successful hit glow indicator from the target
+          this.targets[i].successfulHit = false
         }
         // Clear if a single note is out of bounds
         else if (subArr[0].holdValue === 0 && subArr[0].outOfBounds(this.dimensions.height)) {
@@ -97,9 +98,10 @@ export default class Game {
 
   checkCollisionDown(x) {
     let note = this.notes[x][0];
-    if (
-      note && 
-      note.inBounds(this.dimensions.height)) {
+    if (note) {
+      if (note.inBounds(this.dimensions.height)) {
+        // As long as the note was not previously colored out then 
+        // the hit was successful!
         if (note.color !== "black" && note.color !== "gray") {
           if (note.holdValue !== 0 && !note.outOfBoundsHoldingNoteHead(this.dimensions.height)) {
             console.log("holding")
@@ -118,6 +120,7 @@ export default class Game {
           }
         }
       }
+    }
   }
 
   checkCollisionUp(x) {
