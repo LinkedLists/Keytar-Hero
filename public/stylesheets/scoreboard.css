@@ -1,7 +1,7 @@
 
 .score-board {
   width: 250px;
-  height: 300px;
+  height: 500px;
   border: 1px solid black;
   bottom: 0;
   left: 8%;
@@ -9,6 +9,12 @@
   position: absolute;
   background: black;
 
+}
+
+.button-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .score-wrapper {

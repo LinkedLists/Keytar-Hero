@@ -3,7 +3,7 @@ import Game from "./game"
 
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementsByClassName("modal");
-
+    
     const canvas = document.getElementById('canvas');
     // canvas.style.background = "url('../assets/canvas.png') no-repeat center";
     // canvas.style.backgroundSize = "contain";

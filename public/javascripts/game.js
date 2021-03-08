@@ -162,24 +162,24 @@ export default class Game {
   }
 
   scoreboard() {
-    const x = this.dimensions.width / 20;
-    const y = this.dimensions.height / 10;
+    // const x = this.dimensions.width / 20;
+    // const y = this.dimensions.height / 10;
     let score = document.getElementById('score'); 
     score.innerHTML = this.score
 
-    this.c.font = "bold 50px Arial";
-    this.c.fillStyle = "white";
-    this.c.fillText("score", x, y);
-    this.c.fillText(this.score, x + 30, y + 50);
-    this.c.lineWidth = 2;
-    this.c.strokeText("score", x, y);
-    this.c.strokeText(this.score, x + 30, y + 50);
-    this.c.stroke();
+    // this.c.font = "bold 50px Arial";
+    // this.c.fillStyle = "white";
+    // this.c.fillText("score", x, y);
+    // this.c.fillText(this.score, x + 30, y + 50);
+    // this.c.lineWidth = 2;
+    // this.c.strokeText("score", x, y);
+    // this.c.strokeText(this.score, x + 30, y + 50);
+    // this.c.stroke();
   }
 
   streakBoard() {
-    const x = this.dimensions.width - 200;
-    const y = this.dimensions.height / 10;
+    // const x = this.dimensions.width - 200;
+    // const y = this.dimensions.height / 10;
     let streak = document.getElementById('streak'); 
     let max = document.getElementById('max-streak'); 
     streak.innerHTML = this.streak;
@@ -194,14 +194,14 @@ export default class Game {
     if ( this.streak >=65) {
       img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/3.png';
     }
-    this.c.font = "bold 50px Arial";
-    this.c.fillStyle = "white";
-    this.c.fillText("streak", x, y);
-    this.c.fillText(this.streak, x + 30, y + 50);
-    this.c.lineWidth = 2;
-    this.c.strokeText("streak", x, y);
-    this.c.strokeText(this.streak, x + 30, y + 50);
-    this.c.stroke();
+    // this.c.font = "bold 50px Arial";
+    // this.c.fillStyle = "white";
+    // this.c.fillText("streak", x, y);
+    // this.c.fillText(this.streak, x + 30, y + 50);
+    // this.c.lineWidth = 2;
+    // this.c.strokeText("streak", x, y);
+    // this.c.strokeText(this.streak, x + 30, y + 50);
+    // this.c.stroke();
   }
 
   resetStreak() {
