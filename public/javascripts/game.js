@@ -286,7 +286,7 @@ export default class Game {
 
   playSong() {
     const delay = 5709 - (innerHeight / 8) / 60 * 1000 ;
-    console.log("intro delay is " + delay);
+    // console.log("intro delay is " + delay);
     console.log("your canvas height in pixels is " + innerHeight);
     // intro takes 5709ms until a note should be playble
 
