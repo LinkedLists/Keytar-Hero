@@ -1,24 +1,26 @@
 
 .score-board {
   width: 250px;
-  height: 500px;
-  border: 1px solid black;
+  height: 100%;
   bottom: 0;
   left: 8%;
-  margin-bottom: 40px;
   position: absolute;
-  background: black;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .button-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: none;
 }
 
 .score-wrapper {
-  
+  background: black;
+  padding: 15px;
+  margin-bottom: 40px;
 }
 
 .score {
@@ -90,3 +92,22 @@
   margin-bottom: 20px;
 }
 
+.links-container {
+  background: white;
+  vertical-align: baseline;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.link-imgs {
+  height: 30px;
+  width: auto;
+  display: flex;
+  padding: 5px;
+}
+
+.link-imgs:hover {
+  cursor: pointer;
+}

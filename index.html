@@ -8,12 +8,13 @@
     <link rel="shortcut icon" href="#">
   </head>
   <body>
+
     <audio id='audio' src="https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Marshmello+Halsey++Be+Kind+Halsey+Lyric+Video.mp3"></audio>
     <div class="canvas-wrapper">
       <canvas id="canvas" width="700" height="800"></canvas>
     </div>
     
-    <div class="modal open">
+    <div class="modal">
       <div class="instructions-container">
         <div class="instructions-content">
           <div class="instructions-header">Instructions</div>
@@ -48,13 +49,20 @@
     <div class='streak-board'>
       <div class='streak-container'>
         <div style="color: white">streak meter placeholder</div>
-        <img src='./assets/uhh.png' id='streak-img' />
+        <img src='./public/assets/uhh.png' id='streak-img' />
         <div class='streak-wrapper'>
           <div class='streak'>Streak </div>
           <div class='streak' id='streak'></div>
           <div class='streak'>Max Streak</div>
           <div class='streak' id='max-streak'></div>
         </div>
+      </div>
+      <div class="links-container">
+        <!-- <div class="links-wrapper"> -->
+          <a href="https://angel.co/u/kenny-zeng"><img src='./public/assets/angellist.png' class="link-imgs" /></a>
+          <a href="https://github.com/LinkedLists/js"><img src='./public/assets/github.png' class="link-imgs" /></a>
+          <a href="google.com"><img src='./public/assets/linkedin.png' class="link-imgs" /></a>
+        <!-- </div> -->
       </div>
     </div>
   </body>
