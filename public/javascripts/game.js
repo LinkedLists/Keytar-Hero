@@ -12,7 +12,7 @@ export default class Game {
     this.song;
     this.isPlaying = false;
     this.notes = this.generateNoteArray();
-    this.deadNotes = [];
+    this.missedNotes = [];
     
     this.addListeners = this.addListeners.bind(this)
     this.addListeners()
@@ -32,6 +32,13 @@ export default class Game {
     this.counter = 0;
     this.noteDelay = null;
 
+    // Will need variables to save each intervalID when calling
+    // setInterval when incrementing the score for holding notes
+    this.score1;
+    this.score2;
+    this.score3;
+    this.score4;
+    this.score5;
 
     this.animate();
     this.playSong();
@@ -50,15 +57,18 @@ export default class Game {
       this.c.restore();
     })
 
+
+    // this.missedNotes collects missed notes and allows for them to
+    // continue falling offscreen.
+    this.missedNotes.forEach( note => {
+      let pos = note.y - note.extensionLength - 30
+      if (pos !== this.dimensions.height) note.update();
+    })
+
     // this.notes is a 2D array containing a subarray of notes for each target
     // which allows for simultaneous inputs.
     // This updates all notes and clears any notes that are
     // out of bounds
-
-    this.deadNotes.forEach( note => {
-      note.update();
-    })
-
     this.notes.forEach( (subArr, i) => {
       subArr.forEach( note => {
         note.update();
@@ -71,7 +81,7 @@ export default class Game {
           this.resetStreak();
           subArr[0].color = 'gray';
           console.log("note is unshifted");
-          this.deadNotes.push(subArr.shift());
+          this.missedNotes.push(subArr.shift());
 
           // If a holding note was held for too long then clear the 
           // successful hit glow indicator from the target
@@ -91,12 +101,18 @@ export default class Game {
           !subArr[0].holdFlag) {
             if (subArr[0].color !== 'black') subArr[0].color = 'gray';
             this.resetStreak();
-            this.deadNotes.push(subArr.shift())
+            this.missedNotes.push(subArr.shift())
         }
       }
     })
 
     if (this.isPlaying) requestAnimationFrame(this.animate)
+  }
+
+  scoreIncrementer() {
+    return setInterval(() => {
+      this.score += 2
+    }, 100);
   }
 
   checkCollisionDown(x) {
@@ -108,9 +124,15 @@ export default class Game {
         if (note.color !== "black" && note.color !== "gray") {
           if (note.holdValue !== 0 && !note.outOfBoundsHoldingNoteHead(this.dimensions.height)) {
             console.log("holding")
+
+            if(x === 0) this.score1 = this.scoreIncrementer()
+            if(x === 1) this.score2 = this.scoreIncrementer()
+            if(x === 2) this.score3 = this.scoreIncrementer()
+            if(x === 3) this.score4 = this.scoreIncrementer()
+            if(x === 4) this.score5 = this.scoreIncrementer()
+
             note.holdFlag = true;
             note.color = 'purple';
-            this.score += 5;
             this.targets[x].successfulHit = true
           } else {
             this.streak += 1;
@@ -129,13 +151,19 @@ export default class Game {
   checkCollisionUp(x) {
     let note = this.notes[x][0];
     this.targets[x].successfulHit = false;
+    
+    if(x === 0) clearInterval(this.score1)
+    if(x === 1) clearInterval(this.score2)
+    if(x === 2) clearInterval(this.score3)
+    if(x === 3) clearInterval(this.score4)
+    if(x === 4) clearInterval(this.score5)
+    
     // make sure there is a note to look at when a keyup occurs
     if (note) {
       if (note.holdFlag && note.inBoundsTail(this.dimensions.height)) {
         this.streak += 1;
         if (this.streak > this.maxStreak) this.maxStreak = this.streak;
         console.log("hold released")
-        this.score += 1;
         note.holdFlag = false;
         this.notes[x].shift();
       }
@@ -156,7 +184,6 @@ export default class Game {
     let keyLock3 = false;
     let keyLock4 = false;
     let keyLock5 = false;
-
     addEventListener('keydown', e => {
       if (e.key == "1" && !keyLock1) {
         keyLock1 = true;
@@ -180,6 +207,7 @@ export default class Game {
       } 
     })
     addEventListener('keyup', e => {
+      clearInterval(this.globalScore);
       if (e.key == "1") {
         keyLock1 = false;
         this.checkCollisionUp(0)
@@ -241,7 +269,6 @@ export default class Game {
   }
 
   generateNotes() {
-    // let counter = 0
     this.noteDelay = null;
     this.callGenerateNotes = setInterval( () => {
       this.counter++;
@@ -290,13 +317,8 @@ export default class Game {
 
   playSong() {
     const delay = 5709 - (innerHeight / 8) / 60 * 1000 ;
-    // console.log("intro delay is " + delay);
     console.log("your canvas height in pixels is " + innerHeight);
     // intro takes 5709ms until a note should be playble
-
-    // (innerHeight / 8) / 60 is the time it takes for the note
-    // to become playable assuming 60 fps
-    // * 1000 to change to ms
 
     let startTime;
     // let playTime;

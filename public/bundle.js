@@ -105,7 +105,7 @@ class Game {
     this.song;
     this.isPlaying = false;
     this.notes = this.generateNoteArray();
-    this.deadNotes = [];
+    this.missedNotes = [];
     
     this.addListeners = this.addListeners.bind(this)
     this.addListeners()
@@ -125,6 +125,13 @@ class Game {
     this.counter = 0;
     this.noteDelay = null;
 
+    // Will need variables to save each intervalID when calling
+    // setInterval when incrementing the score for holding notes
+    this.score1;
+    this.score2;
+    this.score3;
+    this.score4;
+    this.score5;
 
     this.animate();
     this.playSong();
@@ -143,15 +150,18 @@ class Game {
       this.c.restore();
     })
 
+
+    // this.missedNotes collects missed notes and allows for them to
+    // continue falling offscreen.
+    this.missedNotes.forEach( note => {
+      let pos = note.y - note.extensionLength - 30
+      if (pos !== this.dimensions.height) note.update();
+    })
+
     // this.notes is a 2D array containing a subarray of notes for each target
     // which allows for simultaneous inputs.
     // This updates all notes and clears any notes that are
     // out of bounds
-
-    this.deadNotes.forEach( note => {
-      note.update();
-    })
-
     this.notes.forEach( (subArr, i) => {
       subArr.forEach( note => {
         note.update();
@@ -164,7 +174,7 @@ class Game {
           this.resetStreak();
           subArr[0].color = 'gray';
           console.log("note is unshifted");
-          this.deadNotes.push(subArr.shift());
+          this.missedNotes.push(subArr.shift());
 
           // If a holding note was held for too long then clear the 
           // successful hit glow indicator from the target
@@ -184,12 +194,18 @@ class Game {
           !subArr[0].holdFlag) {
             if (subArr[0].color !== 'black') subArr[0].color = 'gray';
             this.resetStreak();
-            this.deadNotes.push(subArr.shift())
+            this.missedNotes.push(subArr.shift())
         }
       }
     })
 
     if (this.isPlaying) requestAnimationFrame(this.animate)
+  }
+
+  scoreIncrementer() {
+    return setInterval(() => {
+      this.score += 2
+    }, 100);
   }
 
   checkCollisionDown(x) {
@@ -201,9 +217,15 @@ class Game {
         if (note.color !== "black" && note.color !== "gray") {
           if (note.holdValue !== 0 && !note.outOfBoundsHoldingNoteHead(this.dimensions.height)) {
             console.log("holding")
+
+            if(x === 0) this.score1 = this.scoreIncrementer()
+            if(x === 1) this.score2 = this.scoreIncrementer()
+            if(x === 2) this.score3 = this.scoreIncrementer()
+            if(x === 3) this.score4 = this.scoreIncrementer()
+            if(x === 4) this.score5 = this.scoreIncrementer()
+
             note.holdFlag = true;
             note.color = 'purple';
-            this.score += 5;
             this.targets[x].successfulHit = true
           } else {
             this.streak += 1;
@@ -222,13 +244,19 @@ class Game {
   checkCollisionUp(x) {
     let note = this.notes[x][0];
     this.targets[x].successfulHit = false;
+    
+    if(x === 0) clearInterval(this.score1)
+    if(x === 1) clearInterval(this.score2)
+    if(x === 2) clearInterval(this.score3)
+    if(x === 3) clearInterval(this.score4)
+    if(x === 4) clearInterval(this.score5)
+    
     // make sure there is a note to look at when a keyup occurs
     if (note) {
       if (note.holdFlag && note.inBoundsTail(this.dimensions.height)) {
         this.streak += 1;
         if (this.streak > this.maxStreak) this.maxStreak = this.streak;
         console.log("hold released")
-        this.score += 1;
         note.holdFlag = false;
         this.notes[x].shift();
       }
@@ -249,7 +277,6 @@ class Game {
     let keyLock3 = false;
     let keyLock4 = false;
     let keyLock5 = false;
-
     addEventListener('keydown', e => {
       if (e.key == "1" && !keyLock1) {
         keyLock1 = true;
@@ -273,6 +300,7 @@ class Game {
       } 
     })
     addEventListener('keyup', e => {
+      clearInterval(this.globalScore);
       if (e.key == "1") {
         keyLock1 = false;
         this.checkCollisionUp(0)
@@ -334,7 +362,6 @@ class Game {
   }
 
   generateNotes() {
-    // let counter = 0
     this.noteDelay = null;
     this.callGenerateNotes = setInterval( () => {
       this.counter++;
@@ -383,13 +410,8 @@ class Game {
 
   playSong() {
     const delay = 5709 - (innerHeight / 8) / 60 * 1000 ;
-    // console.log("intro delay is " + delay);
     console.log("your canvas height in pixels is " + innerHeight);
     // intro takes 5709ms until a note should be playble
-
-    // (innerHeight / 8) / 60 is the time it takes for the note
-    // to become playable assuming 60 fps
-    // * 1000 to change to ms
 
     let startTime;
     // let playTime;
@@ -501,10 +523,11 @@ class Note {
     this.y = y;
     this.c = context
     this.holdValue = holdValue
-    this.extenstionLength = 0;
+    this.extensionLength = 0;
     this.color = color;
     this.originalColor;
     this.holdFlag = false;
+    this.dy = 8;
 
 
     this.generateNote = this.generateNote.bind(this);
@@ -519,11 +542,6 @@ class Note {
     // need to make target object to get back original color
     this.setOriginalColor = this.setOriginalColor.bind(this);
     this.setOriginalColor();
-
-    // I want a note to be playable after being rendered to have a 
-    // constant delay of about 2.1 seconds regardless of monitor size
-    // this.dy = innerHeight / 126.25;
-    this.dy = 8;
   }
 
   setOriginalColor() {
@@ -540,7 +558,7 @@ class Note {
 
   generateHoldingNote(x, y) {
     const beatMultiplier = 38.28
-    this.extenstionLength = this.holdValue * beatMultiplier * 4 - 80
+    this.extensionLength = this.holdValue * beatMultiplier * 4 - 80
     if (this.holdFlag) {
       this.c.shadowBlur = 30;
       this.c.shadowOffsetX = 3;
@@ -548,9 +566,9 @@ class Note {
       this.c.shadowColor = "orange";
     }
     this.c.beginPath();
-    this.c.arc(x + 80, y - this.extenstionLength, 30, 0, Math.PI, true);
+    this.c.arc(x + 80, y - this.extensionLength, 30, 0, Math.PI, true);
     this.c.lineTo(x + 50, y)
-    this.c.moveTo(x + 110, y - this.extenstionLength)
+    this.c.moveTo(x + 110, y - this.extensionLength)
     this.c.lineTo(x + 110, y)
     this.c.arc(x + 80, y , 30, 0, -Math.PI, false);
     this.c.fillStyle = this.color;
@@ -576,7 +594,7 @@ class Note {
   }
 
   outOfBoundsTail(y) {
-    return this.y - this.extenstionLength - 210 >= y ? true : false
+    return this.y - this.extensionLength - 210 >= y ? true : false
   }
 
   // In bounds of the target?
@@ -589,7 +607,7 @@ class Note {
   }
 
   inBoundsTail(y) {
-    return this.y - this.extenstionLength + 170 >= y ? true : false
+    return this.y - this.extensionLength + 170 >= y ? true : false
   }
 
 }

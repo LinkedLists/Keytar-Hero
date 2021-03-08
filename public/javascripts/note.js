@@ -5,10 +5,11 @@ export default class Note {
     this.y = y;
     this.c = context
     this.holdValue = holdValue
-    this.extenstionLength = 0;
+    this.extensionLength = 0;
     this.color = color;
     this.originalColor;
     this.holdFlag = false;
+    this.dy = 8;
 
 
     this.generateNote = this.generateNote.bind(this);
@@ -23,11 +24,6 @@ export default class Note {
     // need to make target object to get back original color
     this.setOriginalColor = this.setOriginalColor.bind(this);
     this.setOriginalColor();
-
-    // I want a note to be playable after being rendered to have a 
-    // constant delay of about 2.1 seconds regardless of monitor size
-    // this.dy = innerHeight / 126.25;
-    this.dy = 8;
   }
 
   setOriginalColor() {
@@ -44,7 +40,7 @@ export default class Note {
 
   generateHoldingNote(x, y) {
     const beatMultiplier = 38.28
-    this.extenstionLength = this.holdValue * beatMultiplier * 4 - 80
+    this.extensionLength = this.holdValue * beatMultiplier * 4 - 80
     if (this.holdFlag) {
       this.c.shadowBlur = 30;
       this.c.shadowOffsetX = 3;
@@ -52,9 +48,9 @@ export default class Note {
       this.c.shadowColor = "orange";
     }
     this.c.beginPath();
-    this.c.arc(x + 80, y - this.extenstionLength, 30, 0, Math.PI, true);
+    this.c.arc(x + 80, y - this.extensionLength, 30, 0, Math.PI, true);
     this.c.lineTo(x + 50, y)
-    this.c.moveTo(x + 110, y - this.extenstionLength)
+    this.c.moveTo(x + 110, y - this.extensionLength)
     this.c.lineTo(x + 110, y)
     this.c.arc(x + 80, y , 30, 0, -Math.PI, false);
     this.c.fillStyle = this.color;
@@ -80,7 +76,7 @@ export default class Note {
   }
 
   outOfBoundsTail(y) {
-    return this.y - this.extenstionLength - 210 >= y ? true : false
+    return this.y - this.extensionLength - 210 >= y ? true : false
   }
 
   // In bounds of the target?
@@ -93,7 +89,7 @@ export default class Note {
   }
 
   inBoundsTail(y) {
-    return this.y - this.extenstionLength + 170 >= y ? true : false
+    return this.y - this.extensionLength + 170 >= y ? true : false
   }
 
 }
