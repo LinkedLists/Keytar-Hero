@@ -27,6 +27,11 @@ export default class Game {
     this.targets = this.generateTargets();
     this.streakBoard = this.streakBoard.bind(this)
     this.resetStreak = this.resetStreak.bind(this)
+
+    this.callGenerateNotes;
+    this.counter = 0;
+    this.noteDelay = null;
+
     this.animate();
     this.playSong();
   }
@@ -36,7 +41,6 @@ export default class Game {
     //FIGURE OUT WHY//////////
     this.bandAidFix(this.c)
     //////////////////////////////
-    
     this.c.clearRect(0, 0, canvas.width, canvas.height);
     this.scoreboard();
     this.streakBoard();
@@ -70,7 +74,7 @@ export default class Game {
       }
     })
 
-    requestAnimationFrame(this.animate)
+    if (this.isPlaying) requestAnimationFrame(this.animate)
   }
 
   checkCollisionDown(x) {
@@ -216,24 +220,26 @@ export default class Game {
   }
 
   generateNotes() {
-    let counter = 0
-    setInterval( () => {
-      counter++
+    // let counter = 0
+    this.noteDelay = null;
+    this.callGenerateNotes = setInterval( () => {
+      console.log("wow")
+      this.counter++
       if (song.length > 0) {
         if (song[0].rest) {
-          counter -= song[0].tempo
+          this.counter -= song[0].tempo
           song.shift()
         }
         else if (song[0].kill) {
-          counter += 1
+          this.counter += 1
           song.shift()
         }
-        if (counter === 1 && song[0].tempo > 1) {
+        if (this.counter === 1 && song[0].tempo > 1) {
           this.tempoSetter();
-          counter = 0
+          this.counter = 0
         }
-        else if (counter === 2) {
-          counter = 0
+        else if (this.counter === 2) {
+          this.counter = 0
           this.tempoSetter();
         }
       }
@@ -249,7 +255,7 @@ export default class Game {
       let note2 = new Note(noteParams2.x, noteParams2.y, this.c, this.returnColor(noteParams2.x), noteParams.hold)
       this.notes[noteParams2.pos].push(note2)
     }
-    clearInterval(this.generateNotes)
+    // clearInterval(this.callGenerateNotes)
   }
 
   returnColor(pos) {
@@ -273,28 +279,86 @@ export default class Game {
     // to become playable assuming 60 fps
     // * 1000 to change to ms
 
+    let startTime;
+    // let playTime;
+    let introDelay = 3604;
+
+    function startButton() {
+        startTime = Date.now();
+    }
+
+    // function playing() {
+    //     playTime = Date.now();
+    // }
+    
+    function stopButton() {
+        if (startTime) {
+            let endTime = Date.now();
+            let difference = endTime - startTime;
+            startTime = null;
+            return difference
+        } 
+    }
+
     this.song = document.getElementById('audio');
     let start = document.getElementById('start');
     let pause = document.getElementById('pause');
     let resume = document.getElementById('resume');
+    
+
     start.addEventListener('click', () => {
-      setTimeout(this.generateNotes, 3604);
-      document.getElementById('audio').play();
+      // setTimeout(this.generateNotes, 3604);
+      // playing()
+      
+      document.getElementById('audio').play()
+        .then(setTimeout(this.generateNotes, 3604));
       this.isPlaying = true;
-      // requestAnimationFrame(this.animate)
+      requestAnimationFrame(this.animate)
     });
     pause.addEventListener('click', () => {
       document.getElementById('audio').pause();
+      startButton()
       this.isPlaying = false;
-      clearInterval(this.generateNotes)
-      console.log("wtf")
-      cancelAnimationFrame(this.animate)
-      cancelAnimationFrame(drawTargets)
+      // if (this.noteDelay !== null) {
+      //   clearTimeout(this.noteDelay);
+      //   introDelay -= playTime;
+      //   playTime = null;
+      // } else {
+        clearInterval(this.callGenerateNotes)
+      // }
     });
     resume.addEventListener('click', () => {
       document.getElementById('audio').play();
       this.isPlaying = true;
       requestAnimationFrame(this.animate)
+      // if (this.noteDelay !== null) {
+      //   playing()
+      //   setTimeout(this.generateNotes, introDelay)
+      // } else {
+        let dif = stopButton()
+        setTimeout(this.callGenerateNotes = setInterval( () => {
+          console.log("wow")
+          this.counter++
+          if (song.length > 0) {
+            if (song[0].rest) {
+              this.counter -= song[0].tempo
+              song.shift()
+            }
+            else if (song[0].kill) {
+              this.counter += 1
+              song.shift()
+            }
+            if (this.counter === 1 && song[0].tempo > 1) {
+              this.tempoSetter();
+              this.counter = 0
+            }
+            else if (this.counter === 2) {
+              this.counter = 0
+              this.tempoSetter();
+            }
+          }
+        }, 319), dif)
+      // }
     })
   }
 

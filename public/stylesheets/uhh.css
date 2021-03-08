@@ -1,5 +1,6 @@
 @import 'reset.css';
 @import 'scoreboard.css';
+@import 'modal.css';
 
 body {
   background-image: url('https://keytar-hero-seed.s3-us-west-1.amazonaws.com/background.jpg');
@@ -33,61 +34,3 @@ body {
   /* border-radius: 2%;; */
 
 }
-
-.target-container {
-  position: absolute;
-  /* bottom: 0; */
-  /* left: 0; */
-  /* width: 100%; */
-  width: 28%;
-  left: 0;
-  /* top: 0; */
-  /* bottom: 0; */
-  margin: auto 0;
-  /* right: 0; */
-  /* margin: 0 auto; */
-  /* align-self: center; */
-  background: cornsilk;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  text-align: center;
-}
-
-.target {
-  width: 12vmin;
-  height: 12vmin;
-  background: lightgray;
-  box-sizing: border-box;
-  border: 1vmin solid black;
-  border-radius: 50%;
-  position: relative;
-  display: inline-block;
-  margin: 5vmin auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 35px;
-}
-
-#target-1 {
-  box-shadow: inset 0 0 0 1.5vmin green;
-}
-
-#target-2 {
-  box-shadow: inset 0 0 0 1.5vmin red;
-}
-
-#target-3 {
-  box-shadow: inset 0 0 0 1.5vmin yellow;
-}
-
-#target-4 {
-  box-shadow: inset 0 0 0 1.5vmin blue;
-}
-
-#target-5 {
-  box-shadow: inset 0 0 0 1.5vmin orange;
-}
-
-
