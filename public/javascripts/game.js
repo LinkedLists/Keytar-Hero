@@ -52,26 +52,42 @@ export default class Game {
       target.displayTarget()
       this.c.restore();
     })
-    // this.notes is a 2D array to handle simultaneous inputs
-    // this updates all notes and clears any notes that are
+
+    // this.notes is a 2D array containing a subarray of notes for each target
+    // which allows for simultaneous inputs.
+    // This updates all notes and clears any notes that are
     // out of bounds
     this.notes.forEach( subArr => {
       subArr.forEach( note => {
         note.update()
       })
+
       // if the first note in each subArr is out of bounds then clear it
       if (subArr[0] !== undefined) {
+        // Clear if a holding note is out of bounds
         if (subArr[0].holdValue !== 0 && subArr[0].outOfBoundsTail(this.dimensions.height)) {
           this.resetStreak();
           subArr[0].color = 'gray';
           console.log("note is unshifted");
           subArr.shift();
+          
+          // if 
+          // setTimeout(() => {this.targets[x].successfulHit = false}, 80)
         }
+        // Clear if a single note is out of bounds
         else if (subArr[0].holdValue === 0 && subArr[0].outOfBounds(this.dimensions.height)) {
           this.resetStreak();
           subArr[0].color = 'gray';
           console.log("note is unshifted");
           subArr.shift();
+        }
+        // If a holding note was not hit then gray it out
+        else if (
+          subArr[0].holdValue !== 0 && 
+          subArr[0].outOfBoundsHoldingNoteHead(this.dimensions.height) &&
+          !subArr[0].holdFlag) {
+            if (subArr[0].color !== 'black') subArr[0].color = 'gray';
+            this.resetStreak();
         }
       }
     })
@@ -84,8 +100,8 @@ export default class Game {
     if (
       note && 
       note.inBounds(this.dimensions.height)) {
-        if (note.color !== "black") {
-          if (note.holdValue !== 0) {
+        if (note.color !== "black" && note.color !== "gray") {
+          if (note.holdValue !== 0 && !note.outOfBoundsHoldingNoteHead(this.dimensions.height)) {
             console.log("holding")
             note.holdFlag = true;
             note.color = 'purple';
@@ -183,7 +199,7 @@ export default class Game {
 
   scoreboard() {
     let score = document.getElementById('score'); 
-    score.innerHTML = this.score
+    score.innerHTML = this.score;
   }
 
   streakBoard() {
@@ -205,7 +221,7 @@ export default class Game {
 
   resetStreak() {
     if (this.maxStreak < this.streak) {
-      this.maxStreak = this.streak
+      this.maxStreak = this.streak;
     };
     this.streak = 0;
   }
@@ -222,22 +238,22 @@ export default class Game {
     // let counter = 0
     this.noteDelay = null;
     this.callGenerateNotes = setInterval( () => {
-      this.counter++
+      this.counter++;
       if (song.length > 0) {
         if (song[0].rest) {
-          this.counter -= song[0].tempo
-          song.shift()
+          this.counter -= song[0].tempo;
+          song.shift();
         }
         else if (song[0].kill) {
-          this.counter += 1
-          song.shift()
+          this.counter += 1;
+          song.shift();
         }
         if (this.counter === 1 && song[0].tempo > 1) {
           this.noteGrabber();
-          this.counter = 0
+          this.counter = 0;
         }
         else if (this.counter === 2) {
-          this.counter = 0
+          this.counter = 0;
           this.noteGrabber();
         }
       }
@@ -247,11 +263,11 @@ export default class Game {
   noteGrabber() {
     let noteParams = song.shift();
     let note = new Note(noteParams.x, noteParams.y, this.c, this.returnColor(noteParams.x), noteParams.hold)
-    this.notes[noteParams.pos].push(note)
+    this.notes[noteParams.pos].push(note);
     if (noteParams.chain) {
       let noteParams2 = song.shift();
       let note2 = new Note(noteParams2.x, noteParams2.y, this.c, this.returnColor(noteParams2.x), noteParams.hold)
-      this.notes[noteParams2.pos].push(note2)
+      this.notes[noteParams2.pos].push(note2);
     }
   }
 
@@ -268,8 +284,8 @@ export default class Game {
 
   playSong() {
     const delay = 5709 - (innerHeight / 8) / 60 * 1000 ;
-    console.log("intro delay is " + delay)
-    console.log("your canvas height in pixels is " + innerHeight)
+    console.log("intro delay is " + delay);
+    console.log("your canvas height in pixels is " + innerHeight);
     // intro takes 5709ms until a note should be playble
 
     // (innerHeight / 8) / 60 is the time it takes for the note

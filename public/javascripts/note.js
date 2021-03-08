@@ -16,6 +16,7 @@ export default class Note {
     this.update = this.update.bind(this);
     this.outOfBounds = this.outOfBounds.bind(this);
     this.inBounds = this.inBounds.bind(this);
+    this.outOfBoundsHoldingNoteHead = this.outOfBoundsHoldingNoteHead.bind(this);
     this.outOfBoundsTail = this.outOfBoundsTail.bind(this);
     this.inBoundsTail = this.inBoundsTail.bind(this);
 
@@ -85,6 +86,10 @@ export default class Note {
   // In bounds of the target?
   inBounds(y) {
     return this.y + 170 >= y ? true : false
+  }
+
+  outOfBoundsHoldingNoteHead(y) {
+    return this.y + 80 >= y ? true : false
   }
 
   inBoundsTail(y) {
