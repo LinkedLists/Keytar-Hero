@@ -8,7 +8,6 @@
     <link rel="shortcut icon" href="#">
   </head>
   <body>
-
     <audio id='audio' src="https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Marshmello+Halsey++Be+Kind+Halsey+Lyric+Video.mp3"></audio>
     <div class="canvas-wrapper">
       <canvas id="canvas" width="700" height="800"></canvas>
@@ -29,6 +28,7 @@
           <div class="instructions">And...</div>
           <img src="./public/assets/holding.png" class="holding-img" />
           <div class="instructions">Remember to hold your press for these long notes!</div>
+          <button id="modal-close-btn">Got it</button>
         </div>
       </div>
       <div class="modal-screen"></div>
@@ -36,16 +36,18 @@
       
     <div class='score-board'>
       <div class="button-wrapper">
-        <button class="game-btns" id='start'>start</button>
-        <button class="game-btns" id='pause'>pause (only after notes are generated pls)</button>
-        <button class="game-btns" id='resume'>resume</button>
-        <button class="game-btns" id='open-modal'>instructions</button>
+        <button class="game-btns" id='start'>Start</button>
+        <button class="game-btns" id='pause'>Pause (only after notes are generated pls)</button>
+        <button class="game-btns" id='resume'>Resume</button>
+        <button class="game-btns" id='mute'>Mute/Unmute</button>
+        <button class="game-btns" id='open-modal'>Instructions</button>
       </div>
       <div class='score-wrapper'>
         <div class='score'>Score </div>
         <div class='score' id='score'></div>
       </div>
     </div>
+
     <div class='streak-board'>
       <div class='streak-container'>
         <div style="color: white">streak meter placeholder</div>
@@ -61,7 +63,7 @@
         <!-- <div class="links-wrapper"> -->
           <a href="https://angel.co/u/kenny-zeng"><img src='./public/assets/angellist.png' class="link-imgs" /></a>
           <a href="https://github.com/LinkedLists/js"><img src='./public/assets/github.png' class="link-imgs" /></a>
-          <a href="google.com"><img src='./public/assets/linkedin.png' class="link-imgs" /></a>
+          <a href="https://www.linkedin.com/in/kenny-z-96a742208/"><img src='./public/assets/linkedin.png' class="link-imgs" /></a>
         <!-- </div> -->
       </div>
     </div>
