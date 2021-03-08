@@ -345,19 +345,20 @@ export default class Game {
     let start = document.getElementById('start');
     let pause = document.getElementById('pause');
     let resume = document.getElementById('resume');
+    let mute = document.getElementById('mute');
     
 
     start.addEventListener('click', () => {
       // setTimeout(this.generateNotes, 3604);
       // playing()
       
-      document.getElementById('audio').play()
+      this.song.play()
         .then(setTimeout(this.generateNotes, 3604));
       this.isPlaying = true;
       requestAnimationFrame(this.animate)
     });
     pause.addEventListener('click', () => {
-      document.getElementById('audio').pause();
+      this.song.pause();
       startButton()
       this.isPlaying = false;
       // if (this.noteDelay !== null) {
@@ -368,8 +369,15 @@ export default class Game {
         clearInterval(this.callGenerateNotes)
       // }
     });
+    mute.addEventListener('click', () => {
+      if (this.song.muted) {
+        this.song.muted = false;
+      } else {
+        this.song.muted = true;
+      }
+    });
     resume.addEventListener('click', () => {
-      document.getElementById('audio').play();
+      this.song.play();
       this.isPlaying = true;
       requestAnimationFrame(this.animate)
       // if (this.noteDelay !== null) {

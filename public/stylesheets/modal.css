@@ -10,11 +10,19 @@
 }
 
 #modal-close-btn{
+  width: 150px;
   display: inline-block;
   margin: 0 auto;
+  margin-top: 10px;
+  padding: 7px 10px;
   color: white;
-  font-size: 20px;
-  background: green;
+  font-size: 23px;
+  background: rgb(28, 133, 28);
+}
+
+#modal-close-btn:hover {
+  cursor: pointer;
+  background: rgb(60, 156, 60);
 }
 
 .modal-screen {
