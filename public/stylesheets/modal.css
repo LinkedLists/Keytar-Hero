@@ -9,6 +9,14 @@
   align-items: center;
 }
 
+#modal-close-btn{
+  display: inline-block;
+  margin: 0 auto;
+  color: white;
+  font-size: 20px;
+  background: green;
+}
+
 .modal-screen {
   position: fixed;
   background: rgba(0, 0, 0, 0.7);
