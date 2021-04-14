@@ -70,7 +70,7 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__game__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modal__ = __webpack_require__(9);
 
 
 
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__note__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__target__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__song_song__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__song_song__ = __webpack_require__(4);
 
 
 
@@ -445,19 +445,26 @@ class Game {
     let pause = document.getElementById('pause');
     let resume = document.getElementById('resume');
     let mute = document.getElementById('mute');
+    let unmute = document.getElementById('unmute');
     
 
     start.addEventListener('click', () => {
       // setTimeout(this.generateNotes, 3604);
       // playing()
-      
-      this.song.play()
-        .then(setTimeout(this.generateNotes, 3604));
-      this.isPlaying = true;
-      requestAnimationFrame(this.animate)
+      if (this.song.currentTime === 0) {
+        this.song.play()
+          .then(setTimeout(this.generateNotes, 3604));
+        this.isPlaying = true;
+        requestAnimationFrame(this.animate)
+        start.classList.add("hidden")
+        pause.classList.remove("hidden")
+        mute.classList.remove("hidden")
+      }
     });
     pause.addEventListener('click', () => {
       this.song.pause();
+      pause.classList.add("hidden")
+      resume.classList.remove("hidden")
       startButton()
       this.isPlaying = false;
       // if (this.noteDelay !== null) {
@@ -469,15 +476,24 @@ class Game {
       // }
     });
     mute.addEventListener('click', () => {
+      if (!this.song.muted) {
+        this.song.muted = true;
+        mute.classList.add("hidden")
+        unmute.classList.remove("hidden")
+      } 
+    });
+    unmute.addEventListener('click', () => {
       if (this.song.muted) {
         this.song.muted = false;
-      } else {
-        this.song.muted = true;
-      }
+        unmute.classList.add("hidden")
+        mute.classList.remove("hidden")
+      } 
     });
     resume.addEventListener('click', () => {
       this.song.play();
       this.isPlaying = true;
+      pause.classList.remove("hidden")
+      resume.classList.add("hidden")
       requestAnimationFrame(this.animate)
       // if (this.noteDelay !== null) {
       //   playing()
@@ -731,36 +747,34 @@ class Target {
 
 
 /***/ }),
-/* 4 */,
-/* 5 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-const modalHandler = () => {
-  const openBtn = document.getElementById("open-modal");
-  const modalScreen = document.getElementsByClassName("modal-screen")[0];
-  const modal = document.getElementsByClassName("modal")[0];
-  const closeBtn = document.getElementById("modal-close-btn");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__verse_1__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bridge__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__verse_2__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__chorus__ = __webpack_require__(8);
 
-  modalScreen.onclick = e => {
-    if (e.target === modalScreen) {
-      modal.classList.remove("open")
-    }
-  }
-  
-  openBtn.onclick = e => {
-      modal.classList.add('open')
-  }
 
-  closeBtn.onclick = e => {
-    modal.classList.remove('open')
+
+
+
+const CONSTANTS = {
+  pos1: 30,
+  pos2: 150,
+  pos3: 270,
+  pos4: 390,
+  pos5: 510,
 }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = modalHandler;
+
+const song = [].concat(__WEBPACK_IMPORTED_MODULE_0__verse_1__["a" /* verse_1 */], __WEBPACK_IMPORTED_MODULE_1__bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_2__verse_2__["a" /* verse_2 */], __WEBPACK_IMPORTED_MODULE_1__bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__chorus__["a" /* chorus */])
+/* harmony export (immutable) */ __webpack_exports__["a"] = song;
+
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -851,7 +865,7 @@ const verse_1 = [
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -881,7 +895,7 @@ const bridge = [
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -965,7 +979,7 @@ const verse_2 = [
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1076,30 +1090,31 @@ const chorus = [
 
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__verse_1__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bridge__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__verse_2__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__chorus__ = __webpack_require__(9);
+const modalHandler = () => {
+  const openBtn = document.getElementById("open-modal");
+  const modalScreen = document.getElementsByClassName("modal-screen")[0];
+  const modal = document.getElementsByClassName("modal")[0];
+  const closeBtn = document.getElementById("modal-close-btn");
 
+  modalScreen.onclick = e => {
+    if (e.target === modalScreen) {
+      modal.classList.remove("open")
+    }
+  }
+  
+  openBtn.onclick = e => {
+      modal.classList.add('open')
+  }
 
-
-
-
-const CONSTANTS = {
-  pos1: 30,
-  pos2: 150,
-  pos3: 270,
-  pos4: 390,
-  pos5: 510,
+  closeBtn.onclick = e => {
+    modal.classList.remove('open')
 }
-
-const song = [].concat(__WEBPACK_IMPORTED_MODULE_0__verse_1__["a" /* verse_1 */], __WEBPACK_IMPORTED_MODULE_1__bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_2__verse_2__["a" /* verse_2 */], __WEBPACK_IMPORTED_MODULE_1__bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__chorus__["a" /* chorus */])
-/* harmony export (immutable) */ __webpack_exports__["a"] = song;
-
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = modalHandler;
 
 
 /***/ })

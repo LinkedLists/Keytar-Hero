@@ -32,5 +32,8 @@ body {
   /* width: 33vw; */
   height: 100%;
   /* border-radius: 2%;; */
+}
 
+.hidden {
+  display: none;
 }

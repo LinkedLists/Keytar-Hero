@@ -352,19 +352,26 @@ export default class Game {
     let pause = document.getElementById('pause');
     let resume = document.getElementById('resume');
     let mute = document.getElementById('mute');
+    let unmute = document.getElementById('unmute');
     
 
     start.addEventListener('click', () => {
       // setTimeout(this.generateNotes, 3604);
       // playing()
-      
-      this.song.play()
-        .then(setTimeout(this.generateNotes, 3604));
-      this.isPlaying = true;
-      requestAnimationFrame(this.animate)
+      if (this.song.currentTime === 0) {
+        this.song.play()
+          .then(setTimeout(this.generateNotes, 3604));
+        this.isPlaying = true;
+        requestAnimationFrame(this.animate)
+        start.classList.add("hidden")
+        pause.classList.remove("hidden")
+        mute.classList.remove("hidden")
+      }
     });
     pause.addEventListener('click', () => {
       this.song.pause();
+      pause.classList.add("hidden")
+      resume.classList.remove("hidden")
       startButton()
       this.isPlaying = false;
       // if (this.noteDelay !== null) {
@@ -376,15 +383,24 @@ export default class Game {
       // }
     });
     mute.addEventListener('click', () => {
+      if (!this.song.muted) {
+        this.song.muted = true;
+        mute.classList.add("hidden")
+        unmute.classList.remove("hidden")
+      } 
+    });
+    unmute.addEventListener('click', () => {
       if (this.song.muted) {
         this.song.muted = false;
-      } else {
-        this.song.muted = true;
-      }
+        unmute.classList.add("hidden")
+        mute.classList.remove("hidden")
+      } 
     });
     resume.addEventListener('click', () => {
       this.song.play();
       this.isPlaying = true;
+      pause.classList.remove("hidden")
+      resume.classList.add("hidden")
       requestAnimationFrame(this.animate)
       // if (this.noteDelay !== null) {
       //   playing()
