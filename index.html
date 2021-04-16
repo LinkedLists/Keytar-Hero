@@ -11,12 +11,49 @@
 
     <audio id='audio' src="https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Marshmello+Halsey++Be+Kind+Halsey+Lyric+Video.mp3"></audio>
     
-    
-    <div class='main-menu-container'>
-      <button id='start-btn'>hi</button>
+    <!-- main menu -->
+    <div class='homepage-container'>
+      <div class='main-menu-container'>
+        <div class='main-menu-l-container'>
+          <h2 class='main-menu-l-header'>Keytar Hero</h2>
+        </div>
+        <div class='main-menu-r-container'>
+          <button id='start-btn'>songs</button>
+          <button id='start-btn'>instructions</button>
+          <div class="links-container">
+            <!-- <div class="links-wrapper"> -->
+              <a href="https://angel.co/u/kenny-zeng"><img src='./public/assets/angellist.png' class="link-imgs" /></a>
+              <a href="https://github.com/LinkedLists/js"><img src='./public/assets/github.png' class="link-imgs" /></a>
+              <a href="https://www.linkedin.com/in/kenny-z-96a742208/"><img src='./public/assets/linkedin.png' class="link-imgs" /></a>
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+      <!-- song selection -->
+      <div class='song-selection-container-closed hidden'>
+        <div class='carousel-wheel-btn-container'>
+          <button class='carousel-wheel-btn' id='selection-back-btn'>back</button>
+          <button class='carousel-wheel-btn' id='selection-next-btn'>next</button>
+          <button class='carousel-wheel-btn' id='selection-prev-btn'>prev</button>
+        </div>
+        <div class='selection-circle'>
+          <ul class='selection-circle-ul'>
+            <li class='song-carousel-item'><p id="wf">Halseyawfawefawe - Be Kind</p></li>
+            <li class='song-carousel-item'>two</li>
+            <li class='song-carousel-item'>three</li>
+            <li class='song-carousel-item'>four</li>
+            <li class='song-carousel-item'>five</li>
+            <li class='song-carousel-item'>six</li>
+          </ul>
+        </div>
+      </div>
     </div>
+
+
     
-    
+
+
+    <!-- modal -->
     <div class="modal">
       <div class="instructions-container">
         <div class="instructions-content">
@@ -38,6 +75,8 @@
       <div class="modal-screen"></div>
     </div>
     
+
+    <!-- game -->
     <div class="game-view hidden">
       <div class="canvas-wrapper">
         <canvas id="canvas" width="700" height="800"></canvas>
