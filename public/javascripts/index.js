@@ -21,6 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
     mainMenu.classList.remove('hidden')
   })
 
+  let songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
+  let centerx = parseFloat(getComputedStyle(songCarouselWheelItems[0]).left) 
+  let centery = parseFloat(getComputedStyle(songCarouselWheelItems[0]).top) 
+
+  let theta = (Math.PI / 180) * (360 / songCarouselWheelItems.length)
+
+  songCarouselWheelItems.forEach( songItem => {
+      songItem.style.left = `${centerx + 100 * Math.cos(theta)}px`
+      songItem.style.top = `${centery + 100 * Math.sin(theta)}px`
+  })
+
 
   const canvas = document.getElementById('canvas');
   canvas.style.backgroundSize = "100% 100%";
