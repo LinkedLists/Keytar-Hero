@@ -5,17 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
   let startBtn = document.getElementById('start-btn')
   let selectBtn = document.getElementById('selection-back-btn')
 
+  // carousel wheel elements
   let wheelNext = document.getElementById('selection-next-btn')
   let wheelPrev = document.getElementById('selection-prev-btn')
-  let wheelIndex = 0
-
   let carouselWheel = document.getElementsByClassName('selection-circle')[0]
   let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
-  let mainMenu = document.getElementsByClassName('main-menu-container')[0]
   let songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
+  let carouselPositionsSet = false
+  let wheelIndex = 0
   let thetaDeg = (360 / songCarouselWheelItems.length)
 
-  let carousePositionsSet = false
+  let mainMenu = document.getElementsByClassName('main-menu-container')[0]
+  let homePage = document.getElementsByClassName('homepage-container')[0]
+  let gameView = document.getElementsByClassName('game-view')[0]
   
   startBtn.addEventListener('click', () => {
     selectCircle.classList.add('song-selection-container-open')
@@ -23,9 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
     selectCircle.classList.remove('hidden')
     mainMenu.classList.add('hidden')
 
-    if (!carousePositionsSet) {
+    if (!carouselPositionsSet) {
       setCarouselPositions()
-      carousePositionsSet = true
+      carouselPositionsSet = true
     }
   })
 
@@ -57,6 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
   wheelPrev.addEventListener('click', () => {
     wheelIndex -= 1
     carouselWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg)`
+  })
+
+  let selectSong = document.getElementById('halsey')
+
+  selectSong.addEventListener('click', () => {
+    homePage.classList.add('hidden')
+    gameView.classList.remove('hidden')
   })
 
 
