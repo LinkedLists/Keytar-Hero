@@ -373,19 +373,21 @@ export default class Game {
     });
 
     restart.addEventListener('click', () => {
-      // setTimeout(this.generateNotes, 3604);
-      // playing()
       this.allNotes = song.slice()
-      this.audio.currentTime = 0
-      clearInterval(this.callGenerateNotes)
-      setTimeout(this.generateNotes, 3604)
-      // this.isPlaying = true;
       this.score = 0;
       this.streak = 0;
       this.maxStreak = 0;
-      // this.audio;
       this.visibleNotes = this.generateNoteArray();
       this.missedNotes = [];
+      pause.classList.remove("hidden")
+      resume.classList.add("hidden")
+      clearInterval(this.callGenerateNotes)
+      requestAnimationFrame(this.animate)
+      this.audio.pause()
+      this.audio.currentTime = 0
+      this.audio.play()
+          .then(setTimeout(this.generateNotes, 3604));
+
     });
 
     pause.addEventListener('click', () => {

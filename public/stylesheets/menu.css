@@ -1,0 +1,14 @@
+.main-menu-container {
+  background-image: url("../assets/background2.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 100vh; */
+  height: 100vh;
+}
+
+#start-btn {
+  height: 100px;
+  width: 300px;
+}
