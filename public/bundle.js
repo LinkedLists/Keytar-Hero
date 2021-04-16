@@ -104,12 +104,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let centery = parseFloat(getComputedStyle(songCarouselWheelItems[0]).top) 
 
     let theta = (Math.PI / 180.0) * (360 / songCarouselWheelItems.length)
-    songCarouselWheelItems[0].style.left = `${centerx + 100 * Math.cos(theta)}px`
-    songCarouselWheelItems[0].style.top = `${centery - 100 * Math.sin(theta)}px`
+    // songCarouselWheelItems[0].style.left = `${centerx + 100 * Math.cos(theta)}px`
+    // songCarouselWheelItems[0].style.top = `${centery - 100 * Math.sin(theta)}px`
   
     songCarouselWheelItems.forEach( (songItem, i) => {
-        songItem.style.left = `${centerx + 100 * Math.cos(theta * (i + 1))}px`
-        songItem.style.top = `${centery - 100 * Math.sin(theta * (i + 1))}px`
+        songItem.style.left = `${centerx + 400 * Math.cos(theta * (i))}px`
+        songItem.style.top = `${centery - 400 * Math.sin(theta * (i))}px`
+        songItem.style.transform = `rotate(${-1.0 * i * 360 / songCarouselWheelItems.length}deg)`
     })
     // let theta = (Math.PI / 4.0)
     // songCarouselWheelItems[0].style.left = `${centerx + 100 * Math.cos(theta)}px`

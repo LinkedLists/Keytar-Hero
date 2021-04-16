@@ -1,13 +1,14 @@
 .song-selection-container-closed {
   position: absolute;
-  right: -750px;
+  left: -750px;
   top: 100px;
-  /* animation: wtf4;
-  animation-duration: 1s; */
+  animation: wtf4;
+  animation-duration: 1s;
 }
 
 .selection-circle {
-  /* position: absolute; */
+  position: relative;
+  
   width: 700px;
   height: 700px;
   border-radius: 50%;
@@ -16,34 +17,50 @@
 
 .song-selection-container-open {
   position: absolute;
-  /* right: -350px; */
-  /* top: 100px; */
-  top: 50%;
+  left: -350px;
+  top: 100px;
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 
-  /* animation: wtf3;
-  animation-duration: 1s; */
+  animation: wtf3;
+  animation-duration: 1s;
 }
 
 @keyframes wtf3 {
   0% {
     /* font-size: 60px; */
-    right: -750px;
+    left: -750px;
   }
   100% {
-    right: -350px;
+    left: -350px;
   }
 }
 
 @keyframes wtf4 {
   0% {
     /* font-size: 60px; */
-    right: -350px;
+    left: -350px;
   }
   100% {
-    right: -750px;
+    left: -750px;
   }
+}
+
+.selection-circle-ul {
+  /* top: -15px;
+  left: -15px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  position: relative; */
+
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto; */
 }
 
 .song-carousel-item {
@@ -52,8 +69,8 @@
   width: 30px;
   height: 30px;
   background: rgba(197, 226, 159, 0.5);
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  position: absolute;
 }

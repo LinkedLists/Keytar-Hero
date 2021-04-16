@@ -44,8 +44,8 @@
 
 @keyframes wtf {
   0% {
-    /* font-size: 60px; */
-    transform: perspective(100px) rotateY(50deg) translateX(-300%);
+    font-size: 60px;
+    transform: perspective(100px) rotateY(50deg) translateX(-400%);
   }
   100% {
     transform: perspective(400px) rotateY(25deg) translateX(0%);
@@ -54,8 +54,8 @@
 
 @keyframes wtf2 {
   0% {
-    /* font-size: 60px; */
-    transform: perspective(100px) rotateY(-50deg) translateX(300%);
+    font-size: 60px;
+    transform: perspective(100px) rotateY(-50deg) translateX(400%);
   }
   100% {
     transform: perspective(400px) rotateY(-25deg) translateX(0%);
