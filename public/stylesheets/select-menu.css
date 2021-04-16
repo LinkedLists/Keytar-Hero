@@ -1,0 +1,43 @@
+.song-selection-container-closed {
+  position: absolute;
+  right: -750px;
+  top: 100px;
+  animation: wtf4;
+  animation-duration: 1s;
+}
+
+.selection-circle {
+  /* position: absolute; */
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.song-selection-container-open {
+  position: absolute;
+  right: -350px;
+  top: 100px;
+  animation: wtf3;
+  animation-duration: 1s;
+}
+
+@keyframes wtf3 {
+  0% {
+    /* font-size: 60px; */
+    right: -750px;
+  }
+  100% {
+    right: -350px;
+  }
+}
+
+@keyframes wtf4 {
+  0% {
+    /* font-size: 60px; */
+    right: -350px;
+  }
+  100% {
+    right: -750px;
+  }
+}
