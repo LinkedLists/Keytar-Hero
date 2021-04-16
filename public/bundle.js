@@ -483,12 +483,15 @@ class Game {
       pause.classList.remove("hidden")
       resume.classList.add("hidden")
       clearInterval(this.callGenerateNotes)
-      requestAnimationFrame(this.animate)
+      if (!this.isPlaying) {
+        this.isPlaying = true;
+        requestAnimationFrame(this.animate)
+      }
       this.audio.pause()
       this.audio.currentTime = 0
       this.audio.play()
-          .then(setTimeout(this.generateNotes, 3604));
-
+        .then(setTimeout(this.generateNotes, 3604));
+      
     });
 
     pause.addEventListener('click', () => {

@@ -11,12 +11,31 @@
 
     <audio id='audio' src="https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Marshmello+Halsey++Be+Kind+Halsey+Lyric+Video.mp3"></audio>
     
-    
+    <!-- main menu -->
     <div class='main-menu-container'>
-      <button id='start-btn'>hi</button>
+      <div class='main-menu-l-container'>
+        <h2 class='main-menu-l-header'>Keytar Hero</h2>
+      </div>
+      <div class='main-menu-r-container'>
+        <button id='start-btn'>songs</button>
+        <button id='start-btn'>instructions</button>
+        <div class="links-container">
+          <!-- <div class="links-wrapper"> -->
+            <a href="https://angel.co/u/kenny-zeng"><img src='./assets/angellist.png' class="link-imgs" /></a>
+            <a href="https://github.com/LinkedLists/js"><img src='./assets/github.png' class="link-imgs" /></a>
+            <a href="https://www.linkedin.com/in/kenny-z-96a742208/"><img src='./assets/linkedin.png' class="link-imgs" /></a>
+          <!-- </div> -->
+        </div>
+      </div>
     </div>
+
+
+    <!-- song selection -->
     
     
+
+
+    <!-- modal -->
     <div class="modal">
       <div class="instructions-container">
         <div class="instructions-content">
@@ -38,6 +57,8 @@
       <div class="modal-screen"></div>
     </div>
     
+
+    <!-- game -->
     <div class="game-view hidden">
       <div class="canvas-wrapper">
         <canvas id="canvas" width="700" height="800"></canvas>

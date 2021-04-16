@@ -6,9 +6,61 @@
   align-items: center;
   /* width: 100vh; */
   height: 100vh;
+  overflow: hidden;
 }
 
 #start-btn {
-  height: 100px;
-  width: 300px;
+  height: 30px;
+  width: 90px;
+}
+
+.main-menu-l-container {
+  /* transform: perspective(400px) rotateY(25deg); */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  /* animation: wtf;
+  animation-duration: 3s; */
+}
+
+.main-menu-l-header {
+  color: white;
+  font-size: 36px;
+  transform: perspective(400px) rotateY(25deg);
+  /* height: 100%; */
+  /* width: 450px; */
+  display: flex;
+  align-items: center;
+  animation: wtf;
+  animation-duration: 1.3s;
+}
+
+@keyframes wtf {
+  0% {
+    transform: perspective(100px) rotateY(50deg) translateX(-500%);
+  }
+  100% {
+    transform: perspective(400px) rotateY(25deg) translateX(0%);
+  }
+}
+
+@keyframes wtf2 {
+  0% {
+    transform: perspective(100px) rotateY(-50deg) translateX(500%);
+  }
+  100% {
+    transform: perspective(400px) rotateY(-25deg) translateX(0%);
+  }
+}
+
+.main-menu-r-container {
+  transform: perspective(400px) rotateY(-25deg);
+  /* height: 100%; */
+  /* width: 450px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: wtf2;
+  animation-duration: 1.3s;
 }
