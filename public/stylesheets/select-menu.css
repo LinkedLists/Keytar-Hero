@@ -2,8 +2,8 @@
   position: absolute;
   right: -750px;
   top: 100px;
-  animation: wtf4;
-  animation-duration: 1s;
+  /* animation: wtf4;
+  animation-duration: 1s; */
 }
 
 .selection-circle {
@@ -16,10 +16,14 @@
 
 .song-selection-container-open {
   position: absolute;
-  right: -350px;
-  top: 100px;
-  animation: wtf3;
-  animation-duration: 1s;
+  /* right: -350px; */
+  /* top: 100px; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* animation: wtf3;
+  animation-duration: 1s; */
 }
 
 @keyframes wtf3 {
