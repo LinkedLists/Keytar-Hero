@@ -61,6 +61,26 @@
     transform: perspective(400px) rotateY(-25deg) translateX(0%);
   }
 }
+/* 
+@keyframes wtfout {
+  0% {
+    transform: perspective(400px) rotateY(25deg) translateX(0%);
+  }
+  100% {
+    font-size: 60px;
+    transform: perspective(100px) rotateY(50deg) translateX(-400%);
+  }
+}
+
+@keyframes wtf2out {
+  0% {
+    transform: perspective(400px) rotateY(-25deg) translateX(0%);
+  }
+  100% {
+    font-size: 60px;
+    transform: perspective(100px) rotateY(-50deg) translateX(400%);
+  }
+} */
 
 .main-menu-r-container {
   transform: perspective(400px) rotateY(-25deg);

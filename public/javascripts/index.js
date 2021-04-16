@@ -5,17 +5,28 @@ document.addEventListener('DOMContentLoaded', () => {
   let startBtn = document.getElementById('start-btn')
   let selectBtn = document.getElementById('selection-back-btn')
 
+  let wheelNext = document.getElementById('selection-next-btn')
+  let wheelPrev = document.getElementById('selection-prev-btn')
+  let wheelIndex = 0
+
+  let carouselWheel = document.getElementsByClassName('selection-circle')[0]
   let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
   let mainMenu = document.getElementsByClassName('main-menu-container')[0]
+  let songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
+  let thetaDeg = (360 / songCarouselWheelItems.length)
 
+  let carousePositionsSet = false
+  
   startBtn.addEventListener('click', () => {
     selectCircle.classList.add('song-selection-container-open')
     selectCircle.classList.remove('song-selection-container-closed')
     selectCircle.classList.remove('hidden')
     mainMenu.classList.add('hidden')
 
-    setCarouselPositions()
-
+    if (!carousePositionsSet) {
+      setCarouselPositions()
+      carousePositionsSet = true
+    }
   })
 
   selectBtn.addEventListener('click', () => {
@@ -26,23 +37,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   function setCarouselPositions() {
-    let songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
     let centerx = parseFloat(getComputedStyle(songCarouselWheelItems[0]).left) 
     let centery = parseFloat(getComputedStyle(songCarouselWheelItems[0]).top) 
 
-    let theta = (Math.PI / 180.0) * (360 / songCarouselWheelItems.length)
-    // songCarouselWheelItems[0].style.left = `${centerx + 100 * Math.cos(theta)}px`
-    // songCarouselWheelItems[0].style.top = `${centery - 100 * Math.sin(theta)}px`
+    let thetaRad = (Math.PI / 180.0) * (360 / songCarouselWheelItems.length)
   
     songCarouselWheelItems.forEach( (songItem, i) => {
-        songItem.style.left = `${centerx + 400 * Math.cos(theta * (i))}px`
-        songItem.style.top = `${centery - 400 * Math.sin(theta * (i))}px`
-        songItem.style.transform = `rotate(${-1.0 * i * 360 / songCarouselWheelItems.length}deg)`
+      songItem.style.left = `${centerx + 200 * Math.cos(thetaRad * (i))}px`
+      songItem.style.top = `${centery - 200 * Math.sin(thetaRad * (i))}px`
+      songItem.style.transform = `rotate(${-1.0 * i * 360 / songCarouselWheelItems.length}deg)`
     })
-    // let theta = (Math.PI / 4.0)
-    // songCarouselWheelItems[0].style.left = `${centerx + 100 * Math.cos(theta)}px`
-    // songCarouselWheelItems[0].style.top = `${centery - 100 * Math.sin(theta)}px`
   }
+
+  wheelNext.addEventListener('click', () => {
+    wheelIndex += 1
+    carouselWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg)`
+  })
+
+  wheelPrev.addEventListener('click', () => {
+    wheelIndex -= 1
+    carouselWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg)`
+  })
 
 
   const canvas = document.getElementById('canvas');
