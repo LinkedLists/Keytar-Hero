@@ -1,14 +1,11 @@
 .song-selection-container-closed {
-  position: absolute;
-  left: -1000px;
-  top: 100px;
-  animation: wtf4;
-  animation-duration: 1s;
 }
 
 .selection-circle {
-  position: relative;
-  
+  /* position: relative; */
+  position: absolute;
+  /* left: -150px; */
+  top: 100px;
   width: 300px;
   height: 300px;
   border-radius: 50%;
@@ -17,19 +14,22 @@
   transition: 0.7s;
 }
 
-.song-selection-container-open {
-  position: absolute;
-  left: -150px;
-  top: 100px;
-  /* top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
-
-  animation: wtf3;
+.circleClose {
+  left: -1000px;
+  animation: circleOut;
   animation-duration: 1s;
 }
 
-@keyframes wtf3 {
+.circleOpen {
+  left: -150px;
+  animation: circleIn;
+  animation-duration: 1s;
+}
+
+.song-selection-container-open {
+}
+
+@keyframes circleIn {
   0% {
     /* font-size: 60px; */
     left: -1000px;
@@ -39,7 +39,7 @@
   }
 }
 
-@keyframes wtf4 {
+@keyframes circleOut {
   0% {
     /* font-size: 60px; */
     left: -150px;
@@ -51,10 +51,18 @@
 
 .carousel-wheel-btn-container {
   position: absolute;
-  top: 0%;
-  right: 0%;
+  top: 50%;
+  left: 10%;
   display: flex;
   flex-direction: column;
+
+}
+
+.carousel-wheel-btn-container button {
+  font-size: 18px;
+  padding: 10px;
+  /* height: 25px; */
+  /* width: 50px; */
 }
 
 #selection-back-btn {
@@ -80,4 +88,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
+}
+
+.preview-img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 500px;
+  width: 500px;
 }

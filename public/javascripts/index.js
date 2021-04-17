@@ -23,9 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // open wheel
   startBtn.addEventListener('click', () => {
+    //this is useless now
     selectCircle.classList.add('song-selection-container-open')
     selectCircle.classList.remove('song-selection-container-closed')
     selectCircle.classList.remove('hidden')
+    ////
+    
+    carouselWheel.classList.remove('circleClose')
+    carouselWheel.classList.add('circleOpen')
 
     mainMenuL.classList.remove('Lopen')
     mainMenuR.classList.remove('Ropen')
@@ -35,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // try to to click this too fast lol
     setTimeout(() => {
       mainMenu.classList.add('hidden')
+      //why do i need to remove it?
       mainMenuL.classList.remove('Lclose')
       mainMenuR.classList.remove('Rclose')
     }, 600)
@@ -49,12 +55,23 @@ document.addEventListener('DOMContentLoaded', () => {
   selectBtn.addEventListener('click', () => {
     selectCircle.classList.remove('song-selection-container-open')
     selectCircle.classList.add('song-selection-container-closed')
+
+    carouselWheel.classList.remove('circleOpen')
+    carouselWheel.classList.add('circleClose')
+
     mainMenu.classList.remove('hidden')
 
     mainMenuL.classList.add('Lopen')
     mainMenuR.classList.add('Ropen')
 
     setTimeout(() => {
+      selectCircle.classList.add('hidden')
+      // carouselWheel.classList.remove('circleOpen')
+      // carouselWheel.classList.add('circleClose')
+    }, 450)
+
+    setTimeout(() => {
+      
       mainMenuL.classList.remove('Lopen')
       mainMenuR.classList.remove('Ropen')
     }, 1500)
@@ -101,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       gameView.classList.remove('hidden')
       gameView.classList.add('fadeIn')
-      
+
 
     }, 666)
 
