@@ -371,13 +371,17 @@ export default class Game {
         start.classList.add("hidden")
         restart.classList.remove("hidden")
         pause.classList.remove("hidden")
-        mute.classList.remove("hidden")
+        unmute.classList.add("hidden")
       }
     });
 
     back.addEventListener('click', () => {
       homePage.classList.remove('hidden')
       gameView.classList.add('hidden')
+      restart.classList.add('hidden')
+      start.classList.remove('hidden')
+      pause.classList.add("hidden")
+      resume.classList.add("hidden")
 
       this.allNotes = []
       this.score = 0;
@@ -385,8 +389,6 @@ export default class Game {
       this.maxStreak = 0;
       this.visibleNotes = this.generateNoteArray();
       this.missedNotes = [];
-      pause.classList.remove("hidden")
-      resume.classList.add("hidden")
       this.isPlaying = false;
       clearInterval(this.callGenerateNotes)
       this.audio.pause()
