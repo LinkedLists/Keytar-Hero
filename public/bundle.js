@@ -139,12 +139,13 @@ document.addEventListener('DOMContentLoaded', () => {
   selectSong.addEventListener('click', () => {
     homePage.classList.add('hidden')
     gameView.classList.remove('hidden')
+    new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas);
   })
 
 
   const canvas = document.getElementById('canvas');
   canvas.style.backgroundSize = "100% 100%";
-  new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas);
+  // new Game(canvas);
   Object(__WEBPACK_IMPORTED_MODULE_1__modal__["a" /* modalHandler */])()
 })
 
@@ -514,7 +515,10 @@ class Game {
     let resume = document.getElementById('resume');
     let mute = document.getElementById('mute');
     let unmute = document.getElementById('unmute');
-    
+
+    let back = document.getElementById('back');
+    let homePage = document.getElementsByClassName('homepage-container')[0]
+    let gameView = document.getElementsByClassName('game-view')[0]
 
     start.addEventListener('click', () => {
       // setTimeout(this.generateNotes, 3604);
@@ -530,6 +534,24 @@ class Game {
         mute.classList.remove("hidden")
       }
     });
+
+    back.addEventListener('click', () => {
+      homePage.classList.remove('hidden')
+      gameView.classList.add('hidden')
+
+      this.allNotes = []
+      this.score = 0;
+      this.streak = 0;
+      this.maxStreak = 0;
+      this.visibleNotes = this.generateNoteArray();
+      this.missedNotes = [];
+      pause.classList.remove("hidden")
+      resume.classList.add("hidden")
+      this.isPlaying = false;
+      clearInterval(this.callGenerateNotes)
+      this.audio.pause()
+      this.audio.currentTime = 0
+    })
 
     restart.addEventListener('click', () => {
       this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].slice()

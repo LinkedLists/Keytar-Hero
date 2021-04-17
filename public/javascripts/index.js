@@ -66,11 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
   selectSong.addEventListener('click', () => {
     homePage.classList.add('hidden')
     gameView.classList.remove('hidden')
+    new Game(canvas);
   })
 
 
   const canvas = document.getElementById('canvas');
   canvas.style.backgroundSize = "100% 100%";
-  new Game(canvas);
+  // new Game(canvas);
   modalHandler()
 })
