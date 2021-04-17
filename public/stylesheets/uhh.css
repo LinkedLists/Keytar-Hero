@@ -4,13 +4,11 @@
 @import 'menu.css';
 @import 'select-menu.css';
 
-/* body {
-  background-image: url('https://keytar-hero-seed.s3-us-west-1.amazonaws.com/background.jpg');
-  background-size: cover;
-} */
+body {
+  background: black;
+}
 
 .game-view {
-  /* background-image: url('https://keytar-hero-seed.s3-us-west-1.amazonaws.com/background.jpg'); */
   background-image: url('../assets/background2.jpg');
   background-size: cover;
   height: 100vh;
@@ -45,4 +43,32 @@
 
 .hidden {
   display: none;
+}
+
+.fadeOut{
+  animation: backgroundOut 0.7s;
+}
+
+.fadeIn {
+  animation: backgroundIn 0.7s;
+}
+
+@keyframes backgroundIn {
+  0% {
+    opacity: 0;
+  }
+  
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes backgroundOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }

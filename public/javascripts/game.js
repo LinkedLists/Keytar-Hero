@@ -359,6 +359,7 @@ export default class Game {
     let back = document.getElementById('back');
     let homePage = document.getElementsByClassName('homepage-container')[0]
     let gameView = document.getElementsByClassName('game-view')[0]
+    let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
 
     start.addEventListener('click', () => {
       // setTimeout(this.generateNotes, 3604);
@@ -376,12 +377,26 @@ export default class Game {
     });
 
     back.addEventListener('click', () => {
-      homePage.classList.remove('hidden')
-      gameView.classList.add('hidden')
       restart.classList.add('hidden')
       start.classList.remove('hidden')
       pause.classList.add("hidden")
       resume.classList.add("hidden")
+
+
+
+      gameView.classList.remove('fadeIn')
+      gameView.classList.add('fadeOut')
+
+      
+      setTimeout(() => {
+        selectCircle.classList.add('song-selection-container-open')
+        selectCircle.classList.remove('song-selection-container-closed')
+        homePage.classList.remove('hidden')
+        homePage.classList.add('fadeIn')
+        gameView.classList.add('hidden')
+        gameView.classList.remove('fadeOut')
+      }, 666)
+
 
       this.allNotes = []
       this.score = 0;

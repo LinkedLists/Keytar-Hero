@@ -64,9 +64,22 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectSong = document.getElementById('halsey')
 
   selectSong.addEventListener('click', () => {
-    homePage.classList.add('hidden')
-    gameView.classList.remove('hidden')
+    homePage.classList.remove('fadeIn')
+    homePage.classList.add('fadeOut')
+    selectCircle.classList.remove('song-selection-container-open')
+    selectCircle.classList.add('song-selection-container-closed')
     new Game(canvas);
+
+    setTimeout(() => {
+      homePage.classList.add('hidden')
+      homePage.classList.remove('fadeOut')
+
+      gameView.classList.remove('hidden')
+      gameView.classList.add('fadeIn')
+
+
+    }, 666)
+
   })
 
 
