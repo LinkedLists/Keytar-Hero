@@ -157,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let selectSong = document.getElementById('halsey')
 
+  const canvas = document.getElementById('canvas');
   selectSong.addEventListener('click', () => {
     homePage.classList.remove('fadeIn')
     homePage.classList.add('fadeOut')
@@ -177,7 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
 
-  const canvas = document.getElementById('canvas');
   canvas.style.backgroundSize = "100% 100%";
   // new Game(canvas);
   Object(__WEBPACK_IMPORTED_MODULE_1__modal__["a" /* modalHandler */])()
@@ -556,8 +556,6 @@ class Game {
     let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
 
     start.addEventListener('click', () => {
-      // setTimeout(this.generateNotes, 3604);
-      // playing()
       if (this.audio.currentTime === 0) {
         this.audio.play()
           .then(setTimeout(this.generateNotes, 3604));
@@ -575,23 +573,7 @@ class Game {
       start.classList.remove('hidden')
       pause.classList.add("hidden")
       resume.classList.add("hidden")
-
-
-
-      gameView.classList.remove('fadeIn')
-      gameView.classList.add('fadeOut')
-
       
-      setTimeout(() => {
-        selectCircle.classList.add('song-selection-container-open')
-        selectCircle.classList.remove('song-selection-container-closed')
-        homePage.classList.remove('hidden')
-        homePage.classList.add('fadeIn')
-        gameView.classList.add('hidden')
-        gameView.classList.remove('fadeOut')
-      }, 666)
-
-
       this.allNotes = []
       this.score = 0;
       this.streak = 0;
@@ -602,6 +584,18 @@ class Game {
       clearInterval(this.callGenerateNotes)
       this.audio.pause()
       this.audio.currentTime = 0
+
+      gameView.classList.remove('fadeIn')
+      gameView.classList.add('fadeOut')
+
+      setTimeout(() => {
+        selectCircle.classList.add('song-selection-container-open')
+        selectCircle.classList.remove('song-selection-container-closed')
+        homePage.classList.remove('hidden')
+        homePage.classList.add('fadeIn')
+        gameView.classList.add('hidden')
+        gameView.classList.remove('fadeOut')
+      }, 666)
     })
 
     restart.addEventListener('click', () => {
@@ -618,7 +612,7 @@ class Game {
         this.isPlaying = true;
         requestAnimationFrame(this.animate)
       }
-      this.audio.pause()
+      // this.audio.pause()
       this.audio.currentTime = 0
       this.audio.play()
         .then(setTimeout(this.generateNotes, 3604));

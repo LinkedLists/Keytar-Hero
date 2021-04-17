@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let selectSong = document.getElementById('halsey')
 
+  const canvas = document.getElementById('canvas');
   selectSong.addEventListener('click', () => {
     homePage.classList.remove('fadeIn')
     homePage.classList.add('fadeOut')
@@ -104,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
 
-  const canvas = document.getElementById('canvas');
   canvas.style.backgroundSize = "100% 100%";
   // new Game(canvas);
   modalHandler()
