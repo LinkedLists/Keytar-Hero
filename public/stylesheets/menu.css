@@ -22,23 +22,34 @@
 }
 
 .main-menu-l-container {
-  /* transform: perspective(400px) rotateY(25deg); */
+  transform: perspective(400px) rotateY(25deg);
   height: 100%;
   display: flex;
   align-items: center;
-  /* animation: wtf;
-  animation-duration: 3s; */
 }
 
 .main-menu-l-header {
   color: white;
   font-size: 36px;
-  transform: perspective(400px) rotateY(25deg);
-  /* height: 100%; */
-  /* width: 450px; */
   display: flex;
   align-items: center;
+}
+
+.main-menu-r-container {
+  transform: perspective(400px) rotateY(-25deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Lopen {
   animation: wtf;
+  animation-duration: 1.5s;
+}
+
+.Ropen {
+  animation: wtf2;
   animation-duration: 1.5s;
 }
 
@@ -61,7 +72,15 @@
     transform: perspective(400px) rotateY(-25deg) translateX(0%);
   }
 }
-/* 
+
+.Rclose {
+  animation: wtf2out 1.5s;
+}
+
+.Lclose {
+  animation: wtfout 1.5s;
+}
+
 @keyframes wtfout {
   0% {
     transform: perspective(400px) rotateY(25deg) translateX(0%);
@@ -80,16 +99,4 @@
     font-size: 60px;
     transform: perspective(100px) rotateY(-50deg) translateX(400%);
   }
-} */
-
-.main-menu-r-container {
-  transform: perspective(400px) rotateY(-25deg);
-  /* height: 100%; */
-  /* width: 450px; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  animation: wtf2;
-  animation-duration: 1.5s;
 }

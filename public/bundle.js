@@ -89,14 +89,27 @@ document.addEventListener('DOMContentLoaded', () => {
   let thetaDeg = (360 / songCarouselWheelItems.length)
 
   let mainMenu = document.getElementsByClassName('main-menu-container')[0]
+  let mainMenuL = document.getElementsByClassName('main-menu-l-container')[0]
+  let mainMenuR = document.getElementsByClassName('main-menu-r-container')[0]
   let homePage = document.getElementsByClassName('homepage-container')[0]
   let gameView = document.getElementsByClassName('game-view')[0]
-  
+
   startBtn.addEventListener('click', () => {
     selectCircle.classList.add('song-selection-container-open')
     selectCircle.classList.remove('song-selection-container-closed')
     selectCircle.classList.remove('hidden')
-    mainMenu.classList.add('hidden')
+
+    mainMenuL.classList.remove('Lopen')
+    mainMenuR.classList.remove('Ropen')
+    mainMenuL.classList.add('Lclose')
+    mainMenuR.classList.add('Rclose')
+    
+    // try to to click this too fast lol
+    setTimeout(() => {
+      mainMenu.classList.add('hidden')
+      mainMenuL.classList.remove('Lclose')
+      mainMenuR.classList.remove('Rclose')
+    }, 600)
 
     if (!carouselPositionsSet) {
       setCarouselPositions()
@@ -108,6 +121,14 @@ document.addEventListener('DOMContentLoaded', () => {
     selectCircle.classList.remove('song-selection-container-open')
     selectCircle.classList.add('song-selection-container-closed')
     mainMenu.classList.remove('hidden')
+
+    mainMenuL.classList.add('Lopen')
+    mainMenuR.classList.add('Ropen')
+
+    setTimeout(() => {
+      mainMenuL.classList.remove('Lopen')
+      mainMenuR.classList.remove('Ropen')
+    }, 1500)
   })
 
 
