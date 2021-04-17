@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let homePage = document.getElementsByClassName('homepage-container')[0]
   let gameView = document.getElementsByClassName('game-view')[0]
 
+  // open wheel
   startBtn.addEventListener('click', () => {
     selectCircle.classList.add('song-selection-container-open')
     selectCircle.classList.remove('song-selection-container-closed')
@@ -117,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
+  //close wheel
   selectBtn.addEventListener('click', () => {
     selectCircle.classList.remove('song-selection-container-open')
     selectCircle.classList.add('song-selection-container-closed')
@@ -157,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let selectSong = document.getElementById('halsey')
 
+  //play song
   const canvas = document.getElementById('canvas');
   selectSong.addEventListener('click', () => {
     homePage.classList.remove('fadeIn')
@@ -171,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       gameView.classList.remove('hidden')
       gameView.classList.add('fadeIn')
-
+      
 
     }, 666)
 
@@ -543,7 +546,6 @@ class Game {
     }
 
     this.audio = document.getElementById('audio');
-    let start = document.getElementById('start');
     let restart = document.getElementById('restart');
     let pause = document.getElementById('pause');
     let resume = document.getElementById('resume');
@@ -555,18 +557,14 @@ class Game {
     let gameView = document.getElementsByClassName('game-view')[0]
     let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
 
-    start.addEventListener('click', () => {
+    setTimeout(() => {
       if (this.audio.currentTime === 0) {
         this.audio.play()
           .then(setTimeout(this.generateNotes, 3604));
         this.isPlaying = true;
         requestAnimationFrame(this.animate)
-        start.classList.add("hidden")
-        restart.classList.remove("hidden")
-        pause.classList.remove("hidden")
-        unmute.classList.add("hidden")
       }
-    });
+    }, 1500)
 
     back.addEventListener('click', () => {
       restart.classList.add('hidden')
@@ -680,6 +678,7 @@ class Game {
           }
         }, 319), dif)
     })
+
   }
 
   generateTargets() {
@@ -695,6 +694,8 @@ class Game {
     c.rect(0, 0, 0, 0);
     c.stroke();
   }
+
+
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Game;
  

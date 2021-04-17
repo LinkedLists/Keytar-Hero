@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let homePage = document.getElementsByClassName('homepage-container')[0]
   let gameView = document.getElementsByClassName('game-view')[0]
 
+  // open wheel
   startBtn.addEventListener('click', () => {
     selectCircle.classList.add('song-selection-container-open')
     selectCircle.classList.remove('song-selection-container-closed')
@@ -44,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
+  //close wheel
   selectBtn.addEventListener('click', () => {
     selectCircle.classList.remove('song-selection-container-open')
     selectCircle.classList.add('song-selection-container-closed')
@@ -84,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let selectSong = document.getElementById('halsey')
 
+  //play song
   const canvas = document.getElementById('canvas');
   selectSong.addEventListener('click', () => {
     homePage.classList.remove('fadeIn')
@@ -98,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       gameView.classList.remove('hidden')
       gameView.classList.add('fadeIn')
-
+      
 
     }, 666)
 
