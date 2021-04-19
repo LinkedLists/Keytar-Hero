@@ -371,7 +371,7 @@ export default class Game {
 
     back.addEventListener('click', () => {
       restart.classList.add('hidden')
-      start.classList.remove('hidden')
+      // start.classList.remove('hidden')
       pause.classList.add("hidden")
       resume.classList.add("hidden")
       

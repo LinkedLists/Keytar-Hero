@@ -84,9 +84,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let carouselWheel = document.getElementsByClassName('selection-circle')[0]
   let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
   let songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
+      // make first item selectable
+      songCarouselWheelItems[0].classList.add("selectable")
+      
+      let carouselWheelLength = songCarouselWheelItems.length
+
   let carouselPositionsSet = false
   let wheelIndex = 0
-  let thetaDeg = (360 / songCarouselWheelItems.length)
+  let thetaDeg = (360 / carouselWheelLength)
 
   let mainMenu = document.getElementsByClassName('main-menu-container')[0]
   let mainMenuL = document.getElementsByClassName('main-menu-l-container')[0]
@@ -104,6 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     carouselWheel.classList.remove('circleClose')
     carouselWheel.classList.add('circleOpen')
+
+    // selectCircle.classList.remove('circleClose')
+    // selectCircle.classList.add('circleOpen')
 
     mainMenuL.classList.remove('Lopen')
     mainMenuR.classList.remove('Ropen')
@@ -155,26 +163,54 @@ document.addEventListener('DOMContentLoaded', () => {
     let centerx = parseFloat(getComputedStyle(songCarouselWheelItems[0]).left) 
     let centery = parseFloat(getComputedStyle(songCarouselWheelItems[0]).top) 
 
-    let thetaRad = (Math.PI / 180.0) * (360 / songCarouselWheelItems.length)
+    let thetaRad = (Math.PI / 180.0) * (360 / carouselWheelLength)
   
     songCarouselWheelItems.forEach( (songItem, i) => {
       songItem.style.left = `${centerx + 200 * Math.cos(thetaRad * (i))}px`
       songItem.style.top = `${centery - 200 * Math.sin(thetaRad * (i))}px`
-      songItem.style.transform = `rotate(${-1.0 * i * 360 / songCarouselWheelItems.length}deg)`
+      songItem.style.transform = `rotate(${-1.0 * i * 360 / carouselWheelLength}deg)`
     })
+
   }
 
+
+  
+
   wheelNext.addEventListener('click', () => {
-    wheelIndex += 1
+    removeSelectable()
+    wheelIndex -= 1
+    selectable()
+    console.log(wheelIndex % carouselWheelLength + " next")
     carouselWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg)`
   })
 
   wheelPrev.addEventListener('click', () => {
-    wheelIndex -= 1
+    removeSelectable()
+    wheelIndex += 1
+    selectable()
+    console.log(wheelIndex % carouselWheelLength + " prev")
     carouselWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg)`
   })
 
-  let selectSong = document.getElementById('halsey')
+  //make current wheel item clickable
+  function selectable() {
+    let index = wheelIndex % carouselWheelLength
+    if (index < 0) {
+      index *= -1
+    }
+    songCarouselWheelItems[index].classList.add("selectable")
+  }
+  //make prev item nonclickable
+  function removeSelectable() {
+    if (wheelIndex % carouselWheelLength <= 0) {
+      songCarouselWheelItems[-1 * wheelIndex % carouselWheelLength].classList.remove("selectable")
+    } else {
+      songCarouselWheelItems[wheelIndex % carouselWheelLength].classList.remove("selectable")
+    }
+  }
+
+  // let selectSong = document.getElementById('halsey')
+  let selectSong = document.getElementsByClassName('selectable')[0]
 
   //play song
   const canvas = document.getElementById('canvas');
@@ -191,8 +227,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       gameView.classList.remove('hidden')
       gameView.classList.add('fadeIn')
-
-
     }, 666)
 
   })
@@ -585,7 +619,7 @@ class Game {
 
     back.addEventListener('click', () => {
       restart.classList.add('hidden')
-      start.classList.remove('hidden')
+      // start.classList.remove('hidden')
       pause.classList.add("hidden")
       resume.classList.add("hidden")
       
