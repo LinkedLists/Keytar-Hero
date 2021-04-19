@@ -248,16 +248,16 @@ export default class Game {
     let max = document.getElementById('max-streak'); 
     streak.innerHTML = this.streak;
     max.innerHTML = this.maxStreak;
-    let img = document.getElementById('streak-img')
-    if ( this.streak >=5 && this.streak < 20) {
-      img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/1.png';
-    }
-    if ( this.streak >= 20 && this.streak < 65) {
-      img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/2.png';
-    }
-    if ( this.streak >=65) {
-      img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/3.png';
-    }
+    // let img = document.getElementById('streak-img')
+    // if ( this.streak >=5 && this.streak < 20) {
+    //   img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/1.png';
+    // }
+    // if ( this.streak >= 20 && this.streak < 65) {
+    //   img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/2.png';
+    // }
+    // if ( this.streak >=65) {
+    //   img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/3.png';
+    // }
   }
 
   resetStreak() {
@@ -297,6 +297,7 @@ export default class Game {
           this.noteGrabber();
         }
       }
+      //need to find out what 319 means again
     }, 319)
   }
       
@@ -323,8 +324,9 @@ export default class Game {
   }
 
   playSong() {
-    const delay = 5709 - (innerHeight / 8) / 60 * 1000 ;
-    console.log("your canvas height in pixels is " + innerHeight);
+    // looks like this is never used
+    // const delay = 5709 - (innerHeight / 8) / 60 * 1000 ;
+    // console.log("your canvas height in pixels is " + innerHeight);
     // intro takes 5709ms until a note should be playble
 
     let startTime;
@@ -363,7 +365,7 @@ export default class Game {
     setTimeout(() => {
       if (this.audio.currentTime === 0) {
         this.audio.play()
-          .then(setTimeout(this.generateNotes, 3604));
+          .then(setTimeout(this.generateNotes, introDelay));
         this.isPlaying = true;
         requestAnimationFrame(this.animate)
       }
@@ -416,7 +418,7 @@ export default class Game {
       // this.audio.pause()
       this.audio.currentTime = 0
       this.audio.play()
-        .then(setTimeout(this.generateNotes, 3604));
+        .then(setTimeout(this.generateNotes, introDelay));
       
     });
 

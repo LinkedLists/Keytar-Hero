@@ -70,7 +70,9 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__game__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modal__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__wheel__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modal__ = __webpack_require__(9);
+
 
 
 
@@ -229,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   canvas.style.backgroundSize = "100% 100%";
   // new Game(canvas);
-  Object(__WEBPACK_IMPORTED_MODULE_1__modal__["a" /* modalHandler */])()
+  Object(__WEBPACK_IMPORTED_MODULE_2__modal__["a" /* modalHandler */])()
 })
 
 
@@ -491,16 +493,16 @@ class Game {
     let max = document.getElementById('max-streak'); 
     streak.innerHTML = this.streak;
     max.innerHTML = this.maxStreak;
-    let img = document.getElementById('streak-img')
-    if ( this.streak >=5 && this.streak < 20) {
-      img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/1.png';
-    }
-    if ( this.streak >= 20 && this.streak < 65) {
-      img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/2.png';
-    }
-    if ( this.streak >=65) {
-      img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/3.png';
-    }
+    // let img = document.getElementById('streak-img')
+    // if ( this.streak >=5 && this.streak < 20) {
+    //   img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/1.png';
+    // }
+    // if ( this.streak >= 20 && this.streak < 65) {
+    //   img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/2.png';
+    // }
+    // if ( this.streak >=65) {
+    //   img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/3.png';
+    // }
   }
 
   resetStreak() {
@@ -540,6 +542,7 @@ class Game {
           this.noteGrabber();
         }
       }
+      //need to find out what 319 means again
     }, 319)
   }
       
@@ -566,8 +569,9 @@ class Game {
   }
 
   playSong() {
-    const delay = 5709 - (innerHeight / 8) / 60 * 1000 ;
-    console.log("your canvas height in pixels is " + innerHeight);
+    // looks like this is never used
+    // const delay = 5709 - (innerHeight / 8) / 60 * 1000 ;
+    // console.log("your canvas height in pixels is " + innerHeight);
     // intro takes 5709ms until a note should be playble
 
     let startTime;
@@ -606,7 +610,7 @@ class Game {
     setTimeout(() => {
       if (this.audio.currentTime === 0) {
         this.audio.play()
-          .then(setTimeout(this.generateNotes, 3604));
+          .then(setTimeout(this.generateNotes, introDelay));
         this.isPlaying = true;
         requestAnimationFrame(this.animate)
       }
@@ -659,7 +663,7 @@ class Game {
       // this.audio.pause()
       this.audio.currentTime = 0
       this.audio.play()
-        .then(setTimeout(this.generateNotes, 3604));
+        .then(setTimeout(this.generateNotes, introDelay));
       
     });
 
@@ -956,10 +960,10 @@ class Target {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__verse_1__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bridge__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__verse_2__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__chorus__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__be_kind_verse_2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__be_kind_chorus__ = __webpack_require__(14);
 
 
 
@@ -973,13 +977,154 @@ const CONSTANTS = {
   pos5: 510,
 }
 
-const song = [].concat(__WEBPACK_IMPORTED_MODULE_0__verse_1__["a" /* verse_1 */], __WEBPACK_IMPORTED_MODULE_1__bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_2__verse_2__["a" /* verse_2 */], __WEBPACK_IMPORTED_MODULE_1__bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__chorus__["a" /* chorus */])
+const song = [].concat(__WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__["a" /* verse_1 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_2__be_kind_verse_2__["a" /* verse_2 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__be_kind_chorus__["a" /* chorus */])
 /* harmony export (immutable) */ __webpack_exports__["a"] = song;
+
+
+const introDelay = 3604
+/* unused harmony export introDelay */
 
 
 
 /***/ }),
-/* 5 */
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const modalHandler = () => {
+  const openBtn = document.getElementById("open-modal");
+  const modalScreen = document.getElementsByClassName("modal-screen")[0];
+  const modal = document.getElementsByClassName("modal")[0];
+  const closeBtn = document.getElementById("modal-close-btn");
+
+  modalScreen.onclick = e => {
+    if (e.target === modalScreen) {
+      modal.classList.remove("open")
+    }
+  }
+  
+  openBtn.onclick = e => {
+      modal.classList.add('open')
+  }
+
+  closeBtn.onclick = e => {
+    modal.classList.remove('open')
+}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = modalHandler;
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+///USE THIS LATER MAYBE
+class Wheel {
+  constructor() {
+    // carousel wheel elements
+    this.wheelNext = document.getElementById('selection-next-btn')
+    this.wheelPrev = document.getElementById('selection-prev-btn')
+    this.carouselWheel = document.getElementsByClassName('selection-circle')[0]
+    this.selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
+    this.songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
+      // make first item selectable
+      this.songCarouselWheelItems[0].classList.add("selectable")
+      this.carouselWheelLength = this.songCarouselWheelItems.length
+    this.carouselPositionsSet = false
+
+    this.wheelIndex = 0
+    this.thetaDeg = (360 / this.carouselWheelLength)
+    this.thetaRad = (Math.PI / 180.0) * (360 / this.carouselWheelLength)
+
+    this.setCarouselPositions = this.setCarouselPositions.bind(this)
+    this.addListeners = this.addListeners.bind(this)
+    this.addListeners()
+  }
+
+  setCarouselPositions() {
+    let centerx = parseFloat(getComputedStyle(this.songCarouselWheelItems[0]).left) 
+    let centery = parseFloat(getComputedStyle(this.songCarouselWheelItems[0]).top) 
+
+    this.songCarouselWheelItems.forEach( (songItem, i) => {
+      songItem.style.left = `${centerx + 200 * Math.cos(this.thetaRad * (i))}px`
+      songItem.style.top = `${centery - 200 * Math.sin(this.thetaRad * (i))}px`
+      songItem.style.transform = `rotate(${-1.0 * i * 360 / this.carouselWheelLength}deg)`
+    })
+  }
+
+  addListeners() {
+    this.wheelNext.addEventListener('click', () => {
+      this.removeSelectable()
+      this.wheelIndex -= 1
+      this.selectable()
+      this.carouselWheel.style.transform = `rotate(${-1.0 * this.thetaDeg * this.wheelIndex}deg)`
+    })
+  
+    this.wheelPrev.addEventListener('click', () => {
+      this.removeSelectable()
+      this.wheelIndex += 1
+      this.selectable()
+      this.carouselWheel.style.transform = `rotate(${-1.0 * this.thetaDeg * this.wheelIndex}deg)`
+    })
+  }
+
+  //make current wheel item clickable
+  selectable() {
+    let index = this.wheelIndex % this.carouselWheelLength
+    if (index < 0) {
+      index *= -1
+    }
+    this.songCarouselWheelItems[index].classList.add("selectable")
+  }
+  //make prev item nonclickable
+  removeSelectable() {
+    if (this.wheelIndex % this.carouselWheelLength <= 0) {
+      this.songCarouselWheelItems[-1 * this.wheelIndex % this.carouselWheelLength].classList.remove("selectable")
+    } else {
+      this.songCarouselWheelItems[this.wheelIndex % this.carouselWheelLength].classList.remove("selectable")
+    }
+  }
+}
+/* unused harmony export default */
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const CONSTANTS = {
+  pos1: 30,
+  pos2: 150,
+  pos3: 270,
+  pos4: 390,
+  pos5: 510,
+}
+
+const bridge = [
+  // bridge
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 8, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 8, chain: true },
+  { tempo: 6, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 8, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 8, chain: true },
+  { tempo: 6, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 8, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 8, chain: true },
+
+  { tempo: 10, hold: 0, chain: false, rest: true },
+]
+/* harmony export (immutable) */ __webpack_exports__["a"] = bridge;
+
+
+/***/ }),
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1070,37 +1215,7 @@ const verse_1 = [
 
 
 /***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const CONSTANTS = {
-  pos1: 30,
-  pos2: 150,
-  pos3: 270,
-  pos4: 390,
-  pos5: 510,
-}
-
-const bridge = [
-  // bridge
-
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 8, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 8, chain: true },
-  { tempo: 6, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 8, chain: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 8, chain: true },
-  { tempo: 6, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 8, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 8, chain: true },
-
-  { tempo: 10, hold: 0, chain: false, rest: true },
-]
-/* harmony export (immutable) */ __webpack_exports__["a"] = bridge;
-
-
-/***/ }),
-/* 7 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1184,7 +1299,7 @@ const verse_2 = [
 
 
 /***/ }),
-/* 8 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1292,34 +1407,6 @@ const chorus = [
 
 ]
 /* harmony export (immutable) */ __webpack_exports__["a"] = chorus;
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const modalHandler = () => {
-  const openBtn = document.getElementById("open-modal");
-  const modalScreen = document.getElementsByClassName("modal-screen")[0];
-  const modal = document.getElementsByClassName("modal")[0];
-  const closeBtn = document.getElementById("modal-close-btn");
-
-  modalScreen.onclick = e => {
-    if (e.target === modalScreen) {
-      modal.classList.remove("open")
-    }
-  }
-  
-  openBtn.onclick = e => {
-      modal.classList.add('open')
-  }
-
-  closeBtn.onclick = e => {
-    modal.classList.remove('open')
-}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = modalHandler;
 
 
 /***/ })

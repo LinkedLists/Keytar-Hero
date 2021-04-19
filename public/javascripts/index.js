@@ -1,4 +1,5 @@
 import Game from './game';
+import Wheel from './wheel';
 import { modalHandler } from './modal';
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -81,7 +81,9 @@
 
 
 .selection-circle-ul {
-
+  position: absolute;
+  left: 133px;
+  top: 133px;
 }
 
 .song-carousel-item {

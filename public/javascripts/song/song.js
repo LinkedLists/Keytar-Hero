@@ -1,7 +1,7 @@
-import { verse_1 } from './verse_1';
-import { bridge } from './bridge';
-import { verse_2 } from './verse_2';
-import { chorus } from './chorus';
+import { verse_1 } from './be_kind/verse_1';
+import { bridge } from './be_kind/bridge';
+import { verse_2 } from './be_kind/verse_2';
+import { chorus } from './be_kind/chorus';
 
 const CONSTANTS = {
   pos1: 30,
@@ -12,3 +12,5 @@ const CONSTANTS = {
 }
 
 export const song = [].concat(verse_1, bridge, chorus, verse_2, bridge, chorus)
+
+export const introDelay = 3604
