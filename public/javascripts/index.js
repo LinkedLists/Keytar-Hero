@@ -13,9 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
       // make first item selectable
       songCarouselWheelItems[0].classList.add("selectable")
-      
       let carouselWheelLength = songCarouselWheelItems.length
-
   let carouselPositionsSet = false
   let wheelIndex = 0
   let thetaDeg = (360 / carouselWheelLength)
@@ -100,14 +98,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   }
 
-
-  
-
   wheelNext.addEventListener('click', () => {
     removeSelectable()
     wheelIndex -= 1
     selectable()
-    console.log(wheelIndex % carouselWheelLength + " next")
     carouselWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg)`
   })
 
@@ -115,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
     removeSelectable()
     wheelIndex += 1
     selectable()
-    console.log(wheelIndex % carouselWheelLength + " prev")
     carouselWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg)`
   })
 
@@ -137,25 +130,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // let selectSong = document.getElementById('halsey')
-  let selectSong = document.getElementsByClassName('selectable')[0]
+  // let selectSong = document.getElementsByClassName('selectable')[0]
 
   //play song
   const canvas = document.getElementById('canvas');
-  selectSong.addEventListener('click', () => {
-    homePage.classList.remove('fadeIn')
-    homePage.classList.add('fadeOut')
-    selectCircle.classList.remove('song-selection-container-open')
-    selectCircle.classList.add('song-selection-container-closed')
-    new Game(canvas);
-
-    setTimeout(() => {
-      homePage.classList.add('hidden')
-      homePage.classList.remove('fadeOut')
-
-      gameView.classList.remove('hidden')
-      gameView.classList.add('fadeIn')
-    }, 666)
-
+  songCarouselWheelItems.forEach( song => { song.addEventListener('click', () => {
+    if (song.classList.contains('selectable')) {
+      homePage.classList.remove('fadeIn')
+      homePage.classList.add('fadeOut')
+      selectCircle.classList.remove('song-selection-container-open')
+      selectCircle.classList.add('song-selection-container-closed')
+      new Game(canvas);
+  
+      setTimeout(() => {
+        homePage.classList.add('hidden')
+        homePage.classList.remove('fadeOut')
+  
+        gameView.classList.remove('hidden')
+        gameView.classList.add('fadeIn')
+      }, 666)
+    }
+    }) 
   })
 
 
