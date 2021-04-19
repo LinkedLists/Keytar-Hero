@@ -1,6 +1,6 @@
 import Note from './note'
 import Target from './target'
-import { song } from './song/song'
+import { song, introDelay } from './song/song'
 
 export default class Game {
   constructor(canvas) {
@@ -331,7 +331,7 @@ export default class Game {
 
     let startTime;
     // let playTime;
-    let introDelay = 3604;
+    // let introDelay = 3604;
 
     function startButton() {
         startTime = Date.now();
@@ -369,12 +369,13 @@ export default class Game {
         this.isPlaying = true;
         requestAnimationFrame(this.animate)
       }
+      //fade delay
     }, 1500)
 
     back.addEventListener('click', () => {
-      restart.classList.add('hidden')
+      // restart.classList.add('hidden')
       // start.classList.remove('hidden')
-      pause.classList.add("hidden")
+      // pause.classList.add("hidden")
       resume.classList.add("hidden")
       
       this.allNotes = []
@@ -398,6 +399,10 @@ export default class Game {
         homePage.classList.add('fadeIn')
         gameView.classList.add('hidden')
         gameView.classList.remove('fadeOut')
+        if (this.audio.playing) {
+          this.audio.pause()
+          this.audio.currentTime = 0
+        }
       }, 666)
     })
 

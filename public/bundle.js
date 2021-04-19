@@ -70,8 +70,8 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__game__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__wheel__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modal__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__wheel__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modal__ = __webpack_require__(10);
 
 
 
@@ -258,7 +258,7 @@ class Game {
     this.isPlaying = false;
     this.visibleNotes = this.generateNoteArray();
     this.missedNotes = [];
-    this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].slice()
+    this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song__["b" /* song */].slice()
     
     this.addListeners = this.addListeners.bind(this)
     this.addListeners()
@@ -576,7 +576,7 @@ class Game {
 
     let startTime;
     // let playTime;
-    let introDelay = 3604;
+    // let introDelay = 3604;
 
     function startButton() {
         startTime = Date.now();
@@ -610,16 +610,17 @@ class Game {
     setTimeout(() => {
       if (this.audio.currentTime === 0) {
         this.audio.play()
-          .then(setTimeout(this.generateNotes, introDelay));
+          .then(setTimeout(this.generateNotes, __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* introDelay */]));
         this.isPlaying = true;
         requestAnimationFrame(this.animate)
       }
+      //fade delay
     }, 1500)
 
     back.addEventListener('click', () => {
-      restart.classList.add('hidden')
+      // restart.classList.add('hidden')
       // start.classList.remove('hidden')
-      pause.classList.add("hidden")
+      // pause.classList.add("hidden")
       resume.classList.add("hidden")
       
       this.allNotes = []
@@ -643,11 +644,15 @@ class Game {
         homePage.classList.add('fadeIn')
         gameView.classList.add('hidden')
         gameView.classList.remove('fadeOut')
+        if (this.audio.playing) {
+          this.audio.pause()
+          this.audio.currentTime = 0
+        }
       }, 666)
     })
 
     restart.addEventListener('click', () => {
-      this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].slice()
+      this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song__["b" /* song */].slice()
       this.score = 0;
       this.streak = 0;
       this.maxStreak = 0;
@@ -663,7 +668,7 @@ class Game {
       // this.audio.pause()
       this.audio.currentTime = 0
       this.audio.play()
-        .then(setTimeout(this.generateNotes, introDelay));
+        .then(setTimeout(this.generateNotes, __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* introDelay */]));
       
     });
 
@@ -960,10 +965,10 @@ class Target {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__be_kind_verse_2__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__be_kind_chorus__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__be_kind_verse_2__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__be_kind_chorus__ = __webpack_require__(8);
 
 
 
@@ -978,153 +983,16 @@ const CONSTANTS = {
 }
 
 const song = [].concat(__WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__["a" /* verse_1 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_2__be_kind_verse_2__["a" /* verse_2 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__be_kind_chorus__["a" /* chorus */])
-/* harmony export (immutable) */ __webpack_exports__["a"] = song;
+/* harmony export (immutable) */ __webpack_exports__["b"] = song;
 
 
 const introDelay = 3604
-/* unused harmony export introDelay */
+/* harmony export (immutable) */ __webpack_exports__["a"] = introDelay;
 
 
 
 /***/ }),
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const modalHandler = () => {
-  const openBtn = document.getElementById("open-modal");
-  const modalScreen = document.getElementsByClassName("modal-screen")[0];
-  const modal = document.getElementsByClassName("modal")[0];
-  const closeBtn = document.getElementById("modal-close-btn");
-
-  modalScreen.onclick = e => {
-    if (e.target === modalScreen) {
-      modal.classList.remove("open")
-    }
-  }
-  
-  openBtn.onclick = e => {
-      modal.classList.add('open')
-  }
-
-  closeBtn.onclick = e => {
-    modal.classList.remove('open')
-}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = modalHandler;
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-///USE THIS LATER MAYBE
-class Wheel {
-  constructor() {
-    // carousel wheel elements
-    this.wheelNext = document.getElementById('selection-next-btn')
-    this.wheelPrev = document.getElementById('selection-prev-btn')
-    this.carouselWheel = document.getElementsByClassName('selection-circle')[0]
-    this.selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
-    this.songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
-      // make first item selectable
-      this.songCarouselWheelItems[0].classList.add("selectable")
-      this.carouselWheelLength = this.songCarouselWheelItems.length
-    this.carouselPositionsSet = false
-
-    this.wheelIndex = 0
-    this.thetaDeg = (360 / this.carouselWheelLength)
-    this.thetaRad = (Math.PI / 180.0) * (360 / this.carouselWheelLength)
-
-    this.setCarouselPositions = this.setCarouselPositions.bind(this)
-    this.addListeners = this.addListeners.bind(this)
-    this.addListeners()
-  }
-
-  setCarouselPositions() {
-    let centerx = parseFloat(getComputedStyle(this.songCarouselWheelItems[0]).left) 
-    let centery = parseFloat(getComputedStyle(this.songCarouselWheelItems[0]).top) 
-
-    this.songCarouselWheelItems.forEach( (songItem, i) => {
-      songItem.style.left = `${centerx + 200 * Math.cos(this.thetaRad * (i))}px`
-      songItem.style.top = `${centery - 200 * Math.sin(this.thetaRad * (i))}px`
-      songItem.style.transform = `rotate(${-1.0 * i * 360 / this.carouselWheelLength}deg)`
-    })
-  }
-
-  addListeners() {
-    this.wheelNext.addEventListener('click', () => {
-      this.removeSelectable()
-      this.wheelIndex -= 1
-      this.selectable()
-      this.carouselWheel.style.transform = `rotate(${-1.0 * this.thetaDeg * this.wheelIndex}deg)`
-    })
-  
-    this.wheelPrev.addEventListener('click', () => {
-      this.removeSelectable()
-      this.wheelIndex += 1
-      this.selectable()
-      this.carouselWheel.style.transform = `rotate(${-1.0 * this.thetaDeg * this.wheelIndex}deg)`
-    })
-  }
-
-  //make current wheel item clickable
-  selectable() {
-    let index = this.wheelIndex % this.carouselWheelLength
-    if (index < 0) {
-      index *= -1
-    }
-    this.songCarouselWheelItems[index].classList.add("selectable")
-  }
-  //make prev item nonclickable
-  removeSelectable() {
-    if (this.wheelIndex % this.carouselWheelLength <= 0) {
-      this.songCarouselWheelItems[-1 * this.wheelIndex % this.carouselWheelLength].classList.remove("selectable")
-    } else {
-      this.songCarouselWheelItems[this.wheelIndex % this.carouselWheelLength].classList.remove("selectable")
-    }
-  }
-}
-/* unused harmony export default */
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const CONSTANTS = {
-  pos1: 30,
-  pos2: 150,
-  pos3: 270,
-  pos4: 390,
-  pos5: 510,
-}
-
-const bridge = [
-  // bridge
-
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 8, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 8, chain: true },
-  { tempo: 6, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 8, chain: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 8, chain: true },
-  { tempo: 6, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 8, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 8, chain: true },
-
-  { tempo: 10, hold: 0, chain: false, rest: true },
-]
-/* harmony export (immutable) */ __webpack_exports__["a"] = bridge;
-
-
-/***/ }),
-/* 12 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1215,7 +1083,37 @@ const verse_1 = [
 
 
 /***/ }),
-/* 13 */
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const CONSTANTS = {
+  pos1: 30,
+  pos2: 150,
+  pos3: 270,
+  pos4: 390,
+  pos5: 510,
+}
+
+const bridge = [
+  // bridge
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 8, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 8, chain: true },
+  { tempo: 6, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 8, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 8, chain: true },
+  { tempo: 6, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 8, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 8, chain: true },
+
+  { tempo: 10, hold: 0, chain: false, rest: true },
+]
+/* harmony export (immutable) */ __webpack_exports__["a"] = bridge;
+
+
+/***/ }),
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1299,7 +1197,7 @@ const verse_2 = [
 
 
 /***/ }),
-/* 14 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1407,6 +1305,109 @@ const chorus = [
 
 ]
 /* harmony export (immutable) */ __webpack_exports__["a"] = chorus;
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+///USE THIS LATER MAYBE
+class Wheel {
+  constructor() {
+    // carousel wheel elements
+    this.wheelNext = document.getElementById('selection-next-btn')
+    this.wheelPrev = document.getElementById('selection-prev-btn')
+    this.carouselWheel = document.getElementsByClassName('selection-circle')[0]
+    this.selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
+    this.songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
+      // make first item selectable
+      this.songCarouselWheelItems[0].classList.add("selectable")
+      this.carouselWheelLength = this.songCarouselWheelItems.length
+    this.carouselPositionsSet = false
+
+    this.wheelIndex = 0
+    this.thetaDeg = (360 / this.carouselWheelLength)
+    this.thetaRad = (Math.PI / 180.0) * (360 / this.carouselWheelLength)
+
+    this.setCarouselPositions = this.setCarouselPositions.bind(this)
+    this.addListeners = this.addListeners.bind(this)
+    this.addListeners()
+  }
+
+  setCarouselPositions() {
+    let centerx = parseFloat(getComputedStyle(this.songCarouselWheelItems[0]).left) 
+    let centery = parseFloat(getComputedStyle(this.songCarouselWheelItems[0]).top) 
+
+    this.songCarouselWheelItems.forEach( (songItem, i) => {
+      songItem.style.left = `${centerx + 200 * Math.cos(this.thetaRad * (i))}px`
+      songItem.style.top = `${centery - 200 * Math.sin(this.thetaRad * (i))}px`
+      songItem.style.transform = `rotate(${-1.0 * i * 360 / this.carouselWheelLength}deg)`
+    })
+  }
+
+  addListeners() {
+    this.wheelNext.addEventListener('click', () => {
+      this.removeSelectable()
+      this.wheelIndex -= 1
+      this.selectable()
+      this.carouselWheel.style.transform = `rotate(${-1.0 * this.thetaDeg * this.wheelIndex}deg)`
+    })
+  
+    this.wheelPrev.addEventListener('click', () => {
+      this.removeSelectable()
+      this.wheelIndex += 1
+      this.selectable()
+      this.carouselWheel.style.transform = `rotate(${-1.0 * this.thetaDeg * this.wheelIndex}deg)`
+    })
+  }
+
+  //make current wheel item clickable
+  selectable() {
+    let index = this.wheelIndex % this.carouselWheelLength
+    if (index < 0) {
+      index *= -1
+    }
+    this.songCarouselWheelItems[index].classList.add("selectable")
+  }
+  //make prev item nonclickable
+  removeSelectable() {
+    if (this.wheelIndex % this.carouselWheelLength <= 0) {
+      this.songCarouselWheelItems[-1 * this.wheelIndex % this.carouselWheelLength].classList.remove("selectable")
+    } else {
+      this.songCarouselWheelItems[this.wheelIndex % this.carouselWheelLength].classList.remove("selectable")
+    }
+  }
+}
+/* unused harmony export default */
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const modalHandler = () => {
+  const openBtn = document.getElementById("open-modal");
+  const modalScreen = document.getElementsByClassName("modal-screen")[0];
+  const modal = document.getElementsByClassName("modal")[0];
+  const closeBtn = document.getElementById("modal-close-btn");
+
+  modalScreen.onclick = e => {
+    if (e.target === modalScreen) {
+      modal.classList.remove("open")
+    }
+  }
+  
+  openBtn.onclick = e => {
+      modal.classList.add('open')
+  }
+
+  closeBtn.onclick = e => {
+    modal.classList.remove('open')
+}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = modalHandler;
 
 
 /***/ })
