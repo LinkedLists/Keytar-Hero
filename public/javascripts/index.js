@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let wheelPrev = document.getElementById('selection-prev-btn')
   let carouselWheel = document.getElementsByClassName('selection-circle')[0]
   let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
+  let preview = document.getElementsByClassName('preview-carousel')[0]
   let songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
       // make first item selectable
       songCarouselWheelItems[0].classList.add("selectable")
@@ -35,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     carouselWheel.classList.remove('circleClose')
     carouselWheel.classList.add('circleOpen')
+
+    preview.classList.remove('carouselClosed')
+    preview.classList.add('carouselOpen')
 
     // selectCircle.classList.remove('circleClose')
     // selectCircle.classList.add('circleOpen')
@@ -70,6 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     mainMenuL.classList.add('Lopen')
     mainMenuR.classList.add('Ropen')
+
+    preview.classList.remove('carouselOpen')
+    preview.classList.add('carouselClosed')
 
     setTimeout(() => {
       selectCircle.classList.add('hidden')

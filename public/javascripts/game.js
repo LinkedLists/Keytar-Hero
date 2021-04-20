@@ -409,7 +409,7 @@ export default class Game {
         homePage.classList.add('fadeIn')
         gameView.classList.add('hidden')
         gameView.classList.remove('fadeOut')
-        if (this.audio.playing) {
+        if (!this.audio.paused) {
           this.audio.pause()
           this.audio.currentTime = 0
         }
