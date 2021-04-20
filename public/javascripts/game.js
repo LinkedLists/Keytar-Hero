@@ -309,8 +309,8 @@ export default class Game {
           this.noteGrabber();
         }
       }
-      //need to find out what 319 means again
-    }, 319)
+      //need to find out what song.tempo means again
+    }, song.tempo)
   }
       
   noteGrabber() {
@@ -385,26 +385,24 @@ export default class Game {
     }, 1500)
 
     back.addEventListener('click', () => {
-      // restart.classList.add('hidden')
-      // start.classList.remove('hidden')
-      // pause.classList.add("hidden")
       resume.classList.add("hidden")
       
       this.allNotes = []
-      this.score = 0;
-      this.streak = 0;
-      this.maxStreak = 0;
-      this.visibleNotes = this.generateNoteArray();
+      this.visibleNotes = [];
       this.missedNotes = [];
       this.isPlaying = false;
-      clearInterval(this.callGenerateNotes)
       this.audio.pause()
       this.audio.currentTime = 0
-
+      
+      clearInterval(this.callGenerateNotes)
       gameView.classList.remove('fadeIn')
       gameView.classList.add('fadeOut')
 
+      //clear notes in settime out or everything zeros out before fade away
       setTimeout(() => {
+        this.score = 0;
+        this.streak = 0;
+        this.maxStreak = 0;
         selectCircle.classList.add('song-selection-container-open')
         selectCircle.classList.remove('song-selection-container-closed')
         homePage.classList.remove('hidden')
@@ -498,11 +496,11 @@ export default class Game {
               this.noteGrabber();
             }
           }
-        }, 319), dif)
+        }, song.tempo), dif)
     })
   }
 
-  
+
 
   generateTargets() {
     const targets = []
