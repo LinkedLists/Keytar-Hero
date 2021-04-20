@@ -119,14 +119,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (index < 0) {
       index *= -1
     }
+    else if (index > 0) {
+      index = 6 - index
+    }
     songCarouselWheelItems[index].classList.add("selectable")
   }
   //make prev item nonclickable
   function removeSelectable() {
-    if (wheelIndex % carouselWheelLength <= 0) {
-      songCarouselWheelItems[-1 * wheelIndex % carouselWheelLength].classList.remove("selectable")
+    let index = wheelIndex % carouselWheelLength
+    if (index <= 0) {
+      index *= -1
+      songCarouselWheelItems[index].classList.remove("selectable")
     } else {
-      songCarouselWheelItems[wheelIndex % carouselWheelLength].classList.remove("selectable")
+      songCarouselWheelItems[6 - index].classList.remove("selectable")
     }
   }
 

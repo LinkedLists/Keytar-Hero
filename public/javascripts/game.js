@@ -16,8 +16,8 @@ export default class Game {
     // this.allNotes = song.notes.slice()
     this.allNotes = []
     
-    this.addListeners = this.addListeners.bind(this)
-    this.addListeners()
+    this.addTargetListeners = this.addTargetListeners.bind(this)
+    this.addTargetListeners()
     this.animate = this.animate.bind(this)
     this.checkCollisionDown = this.checkCollisionDown.bind(this)
     this.checkCollisionUp = this.checkCollisionUp.bind(this)
@@ -45,14 +45,16 @@ export default class Game {
     this.score4;
     this.score5;
 
-    this.animate();
-    this.playSong();
+    // this.animate();
+    // this.playSong();
   }
 
 
   selectSong(songId) {
     if (songId === 'song1') {
       this.allNotes = song.notes.slice()
+      this.animate();
+      this.playSong();
     }
   }
 
@@ -193,7 +195,7 @@ export default class Game {
     }
   }
 
-  addListeners() {
+  addTargetListeners() {
     // Keydown will continue to listen if pressed
     // so keyLock will prevent the event from continuing
     let keyLock1 = false;
@@ -498,8 +500,9 @@ export default class Game {
           }
         }, 319), dif)
     })
-
   }
+
+  
 
   generateTargets() {
     const targets = []

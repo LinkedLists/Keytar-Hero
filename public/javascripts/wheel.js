@@ -54,14 +54,19 @@ export default class Wheel {
     if (index < 0) {
       index *= -1
     }
+    else if (index > 0) {
+      index = 6 - index
+    }
     this.songCarouselWheelItems[index].classList.add("selectable")
   }
   //make prev item nonclickable
   removeSelectable() {
-    if (this.wheelIndex % this.carouselWheelLength <= 0) {
-      this.songCarouselWheelItems[-1 * this.wheelIndex % this.carouselWheelLength].classList.remove("selectable")
+    let index = this.wheelIndex % this.carouselWheelLength 
+    if (index <= 0) {
+      index *= -1
+      this.songCarouselWheelItems[index].classList.remove("selectable")
     } else {
-      this.songCarouselWheelItems[this.wheelIndex % this.carouselWheelLength].classList.remove("selectable")
+      this.songCarouselWheelItems[6 - index].classList.remove("selectable")
     }
   }
 }

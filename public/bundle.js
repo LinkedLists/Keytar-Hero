@@ -193,14 +193,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (index < 0) {
       index *= -1
     }
+    else if (index > 0) {
+      index = 6 - index
+    }
     songCarouselWheelItems[index].classList.add("selectable")
   }
   //make prev item nonclickable
   function removeSelectable() {
-    if (wheelIndex % carouselWheelLength <= 0) {
-      songCarouselWheelItems[-1 * wheelIndex % carouselWheelLength].classList.remove("selectable")
+    let index = wheelIndex % carouselWheelLength
+    if (index <= 0) {
+      index *= -1
+      songCarouselWheelItems[index].classList.remove("selectable")
     } else {
-      songCarouselWheelItems[wheelIndex % carouselWheelLength].classList.remove("selectable")
+      songCarouselWheelItems[6 - index].classList.remove("selectable")
     }
   }
 
@@ -260,8 +265,8 @@ class Game {
     // this.allNotes = song.notes.slice()
     this.allNotes = []
     
-    this.addListeners = this.addListeners.bind(this)
-    this.addListeners()
+    this.addTargetListeners = this.addTargetListeners.bind(this)
+    this.addTargetListeners()
     this.animate = this.animate.bind(this)
     this.checkCollisionDown = this.checkCollisionDown.bind(this)
     this.checkCollisionUp = this.checkCollisionUp.bind(this)
@@ -289,14 +294,16 @@ class Game {
     this.score4;
     this.score5;
 
-    this.animate();
-    this.playSong();
+    // this.animate();
+    // this.playSong();
   }
 
 
   selectSong(songId) {
     if (songId === 'song1') {
       this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].notes.slice()
+      this.animate();
+      this.playSong();
     }
   }
 
@@ -437,7 +444,7 @@ class Game {
     }
   }
 
-  addListeners() {
+  addTargetListeners() {
     // Keydown will continue to listen if pressed
     // so keyLock will prevent the event from continuing
     let keyLock1 = false;
@@ -742,8 +749,9 @@ class Game {
           }
         }, 319), dif)
     })
-
   }
+
+  
 
   generateTargets() {
     const targets = []
@@ -1380,14 +1388,19 @@ class Wheel {
     if (index < 0) {
       index *= -1
     }
+    else if (index > 0) {
+      index = 6 - index
+    }
     this.songCarouselWheelItems[index].classList.add("selectable")
   }
   //make prev item nonclickable
   removeSelectable() {
-    if (this.wheelIndex % this.carouselWheelLength <= 0) {
-      this.songCarouselWheelItems[-1 * this.wheelIndex % this.carouselWheelLength].classList.remove("selectable")
+    let index = this.wheelIndex % this.carouselWheelLength 
+    if (index <= 0) {
+      index *= -1
+      this.songCarouselWheelItems[index].classList.remove("selectable")
     } else {
-      this.songCarouselWheelItems[this.wheelIndex % this.carouselWheelLength].classList.remove("selectable")
+      this.songCarouselWheelItems[6 - index].classList.remove("selectable")
     }
   }
 }
