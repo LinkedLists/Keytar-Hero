@@ -215,8 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
       homePage.classList.add('fadeOut')
       selectCircle.classList.remove('song-selection-container-open')
       selectCircle.classList.add('song-selection-container-closed')
-      new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas);
-  
+      new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, song.id);
       setTimeout(() => {
         homePage.classList.add('hidden')
         homePage.classList.remove('fadeOut')
@@ -248,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 class Game {
-  constructor(canvas) {
+  constructor(canvas, songId) {
     this.c = canvas.getContext('2d');
     this.dimensions = { width: canvas.width, height: canvas.height};
     this.score = 0;
@@ -258,7 +257,8 @@ class Game {
     this.isPlaying = false;
     this.visibleNotes = this.generateNoteArray();
     this.missedNotes = [];
-    this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song__["b" /* song */].slice()
+    // this.allNotes = song.notes.slice()
+    this.allNotes = []
     
     this.addListeners = this.addListeners.bind(this)
     this.addListeners()
@@ -273,6 +273,9 @@ class Game {
     this.targets = this.generateTargets();
     this.streakBoard = this.streakBoard.bind(this)
     this.resetStreak = this.resetStreak.bind(this)
+
+    this.selectSong = this.selectSong.bind(this)
+    this.selectSong(songId)
 
     this.callGenerateNotes;
     this.counter = 0;
@@ -290,6 +293,12 @@ class Game {
     this.playSong();
   }
 
+
+  selectSong(songId) {
+    if (songId === 'song1') {
+      this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].notes.slice()
+    }
+  }
 
   animate() {
     this.bandAidFix(this.c)
@@ -610,7 +619,7 @@ class Game {
     setTimeout(() => {
       if (this.audio.currentTime === 0) {
         this.audio.play()
-          .then(setTimeout(this.generateNotes, __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* introDelay */]));
+          .then(setTimeout(this.generateNotes, __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].introDelay));
         this.isPlaying = true;
         requestAnimationFrame(this.animate)
       }
@@ -652,7 +661,7 @@ class Game {
     })
 
     restart.addEventListener('click', () => {
-      this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song__["b" /* song */].slice()
+      this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].notes.slice()
       this.score = 0;
       this.streak = 0;
       this.maxStreak = 0;
@@ -668,7 +677,7 @@ class Game {
       // this.audio.pause()
       this.audio.currentTime = 0
       this.audio.play()
-        .then(setTimeout(this.generateNotes, __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* introDelay */]));
+        .then(setTimeout(this.generateNotes, __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].introDelay));
       
     });
 
@@ -982,13 +991,16 @@ const CONSTANTS = {
   pos5: 510,
 }
 
-const song = [].concat(__WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__["a" /* verse_1 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_2__be_kind_verse_2__["a" /* verse_2 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__be_kind_chorus__["a" /* chorus */])
-/* harmony export (immutable) */ __webpack_exports__["b"] = song;
+const song = {
+  notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__["a" /* verse_1 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_2__be_kind_verse_2__["a" /* verse_2 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__be_kind_chorus__["a" /* chorus */]),
+  introDelay: 3604
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = song;
 
 
-const introDelay = 3604
-/* harmony export (immutable) */ __webpack_exports__["a"] = introDelay;
+// export const song = [].concat(verse_1, bridge, chorus, verse_2, bridge, chorus)
 
+// export const introDelay = 3604
 
 
 /***/ }),

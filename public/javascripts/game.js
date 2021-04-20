@@ -1,9 +1,9 @@
 import Note from './note'
 import Target from './target'
-import { song, introDelay } from './song/song'
+import { song } from './song/song'
 
 export default class Game {
-  constructor(canvas) {
+  constructor(canvas, songId) {
     this.c = canvas.getContext('2d');
     this.dimensions = { width: canvas.width, height: canvas.height};
     this.score = 0;
@@ -13,7 +13,8 @@ export default class Game {
     this.isPlaying = false;
     this.visibleNotes = this.generateNoteArray();
     this.missedNotes = [];
-    this.allNotes = song.slice()
+    // this.allNotes = song.notes.slice()
+    this.allNotes = []
     
     this.addListeners = this.addListeners.bind(this)
     this.addListeners()
@@ -28,6 +29,9 @@ export default class Game {
     this.targets = this.generateTargets();
     this.streakBoard = this.streakBoard.bind(this)
     this.resetStreak = this.resetStreak.bind(this)
+
+    this.selectSong = this.selectSong.bind(this)
+    this.selectSong(songId)
 
     this.callGenerateNotes;
     this.counter = 0;
@@ -45,6 +49,12 @@ export default class Game {
     this.playSong();
   }
 
+
+  selectSong(songId) {
+    if (songId === 'song1') {
+      this.allNotes = song.notes.slice()
+    }
+  }
 
   animate() {
     this.bandAidFix(this.c)
@@ -365,7 +375,7 @@ export default class Game {
     setTimeout(() => {
       if (this.audio.currentTime === 0) {
         this.audio.play()
-          .then(setTimeout(this.generateNotes, introDelay));
+          .then(setTimeout(this.generateNotes, song.introDelay));
         this.isPlaying = true;
         requestAnimationFrame(this.animate)
       }
@@ -407,7 +417,7 @@ export default class Game {
     })
 
     restart.addEventListener('click', () => {
-      this.allNotes = song.slice()
+      this.allNotes = song.notes.slice()
       this.score = 0;
       this.streak = 0;
       this.maxStreak = 0;
@@ -423,7 +433,7 @@ export default class Game {
       // this.audio.pause()
       this.audio.currentTime = 0
       this.audio.play()
-        .then(setTimeout(this.generateNotes, introDelay));
+        .then(setTimeout(this.generateNotes, song.introDelay));
       
     });
 

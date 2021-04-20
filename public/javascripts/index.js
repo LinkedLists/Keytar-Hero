@@ -141,8 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
       homePage.classList.add('fadeOut')
       selectCircle.classList.remove('song-selection-container-open')
       selectCircle.classList.add('song-selection-container-closed')
-      new Game(canvas);
-  
+      new Game(canvas, song.id);
       setTimeout(() => {
         homePage.classList.add('hidden')
         homePage.classList.remove('fadeOut')
