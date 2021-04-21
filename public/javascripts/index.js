@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let carouselWheel = document.getElementsByClassName('selection-circle')[0]
   let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
   let wheelBtns = document.getElementsByClassName('carousel-wheel-btn-container')[0]
-  let preview = document.getElementsByClassName('preview-carousel')[0]
+  let preview = document.getElementsByClassName('preview-carousel-container')[0]
   let songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
       // make first item selectable
       songCarouselWheelItems[0].classList.add("selectable")
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let previewCarouselItems = document.querySelectorAll('.preview-img');
 
-  let zDeg = 225 * 6 / Math.PI + 40
+  let zDeg = 180 * 6 / Math.PI
 
   previewCarouselItems.forEach( (preview, i) => {
     preview.style.transform = `rotateY(${60 * i}deg) translateZ(${zDeg}px)`

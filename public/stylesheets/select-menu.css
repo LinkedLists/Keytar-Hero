@@ -145,11 +145,22 @@
 
 .preview-carousel-container {
   perspective: 3000px;
-
+  /* transform: translateY(500px); */
+  /* perspective: 6031px; */
 }
+
 .preview-carousel {
   width: 450px;
   height: 450px;
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -159,8 +170,8 @@
 }
 
 .preview-img {
-  height: 450px;
-  width: 450px;
+  height: 360px;
+  width: 360px;
 
   position: absolute;
 }
