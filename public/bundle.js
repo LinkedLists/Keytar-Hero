@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let wheelPrev = document.getElementById('selection-prev-btn')
   let carouselWheel = document.getElementsByClassName('selection-circle')[0]
   let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
+  let wheelBtns = document.getElementsByClassName('carousel-wheel-btn-container')[0]
   let preview = document.getElementsByClassName('preview-carousel')[0]
   let songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
       // make first item selectable
@@ -110,6 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     carouselWheel.classList.remove('circleClose')
     carouselWheel.classList.add('circleOpen')
+
+    wheelBtns.classList.remove('circleClose')
+    wheelBtns.classList.add('circleOpen')
 
     preview.classList.remove('carouselClosed')
     preview.classList.add('carouselOpen')
@@ -143,6 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     carouselWheel.classList.remove('circleOpen')
     carouselWheel.classList.add('circleClose')
+
+    wheelBtns.classList.remove('circleOpen')
+    wheelBtns.classList.add('circleClose')
 
     mainMenu.classList.remove('hidden')
 

@@ -51,8 +51,9 @@
 
 .carousel-wheel-btn-container {
   position: absolute;
-  left: 250px;
-  top: 150px;
+  /* left: 250px; */
+  top: 140px;
+  transform: translateX(600%);
   /* position: absolute; */
   /* top: 50%; */
   /* left: 10%; */
@@ -66,10 +67,11 @@
   padding: 10px;
   /* height: 25px; */
   /* width: 50px; */
+  position: relative;
 }
 
 .carousel-wheel-btn-container button:last-child {
-  margin-top: 75px;
+  margin-top: 100px;
   /* height: 25px; */
   /* width: 50px; */
 }
@@ -78,6 +80,36 @@
 
 }
 
+#selection-next-btn:after {
+  border-right: 1px solid #333;
+  border-top: 1px solid #333;
+  transform: rotate(-45deg) translate(-1px,1px);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  content: '';
+  margin: auto;
+  height: 6px;
+  width: 6px;
+}
+
+
+#selection-prev-btn:after {
+  border-right: 1px solid #333;
+  border-top: 1px solid #333;
+  transform: rotate(135deg) translate(-1px,1px);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  content: '';
+  margin: auto;
+  height: 6px;
+  width: 6px;
+}
 
 
 .selection-circle-ul {
