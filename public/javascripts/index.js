@@ -106,11 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let thetaRad = (Math.PI / 180.0) * (360 / carouselWheelLength)
   
     songCarouselWheelItems.forEach( (songItem, i) => {
-      songItem.style.left = `${centerx + 200 * Math.cos(thetaRad * (i))}px`
-      songItem.style.top = `${centery - 200 * Math.sin(thetaRad * (i))}px`
+      songItem.style.left = `${centerx + 230 * Math.cos(thetaRad * (i))}px`
+      songItem.style.top = `${centery - 230 * Math.sin(thetaRad * (i))}px`
       songItem.style.transform = `rotate(${-1.0 * i * 360 / carouselWheelLength}deg)`
     })
-
   }
 
   wheelNext.addEventListener('click', () => {
@@ -170,6 +169,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 666)
     }
     }) 
+  })
+
+  let previewCarousel = document.querySelectorAll('.preview-img');
+
+  let zDeg = 225 * 6 / Math.PI
+
+  previewCarousel.forEach( (preview, i) => {
+    preview.style.transform = `rotateY(${60 * i}deg) translateZ(${zDeg}px)`
   })
 
 

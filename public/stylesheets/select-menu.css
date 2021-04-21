@@ -124,8 +124,8 @@
 
 .selection-circle-ul {
   position: absolute;
-  left: 133px;
-  top: 133px;
+  left: 94px;
+  top: 135px;
 }
 
 .song-carousel-item {
@@ -143,10 +143,19 @@
   cursor: pointer;
 }
 
+.preview-carousel {
+  /* width: 450px; */
+  height: 450px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+}
 
 .preview-img {
-  height: 500px;
-  width: 500px;
+  height: 450px;
+  width: 450px;
 }
 
 .carouselClosed {
@@ -157,9 +166,6 @@
   left: 0;
   right: 0;
   margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   animation: carouselClosed 1s;
 }
 
@@ -171,9 +177,6 @@
   left: 0;
   right: 0;
   margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   animation: carouselOpen 1s;
 }
 
