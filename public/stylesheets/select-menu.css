@@ -145,7 +145,6 @@
 
 .preview-carousel-container {
   perspective: 3000px;
-  /* transform: translateY(500px); */
   /* perspective: 6031px; */
 }
 
@@ -160,7 +159,6 @@
   right: 0;
   margin: auto;
 
-
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -172,7 +170,7 @@
 .preview-img {
   height: 360px;
   width: 360px;
-
+  opacity: 0.9;
   position: absolute;
 }
 
