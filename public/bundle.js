@@ -186,18 +186,24 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
+  let previewCarousel = document.getElementsByClassName('preview-carousel')[0]
+
   wheelNext.addEventListener('click', () => {
     removeSelectable()
     wheelIndex -= 1
     selectable()
     carouselWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg)`
+    previewCarousel.style.transform = `rotateY(${wheelIndex/6 * 360}deg)`
   })
+
 
   wheelPrev.addEventListener('click', () => {
     removeSelectable()
     wheelIndex += 1
     selectable()
     carouselWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg)`
+
+    previewCarousel.style.transform = `rotateY(${wheelIndex/6 * 360}deg)`
   })
 
   //make current wheel item clickable
@@ -245,11 +251,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }) 
   })
 
-  let previewCarousel = document.querySelectorAll('.preview-img');
+  let previewCarouselItems = document.querySelectorAll('.preview-img');
 
-  let zDeg = 225 * 6 / Math.PI
+  let zDeg = 225 * 6 / Math.PI + 40
 
-  previewCarousel.forEach( (preview, i) => {
+  previewCarouselItems.forEach( (preview, i) => {
     preview.style.transform = `rotateY(${60 * i}deg) translateZ(${zDeg}px)`
   })
 
