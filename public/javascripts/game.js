@@ -421,8 +421,33 @@ export default class Game {
           this.audio.pause()
           this.audio.currentTime = 0
         }
+
+        cartWheelIn()
+
+
       }, 666)
     })
+    
+    function cartWheelIn() {
+      let previewCarousel = document.getElementsByClassName('preview-carousel')[0]
+
+      let transformVal = previewCarousel.style.transform
+      if (transformVal.length === 0) {
+        previewCarousel.style.transform = `rotateX(60deg)`
+        setTimeout( () => {
+          previewCarousel.style.transform = `rotateX(0deg)`
+        }, 300)
+      } else {
+        transformVal = parseFloat(transformVal.substring(
+          transformVal.lastIndexOf("(") + 1, 
+          transformVal.lastIndexOf("d")
+        ))
+        previewCarousel.style.transform = `rotateX(${transformVal + 60}deg)`
+        setTimeout( () => {
+          previewCarousel.style.transform = `rotateX(${transformVal}deg)`
+        }, 300)
+      }
+    }
 
     restart.addEventListener('click', () => {
       this.allNotes = song.notes.slice()

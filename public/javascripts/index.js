@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
   let wheelBtns = document.getElementsByClassName('carousel-wheel-btn-container')[0]
   let preview = document.getElementsByClassName('preview-carousel-container')[0]
+  let previewCarousel = document.getElementsByClassName('preview-carousel')[0]
   let songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
       // make first item selectable
       songCarouselWheelItems[0].classList.add("selectable")
@@ -43,6 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     preview.classList.remove('carouselClosed')
     preview.classList.add('carouselOpen')
+
+    cartWheelIn()
 
     // selectCircle.classList.remove('circleClose')
     // selectCircle.classList.add('circleOpen')
@@ -85,6 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
     preview.classList.remove('carouselOpen')
     preview.classList.add('carouselClosed')
 
+    cartWheelOut()
+
     setTimeout(() => {
       selectCircle.classList.add('hidden')
       // carouselWheel.classList.remove('circleOpen')
@@ -97,6 +102,44 @@ document.addEventListener('DOMContentLoaded', () => {
       mainMenuR.classList.remove('Ropen')
     }, 1500)
   })
+
+  function cartWheelIn() {
+    let transformVal = previewCarousel.style.transform
+    if (transformVal.length === 0) {
+      previewCarousel.style.transform = `rotateX(60deg)`
+      setTimeout( () => {
+        previewCarousel.style.transform = `rotateX(0deg)`
+      }, 300)
+    } else {
+      transformVal = parseFloat(transformVal.substring(
+        transformVal.lastIndexOf("(") + 1, 
+        transformVal.lastIndexOf("d")
+      ))
+      previewCarousel.style.transform = `rotateX(${transformVal + 60}deg)`
+      setTimeout( () => {
+        previewCarousel.style.transform = `rotateX(${transformVal}deg)`
+      }, 300)
+    }
+  }
+
+  function cartWheelOut() {
+    let transformVal = previewCarousel.style.transform
+    if (transformVal.length === 0) {
+      previewCarousel.style.transform = `rotateX(0deg)`
+      setTimeout( () => {
+        previewCarousel.style.transform = `rotateX(60deg)`
+      }, 300)
+    } else {
+      transformVal = parseFloat(transformVal.substring(
+        transformVal.lastIndexOf("(") + 1, 
+        transformVal.lastIndexOf("d")
+      ))
+      previewCarousel.style.transform = `rotateX(${transformVal + 180}deg)`
+      setTimeout( () => {
+        previewCarousel.style.transform = `rotateX(${transformVal}deg)`
+      }, 300)
+    }
+  }
 
 
   function setCarouselPositions() {
@@ -112,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  let previewCarousel = document.getElementsByClassName('preview-carousel')[0]
+
 
   wheelNext.addEventListener('click', () => {
     removeSelectable()
