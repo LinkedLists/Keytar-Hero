@@ -31,22 +31,23 @@
       </div>
       <!-- song selection -->
       <div class='song-selection-container-closed hidden'>
-        <div class='carousel-wheel-btn-container'>
+        <div class='carousel-wheel-btn-container circleClose'>
           <button class='carousel-wheel-btn' id='selection-back-btn'>back</button>
-          <button class='carousel-wheel-btn' id='selection-next-btn'>next</button>
-          <button class='carousel-wheel-btn' id='selection-prev-btn'>prev</button>
+          <button class='carousel-wheel-btn' id='selection-next-btn'></button>
+          <button class='carousel-wheel-btn' id='selection-prev-btn'></button>
         </div>
         <div class='selection-circle circleClose'>
+          <div class='blackout'></div>
           <ul class='selection-circle-ul'>
-            <li class='song-carousel-item'><p id="halsey">Halseyawfawefawe - Be Kind</p></li>
-            <li class='song-carousel-item'>two</li>
-            <li class='song-carousel-item'>three</li>
-            <li class='song-carousel-item'>four</li>
-            <li class='song-carousel-item'>five</li>
-            <li class='song-carousel-item'>six</li>
+            <li class='song-carousel-item' id='song1'><p id="halsey">Halseyawfawefawe - Be Kind</p></li>
+            <li class='song-carousel-item' id='song2'>two</li>
+            <li class='song-carousel-item' id='song3'>three</li>
+            <li class='song-carousel-item' id='song4'>four</li>
+            <li class='song-carousel-item' id='song5'>five</li>
+            <li class='song-carousel-item' id='song6'>six</li>
           </ul>
         </div>
-        <div>
+        <div class='preview-carousel carouselClosed'>
           <img src="https://fsp-seed.s3-us-west-1.amazonaws.com/be+kind+img.jpg" class="preview-img"/>
         </div>
       </div>
@@ -64,10 +65,10 @@
             <div class="target" id="target-4">4</div>
             <div class="target" id="target-5">5</div>
           </div>
-          <div class="instructions">Time your button presses to the beat!</div>
+          <div class="instructions">Time your button presses to the beat</div>
           <div class="instructions">And...</div>
           <img src="./public/assets/holding.png" class="holding-img" />
-          <div class="instructions">Remember to hold your press for these long notes!</div>
+          <div class="instructions">Remember to hold your press for these long notes</div>
           <button id="modal-close-btn">Got it</button>
         </div>
       </div>
