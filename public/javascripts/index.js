@@ -5,6 +5,9 @@ import { modalHandler } from './modal';
 document.addEventListener('DOMContentLoaded', () => {
   let startBtn = document.getElementById('start-btn')
   let selectBtn = document.getElementById('selection-back-btn')
+  let audio = document.getElementById('audio')
+  audio.volume = 0.8
+  let currentVolume = audio.volume
 
   // carousel wheel elements
   let wheelNext = document.getElementById('selection-next-btn')
@@ -185,6 +188,39 @@ document.addEventListener('DOMContentLoaded', () => {
     previewCarousel.style.transform = `rotateX(${wheelIndex/6 * 360}deg)`
   })
 
+  let audioUrls = [
+    "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Marshmello+Halsey++Be+Kind+Halsey+Lyric+Video.mp3",
+    "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Ariana+Grande++7+rings+Lyrics.mp3",
+    "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Camila+Cabello++Havana+Official+Audio+ft+Young+Thug.mp3",
+    "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Halsey++Without+Me+Lyrics.mp3",
+    "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+The+Weeknd++Save+Your+Tears+Audio.mp3",
+    "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Ariana+Grande++positions+Lyrics.mp3",
+  ]
+
+  function audioPreview(index) {
+    audio.pause()
+    audio.src = audioUrls[index]
+    audio.play()
+    volumeUp()
+  }
+
+  function volumeUp() {
+    audio.volume = 0
+    let intervalUp = setInterval(() => {
+      console.log(audio.volume)
+      if (audio.volume <= (currentVolume - currentVolume/100 )) {
+        if (currentVolume/100 === 0 ) {
+          audio.volume = currentVolume
+          clearInterval(intervalUp)
+        }
+        audio.volume += currentVolume/100 
+      } else {
+        audio.volume = currentVolume
+        clearInterval(intervalUp)
+      }
+    }, 15)
+  }
+
   //make current wheel item clickable
   function selectable() {
     let index = wheelIndex % carouselWheelLength
@@ -197,6 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
     songCarouselWheelItems[index].classList.add("selectable")
     songCarouselWheelItems[index].style.transform = `rotate(${degrees[index]}deg) perspective(0px) rotateY(0deg) translate(-50%, -50%)`
     songCarouselWheelItems[index].style.opacity = `1`
+    audioPreview(index)
   }
 
   //make prev item nonclickable

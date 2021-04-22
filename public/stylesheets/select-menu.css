@@ -5,7 +5,10 @@
   /* position: relative; */
   position: absolute;
   left: -150px;
-  top: 100px;
+  /* top: 100px; */
+  top: 0%;
+  bottom: 0%;
+  margin: auto;
   width: 300px;
   height: 300px;
   border-radius: 50%;
@@ -215,6 +218,7 @@
   width: 360px;
   opacity: 0.9;
   position: absolute;
+  box-shadow: 0px 1px 7px 4px aliceblue;
 }
 
 .carouselClosed {
