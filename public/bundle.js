@@ -215,6 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  let degrees = []
 
   function setCarouselPositions() {
     let centerx = parseFloat(getComputedStyle(songCarouselWheelItems[0]).left) 
@@ -223,13 +224,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let thetaRad = (Math.PI / 180.0) * (360 / carouselWheelLength)
   
     songCarouselWheelItems.forEach( (songItem, i) => {
+
+      degrees.push(-1.0 * i * 360 / carouselWheelLength)
+
       songItem.style.left = `${centerx + 230 * Math.cos(thetaRad * (i))}px`
       songItem.style.top = `${centery - 230 * Math.sin(thetaRad * (i))}px`
-      songItem.style.transform = `rotate(${-1.0 * i * 360 / carouselWheelLength}deg)`
+      if (i !== 0) {
+        songItem.style.transform = `rotate(${-1.0 * i * 360 / carouselWheelLength}deg)  perspective(400px) rotateY(28deg)`
+      } else {
+        songItem.style.transform = `rotate(0deg)` 
+      }
     })
   }
-
-
 
   wheelNext.addEventListener('click', () => {
     removeSelectable()
@@ -259,16 +265,23 @@ document.addEventListener('DOMContentLoaded', () => {
       index = 6 - index
     }
     songCarouselWheelItems[index].classList.add("selectable")
+    songCarouselWheelItems[index].style.transform = `rotate(${degrees[index]}deg) perspective(0px) rotateY(0deg)`
   }
+
   //make prev item nonclickable
   function removeSelectable() {
     let index = wheelIndex % carouselWheelLength
     if (index <= 0) {
       index *= -1
       songCarouselWheelItems[index].classList.remove("selectable")
-    } else {
+      songCarouselWheelItems[index].style.transform = `rotate(${degrees[index]}deg) perspective(400px) rotateY(28deg)`
+    } 
+    
+    else {
       songCarouselWheelItems[6 - index].classList.remove("selectable")
+      songCarouselWheelItems[6 - index].style.transform = `rotate(${degrees[6 - index]}deg) perspective(400px) rotateY(28deg)`
     }
+    
   }
 
   // let selectSong = document.getElementById('halsey')
@@ -694,8 +707,10 @@ class Game {
     let resume = document.getElementById('resume');
     let mute = document.getElementById('mute');
     let unmute = document.getElementById('unmute');
-
+    
     let back = document.getElementById('back');
+    let startBtn = document.getElementById('start-btn')
+    let previewCarousel = document.getElementsByClassName('preview-carousel')[0]
     let homePage = document.getElementsByClassName('homepage-container')[0]
     let gameView = document.getElementsByClassName('game-view')[0]
     let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
@@ -732,6 +747,7 @@ class Game {
         this.maxStreak = 0;
         selectCircle.classList.add('song-selection-container-open')
         selectCircle.classList.remove('song-selection-container-closed')
+        // startBtn.click()
         homePage.classList.remove('hidden')
         homePage.classList.add('fadeIn')
         gameView.classList.add('hidden')
@@ -740,33 +756,8 @@ class Game {
           this.audio.pause()
           this.audio.currentTime = 0
         }
-
-        cartWheelIn()
-
-
       }, 666)
     })
-    
-    function cartWheelIn() {
-      let previewCarousel = document.getElementsByClassName('preview-carousel')[0]
-
-      let transformVal = previewCarousel.style.transform
-      if (transformVal.length === 0) {
-        previewCarousel.style.transform = `rotateX(60deg)`
-        setTimeout( () => {
-          previewCarousel.style.transform = `rotateX(0deg)`
-        }, 300)
-      } else {
-        transformVal = parseFloat(transformVal.substring(
-          transformVal.lastIndexOf("(") + 1, 
-          transformVal.lastIndexOf("d")
-        ))
-        previewCarousel.style.transform = `rotateX(${transformVal + 60}deg)`
-        setTimeout( () => {
-          previewCarousel.style.transform = `rotateX(${transformVal}deg)`
-        }, 300)
-      }
-    }
 
     restart.addEventListener('click', () => {
       this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].notes.slice()

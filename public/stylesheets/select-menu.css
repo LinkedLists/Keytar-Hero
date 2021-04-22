@@ -139,13 +139,14 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
+  transform: translate(-50%, -50%) perspective(400px) rotateY(28deg);
   cursor: pointer;
+  transition: 0.7s;
 }
 
 .preview-carousel-container {
   perspective: 3000px;
-  /* perspective: 6031px; */
 }
 
 .preview-carousel {
@@ -166,17 +167,7 @@
   transform-style: preserve-3d;
   transition: 0.7s;
   transform: rotateX(0deg);
-  /* animation: try 1s; */
 }
-
-/* @keyframes try {
-  0% {
-    transform: rotateX(90deg);
-  }
-  100%{
-    transform: rotateX(0deg);
-  }
-} */
 
 .preview-img {
   height: 360px;
@@ -186,7 +177,6 @@
 }
 
 .carouselClosed {
-  /* top: -500px */
   position: absolute;
   top: -3000px;
   bottom: 0;
@@ -197,7 +187,6 @@
 }
 
 .carouselOpen {
-  /* top: -500px */
   position: absolute;
   top: 0;
   bottom: 0;

@@ -375,8 +375,10 @@ export default class Game {
     let resume = document.getElementById('resume');
     let mute = document.getElementById('mute');
     let unmute = document.getElementById('unmute');
-
+    
     let back = document.getElementById('back');
+    let startBtn = document.getElementById('start-btn')
+    let previewCarousel = document.getElementsByClassName('preview-carousel')[0]
     let homePage = document.getElementsByClassName('homepage-container')[0]
     let gameView = document.getElementsByClassName('game-view')[0]
     let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
@@ -413,6 +415,7 @@ export default class Game {
         this.maxStreak = 0;
         selectCircle.classList.add('song-selection-container-open')
         selectCircle.classList.remove('song-selection-container-closed')
+        // startBtn.click()
         homePage.classList.remove('hidden')
         homePage.classList.add('fadeIn')
         gameView.classList.add('hidden')
@@ -421,33 +424,8 @@ export default class Game {
           this.audio.pause()
           this.audio.currentTime = 0
         }
-
-        cartWheelIn()
-
-
       }, 666)
     })
-    
-    function cartWheelIn() {
-      let previewCarousel = document.getElementsByClassName('preview-carousel')[0]
-
-      let transformVal = previewCarousel.style.transform
-      if (transformVal.length === 0) {
-        previewCarousel.style.transform = `rotateX(60deg)`
-        setTimeout( () => {
-          previewCarousel.style.transform = `rotateX(0deg)`
-        }, 300)
-      } else {
-        transformVal = parseFloat(transformVal.substring(
-          transformVal.lastIndexOf("(") + 1, 
-          transformVal.lastIndexOf("d")
-        ))
-        previewCarousel.style.transform = `rotateX(${transformVal + 60}deg)`
-        setTimeout( () => {
-          previewCarousel.style.transform = `rotateX(${transformVal}deg)`
-        }, 300)
-      }
-    }
 
     restart.addEventListener('click', () => {
       this.allNotes = song.notes.slice()

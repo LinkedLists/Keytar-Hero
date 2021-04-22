@@ -141,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  let degrees = []
 
   function setCarouselPositions() {
     let centerx = parseFloat(getComputedStyle(songCarouselWheelItems[0]).left) 
@@ -149,13 +150,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let thetaRad = (Math.PI / 180.0) * (360 / carouselWheelLength)
   
     songCarouselWheelItems.forEach( (songItem, i) => {
+
+      degrees.push(-1.0 * i * 360 / carouselWheelLength)
+
       songItem.style.left = `${centerx + 230 * Math.cos(thetaRad * (i))}px`
       songItem.style.top = `${centery - 230 * Math.sin(thetaRad * (i))}px`
-      songItem.style.transform = `rotate(${-1.0 * i * 360 / carouselWheelLength}deg)`
+      if (i !== 0) {
+        songItem.style.transform = `rotate(${-1.0 * i * 360 / carouselWheelLength}deg)  perspective(400px) rotateY(28deg)`
+      } else {
+        songItem.style.transform = `rotate(0deg)` 
+      }
     })
   }
-
-
 
   wheelNext.addEventListener('click', () => {
     removeSelectable()
@@ -185,16 +191,23 @@ document.addEventListener('DOMContentLoaded', () => {
       index = 6 - index
     }
     songCarouselWheelItems[index].classList.add("selectable")
+    songCarouselWheelItems[index].style.transform = `rotate(${degrees[index]}deg) perspective(0px) rotateY(0deg)`
   }
+
   //make prev item nonclickable
   function removeSelectable() {
     let index = wheelIndex % carouselWheelLength
     if (index <= 0) {
       index *= -1
       songCarouselWheelItems[index].classList.remove("selectable")
-    } else {
+      songCarouselWheelItems[index].style.transform = `rotate(${degrees[index]}deg) perspective(400px) rotateY(28deg)`
+    } 
+    
+    else {
       songCarouselWheelItems[6 - index].classList.remove("selectable")
+      songCarouselWheelItems[6 - index].style.transform = `rotate(${degrees[6 - index]}deg) perspective(400px) rotateY(28deg)`
     }
+    
   }
 
   // let selectSong = document.getElementById('halsey')
