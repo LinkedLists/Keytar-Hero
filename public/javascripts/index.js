@@ -99,7 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
     cartWheelOut()
     clearInterval(loop)
     volumeDown()
-    setTimeout(audio.pause(), 60)
+    setTimeout( () => {
+      audio.pause()
+      clearInterval(loop)
+      clearTimeout(previewTimeout)
+      clearInterval(intervalDown)
+      clearInterval(intervalUp)
+    }, 80)
 
     setTimeout(() => {
       selectCircle.classList.add('hidden')
@@ -208,6 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let loop
   function audioPreviewLoop(index = currentPreviewIndex) {
     clearInterval(loop)
+    clearTimeout(previewTimeout)
     volumeDown()
     audioPreview(index)
     loop = setInterval( () => {
@@ -313,6 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
       homePage.classList.add('fadeOut')
       selectCircle.classList.remove('song-selection-container-open')
       selectCircle.classList.add('song-selection-container-closed')
+      clearInterval(loop)
       volumeDown()
       setTimeout(() => {
         volumeUp()
@@ -329,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }) 
   })
 
-  let previewCarouselItems = document.querySelectorAll('.preview-img');
+  let previewCarouselItems = document.querySelectorAll('.preview-img-container');
 
   let zDeg = 235 * 6 / Math.PI
 
