@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let audio = document.getElementById('audio')
   audio.volume = 0.8
   let currentVolume = audio.volume
+  let currentPreviewIndex = 0
 
   // carousel wheel elements
   let wheelNext = document.getElementById('selection-next-btn')
@@ -123,6 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
     preview.classList.add('carouselOpen')
 
     cartWheelIn()
+    // audio.currentTime = 0
+    // if (audio.paused) audio.play()
+    // volumeUp()
+    audioPreview()
 
     // selectCircle.classList.remove('circleClose')
     // selectCircle.classList.add('circleOpen')
@@ -154,8 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
     carouselWheel.classList.remove('circleOpen')
     carouselWheel.classList.add('circleClose')
 
-    wheelBtns.classList.remove('circleOpen')
-    wheelBtns.classList.add('circleClose')
+    wheelBtns.classList.remove('btnOpen')
+    wheelBtns.classList.add('btnClose')
 
     mainMenu.classList.remove('hidden')
 
@@ -166,6 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
     preview.classList.add('carouselClosed')
 
     cartWheelOut()
+    volumeDown()
 
     setTimeout(() => {
       selectCircle.classList.add('hidden')
@@ -271,8 +277,9 @@ document.addEventListener('DOMContentLoaded', () => {
     "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Ariana+Grande++positions+Lyrics.mp3",
   ]
 
-  function audioPreview(index) {
+  function audioPreview(index = currentPreviewIndex) {
     // audio.pause()
+    currentPreviewIndex = index
     setTimeout( () => {
       audio.src = audioUrls[index]
       audio.play()
@@ -363,11 +370,12 @@ document.addEventListener('DOMContentLoaded', () => {
       homePage.classList.add('fadeOut')
       selectCircle.classList.remove('song-selection-container-open')
       selectCircle.classList.add('song-selection-container-closed')
-      new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, song.id);
-      // volumeDown()
+      volumeDown()
       setTimeout(() => {
-        // audio.currentTime = 0
-        // audio.pause()
+        volumeUp()
+        audio.pause()
+        audio.currentTime = 0
+        new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, song.id);
         homePage.classList.add('hidden')
         homePage.classList.remove('fadeOut')
   
