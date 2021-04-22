@@ -53,7 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // audio.currentTime = 0
     // if (audio.paused) audio.play()
     // volumeUp()
-    audioPreview()
+    // audioPreview()
+    audioPreviewLoop()
 
     // selectCircle.classList.remove('circleClose')
     // selectCircle.classList.add('circleOpen')
@@ -202,11 +203,25 @@ document.addEventListener('DOMContentLoaded', () => {
     "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+The+Weeknd++Save+Your+Tears+Audio.mp3",
     "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Ariana+Grande++positions+Lyrics.mp3",
   ]
+  let loop
+  function audioPreviewLoop(index = currentPreviewIndex) {
+    clearInterval(loop)
+    volumeDown()
+    audioPreview(index)
+    loop = setInterval( () => {
+      clearTimeout(previewTimeout)
+      clearInterval(intervalDown)
+      clearInterval(intervalUp)
+      volumeDown()
+      audioPreview(index)
+    }, 12000)
+  }
 
+  let previewTimeout
   function audioPreview(index = currentPreviewIndex) {
     // audio.pause()
     currentPreviewIndex = index
-    setTimeout( () => {
+    previewTimeout = setTimeout( () => {
       audio.src = audioUrls[index]
       audio.play()
       volumeUp()
@@ -221,7 +236,6 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(intervalDown)
     clearInterval(intervalUp)
     intervalUp = setInterval(() => {
-      console.log(audio.volume)
       if (audio.volume <= (currentVolume - currentVolume/100 )) {
         if (currentVolume/100 === 0 ) {
           audio.volume = currentVolume
@@ -264,7 +278,9 @@ document.addEventListener('DOMContentLoaded', () => {
     songCarouselWheelItems[index].classList.add("selectable")
     songCarouselWheelItems[index].style.transform = `rotate(${degrees[index]}deg) perspective(0px) rotateY(0deg) translate(-50%, -50%)`
     songCarouselWheelItems[index].style.opacity = `1`
-    audioPreview(index)
+
+    // audioPreview(index)
+    audioPreviewLoop(index)
   }
 
   //make prev item nonclickable
