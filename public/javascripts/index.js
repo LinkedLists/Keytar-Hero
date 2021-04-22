@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
     carouselWheel.classList.remove('circleClose')
     carouselWheel.classList.add('circleOpen')
 
-    wheelBtns.classList.remove('circleClose')
-    wheelBtns.classList.add('circleOpen')
+    wheelBtns.classList.remove('btnClose')
+    wheelBtns.classList.add('btnOpen')
 
     preview.classList.remove('carouselClosed')
     preview.classList.add('carouselOpen')
@@ -146,6 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function setCarouselPositions() {
     let centerx = parseFloat(getComputedStyle(songCarouselWheelItems[0]).left) 
     let centery = parseFloat(getComputedStyle(songCarouselWheelItems[0]).top) 
+    // let centerx = parseFloat(getComputedStyle(songCarouselWheelItems[0]).left) 
+    // let centery = parseFloat(getComputedStyle(songCarouselWheelItems[0]).top) 
 
     let thetaRad = (Math.PI / 180.0) * (360 / carouselWheelLength)
   
@@ -153,12 +155,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       degrees.push(-1.0 * i * 360 / carouselWheelLength)
 
-      songItem.style.left = `${centerx + 230 * Math.cos(thetaRad * (i))}px`
-      songItem.style.top = `${centery - 230 * Math.sin(thetaRad * (i))}px`
+      songItem.style.left = `${centerx + 290 * Math.cos(thetaRad * (i))}px`
+      songItem.style.top = `${centery - 290 * Math.sin(thetaRad * (i))}px`
       if (i !== 0) {
-        songItem.style.transform = `rotate(${-1.0 * i * 360 / carouselWheelLength}deg)  perspective(400px) rotateY(28deg)`
+        // songItem.style.transform = `rotate(${-1.0 * i * 360 / carouselWheelLength}deg) translateY(-50%)`
+        songItem.style.transform = `rotate(${-1.0 * i * 360 / carouselWheelLength}deg) perspective(200px) rotateY(28deg) translate(-50%, -50%)`
       } else {
-        songItem.style.transform = `rotate(0deg)` 
+        songItem.style.transform = `rotate(0deg)  translate(-50%, -50%)`
+        songItem.style.opacity = `1`
       }
     })
   }
@@ -191,7 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
       index = 6 - index
     }
     songCarouselWheelItems[index].classList.add("selectable")
-    songCarouselWheelItems[index].style.transform = `rotate(${degrees[index]}deg) perspective(0px) rotateY(0deg)`
+    songCarouselWheelItems[index].style.transform = `rotate(${degrees[index]}deg) perspective(0px) rotateY(0deg) translate(-50%, -50%)`
+    songCarouselWheelItems[index].style.opacity = `1`
   }
 
   //make prev item nonclickable
@@ -200,14 +205,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (index <= 0) {
       index *= -1
       songCarouselWheelItems[index].classList.remove("selectable")
-      songCarouselWheelItems[index].style.transform = `rotate(${degrees[index]}deg) perspective(400px) rotateY(28deg)`
+      songCarouselWheelItems[index].style.transform = `rotate(${degrees[index]}deg) perspective(200px) rotateY(28deg) translate(-50%, -50%)`
     } 
     
     else {
       songCarouselWheelItems[6 - index].classList.remove("selectable")
-      songCarouselWheelItems[6 - index].style.transform = `rotate(${degrees[6 - index]}deg) perspective(400px) rotateY(28deg)`
+      songCarouselWheelItems[6 - index].style.transform = `rotate(${degrees[6 - index]}deg) perspective(200px) rotateY(28deg) translate(-50%, -50%)`
     }
-    
+    songCarouselWheelItems[index].style.opacity = `0.6`
   }
 
   // let selectSong = document.getElementById('halsey')

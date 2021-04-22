@@ -4,7 +4,7 @@
 .selection-circle {
   /* position: relative; */
   position: absolute;
-  /* left: -150px; */
+  left: -150px;
   top: 100px;
   width: 300px;
   height: 300px;
@@ -17,21 +17,22 @@
 
 .blackout {
   position: absolute;
-  top: 2px;
-  width: 296px;
-  height: 296px;
+  width: 50%;
+  height: 50%;
   border-radius: 50%;
   background-color: transparent;
 }
 
 .circleClose {
-  left: -1000px;
+  /* left: -1000px; */
   animation: circleOut;
   animation-duration: 1s;
 }
 
 .circleOpen {
-  left: -150px;
+  /* left: -150px; */
+  /* left: 30%;
+  top: 30%; */
   animation: circleIn;
   animation-duration: 1s;
 }
@@ -62,8 +63,10 @@
 .carousel-wheel-btn-container {
   position: absolute;
   /* left: 250px; */
-  top: 140px;
-  transform: translateX(600%);
+  left: 200px;
+  width: 200px;
+  top: 100px;
+  /* transform: translateX(600%); */
   /* position: absolute; */
   /* top: 50%; */
   /* left: 10%; */
@@ -72,10 +75,42 @@
   z-index: 10;
 }
 
+.btnClose {
+  animation: btnOut;
+  animation-duration: 1s;
+}
+
+.btnOpen {
+  animation: btnIn;
+  animation-duration: 1s;
+}
+
+@keyframes btnIn {
+  0% {
+    /* font-size: 60px; */
+    left: -835px;
+  }
+  100% {
+    left: 200px;
+  }
+}
+
+@keyframes btnOut {
+  0% {
+    /* font-size: 60px; */
+    left: 200px;
+  }
+  100% {
+    left: -835px;
+  }
+}
+
 .carousel-wheel-btn-container button {
   font-size: 18px;
-  padding: 10px;
-  /* height: 25px; */
+  padding: 20px 0px;
+  border: none;
+  outline: 0;
+  /* height: 25px; * /
   /* width: 50px; */
   position: relative;
 }
@@ -86,8 +121,12 @@
   /* width: 50px; */
 }
 
-#selection-back-btn {
+#selection-next-btn {
+  background: linear-gradient(to top, rgb(97, 97, 97), rgb(58, 58, 68));
+}
 
+#selection-prev-btn {
+  background: linear-gradient(to bottom, rgb(97, 97, 97), rgb(58, 58, 68));
 }
 
 #selection-next-btn:after {
@@ -124,24 +163,26 @@
 
 .selection-circle-ul {
   position: absolute;
-  left: 94px;
-  top: 135px;
+  top: 50%;
+  left: 50%;
 }
 
 .song-carousel-item {
   color: white;
+  border: 1px solid #de0b46;
   font-size: 20px;
-  /* width: 30px; */
-  height: 30px;
+  width: 200px;
+  /* height: 30px; */
   line-height: 30px;
   text-align: left;
-  background: rgba(197, 226, 159, 0.5);
+  /* background: rgba(197, 226, 159, 0.5); */
   position: absolute;
   top: 50%;
   left: 50%;
-  /* transform: translate(-50%, -50%); */
-  transform: translate(-50%, -50%) perspective(400px) rotateY(28deg);
+  transform-origin: 0px 0px;
+  transform: translate(-50%, -50%);
   cursor: pointer;
+  opacity: 0.6;
   transition: 0.7s;
 }
 
