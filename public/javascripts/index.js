@@ -64,10 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
     mainMenuL.classList.add('Lclose')
     mainMenuR.classList.add('Rclose')
     
-    // try to to click this too fast lol
+    // try not to click this too fast lol
     setTimeout(() => {
       mainMenu.classList.add('hidden')
-      //why do i need to remove it?
       mainMenuL.classList.remove('Lclose')
       mainMenuR.classList.remove('Rclose')
     }, 600)
@@ -98,7 +97,9 @@ document.addEventListener('DOMContentLoaded', () => {
     preview.classList.add('carouselClosed')
 
     cartWheelOut()
+    clearInterval(loop)
     volumeDown()
+    setTimeout(audio.pause(), 60)
 
     setTimeout(() => {
       selectCircle.classList.add('hidden')
@@ -203,6 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+The+Weeknd++Save+Your+Tears+Audio.mp3",
     "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Ariana+Grande++positions+Lyrics.mp3",
   ]
+
   let loop
   function audioPreviewLoop(index = currentPreviewIndex) {
     clearInterval(loop)
@@ -225,12 +227,10 @@ document.addEventListener('DOMContentLoaded', () => {
       audio.src = audioUrls[index]
       audio.play()
       volumeUp()
-    }, 800)
+    }, 1000)
   }
 
   let intervalUp
-  let intervalDown
-
   function volumeUp() {
     // audio.volume = 0
     clearInterval(intervalDown)
@@ -249,6 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 15)
   }
 
+  let intervalDown
   function volumeDown() {
     clearInterval(intervalDown)
     clearInterval(intervalUp)
