@@ -272,15 +272,22 @@ document.addEventListener('DOMContentLoaded', () => {
   ]
 
   function audioPreview(index) {
-    audio.pause()
-    audio.src = audioUrls[index]
-    audio.play()
-    volumeUp()
+    // audio.pause()
+    setTimeout( () => {
+      audio.src = audioUrls[index]
+      audio.play()
+      volumeUp()
+    }, 800)
   }
 
+  let intervalUp
+  let intervalDown
+
   function volumeUp() {
-    audio.volume = 0
-    let intervalUp = setInterval(() => {
+    // audio.volume = 0
+    clearInterval(intervalDown)
+    clearInterval(intervalUp)
+    intervalUp = setInterval(() => {
       console.log(audio.volume)
       if (audio.volume <= (currentVolume - currentVolume/100 )) {
         if (currentVolume/100 === 0 ) {
@@ -293,6 +300,23 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(intervalUp)
       }
     }, 15)
+  }
+
+  function volumeDown() {
+    clearInterval(intervalDown)
+    clearInterval(intervalUp)
+    intervalDown = setInterval(() => {
+      if (audio.volume >= currentVolume/60 ) {
+        if (currentVolume/60 === 0 ) {
+          // audio.pause()
+          clearInterval(intervalDown)
+        }
+        audio.volume -= currentVolume/60 
+      } else {
+        // audio.pause()
+        clearInterval(intervalDown)
+      }
+    }, 10)
   }
 
   //make current wheel item clickable
@@ -324,6 +348,8 @@ document.addEventListener('DOMContentLoaded', () => {
       songCarouselWheelItems[6 - index].style.transform = `rotate(${degrees[6 - index]}deg) perspective(200px) rotateY(28deg) translate(-50%, -50%)`
     }
     songCarouselWheelItems[index].style.opacity = `0.6`
+
+    volumeDown()
   }
 
   // let selectSong = document.getElementById('halsey')
@@ -338,7 +364,10 @@ document.addEventListener('DOMContentLoaded', () => {
       selectCircle.classList.remove('song-selection-container-open')
       selectCircle.classList.add('song-selection-container-closed')
       new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, song.id);
+      // volumeDown()
       setTimeout(() => {
+        // audio.currentTime = 0
+        // audio.pause()
         homePage.classList.add('hidden')
         homePage.classList.remove('fadeOut')
   
