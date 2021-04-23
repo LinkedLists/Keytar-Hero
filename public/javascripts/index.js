@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let wheelBtns = document.getElementsByClassName('carousel-wheel-btn-container')[0]
   let preview = document.getElementsByClassName('preview-carousel-container')[0]
   let previewCarousel = document.getElementsByClassName('preview-carousel')[0]
+  let previewCarouselItems = document.querySelectorAll('.preview-img-container');
   let songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
       // make first item selectable
       songCarouselWheelItems[0].classList.add("selectable")
@@ -43,8 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
     carouselWheel.classList.remove('circleClose')
     carouselWheel.classList.add('circleOpen')
 
-    wheelBtns.classList.remove('btnClose')
-    wheelBtns.classList.add('btnOpen')
+    // wheelBtns.classList.remove('btnClose')
+    // wheelBtns.classList.add('btnOpen')
 
     preview.classList.remove('carouselClosed')
     preview.classList.add('carouselOpen')
@@ -85,8 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
     carouselWheel.classList.remove('circleOpen')
     carouselWheel.classList.add('circleClose')
 
-    wheelBtns.classList.remove('btnOpen')
-    wheelBtns.classList.add('btnClose')
+    // wheelBtns.classList.remove('btnOpen')
+    // wheelBtns.classList.add('btnClose')
 
     mainMenu.classList.remove('hidden')
 
@@ -180,6 +181,8 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         songItem.style.transform = `rotate(0deg)  translate(-50%, -50%)`
         songItem.style.opacity = `1`
+        previewCarouselItems[0].style.opacity = '0.92'
+        previewCarouselItems[0].style.cursor = 'pointer'
       }
     })
   }
@@ -286,7 +289,8 @@ document.addEventListener('DOMContentLoaded', () => {
     songCarouselWheelItems[index].classList.add("selectable")
     songCarouselWheelItems[index].style.transform = `rotate(${degrees[index]}deg) perspective(0px) rotateY(0deg) translate(-50%, -50%)`
     songCarouselWheelItems[index].style.opacity = `1`
-
+    previewCarouselItems[index].style.cursor = 'pointer'
+    previewCarouselItems[index].style.opacity = '0.92'
     // audioPreview(index)
     audioPreviewLoop(index)
   }
@@ -296,16 +300,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let index = wheelIndex % carouselWheelLength
     if (index <= 0) {
       index *= -1
-      songCarouselWheelItems[index].classList.remove("selectable")
-      songCarouselWheelItems[index].style.transform = `rotate(${degrees[index]}deg) perspective(200px) rotateY(28deg) translate(-50%, -50%)`
     } 
-    
     else {
-      songCarouselWheelItems[6 - index].classList.remove("selectable")
-      songCarouselWheelItems[6 - index].style.transform = `rotate(${degrees[6 - index]}deg) perspective(200px) rotateY(28deg) translate(-50%, -50%)`
+      index = 6 - index
     }
-    songCarouselWheelItems[index].style.opacity = `0.6`
 
+    songCarouselWheelItems[index].classList.remove("selectable")
+    songCarouselWheelItems[index].style.transform = `rotate(${degrees[index]}deg) perspective(200px) rotateY(28deg) translate(-50%, -50%)`
+    songCarouselWheelItems[index].style.opacity = `0.6`
+    previewCarouselItems[index].style.cursor = 'default'
+    previewCarouselItems[index].style.opacity = '0.6'
     volumeDown()
   }
 
@@ -337,7 +341,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }) 
   })
 
-  let previewCarouselItems = document.querySelectorAll('.preview-img-container');
 
   let zDeg = 235 * 6 / Math.PI
 
