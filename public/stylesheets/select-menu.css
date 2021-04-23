@@ -219,6 +219,7 @@
   opacity: 0.9;
   position: absolute;
   box-shadow: 0px 1px 7px 4px aliceblue;
+  cursor: pointer;
 }
 
 .preview-img {
@@ -227,6 +228,15 @@
   /* opacity: 0.9;
   position: absolute;
   box-shadow: 0px 1px 7px 4px aliceblue; */
+}
+
+.preview-meta-footer-wrapper {
+  position: absolute;
+  color: white;
+  bottom: 0;
+  height: 120px;
+  width: 100%;
+  background: linear-gradient(to bottom, #afafaf00, #000000d8);
 }
 
 
