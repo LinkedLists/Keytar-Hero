@@ -1205,7 +1205,8 @@ const CONSTANTS = {
 }
 
 const song = {
-  notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__["a" /* verse_1 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_3__be_kind_verse_2__["a" /* verse_2 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_2__be_kind_bridge_2__["a" /* bridge_2 */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */]),
+  // notes: [].concat(verse_1, bridge, chorus, verse_2, bridge, chorus, bridge_2, chorus),
+  notes: [].concat(__WEBPACK_IMPORTED_MODULE_2__be_kind_bridge_2__["a" /* bridge_2 */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */]),
   introDelay: 3604,
   tempo: 319
 }
@@ -1305,7 +1306,7 @@ const verse_1 = [
 
   { kill: true },
 ]
-/* harmony export (immutable) */ __webpack_exports__["a"] = verse_1;
+/* unused harmony export verse_1 */
 
 
 /***/ }),
@@ -1335,7 +1336,7 @@ const bridge = [
 
   { tempo: 10, hold: 0, chain: false, rest: true },
 ]
-/* harmony export (immutable) */ __webpack_exports__["a"] = bridge;
+/* unused harmony export bridge */
 
 
 /***/ }),
@@ -1360,12 +1361,13 @@ const bridge_2 = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 4, chain: true },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 4, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 2, chain: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 2, chain: true },
   { tempo: 1, hold: 0, chain: false, rest: true },
 
   // for you
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
+  { kill: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   
   // but its not far
@@ -1374,6 +1376,7 @@ const bridge_2 = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 2, chain: true },
+  { tempo: 2, hold: 0, chain: false, rest: true },
 
   //going sick in the head
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
@@ -1381,36 +1384,52 @@ const bridge_2 = [
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 2, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 2, chain: false },
+  { kill: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 2, chain: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 2, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
   //trying to get you there
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
+  // { kill: true },
+  // { kill: true },
+  // { kill: true },
+  // { kill: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 2, chain: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 2, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 2, chain: true },
-
+  { tempo: 2, hold: 0, chain: false, rest: true },
   // and i know its hard
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
+  { kill: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 2, chain: true },
-
+  { tempo: 1, hold: 0, chain: false, rest: true },
   // but its not fair
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
+  { kill: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 2, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
 
   // its not fair
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 4, chain: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 4, chain: true },
 
@@ -1499,7 +1518,7 @@ const verse_2 = [
 
   { kill: true },
 ]
-/* harmony export (immutable) */ __webpack_exports__["a"] = verse_2;
+/* unused harmony export verse_2 */
 
 
 /***/ }),
