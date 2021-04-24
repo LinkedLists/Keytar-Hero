@@ -1,6 +1,7 @@
 import Note from './note'
 import Target from './target'
-import { song } from './song/song'
+import { song1 } from './song/song1'
+import { song4 } from './song/song4'
 
 export default class Game {
   constructor(canvas, songId) {
@@ -15,7 +16,8 @@ export default class Game {
     this.missedNotes = [];
     // this.allNotes = song.notes.slice()
     this.allNotes = []
-    
+    this.currentSong;
+
     this.addTargetListeners = this.addTargetListeners.bind(this)
     this.addTargetListeners()
     this.animate = this.animate.bind(this)
@@ -57,7 +59,24 @@ export default class Game {
 
   selectSong(songId) {
     if (songId === 'song1') {
-      this.allNotes = song.notes.slice()
+      this.currentSong = song1
+      this.allNotes = song1.notes.slice()
+      this.animate();
+      this.playSong();
+    }
+    // else if (songId === 'song2') {
+    //   this.allNotes = song3.notes.slice()
+    //   this.animate();
+    //   this.playSong();
+    // }
+    // else if (songId === 'song3') {
+    //   this.allNotes = song3.notes.slice()
+    //   this.animate();
+    //   this.playSong();
+    // }
+    else if (songId === 'song4') {
+      this.currentSong = song4
+      this.allNotes = song4.notes.slice()
       this.animate();
       this.playSong();
     }
@@ -231,7 +250,7 @@ export default class Game {
       } 
     })
     addEventListener('keyup', e => {
-      clearInterval(this.globalScore);
+      // clearInterval(this.globalScore);
       if (e.key == "1") {
         keyLock1 = false;
         this.checkCollisionUp(0)
@@ -318,7 +337,7 @@ export default class Game {
   generateNotes() {
     this.callGenerateNotes = setInterval( () => {
       this.playNotes()
-    }, song.tempo)
+    }, this.currentSong.tempo)
   }
       
   noteGrabber() {
@@ -366,7 +385,7 @@ export default class Game {
     setTimeout(() => {
       if (this.audio.currentTime === 0) {
         this.audio.play()
-          .then(this.startTimeout = setTimeout(this.generateNotes, song.introDelay));
+          .then(this.startTimeout = setTimeout(this.generateNotes, this.currentSong.introDelay));
         this.isPlaying = true;
         requestAnimationFrame(this.animate)
       }
@@ -409,7 +428,7 @@ export default class Game {
     })
 
     restart.addEventListener('click', () => {
-      this.allNotes = song.notes.slice()
+      this.allNotes = this.currentSong.notes.slice()
       this.score = 0;
       this.streak = 0;
       this.maxStreak = 0;
@@ -428,9 +447,9 @@ export default class Game {
       // this.audio.pause()
       this.audio.currentTime = 0
       if (this.audio.paused) {
-        this.audio.play().then(this.restartTimeout = setTimeout(this.generateNotes, song.introDelay));
+        this.audio.play().then(this.restartTimeout = setTimeout(this.generateNotes, this.currentSong.introDelay));
       } else {
-        this.restartTimeout = setTimeout(this.generateNotes, song.introDelay)
+        this.restartTimeout = setTimeout(this.generateNotes, this.currentSong.introDelay)
       }
       this.isPlaying = true;
       // requestAnimationFrame(this.animate)
@@ -470,7 +489,7 @@ export default class Game {
       pause.classList.add("hidden")
       resume.classList.remove("hidden")
       // startButton()
-      this.intervalValue %= song.tempo
+      this.intervalValue %= this.currentSong.tempo
       this.isPlaying = false;
       clearInterval(this.callGenerateNotes)
       clearTimeout(this.resumeTimeout)
@@ -479,13 +498,13 @@ export default class Game {
     resume.addEventListener('click', () => {
       // let dif = stopButton()
 
-      let dif = song.tempo - this.intervalValue - 45
+      let dif = this.currentSong.tempo - this.intervalValue - 45
       dif = dif < 0 ? 0 : dif
       this.resumeTimeout = setTimeout( () => {
           this.playNotes()
           this.callGenerateNotes = setInterval( () => {
           this.playNotes()
-        }, song.tempo)
+        }, this.currentSong.tempo)
       }, dif)
 
       pause.classList.remove("hidden")

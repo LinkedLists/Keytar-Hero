@@ -346,6 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
         audio.volume -= currentVolume/60 
       } else {
         // audio.pause()
+        audio.volume = 0
         clearInterval(intervalDown)
       }
     }, 10)
@@ -436,7 +437,9 @@ document.addEventListener('DOMContentLoaded', () => {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__note__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__target__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__song_song__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__song_song1__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__song_song4__ = __webpack_require__(15);
+
 
 
 
@@ -454,7 +457,8 @@ class Game {
     this.missedNotes = [];
     // this.allNotes = song.notes.slice()
     this.allNotes = []
-    
+    this.currentSong;
+
     this.addTargetListeners = this.addTargetListeners.bind(this)
     this.addTargetListeners()
     this.animate = this.animate.bind(this)
@@ -496,7 +500,24 @@ class Game {
 
   selectSong(songId) {
     if (songId === 'song1') {
-      this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].notes.slice()
+      this.currentSong = __WEBPACK_IMPORTED_MODULE_2__song_song1__["a" /* song1 */]
+      this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song1__["a" /* song1 */].notes.slice()
+      this.animate();
+      this.playSong();
+    }
+    // else if (songId === 'song2') {
+    //   this.allNotes = song3.notes.slice()
+    //   this.animate();
+    //   this.playSong();
+    // }
+    // else if (songId === 'song3') {
+    //   this.allNotes = song3.notes.slice()
+    //   this.animate();
+    //   this.playSong();
+    // }
+    else if (songId === 'song4') {
+      this.currentSong = __WEBPACK_IMPORTED_MODULE_3__song_song4__["a" /* song4 */]
+      this.allNotes = __WEBPACK_IMPORTED_MODULE_3__song_song4__["a" /* song4 */].notes.slice()
       this.animate();
       this.playSong();
     }
@@ -670,7 +691,7 @@ class Game {
       } 
     })
     addEventListener('keyup', e => {
-      clearInterval(this.globalScore);
+      // clearInterval(this.globalScore);
       if (e.key == "1") {
         keyLock1 = false;
         this.checkCollisionUp(0)
@@ -757,7 +778,7 @@ class Game {
   generateNotes() {
     this.callGenerateNotes = setInterval( () => {
       this.playNotes()
-    }, __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].tempo)
+    }, this.currentSong.tempo)
   }
       
   noteGrabber() {
@@ -805,7 +826,7 @@ class Game {
     setTimeout(() => {
       if (this.audio.currentTime === 0) {
         this.audio.play()
-          .then(this.startTimeout = setTimeout(this.generateNotes, __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].introDelay));
+          .then(this.startTimeout = setTimeout(this.generateNotes, this.currentSong.introDelay));
         this.isPlaying = true;
         requestAnimationFrame(this.animate)
       }
@@ -848,7 +869,7 @@ class Game {
     })
 
     restart.addEventListener('click', () => {
-      this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].notes.slice()
+      this.allNotes = this.currentSong.notes.slice()
       this.score = 0;
       this.streak = 0;
       this.maxStreak = 0;
@@ -867,9 +888,9 @@ class Game {
       // this.audio.pause()
       this.audio.currentTime = 0
       if (this.audio.paused) {
-        this.audio.play().then(this.restartTimeout = setTimeout(this.generateNotes, __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].introDelay));
+        this.audio.play().then(this.restartTimeout = setTimeout(this.generateNotes, this.currentSong.introDelay));
       } else {
-        this.restartTimeout = setTimeout(this.generateNotes, __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].introDelay)
+        this.restartTimeout = setTimeout(this.generateNotes, this.currentSong.introDelay)
       }
       this.isPlaying = true;
       // requestAnimationFrame(this.animate)
@@ -909,7 +930,7 @@ class Game {
       pause.classList.add("hidden")
       resume.classList.remove("hidden")
       // startButton()
-      this.intervalValue %= __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].tempo
+      this.intervalValue %= this.currentSong.tempo
       this.isPlaying = false;
       clearInterval(this.callGenerateNotes)
       clearTimeout(this.resumeTimeout)
@@ -918,13 +939,13 @@ class Game {
     resume.addEventListener('click', () => {
       // let dif = stopButton()
 
-      let dif = __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].tempo - this.intervalValue - 45
+      let dif = this.currentSong.tempo - this.intervalValue - 45
       dif = dif < 0 ? 0 : dif
       this.resumeTimeout = setTimeout( () => {
           this.playNotes()
           this.callGenerateNotes = setInterval( () => {
           this.playNotes()
-        }, __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].tempo)
+        }, this.currentSong.tempo)
       }, dif)
 
       pause.classList.remove("hidden")
@@ -1164,45 +1185,7 @@ class Target {
 
 
 /***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__be_kind_bridge_2__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__be_kind_verse_2__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__be_kind_chorus_2__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__be_kind_ending__ = __webpack_require__(13);
-
-
-
-
-
-
-
-
-const CONSTANTS = {
-  pos1: 30,
-  pos2: 150,
-  pos3: 270,
-  pos4: 390,
-  pos5: 510,
-}
-
-const song = {
-  notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__["a" /* verse_1 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_3__be_kind_verse_2__["a" /* verse_2 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_2__be_kind_bridge_2__["a" /* bridge_2 */], __WEBPACK_IMPORTED_MODULE_5__be_kind_chorus_2__["a" /* chorus_2 */], __WEBPACK_IMPORTED_MODULE_6__be_kind_ending__["a" /* ending */]),
-  introDelay: 3604,
-  tempo: 319
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = song;
-
-
-
-
-
-/***/ }),
+/* 4 */,
 /* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1902,6 +1885,97 @@ const ending = [
   
 ]
 /* harmony export (immutable) */ __webpack_exports__["a"] = ending;
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__be_kind_bridge_2__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__be_kind_verse_2__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__be_kind_chorus_2__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__be_kind_ending__ = __webpack_require__(13);
+
+
+
+
+
+
+
+
+const CONSTANTS = {
+  pos1: 30,
+  pos2: 150,
+  pos3: 270,
+  pos4: 390,
+  pos5: 510,
+}
+
+const song1 = {
+  notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__["a" /* verse_1 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_3__be_kind_verse_2__["a" /* verse_2 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_2__be_kind_bridge_2__["a" /* bridge_2 */], __WEBPACK_IMPORTED_MODULE_5__be_kind_chorus_2__["a" /* chorus_2 */], __WEBPACK_IMPORTED_MODULE_6__be_kind_ending__["a" /* ending */]),
+  introDelay: 3604,
+  tempo: 319
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = song1;
+
+
+
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jojo_intro__ = __webpack_require__(16);
+
+
+
+const CONSTANTS = {
+  pos1: 30,
+  pos2: 150,
+  pos3: 270,
+  pos4: 390,
+  pos5: 510,
+}
+
+const song4 = {
+  notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__jojo_intro__["a" /* intro */]),
+  introDelay: 328,
+  // tempo: 222
+  tempo: 111
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = song4;
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const CONSTANTS = {
+  pos1: 30,
+  pos2: 150,
+  pos3: 270,
+  pos4: 390,
+  pos5: 510,
+}
+
+const intro = [
+  // bridge
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+
+]
+/* harmony export (immutable) */ __webpack_exports__["a"] = intro;
 
 
 /***/ })

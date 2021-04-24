@@ -272,6 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
         audio.volume -= currentVolume/60 
       } else {
         // audio.pause()
+        audio.volume = 0
         clearInterval(intervalDown)
       }
     }, 10)
