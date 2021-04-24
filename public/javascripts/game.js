@@ -317,26 +317,6 @@ export default class Game {
 
   generateNotes() {
     this.callGenerateNotes = setInterval( () => {
-      // this.intervalValue += 1
-      // this.counter++;
-      // if (this.allNotes.length > 0) {
-      //   if (this.allNotes[0].rest) {
-      //     this.counter -= this.allNotes[0].tempo;
-      //     this.allNotes.shift();
-      //   }
-      //   else if (this.allNotes[0].kill) {
-      //     this.counter += 1;
-      //     this.allNotes.shift();
-      //   }
-      //   if (this.counter === 1 && this.allNotes[0].tempo > 1) {
-      //     this.noteGrabber();
-      //     this.counter = 0;
-      //   }
-      //   else if (this.counter === 2) {
-      //     this.counter = 0;
-      //     this.noteGrabber();
-      //   }
-      // }
       this.playNotes()
     }, song.tempo)
   }
@@ -435,6 +415,7 @@ export default class Game {
       this.maxStreak = 0;
       this.visibleNotes = this.generateNoteArray();
       this.missedNotes = [];
+      this.counter = 0
       pause.classList.remove("hidden")
       resume.classList.add("hidden")
       clearInterval(this.callGenerateNotes)

@@ -9,8 +9,8 @@ const CONSTANTS = {
 export const bridge_2 = [
   // bridge2
   // { tempo: 10, hold: 0, chain: false, rest: true },
-  // { kill: true },
-  // { kill: true },
+  { kill: true },
+  { kill: true },
   // i know its hard
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },

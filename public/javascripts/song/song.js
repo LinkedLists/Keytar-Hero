@@ -4,6 +4,7 @@ import { bridge_2 } from './be_kind/bridge_2';
 import { verse_2 } from './be_kind/verse_2';
 import { chorus } from './be_kind/chorus';
 import { chorus_2 } from './be_kind/chorus_2';
+import { ending } from './be_kind/ending';
 
 const CONSTANTS = {
   pos1: 30,
@@ -14,8 +15,8 @@ const CONSTANTS = {
 }
 
 export const song = {
-  notes: [].concat(verse_1, bridge, chorus, verse_2, bridge, chorus, bridge_2, chorus_2),
-  // notes: [].concat(bridge_2, chorus_2),
+  notes: [].concat(verse_1, bridge, chorus, verse_2, bridge, chorus, bridge_2, chorus_2, ending),
+  // notes: [].concat(chorus_2, ending),
   introDelay: 3604,
   tempo: 319
 }
