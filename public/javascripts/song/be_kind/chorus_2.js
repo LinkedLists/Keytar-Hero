@@ -61,8 +61,8 @@ export const chorus_2 = [
   { tempo: 2, hold: 0, chain: false, rest: true },
   
   // When you know you can
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 4, chain: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 4, chain: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 3, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 3, chain: true },
   { tempo: 3, hold: 0, chain: false, rest: true },
 
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },

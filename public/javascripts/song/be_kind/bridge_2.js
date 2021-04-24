@@ -8,7 +8,6 @@ const CONSTANTS = {
 
 export const bridge_2 = [
   // bridge2
-  // { tempo: 10, hold: 0, chain: false, rest: true },
   { kill: true },
   { kill: true },
   // i know its hard
@@ -56,21 +55,8 @@ export const bridge_2 = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 8, chain: true },
   { tempo: 6, hold: 0, chain: false, rest: true },
   // and i know its hard
-  // { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
-  // { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
-  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  // { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
-  // { kill: true },
-  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: true },
-  // { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 2, chain: true },
-  // { tempo: 1, hold: 0, chain: false, rest: true },
+
   // but its not fair
-  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  // { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
-  // { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
-  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
-  // { kill: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 8, chain: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 8, chain: true },
   { tempo: 6, hold: 0, chain: false, rest: true },
@@ -80,13 +66,6 @@ export const bridge_2 = [
   { tempo: 4, hold: 0, chain: false, rest: true },
 
   // its not fair
-  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  // { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
-  // { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
-  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  // { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
-  // { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
-  // { kill: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 4, chain: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 4, chain: true },
   { tempo: 3, hold: 0, chain: false, rest: true },

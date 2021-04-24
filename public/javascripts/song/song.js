@@ -16,11 +16,8 @@ const CONSTANTS = {
 
 export const song = {
   notes: [].concat(verse_1, bridge, chorus, verse_2, bridge, chorus, bridge_2, chorus_2, ending),
-  // notes: [].concat(chorus_2, ending),
   introDelay: 3604,
   tempo: 319
 }
 
-// export const song = [].concat(verse_1, bridge, chorus, verse_2, bridge, chorus)
 
-// export const introDelay = 3604
