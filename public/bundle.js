@@ -281,11 +281,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let audioUrls = [
     "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Marshmello+Halsey++Be+Kind+Halsey+Lyric+Video.mp3",
-    "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Ariana+Grande++7+rings+Lyrics.mp3",
-    "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Camila+Cabello++Havana+Official+Audio+ft+Young+Thug.mp3",
-    "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Halsey++Without+Me+Lyrics.mp3",
-    "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+The+Weeknd++Save+Your+Tears+Audio.mp3",
-    "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Ariana+Grande++positions+Lyrics.mp3",
+    "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Neon+Genesis+Evangelion++Opening++1080p+Japanese.mp3",
+    "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Breaking+the+Law.mp3",
+    "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+JoJo+Part+5+OST++Il+vento+doro+Improved+MET+Ver.mp3",
+    // "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+The+Weeknd++Save+Your+Tears+Audio.mp3",
+    // "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Ariana+Grande++positions+Lyrics.mp3",
   ]
 
   let loop
@@ -841,6 +841,7 @@ class Game {
       this.isPlaying = false;
       this.audio.pause()
       this.audio.currentTime = 0
+      this.audio.muted = false
       
       clearInterval(this.callGenerateNotes)
       clearTimeout(this.startTimeout)
@@ -866,6 +867,16 @@ class Game {
       }, 666)
     })
 
+    // setTimeout(() => {
+    //   if (this.audio.currentTime === 0) {
+    //     this.audio.play()
+    //       .then(this.startTimeout = setTimeout(this.generateNotes, song.introDelay));
+    //     this.isPlaying = true;
+    //     requestAnimationFrame(this.animate)
+    //   }
+    //   //fade delay
+    // }, 1500)
+
     restart.addEventListener('click', () => {
       this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].notes.slice()
       this.score = 0;
@@ -884,8 +895,11 @@ class Game {
       }
       // this.audio.pause()
       this.audio.currentTime = 0
-      this.audio.play()
-        .then(this.restartTimeout = setTimeout(this.generateNotes, __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].introDelay));
+      if (this.audio.paused) {
+        this.audio.play().then(this.restartTimeout = setTimeout(this.generateNotes, __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].introDelay));
+      } else {
+        this.restartTimeout = setTimeout(this.generateNotes, __WEBPACK_IMPORTED_MODULE_2__song_song__["a" /* song */].introDelay)
+      }
       this.isPlaying = true;
       // requestAnimationFrame(this.animate)
     });
@@ -1205,8 +1219,8 @@ const CONSTANTS = {
 }
 
 const song = {
-  // notes: [].concat(verse_1, bridge, chorus, verse_2, bridge, chorus, bridge_2, chorus),
-  notes: [].concat(__WEBPACK_IMPORTED_MODULE_2__be_kind_bridge_2__["a" /* bridge_2 */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */]),
+  notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__["a" /* verse_1 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_3__be_kind_verse_2__["a" /* verse_2 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_2__be_kind_bridge_2__["a" /* bridge_2 */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */]),
+  // notes: [].concat(bridge_2, chorus_2),
   introDelay: 3604,
   tempo: 319
 }
@@ -1306,7 +1320,7 @@ const verse_1 = [
 
   { kill: true },
 ]
-/* unused harmony export verse_1 */
+/* harmony export (immutable) */ __webpack_exports__["a"] = verse_1;
 
 
 /***/ }),
@@ -1336,7 +1350,7 @@ const bridge = [
 
   { tempo: 10, hold: 0, chain: false, rest: true },
 ]
-/* unused harmony export bridge */
+/* harmony export (immutable) */ __webpack_exports__["a"] = bridge;
 
 
 /***/ }),
@@ -1395,7 +1409,7 @@ const bridge_2 = [
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
-  // { kill: true },
+  { kill: true },
   // { kill: true },
   // { kill: true },
   // { kill: true },
@@ -1421,17 +1435,19 @@ const bridge_2 = [
   { kill: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 2, chain: true },
-  { tempo: 4, hold: 0, chain: false, rest: true },
+  { tempo: 5, hold: 0, chain: false, rest: true },
 
   // its not fair
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
+  // { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
+  // { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
+  { kill: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 4, chain: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 4, chain: true },
+  { tempo: 3, hold: 0, chain: false, rest: true },
 
 ]
 /* harmony export (immutable) */ __webpack_exports__["a"] = bridge_2;
@@ -1518,7 +1534,7 @@ const verse_2 = [
 
   { kill: true },
 ]
-/* unused harmony export verse_2 */
+/* harmony export (immutable) */ __webpack_exports__["a"] = verse_2;
 
 
 /***/ }),

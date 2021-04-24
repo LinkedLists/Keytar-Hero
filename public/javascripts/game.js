@@ -402,6 +402,7 @@ export default class Game {
       this.isPlaying = false;
       this.audio.pause()
       this.audio.currentTime = 0
+      this.audio.muted = false
       
       clearInterval(this.callGenerateNotes)
       clearTimeout(this.startTimeout)
@@ -427,6 +428,16 @@ export default class Game {
       }, 666)
     })
 
+    // setTimeout(() => {
+    //   if (this.audio.currentTime === 0) {
+    //     this.audio.play()
+    //       .then(this.startTimeout = setTimeout(this.generateNotes, song.introDelay));
+    //     this.isPlaying = true;
+    //     requestAnimationFrame(this.animate)
+    //   }
+    //   //fade delay
+    // }, 1500)
+
     restart.addEventListener('click', () => {
       this.allNotes = song.notes.slice()
       this.score = 0;
@@ -445,8 +456,11 @@ export default class Game {
       }
       // this.audio.pause()
       this.audio.currentTime = 0
-      this.audio.play()
-        .then(this.restartTimeout = setTimeout(this.generateNotes, song.introDelay));
+      if (this.audio.paused) {
+        this.audio.play().then(this.restartTimeout = setTimeout(this.generateNotes, song.introDelay));
+      } else {
+        this.restartTimeout = setTimeout(this.generateNotes, song.introDelay)
+      }
       this.isPlaying = true;
       // requestAnimationFrame(this.animate)
     });
