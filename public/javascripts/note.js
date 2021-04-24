@@ -9,7 +9,7 @@ export default class Note {
     this.color = color;
     this.originalColor;
     this.holdFlag = false;
-    this.dy = 8;
+    // this.dy = 8;
 
 
     this.generateNote = this.generateNote.bind(this);
@@ -59,14 +59,14 @@ export default class Note {
     this.c.stroke();
   }
 
-  update() {
+  update(dy) {
     this.c.save();
     if (this.holdValue !== 0) {
       this.generateHoldingNote(this.x, this.y)
     } else {
       this.generateNote(this.x, this.y);
     }
-    this.y += this.dy;
+    this.y += dy;
     this.c.restore();
   }
 

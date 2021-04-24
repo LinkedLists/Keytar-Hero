@@ -99,7 +99,7 @@ export default class Game {
     // continue falling offscreen.
     this.missedNotes.forEach( note => {
       let pos = note.y - note.extensionLength - 30
-      if (pos !== this.dimensions.height) note.update();
+      if (pos !== this.dimensions.height) note.update(this.currentSong.dy);
     })
 
     // this.visibleNotes is a 2D array containing a subarray of notes for each target
@@ -108,7 +108,7 @@ export default class Game {
     // out of bounds
     this.visibleNotes.forEach( (subArr, i) => {
       subArr.forEach( note => {
-        note.update();
+        note.update(this.currentSong.dy);
       })
 
       // if the first note in each subArr is out of bounds then clear it

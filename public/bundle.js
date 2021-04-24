@@ -540,7 +540,7 @@ class Game {
     // continue falling offscreen.
     this.missedNotes.forEach( note => {
       let pos = note.y - note.extensionLength - 30
-      if (pos !== this.dimensions.height) note.update();
+      if (pos !== this.dimensions.height) note.update(this.currentSong.dy);
     })
 
     // this.visibleNotes is a 2D array containing a subarray of notes for each target
@@ -549,7 +549,7 @@ class Game {
     // out of bounds
     this.visibleNotes.forEach( (subArr, i) => {
       subArr.forEach( note => {
-        note.update();
+        note.update(this.currentSong.dy);
       })
 
       // if the first note in each subArr is out of bounds then clear it
@@ -995,7 +995,7 @@ class Note {
     this.color = color;
     this.originalColor;
     this.holdFlag = false;
-    this.dy = 8;
+    // this.dy = 8;
 
 
     this.generateNote = this.generateNote.bind(this);
@@ -1045,14 +1045,14 @@ class Note {
     this.c.stroke();
   }
 
-  update() {
+  update(dy) {
     this.c.save();
     if (this.holdValue !== 0) {
       this.generateHoldingNote(this.x, this.y)
     } else {
       this.generateNote(this.x, this.y);
     }
-    this.y += this.dy;
+    this.y += dy;
     this.c.restore();
   }
 
@@ -1918,7 +1918,8 @@ const CONSTANTS = {
 const song1 = {
   notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__["a" /* verse_1 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_3__be_kind_verse_2__["a" /* verse_2 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_2__be_kind_bridge_2__["a" /* bridge_2 */], __WEBPACK_IMPORTED_MODULE_5__be_kind_chorus_2__["a" /* chorus_2 */], __WEBPACK_IMPORTED_MODULE_6__be_kind_ending__["a" /* ending */]),
   introDelay: 3604,
-  tempo: 319
+  tempo: 319,
+  dy: 8
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = song1;
 
@@ -1945,9 +1946,11 @@ const CONSTANTS = {
 
 const song4 = {
   notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__jojo_intro__["a" /* intro */]),
-  introDelay: 328,
+  introDelay: 629,
   // tempo: 222
-  tempo: 111
+  tempo: 111,
+  dy: 9
+
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = song4;
 
@@ -1966,13 +1969,68 @@ const CONSTANTS = {
 }
 
 const intro = [
-  // bridge
 
+  // 1
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
-
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
+
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
+  // { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
+  { kill: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
+  { kill: true },
+
+
+  // 2
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
+
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
+  // { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
+  { kill: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
+  { kill: true },
+
+
+
+  // 2
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
+
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
+  // { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
+  { kill: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
 ]
 /* harmony export (immutable) */ __webpack_exports__["a"] = intro;
