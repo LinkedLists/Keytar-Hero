@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let preview = document.getElementsByClassName('preview-carousel-container')[0]
   let previewCarousel = document.getElementsByClassName('preview-carousel')[0]
   let previewCarouselItems = document.querySelectorAll('.preview-img-container');
+  let previewCarouselImg = document.querySelectorAll('.preview-img');
   let songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
       // make first item selectable
       songCarouselWheelItems[0].classList.add("selectable")
@@ -183,6 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         songItem.style.opacity = `1`
         previewCarouselItems[0].style.opacity = '0.92'
         previewCarouselItems[0].style.cursor = 'pointer'
+        previewCarouselItems[0].classList.add("selectable")
       }
     })
   }
@@ -293,6 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
     songCarouselWheelItems[index].style.opacity = `1`
     previewCarouselItems[index].style.cursor = 'pointer'
     previewCarouselItems[index].style.opacity = '0.92'
+    previewCarouselItems[index].classList.add("selectable")
     // audioPreview(index)
     audioPreviewLoop(index)
   }
@@ -312,6 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
     songCarouselWheelItems[index].style.opacity = `0.6`
     previewCarouselItems[index].style.cursor = 'default'
     previewCarouselItems[index].style.opacity = '0.6'
+    previewCarouselItems[index].classList.remove("selectable")
     volumeDown()
   }
 
@@ -348,6 +352,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   previewCarouselItems.forEach( (preview, i) => {
     preview.style.transform = `rotateX(${60 * i}deg) translateZ(${zDeg}px)`
+
+    preview.addEventListener('click', () => {
+      if (preview.classList.contains('selectable')) {
+        homePage.classList.remove('fadeIn')
+        homePage.classList.add('fadeOut')
+        selectCircle.classList.remove('song-selection-container-open')
+        selectCircle.classList.add('song-selection-container-closed')
+        clearInterval(loop)
+        volumeDown()
+        setTimeout(() => {
+          volumeUp()
+          audio.pause()
+          audio.currentTime = 0
+          newGame = new Game(canvas, 'song' + (i + 1).toString());
+          homePage.classList.add('hidden')
+          homePage.classList.remove('fadeOut')
+    
+          gameView.classList.remove('hidden')
+          gameView.classList.add('fadeIn')
+        }, 666)
+      }
+    })
   })
 
 
