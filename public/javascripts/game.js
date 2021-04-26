@@ -97,7 +97,7 @@ export default class Game {
   }
 
   animate() {
-    this.bandAidFix(this.c)
+    this.killJitter(this.c)
     this.c.clearRect(0, 0, canvas.width, canvas.height);
     this.scoreboard();
     this.streakBoard();
@@ -566,7 +566,7 @@ export default class Game {
     return targets
   }
 
-  bandAidFix(c) {
+  killJitter(c) {
     c.beginPath();
     c.rect(0, 0, 0, 0);
     c.stroke();
