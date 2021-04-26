@@ -3,6 +3,7 @@
 @import 'modal.css';
 @import 'menu.css';
 @import 'select-menu.css';
+@import 'end.css';
 
 body {
   background: black;
