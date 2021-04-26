@@ -163,6 +163,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let degrees = []
 
   function setCarouselPositions() {
+    carouselWheel.style.height = getComputedStyle(carouselWheel).width
+    
+    let radius = parseFloat(getComputedStyle(carouselWheel).width)/2
+
     let centerx = parseFloat(getComputedStyle(songCarouselWheelItems[0]).left) 
     let centery = parseFloat(getComputedStyle(songCarouselWheelItems[0]).top) 
     // let centerx = parseFloat(getComputedStyle(songCarouselWheelItems[0]).left) 
@@ -174,8 +178,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       degrees.push(-1.0 * i * 360 / carouselWheelLength)
 
-      songItem.style.left = `${centerx + 290 * Math.cos(thetaRad * (i))}px`
-      songItem.style.top = `${centery - 290 * Math.sin(thetaRad * (i))}px`
+      songItem.style.left = `${centerx + (radius + 170) * Math.cos(thetaRad * (i))}px`
+      songItem.style.top = `${centery - (radius + 170) * Math.sin(thetaRad * (i))}px`
       if (i !== 0) {
         // songItem.style.transform = `rotate(${-1.0 * i * 360 / carouselWheelLength}deg) translateY(-50%)`
         songItem.style.transform = `rotate(${-1.0 * i * 360 / carouselWheelLength}deg) perspective(200px) rotateY(28deg) translate(-50%, -50%)`
@@ -189,11 +193,14 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
+  let selectWheel = document.getElementsByClassName("selection-circle-ul")[0]
+
   wheelNext.addEventListener('click', () => {
     removeSelectable()
     wheelIndex -= 1
     selectable()
-    carouselWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg)`
+    selectWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg)`
+    // carouselWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg) translateX(-50%)`
     previewCarousel.style.transform = `rotateX(${wheelIndex/6 * 360}deg)`
   })
 
@@ -202,7 +209,8 @@ document.addEventListener('DOMContentLoaded', () => {
     removeSelectable()
     wheelIndex += 1
     selectable()
-    carouselWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg)`
+    selectWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg)`
+    // carouselWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg) translateX(-50%)`
 
     previewCarousel.style.transform = `rotateX(${wheelIndex/6 * 360}deg)`
   })

@@ -406,8 +406,8 @@ export default class Game {
     let unmute = document.getElementById('unmute');
     
     let back = document.getElementById('back');
-    let startBtn = document.getElementById('start-btn')
-    let previewCarousel = document.getElementsByClassName('preview-carousel')[0]
+    // let startBtn = document.getElementById('start-btn')
+    // let previewCarousel = document.getElementsByClassName('preview-carousel')[0]
     let homePage = document.getElementsByClassName('homepage-container')[0]
     let gameView = document.getElementsByClassName('game-view')[0]
     let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
