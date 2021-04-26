@@ -13,7 +13,8 @@
   width: 25vw;
   /* height: 300px; */
   border-radius: 50%;
-  border: 2px solid #fff;
+  /* border: 2px solid #fff; */
+  border: 20px solid #57071d;
   /* background: linear-gradient(to right, red, purple); */
   z-index: 20;
   transition: 0.7s;

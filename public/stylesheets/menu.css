@@ -48,6 +48,16 @@
   font-size: 55px;
   display: flex;
   align-items: center;
+
+  animation: idleL 5s linear infinite;
+}
+
+@keyframes idleL {
+  0%{transform: rotateY(-1deg) rotatez(1deg) scale(1);}
+  25%{transform: rotateY(-2deg) rotatez(0.2deg) scale(1.02);}
+  50%{transform: rotateY(3deg) rotatez(-0.5deg) scale(1);}
+  75%{transform: rotateY(6deg) rotatez(-1.2deg) scale(0.99);}
+  100%{transform: rotateY(-1deg) rotatez(1deg) scale(1);}
 }
 
 .main-menu-r-container {
@@ -57,6 +67,20 @@
   justify-content: center;
   align-items: flex-start;
   width: 500px;
+
+}
+
+.main-menu-r-wrapper {
+  
+  animation: idleR 5s linear infinite reverse;
+}
+
+@keyframes idleR {
+  0%{transform: rotateY(-1deg) rotatez(1deg) scale(1);}
+  35%{transform: rotateY(-2deg) rotatez(0.2deg) scale(1.02);}
+  55%{transform: rotateY(3deg) rotatez(-0.5deg) scale(1);}
+  82%{transform: rotateY(6deg) rotatez(-1.2deg) scale(0.99);}
+  100%{transform: rotateY(-1deg) rotatez(1deg) scale(1);}
 }
 
 .main-menu-r-container button {
