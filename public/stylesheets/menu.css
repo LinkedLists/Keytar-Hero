@@ -3,8 +3,14 @@
   background-size: cover;
   height: 100vh;
   width: 100vw;
-  position: relative;
+  /* position: relative; */
   overflow: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  position: absolute;
 }
 
 .main-menu-container {
