@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
         songItem.style.opacity = `1`
         previewCarouselItems[0].style.opacity = '0.92'
         previewCarouselItems[0].style.cursor = 'pointer'
-        previewCarouselImg[0].classList.add("selectable")
+        previewCarouselImg[0].classList.add("selectable-preview")
       }
     })
   }
@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
     songCarouselWheelItems[index].style.opacity = `1`
     previewCarouselItems[index].style.cursor = 'pointer'
     previewCarouselItems[index].style.opacity = '0.92'
-    previewCarouselImg[index].classList.add("selectable")
+    previewCarouselImg[index].classList.add("selectable-preview")
     // audioPreview(index)
     audioPreviewLoop(index)
   }
@@ -389,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
     songCarouselWheelItems[index].style.opacity = `0.6`
     previewCarouselItems[index].style.cursor = 'default'
     previewCarouselItems[index].style.opacity = '0.6'
-    previewCarouselImg[index].classList.remove("selectable")
+    previewCarouselImg[index].classList.remove("selectable-preview")
     volumeDown()
   }
 
@@ -423,7 +423,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   previewCarouselImg.forEach( (preview, i) => {
     preview.addEventListener('click', () => {
-      if (preview.classList.contains('selectable')) {
+      if (preview.classList.contains('selectable-preview')) {
         homePage.classList.remove('fadeIn')
         homePage.classList.add('fadeOut')
         selectCircle.classList.remove('song-selection-container-open')
@@ -517,6 +517,7 @@ class Game {
     this.checkCollisionUp = this.checkCollisionUp.bind(this)
     this.scoreboard = this.scoreboard.bind(this)
     this.generateNotes = this.generateNotes.bind(this)
+    this.firstGenerationNotes = this.firstGenerationNotes.bind(this)
     this.playSong = this.playSong.bind(this)
     this.noteGrabber = this.noteGrabber.bind(this)
     this.generateTargets = this.generateTargets.bind(this);
@@ -556,6 +557,9 @@ class Game {
     this.keyLock4 = false;
     this.keyLock5 = false;
 
+    this.pause = document.getElementById('pause');
+    this.resume = document.getElementById('resume');
+    this.pauseEventListener = this.pauseEventListener.bind(this)
   }
 
 
@@ -840,6 +844,23 @@ class Game {
       this.playNotes()
     }, this.currentSong.tempo)
   }
+
+  pauseEventListener() {
+    this.audio.pause();
+    this.pause.classList.add("hidden")
+    this.resume.classList.remove("hidden")
+    // startButton()
+    this.intervalValue %= this.currentSong.tempo
+    this.isPlaying = false;
+    clearInterval(this.callGenerateNotes)
+    clearTimeout(this.resumeTimeout)
+  }
+
+  firstGenerationNotes() {
+    this.generateNotes()
+
+    this.pause.addEventListener('click', this.pauseEventListener);
+  }
       
   noteGrabber() {
     let noteParams = this.allNotes.shift();
@@ -871,8 +892,8 @@ class Game {
 
     this.audio = document.getElementById('audio');
     let restart = document.getElementById('restart');
-    let pause = document.getElementById('pause');
-    let resume = document.getElementById('resume');
+    // let pause = document.getElementById('pause');
+    // let resume = document.getElementById('resume');
     let mute = document.getElementById('mute');
     let unmute = document.getElementById('unmute');
     
@@ -886,19 +907,21 @@ class Game {
     setTimeout(() => {
       if (this.audio.currentTime === 0) {
         this.audio.play()
-          .then(this.startTimeout = setTimeout(this.generateNotes, this.currentSong.introDelay));
+          .then(this.startTimeout = setTimeout(this.firstGenerationNotes, this.currentSong.introDelay));
         this.isPlaying = true;
         requestAnimationFrame(this.animate)
+        
       }
       //fade delay
     }, 1500)
 
     back.addEventListener('click', () => {
-      resume.classList.add("hidden")
+      // resume.classList.add("hidden")
       
 
       window.removeEventListener('keydown', this.handleKeyDown)
       window.removeEventListener('keyup', this.handleKeyUp)
+      this.pause.removeEventListener('click', this.pauseEventListener)
 
       this.allNotes = []
       this.visibleNotes = this.generateNoteArray();
@@ -921,6 +944,9 @@ class Game {
         selectCircle.classList.add('song-selection-container-open')
         selectCircle.classList.remove('song-selection-container-closed')
         // startBtn.click()
+        this.pause.classList.remove("hidden")
+        this.resume.classList.add("hidden")
+
         homePage.classList.remove('hidden')
         homePage.classList.add('fadeIn')
         gameView.classList.add('hidden')
@@ -940,8 +966,8 @@ class Game {
       this.visibleNotes = this.generateNoteArray();
       this.missedNotes = [];
       this.counter = 0
-      pause.classList.remove("hidden")
-      resume.classList.add("hidden")
+      this.pause.classList.remove("hidden")
+      this.resume.classList.add("hidden")
       clearInterval(this.callGenerateNotes)
       clearTimeout(this.restartTimeout)
       clearTimeout(this.startTimeout)
@@ -989,17 +1015,17 @@ class Game {
             return difference
         } 
     }
-    pause.addEventListener('click', () => {
-      this.audio.pause();
-      pause.classList.add("hidden")
-      resume.classList.remove("hidden")
-      // startButton()
-      this.intervalValue %= this.currentSong.tempo
-      this.isPlaying = false;
-      clearInterval(this.callGenerateNotes)
-      clearTimeout(this.resumeTimeout)
+    // pause.addEventListener('click', () => {
+    //   this.audio.pause();
+    //   pause.classList.add("hidden")
+    //   resume.classList.remove("hidden")
+    //   // startButton()
+    //   this.intervalValue %= this.currentSong.tempo
+    //   this.isPlaying = false;
+    //   clearInterval(this.callGenerateNotes)
+    //   clearTimeout(this.resumeTimeout)
       
-    });
+    // });
     resume.addEventListener('click', () => {
       // let dif = stopButton()
 
@@ -1012,8 +1038,8 @@ class Game {
         }, this.currentSong.tempo)
       }, dif)
 
-      pause.classList.remove("hidden")
-      resume.classList.add("hidden")
+      this.pause.classList.remove("hidden")
+      this.resume.classList.add("hidden")
 
       this.audio.play();
       this.isPlaying = true;

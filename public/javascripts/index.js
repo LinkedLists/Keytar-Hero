@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         songItem.style.opacity = `1`
         previewCarouselItems[0].style.opacity = '0.92'
         previewCarouselItems[0].style.cursor = 'pointer'
-        previewCarouselImg[0].classList.add("selectable")
+        previewCarouselImg[0].classList.add("selectable-preview")
       }
     })
   }
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
     songCarouselWheelItems[index].style.opacity = `1`
     previewCarouselItems[index].style.cursor = 'pointer'
     previewCarouselItems[index].style.opacity = '0.92'
-    previewCarouselImg[index].classList.add("selectable")
+    previewCarouselImg[index].classList.add("selectable-preview")
     // audioPreview(index)
     audioPreviewLoop(index)
   }
@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
     songCarouselWheelItems[index].style.opacity = `0.6`
     previewCarouselItems[index].style.cursor = 'default'
     previewCarouselItems[index].style.opacity = '0.6'
-    previewCarouselImg[index].classList.remove("selectable")
+    previewCarouselImg[index].classList.remove("selectable-preview")
     volumeDown()
   }
 
@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   previewCarouselImg.forEach( (preview, i) => {
     preview.addEventListener('click', () => {
-      if (preview.classList.contains('selectable')) {
+      if (preview.classList.contains('selectable-preview')) {
         homePage.classList.remove('fadeIn')
         homePage.classList.add('fadeOut')
         selectCircle.classList.remove('song-selection-container-open')

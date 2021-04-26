@@ -253,7 +253,7 @@
   transform: scale(0.9);
 } */
 
-.selectable {
+.selectable-preview {
   bottom: 0;
   height: 100%;
   width: 100%;
@@ -261,12 +261,12 @@
   transition: 0.2s;
 }
 
-.selectable:hover .playbtn-container {
+.selectable-preview:hover .playbtn-container {
   opacity: 1;
   background:rgba(68, 68, 68, 0.336);
 }
 
-.selectable:active {
+.selectable-preview:active {
   transform: scale(0.9);
 }
 
