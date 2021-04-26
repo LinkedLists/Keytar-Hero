@@ -6,6 +6,8 @@
     <script type="text/javascript" src="./public/bundle.js"></script>
     <link rel="stylesheet" href="./public/stylesheets/uhh.css">
     <link rel="shortcut icon" href="#">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
   </head>
   <body>
 
@@ -19,8 +21,8 @@
         </div>
         <div class='main-menu-r-container Ropen'>
           <button id='start-btn'>songs</button>
-          <button id='start-btn'>instructions</button>
-          <div class="links-container">
+          <button class='open-modal' id='start-btn'>instructions</button>
+          <div class="links-container" id='links-container-homepage'>
             <!-- <div class="links-wrapper"> -->
               <a href="https://angel.co/u/kenny-zeng"><img src='./public/assets/angellist.png' class="link-imgs" /></a>
               <a href="https://github.com/LinkedLists/js"><img src='./public/assets/github.png' class="link-imgs" /></a>
@@ -61,7 +63,7 @@
           <div class='preview-btn-container'>
             <button class='carousel-wheel-btn' id='selection-back-btn'>back</button>
             <button class='carousel-wheel-btn'>volume</button>
-            <button class='carousel-wheel-btn'>instructions</button>
+            <button class='carousel-wheel-btn open-modal'>instructions</button>
             <button class='carousel-wheel-btn'>play</button>
           </div>
 
@@ -177,7 +179,7 @@
           <button class="game-btns hidden" id='resume'>Resume</button>
           <button class="game-btns" id='mute'>Mute</button>
           <button class="game-btns hidden" id='unmute'>Unmute</button>
-          <button class="game-btns" id='open-modal'>Instructions</button>
+          <button class="game-btns open-modal" id='open-modal'>Instructions</button>
         </div>
         <div class='score-wrapper'>
           <div class='score'>Score </div>

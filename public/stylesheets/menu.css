@@ -28,10 +28,11 @@
   background: none;
   border: none;
   outline: 0;
-  color: white;
-  font-size: 32px;
+  /* color: white; */
+  /* font-size: 32px; */
   cursor: pointer;
-  padding: 15px 0px;
+  padding: 10px 0px;
+  margin-bottom: 10px;
 }
 
 .main-menu-l-container {
@@ -43,7 +44,8 @@
 
 .main-menu-l-header {
   color: white;
-  font-size: 36px;
+  font-family: 'Nosifer';
+  font-size: 55px;
   display: flex;
   align-items: center;
 }
@@ -54,6 +56,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  width: 500px;
+}
+
+.main-menu-r-container button {
+  color: white;
+  font-family: 'Nosifer';
+  font-size: 44px;
+}
+
+.main-menu-r-container button:hover {
+  color: yellow;
+  text-shadow: 1px -1px 9px #ffffffa8;
 }
 
 .Lopen {
@@ -112,4 +126,27 @@
     font-size: 60px;
     transform: perspective(100px) rotateY(-50deg) translateX(400%);
   }
+}
+
+
+#links-container-homepage {
+  background: none;
+  vertical-align: baseline;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 290px;
+}
+
+#links-container-homepage .link-imgs {
+  height: 60px;
+  width: auto;
+  display: flex;
+  padding: 5px;
+  transition: 0.3s;
+}
+
+#links-container-homepage .link-imgs:hover {
+  transform: scale(1.3);
 }
