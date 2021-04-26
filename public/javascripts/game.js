@@ -54,6 +54,16 @@ export default class Game {
     this.startTimeout
     this.restartTimeout
     this.playNotes = this.playNotes.bind(this)
+
+    this.handleKeyDown = this.handleKeyDown.bind(this)
+    this.handleKeyUp = this.handleKeyUp.bind(this)
+
+    this.keyLock1 = false;
+    this.keyLock2 = false;
+    this.keyLock3 = false;
+    this.keyLock4 = false;
+    this.keyLock5 = false;
+
   }
 
 
@@ -219,59 +229,58 @@ export default class Game {
     }
   }
 
+  handleKeyDown(e) {
+    if (e.key == "1" && !this.keyLock1) {
+      this.keyLock1 = true;
+      this.checkCollisionDown(0)
+    } 
+    if (e.key == "2" && !this.keyLock2) {
+      this.keyLock2 = true;
+      this.checkCollisionDown(1)
+    } 
+    if (e.key == "3" && !this.keyLock3) {
+      this.keyLock3 = true;
+      this.checkCollisionDown(2)
+    } 
+    if (e.key == "4" && !this.keyLock4) {
+      this.keyLock4 = true;
+      this.checkCollisionDown(3)
+    } 
+    if (e.key == "5" && !this.keyLock5) {
+      this.keyLock5 = true;
+      this.checkCollisionDown(4)
+    } 
+  }
+
+  handleKeyUp(e) {
+    if (e.key == "1") {
+      this.keyLock1 = false;
+      this.checkCollisionUp(0)
+    } 
+    if (e.key == "2") {
+      this.keyLock2 = false;
+      this.checkCollisionUp(1)
+    } 
+    if (e.key == "3") {
+      this.keyLock3 = false;
+      this.checkCollisionUp(2)
+    } 
+    if (e.key == "4") {
+      this.keyLock4 = false;
+      this.checkCollisionUp(3)
+    } 
+    if (e.key == "5") {
+      this.keyLock5 = false;
+      this.checkCollisionUp(4)
+    } 
+  }
+
   addTargetListeners() {
     // Keydown will continue to listen if pressed
     // so keyLock will prevent the event from continuing
-    let keyLock1 = false;
-    let keyLock2 = false;
-    let keyLock3 = false;
-    let keyLock4 = false;
-    let keyLock5 = false;
-    addEventListener('keydown', e => {
-      if (e.key == "1" && !keyLock1) {
-        keyLock1 = true;
-        this.checkCollisionDown(0)
-      } 
-      if (e.key == "2" && !keyLock2) {
-        keyLock2 = true;
-        this.checkCollisionDown(1)
-      } 
-      if (e.key == "3" && !keyLock3) {
-        keyLock3 = true;
-        this.checkCollisionDown(2)
-      } 
-      if (e.key == "4" && !keyLock4) {
-        keyLock4 = true;
-        this.checkCollisionDown(3)
-      } 
-      if (e.key == "5" && !keyLock5) {
-        keyLock5 = true;
-        this.checkCollisionDown(4)
-      } 
-    })
-    addEventListener('keyup', e => {
-      // clearInterval(this.globalScore);
-      if (e.key == "1") {
-        keyLock1 = false;
-        this.checkCollisionUp(0)
-      } 
-      if (e.key == "2") {
-        keyLock2 = false;
-        this.checkCollisionUp(1)
-      } 
-      if (e.key == "3") {
-        keyLock3 = false;
-        this.checkCollisionUp(2)
-      } 
-      if (e.key == "4") {
-        keyLock4 = false;
-        this.checkCollisionUp(3)
-      } 
-      if (e.key == "5") {
-        keyLock5 = false;
-        this.checkCollisionUp(4)
-      } 
-    })
+
+    window.addEventListener('keydown', e => this.handleKeyDown(e))
+    window.addEventListener('keyup', e => this.handleKeyUp(e))
   }
 
   scoreboard() {
@@ -395,8 +404,12 @@ export default class Game {
     back.addEventListener('click', () => {
       resume.classList.add("hidden")
       
+
+      window.removeEventListener('keydown', this.handleKeyDown)
+      window.removeEventListener('keyup', this.handleKeyUp)
+
       this.allNotes = []
-      this.visibleNotes = [];
+      this.visibleNotes = this.generateNoteArray();
       this.missedNotes = [];
       this.isPlaying = false;
       this.audio.pause()

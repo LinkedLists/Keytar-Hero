@@ -70,8 +70,8 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__game__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__wheel__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modal__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__wheel__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modal__ = __webpack_require__(15);
 
 
 
@@ -284,6 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Neon+Genesis+Evangelion++Opening++1080p+Japanese.mp3",
     "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Breaking+the+Law.mp3",
     "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+JoJo+Part+5+OST++Il+vento+doro+Improved+MET+Ver.mp3",
+    "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+JoJo+Part+5+OST++Il+vento+doro+Improved+MET+Ver.mp3",
     // "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+The+Weeknd++Save+Your+Tears+Audio.mp3",
     // "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Ariana+Grande++positions+Lyrics.mp3",
   ]
@@ -390,7 +391,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // let selectSong = document.getElementById('halsey')
   // let selectSong = document.getElementsByClassName('selectable')[0]
-
+  let newGame
   //play song
   const canvas = document.getElementById('canvas');
   songCarouselWheelItems.forEach( song => { song.addEventListener('click', () => {
@@ -405,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
         volumeUp()
         audio.pause()
         audio.currentTime = 0
-        new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, song.id);
+        newGame = new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, song.id);
         homePage.classList.add('hidden')
         homePage.classList.remove('fadeOut')
   
@@ -437,8 +438,8 @@ document.addEventListener('DOMContentLoaded', () => {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__note__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__target__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__song_song1__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__song_song4__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__song_song1__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__song_song4__ = __webpack_require__(12);
 
 
 
@@ -495,6 +496,16 @@ class Game {
     this.startTimeout
     this.restartTimeout
     this.playNotes = this.playNotes.bind(this)
+
+    this.handleKeyDown = this.handleKeyDown.bind(this)
+    this.handleKeyUp = this.handleKeyUp.bind(this)
+
+    this.keyLock1 = false;
+    this.keyLock2 = false;
+    this.keyLock3 = false;
+    this.keyLock4 = false;
+    this.keyLock5 = false;
+
   }
 
 
@@ -660,59 +671,58 @@ class Game {
     }
   }
 
+  handleKeyDown(e) {
+    if (e.key == "1" && !this.keyLock1) {
+      this.keyLock1 = true;
+      this.checkCollisionDown(0)
+    } 
+    if (e.key == "2" && !this.keyLock2) {
+      this.keyLock2 = true;
+      this.checkCollisionDown(1)
+    } 
+    if (e.key == "3" && !this.keyLock3) {
+      this.keyLock3 = true;
+      this.checkCollisionDown(2)
+    } 
+    if (e.key == "4" && !this.keyLock4) {
+      this.keyLock4 = true;
+      this.checkCollisionDown(3)
+    } 
+    if (e.key == "5" && !this.keyLock5) {
+      this.keyLock5 = true;
+      this.checkCollisionDown(4)
+    } 
+  }
+
+  handleKeyUp(e) {
+    if (e.key == "1") {
+      this.keyLock1 = false;
+      this.checkCollisionUp(0)
+    } 
+    if (e.key == "2") {
+      this.keyLock2 = false;
+      this.checkCollisionUp(1)
+    } 
+    if (e.key == "3") {
+      this.keyLock3 = false;
+      this.checkCollisionUp(2)
+    } 
+    if (e.key == "4") {
+      this.keyLock4 = false;
+      this.checkCollisionUp(3)
+    } 
+    if (e.key == "5") {
+      this.keyLock5 = false;
+      this.checkCollisionUp(4)
+    } 
+  }
+
   addTargetListeners() {
     // Keydown will continue to listen if pressed
     // so keyLock will prevent the event from continuing
-    let keyLock1 = false;
-    let keyLock2 = false;
-    let keyLock3 = false;
-    let keyLock4 = false;
-    let keyLock5 = false;
-    addEventListener('keydown', e => {
-      if (e.key == "1" && !keyLock1) {
-        keyLock1 = true;
-        this.checkCollisionDown(0)
-      } 
-      if (e.key == "2" && !keyLock2) {
-        keyLock2 = true;
-        this.checkCollisionDown(1)
-      } 
-      if (e.key == "3" && !keyLock3) {
-        keyLock3 = true;
-        this.checkCollisionDown(2)
-      } 
-      if (e.key == "4" && !keyLock4) {
-        keyLock4 = true;
-        this.checkCollisionDown(3)
-      } 
-      if (e.key == "5" && !keyLock5) {
-        keyLock5 = true;
-        this.checkCollisionDown(4)
-      } 
-    })
-    addEventListener('keyup', e => {
-      // clearInterval(this.globalScore);
-      if (e.key == "1") {
-        keyLock1 = false;
-        this.checkCollisionUp(0)
-      } 
-      if (e.key == "2") {
-        keyLock2 = false;
-        this.checkCollisionUp(1)
-      } 
-      if (e.key == "3") {
-        keyLock3 = false;
-        this.checkCollisionUp(2)
-      } 
-      if (e.key == "4") {
-        keyLock4 = false;
-        this.checkCollisionUp(3)
-      } 
-      if (e.key == "5") {
-        keyLock5 = false;
-        this.checkCollisionUp(4)
-      } 
-    })
+
+    window.addEventListener('keydown', e => this.handleKeyDown(e))
+    window.addEventListener('keyup', e => this.handleKeyUp(e))
   }
 
   scoreboard() {
@@ -836,8 +846,12 @@ class Game {
     back.addEventListener('click', () => {
       resume.classList.add("hidden")
       
+
+      window.removeEventListener('keydown', this.handleKeyDown)
+      window.removeEventListener('keyup', this.handleKeyUp)
+
       this.allNotes = []
-      this.visibleNotes = [];
+      this.visibleNotes = this.generateNoteArray();
       this.missedNotes = [];
       this.isPlaying = false;
       this.audio.pause()
@@ -1185,7 +1199,46 @@ class Target {
 
 
 /***/ }),
-/* 4 */,
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__be_kind_bridge_2__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__be_kind_verse_2__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__be_kind_chorus_2__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__be_kind_ending__ = __webpack_require__(11);
+
+
+
+
+
+
+
+
+const CONSTANTS = {
+  pos1: 30,
+  pos2: 150,
+  pos3: 270,
+  pos4: 390,
+  pos5: 510,
+}
+
+const song1 = {
+  notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__["a" /* verse_1 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_3__be_kind_verse_2__["a" /* verse_2 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_2__be_kind_bridge_2__["a" /* bridge_2 */], __WEBPACK_IMPORTED_MODULE_5__be_kind_chorus_2__["a" /* chorus_2 */], __WEBPACK_IMPORTED_MODULE_6__be_kind_ending__["a" /* ending */]),
+  introDelay: 3604,
+  tempo: 319,
+  dy: 8
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = song1;
+
+
+
+
+
+/***/ }),
 /* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1687,114 +1740,6 @@ const chorus_2 = [
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-///USE THIS LATER MAYBE
-class Wheel {
-  constructor() {
-    // carousel wheel elements
-    this.wheelNext = document.getElementById('selection-next-btn')
-    this.wheelPrev = document.getElementById('selection-prev-btn')
-    this.carouselWheel = document.getElementsByClassName('selection-circle')[0]
-    this.selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
-    this.songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
-      // make first item selectable
-      this.songCarouselWheelItems[0].classList.add("selectable")
-      this.carouselWheelLength = this.songCarouselWheelItems.length
-    this.carouselPositionsSet = false
-
-    this.wheelIndex = 0
-    this.thetaDeg = (360 / this.carouselWheelLength)
-    this.thetaRad = (Math.PI / 180.0) * (360 / this.carouselWheelLength)
-
-    this.setCarouselPositions = this.setCarouselPositions.bind(this)
-    this.addListeners = this.addListeners.bind(this)
-    this.addListeners()
-  }
-
-  setCarouselPositions() {
-    let centerx = parseFloat(getComputedStyle(this.songCarouselWheelItems[0]).left) 
-    let centery = parseFloat(getComputedStyle(this.songCarouselWheelItems[0]).top) 
-
-    this.songCarouselWheelItems.forEach( (songItem, i) => {
-      songItem.style.left = `${centerx + 200 * Math.cos(this.thetaRad * (i))}px`
-      songItem.style.top = `${centery - 200 * Math.sin(this.thetaRad * (i))}px`
-      songItem.style.transform = `rotate(${-1.0 * i * 360 / this.carouselWheelLength}deg)`
-    })
-  }
-
-  addListeners() {
-    this.wheelNext.addEventListener('click', () => {
-      this.removeSelectable()
-      this.wheelIndex -= 1
-      this.selectable()
-      this.carouselWheel.style.transform = `rotate(${-1.0 * this.thetaDeg * this.wheelIndex}deg)`
-    })
-  
-    this.wheelPrev.addEventListener('click', () => {
-      this.removeSelectable()
-      this.wheelIndex += 1
-      this.selectable()
-      this.carouselWheel.style.transform = `rotate(${-1.0 * this.thetaDeg * this.wheelIndex}deg)`
-    })
-  }
-
-  //make current wheel item clickable
-  selectable() {
-    let index = this.wheelIndex % this.carouselWheelLength
-    if (index < 0) {
-      index *= -1
-    }
-    else if (index > 0) {
-      index = 6 - index
-    }
-    this.songCarouselWheelItems[index].classList.add("selectable")
-  }
-  //make prev item nonclickable
-  removeSelectable() {
-    let index = this.wheelIndex % this.carouselWheelLength 
-    if (index <= 0) {
-      index *= -1
-      this.songCarouselWheelItems[index].classList.remove("selectable")
-    } else {
-      this.songCarouselWheelItems[6 - index].classList.remove("selectable")
-    }
-  }
-}
-/* unused harmony export default */
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const modalHandler = () => {
-  const openBtn = document.getElementById("open-modal");
-  const modalScreen = document.getElementsByClassName("modal-screen")[0];
-  const modal = document.getElementsByClassName("modal")[0];
-  const closeBtn = document.getElementById("modal-close-btn");
-
-  modalScreen.onclick = e => {
-    if (e.target === modalScreen) {
-      modal.classList.remove("open")
-    }
-  }
-  
-  openBtn.onclick = e => {
-      modal.classList.add('open')
-  }
-
-  closeBtn.onclick = e => {
-    modal.classList.remove('open')
-}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = modalHandler;
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 const CONSTANTS = {
   pos1: 30,
   pos2: 150,
@@ -1888,51 +1833,11 @@ const ending = [
 
 
 /***/ }),
-/* 14 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__be_kind_bridge_2__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__be_kind_verse_2__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__be_kind_chorus_2__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__be_kind_ending__ = __webpack_require__(13);
-
-
-
-
-
-
-
-
-const CONSTANTS = {
-  pos1: 30,
-  pos2: 150,
-  pos3: 270,
-  pos4: 390,
-  pos5: 510,
-}
-
-const song1 = {
-  notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__["a" /* verse_1 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_3__be_kind_verse_2__["a" /* verse_2 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_2__be_kind_bridge_2__["a" /* bridge_2 */], __WEBPACK_IMPORTED_MODULE_5__be_kind_chorus_2__["a" /* chorus_2 */], __WEBPACK_IMPORTED_MODULE_6__be_kind_ending__["a" /* ending */]),
-  introDelay: 3604,
-  tempo: 319,
-  dy: 8
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = song1;
-
-
-
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jojo_intro__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jojo_intro__ = __webpack_require__(13);
 
 
 
@@ -1956,7 +1861,7 @@ const song4 = {
 
 
 /***/ }),
-/* 16 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2267,11 +2172,223 @@ const intro = [
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
-  { tempo: 6, hold: 0, chain: false, rest: true },
+  { tempo: 8, hold: 0, chain: false, rest: true },
 
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { tempo: 2, hold: 0, chain: false, rest: true },
 
 ]
 /* harmony export (immutable) */ __webpack_exports__["a"] = intro;
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+///USE THIS LATER MAYBE
+class Wheel {
+  constructor() {
+    // carousel wheel elements
+    this.wheelNext = document.getElementById('selection-next-btn')
+    this.wheelPrev = document.getElementById('selection-prev-btn')
+    this.carouselWheel = document.getElementsByClassName('selection-circle')[0]
+    this.selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
+    this.songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
+      // make first item selectable
+      this.songCarouselWheelItems[0].classList.add("selectable")
+      this.carouselWheelLength = this.songCarouselWheelItems.length
+    this.carouselPositionsSet = false
+
+    this.wheelIndex = 0
+    this.thetaDeg = (360 / this.carouselWheelLength)
+    this.thetaRad = (Math.PI / 180.0) * (360 / this.carouselWheelLength)
+
+    this.setCarouselPositions = this.setCarouselPositions.bind(this)
+    this.addListeners = this.addListeners.bind(this)
+    this.addListeners()
+  }
+
+  setCarouselPositions() {
+    let centerx = parseFloat(getComputedStyle(this.songCarouselWheelItems[0]).left) 
+    let centery = parseFloat(getComputedStyle(this.songCarouselWheelItems[0]).top) 
+
+    this.songCarouselWheelItems.forEach( (songItem, i) => {
+      songItem.style.left = `${centerx + 200 * Math.cos(this.thetaRad * (i))}px`
+      songItem.style.top = `${centery - 200 * Math.sin(this.thetaRad * (i))}px`
+      songItem.style.transform = `rotate(${-1.0 * i * 360 / this.carouselWheelLength}deg)`
+    })
+  }
+
+  addListeners() {
+    this.wheelNext.addEventListener('click', () => {
+      this.removeSelectable()
+      this.wheelIndex -= 1
+      this.selectable()
+      this.carouselWheel.style.transform = `rotate(${-1.0 * this.thetaDeg * this.wheelIndex}deg)`
+    })
+  
+    this.wheelPrev.addEventListener('click', () => {
+      this.removeSelectable()
+      this.wheelIndex += 1
+      this.selectable()
+      this.carouselWheel.style.transform = `rotate(${-1.0 * this.thetaDeg * this.wheelIndex}deg)`
+    })
+  }
+
+  //make current wheel item clickable
+  selectable() {
+    let index = this.wheelIndex % this.carouselWheelLength
+    if (index < 0) {
+      index *= -1
+    }
+    else if (index > 0) {
+      index = 6 - index
+    }
+    this.songCarouselWheelItems[index].classList.add("selectable")
+  }
+  //make prev item nonclickable
+  removeSelectable() {
+    let index = this.wheelIndex % this.carouselWheelLength 
+    if (index <= 0) {
+      index *= -1
+      this.songCarouselWheelItems[index].classList.remove("selectable")
+    } else {
+      this.songCarouselWheelItems[6 - index].classList.remove("selectable")
+    }
+  }
+}
+/* unused harmony export default */
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const modalHandler = () => {
+  const openBtn = document.getElementById("open-modal");
+  const modalScreen = document.getElementsByClassName("modal-screen")[0];
+  const modal = document.getElementsByClassName("modal")[0];
+  const closeBtn = document.getElementById("modal-close-btn");
+
+  modalScreen.onclick = e => {
+    if (e.target === modalScreen) {
+      modal.classList.remove("open")
+    }
+  }
+  
+  openBtn.onclick = e => {
+      modal.classList.add('open')
+  }
+
+  closeBtn.onclick = e => {
+    modal.classList.remove('open')
+}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = modalHandler;
 
 
 /***/ })

@@ -210,6 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Neon+Genesis+Evangelion++Opening++1080p+Japanese.mp3",
     "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Breaking+the+Law.mp3",
     "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+JoJo+Part+5+OST++Il+vento+doro+Improved+MET+Ver.mp3",
+    "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+JoJo+Part+5+OST++Il+vento+doro+Improved+MET+Ver.mp3",
     // "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+The+Weeknd++Save+Your+Tears+Audio.mp3",
     // "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Ariana+Grande++positions+Lyrics.mp3",
   ]
@@ -316,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // let selectSong = document.getElementById('halsey')
   // let selectSong = document.getElementsByClassName('selectable')[0]
-
+  let newGame
   //play song
   const canvas = document.getElementById('canvas');
   songCarouselWheelItems.forEach( song => { song.addEventListener('click', () => {
@@ -331,7 +332,7 @@ document.addEventListener('DOMContentLoaded', () => {
         volumeUp()
         audio.pause()
         audio.currentTime = 0
-        new Game(canvas, song.id);
+        newGame = new Game(canvas, song.id);
         homePage.classList.add('hidden')
         homePage.classList.remove('fadeOut')
   
