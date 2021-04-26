@@ -69,11 +69,13 @@ export default class Game {
 
     this.pause = document.getElementById('pause');
     this.resume = document.getElementById('resume');
+    this.scoreContainer = document.getElementsByClassName('game-end-container')[0]
     this.restart;
     this.back;
     this.pauseEventListener = this.pauseEventListener.bind(this)
     this.endListener = this.endListener.bind(this)
     this.calculateGrade = this.calculateGrade.bind(this)
+    this.scoreBtnListener = this.scoreBtnListener.bind(this)
   }
 
 
@@ -406,7 +408,6 @@ export default class Game {
 
   endListener() {
     this.audio.addEventListener('ended', () => {
-      let scoreContainer = document.getElementsByClassName('game-end-container')[0]
       this.calculateGrade()
       let scoreValue = document.getElementById('score-value')
       let comboValue = document.getElementById('combo-value')
@@ -415,31 +416,45 @@ export default class Game {
       let missedValue = document.getElementById('missed-value')
       scoreValue.innerHTML = this.score
       comboValue.innerHTML = this.maxStreak
-      percentValue.innerHTML = this.notesHit / this.totalNotes
+      percentValue.innerHTML = (this.notesHit * 100 / this.totalNotes).toFixed(1)
       hitValue.innerHTML = this.notesHit
       missedValue.innerHTML = this.totalNotes - this.notesHit
 
-      scoreContainer.style.display = 'flex'
+      this.scoreContainer.style.display = 'flex'
     })
   }
 
   calculateGrade() {
     let grade = document.getElementsByClassName('game-end-score')[0]
-    if (this.notesHit / this.totalNotes >= 88) {
+    debugger
+    if ((this.notesHit / this.totalNotes) * 100 >= 88) {
       grade.innerHTML = 'A'
     }
-    else if (this.notesHit / this.totalNotes >= 78) {
+    else if ((this.notesHit / this.totalNotes) * 100 >= 78.0) {
       grade.innerHTML = 'B'
     }
-    else if (this.notesHit / this.totalNotes >= 68) {
+    else if ((this.notesHit / this.totalNotes) * 100 >= 68.0) {
       grade.innerHTML = 'C'
     }
-    else if (this.notesHit / this.totalNotes >= 58) {
+    else if ((this.notesHit / this.totalNotes) * 100 >= 58.0) {
       grade.innerHTML = 'D'
     }
-    else if (this.notesHit / this.totalNotes >= 48) {
+    else {
       grade.innerHTML = 'F'
     }
+  }
+
+  scoreBtnListener() {
+    let replay = document.getElementById('replay-btn')
+    let back = document.getElementById('back-btn')
+
+    replay.addEventListener('click', () => {
+      this.restart.click()
+    })
+
+    back.addEventListener('click', () => {
+      this.back.click()
+    })
   }
 
   playSong() {
@@ -448,7 +463,6 @@ export default class Game {
     // console.log("your canvas height in pixels is " + innerHeight);
     // intro takes 5709ms until a note should be playble
     this.audio = document.getElementById('audio');
-    this.endListener()
     this.restart = document.getElementById('restart');
     // let pause = document.getElementById('pause');
     // let resume = document.getElementById('resume');
@@ -461,6 +475,8 @@ export default class Game {
     let homePage = document.getElementsByClassName('homepage-container')[0]
     let gameView = document.getElementsByClassName('game-view')[0]
     let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
+    this.endListener()
+    this.scoreBtnListener()
 
     setTimeout(() => {
       if (this.audio.currentTime === 0) {
@@ -484,6 +500,8 @@ export default class Game {
       this.allNotes = []
       this.visibleNotes = this.generateNoteArray();
       this.missedNotes = [];
+      this.totalNotes = 0
+      this.notesHit = 0
       this.isPlaying = false;
       this.audio.pause()
       this.audio.currentTime = 0
@@ -496,6 +514,7 @@ export default class Game {
 
       //clear notes in settime out or everything zeros out before fade away
       setTimeout(() => {
+        this.scoreContainer.style.display = 'none'
         this.score = 0;
         this.streak = 0;
         this.maxStreak = 0;
@@ -518,9 +537,11 @@ export default class Game {
 
     this.restart.addEventListener('click', () => {
       this.allNotes = this.currentSong.notes.slice()
+      this.scoreContainer.style.display = 'none'
       this.score = 0;
       this.streak = 0;
       this.maxStreak = 0;
+      this.notesHit = 0
       this.visibleNotes = this.generateNoteArray();
       this.missedNotes = [];
       this.counter = 0
