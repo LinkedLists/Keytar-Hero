@@ -67,7 +67,10 @@ export default class Game {
 
     this.pause = document.getElementById('pause');
     this.resume = document.getElementById('resume');
+    this.restart;
+    this.back;
     this.pauseEventListener = this.pauseEventListener.bind(this)
+    this.endListener = this.endListener.bind(this)
   }
 
 
@@ -392,20 +395,27 @@ export default class Game {
     return colorCode[pos]
   }
 
+  endListener() {
+    this.audio.addEventListener('ended', () => {
+      let scoreContainer = document.getElementsByClassName('game-end-container')[0]
+      scoreContainer.style.display = 'flex'
+    })
+  }
+
   playSong() {
     // looks like this is never used
     // const delay = 5709 - (innerHeight / 8) / 60 * 1000 ;
     // console.log("your canvas height in pixels is " + innerHeight);
     // intro takes 5709ms until a note should be playble
-
     this.audio = document.getElementById('audio');
-    let restart = document.getElementById('restart');
+    this.endListener()
+    this.restart = document.getElementById('restart');
     // let pause = document.getElementById('pause');
     // let resume = document.getElementById('resume');
     let mute = document.getElementById('mute');
     let unmute = document.getElementById('unmute');
     
-    let back = document.getElementById('back');
+    this.back = document.getElementById('back');
     // let startBtn = document.getElementById('start-btn')
     // let previewCarousel = document.getElementsByClassName('preview-carousel')[0]
     let homePage = document.getElementsByClassName('homepage-container')[0]
@@ -423,7 +433,7 @@ export default class Game {
       //fade delay
     }, 1500)
 
-    back.addEventListener('click', () => {
+    this.back.addEventListener('click', () => {
       // resume.classList.add("hidden")
       
 
@@ -466,7 +476,7 @@ export default class Game {
       }, 666)
     })
 
-    restart.addEventListener('click', () => {
+    this.restart.addEventListener('click', () => {
       this.allNotes = this.currentSong.notes.slice()
       this.score = 0;
       this.streak = 0;
@@ -483,7 +493,6 @@ export default class Game {
         this.isPlaying = true;
         requestAnimationFrame(this.animate)
       }
-      // this.audio.pause()
       this.audio.currentTime = 0
       if (this.audio.paused) {
         this.audio.play().then(this.restartTimeout = setTimeout(this.generateNotes, this.currentSong.introDelay));
@@ -491,7 +500,6 @@ export default class Game {
         this.restartTimeout = setTimeout(this.generateNotes, this.currentSong.introDelay)
       }
       this.isPlaying = true;
-      // requestAnimationFrame(this.animate)
     });
     
     mute.addEventListener('click', () => {
@@ -509,34 +517,7 @@ export default class Game {
       } 
     });
 
-    let startTime;
-
-    function startButton() {
-        startTime = Date.now();
-    }
-    
-    function stopButton() {
-        if (startTime) {
-            let endTime = Date.now();
-            let difference = endTime - startTime;
-            startTime = null;
-            return difference
-        } 
-    }
-    // pause.addEventListener('click', () => {
-    //   this.audio.pause();
-    //   pause.classList.add("hidden")
-    //   resume.classList.remove("hidden")
-    //   // startButton()
-    //   this.intervalValue %= this.currentSong.tempo
-    //   this.isPlaying = false;
-    //   clearInterval(this.callGenerateNotes)
-    //   clearTimeout(this.resumeTimeout)
-      
-    // });
     resume.addEventListener('click', () => {
-      // let dif = stopButton()
-
       let dif = this.currentSong.tempo - this.intervalValue - 45
       dif = dif < 0 ? 0 : dif
       this.resumeTimeout = setTimeout( () => {
