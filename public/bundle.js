@@ -516,6 +516,8 @@ class Game {
     this.missedNotes = [];
     // this.allNotes = song.notes.slice()
     this.allNotes = []
+    this.totalNotes = 0
+    this.notesHit = 0
     this.currentSong;
 
     this.addTargetListeners = this.addTargetListeners.bind(this)
@@ -571,6 +573,7 @@ class Game {
     this.back;
     this.pauseEventListener = this.pauseEventListener.bind(this)
     this.endListener = this.endListener.bind(this)
+    this.calculateGrade = this.calculateGrade.bind(this)
   }
 
 
@@ -578,22 +581,26 @@ class Game {
     if (songId === 'song1') {
       this.currentSong = __WEBPACK_IMPORTED_MODULE_2__song_song1__["a" /* song1 */]
       this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song1__["a" /* song1 */].notes.slice()
+      this.totalNotes = __WEBPACK_IMPORTED_MODULE_2__song_song1__["a" /* song1 */].notes.length
       this.animate();
       this.playSong();
     }
     // else if (songId === 'song2') {
-    //   this.allNotes = song3.notes.slice()
+    //   this.allNotes = song2.notes.slice()
+    //   this.totalNotes = song2.notes.length
     //   this.animate();
     //   this.playSong();
     // }
     // else if (songId === 'song3') {
     //   this.allNotes = song3.notes.slice()
+    //   this.totalNotes = song3.notes.length
     //   this.animate();
     //   this.playSong();
     // }
     else if (songId === 'song4') {
       this.currentSong = __WEBPACK_IMPORTED_MODULE_3__song_song4__["a" /* song4 */]
       this.allNotes = __WEBPACK_IMPORTED_MODULE_3__song_song4__["a" /* song4 */].notes.slice()
+      this.totalNotes = __WEBPACK_IMPORTED_MODULE_3__song_song4__["a" /* song4 */].notes.length
       this.animate();
       this.playSong();
     }
@@ -700,6 +707,7 @@ class Game {
             console.log("hit")
             this.targets[x].successfulHit = true
             this.score += 20;
+            this.notesHit += 1
             this.visibleNotes[x].shift();
             setTimeout(() => {this.targets[x].successfulHit = false}, 80)
           }
@@ -722,6 +730,7 @@ class Game {
     if (note) {
       if (note.holdFlag && note.inBoundsTail(this.dimensions.height)) {
         this.streak += 1;
+        this.notesHit += 1
         if (this.streak > this.maxStreak) this.maxStreak = this.streak;
         console.log("hold released")
         note.holdFlag = false;
@@ -898,8 +907,39 @@ class Game {
   endListener() {
     this.audio.addEventListener('ended', () => {
       let scoreContainer = document.getElementsByClassName('game-end-container')[0]
+      this.calculateGrade()
+      let scoreValue = document.getElementById('score-value')
+      let comboValue = document.getElementById('combo-value')
+      let percentValue = document.getElementById('percent-value')
+      let hitValue = document.getElementById('hit-value')
+      let missedValue = document.getElementById('missed-value')
+      scoreValue.innerHTML = this.score
+      comboValue.innerHTML = this.maxStreak
+      percentValue.innerHTML = this.notesHit / this.totalNotes
+      hitValue.innerHTML = this.notesHit
+      missedValue.innerHTML = this.totalNotes - this.notesHit
+
       scoreContainer.style.display = 'flex'
     })
+  }
+
+  calculateGrade() {
+    let grade = document.getElementsByClassName('game-end-score')[0]
+    if (this.notesHit / this.totalNotes >= 88) {
+      grade.innerHTML = 'A'
+    }
+    else if (this.notesHit / this.totalNotes >= 78) {
+      grade.innerHTML = 'B'
+    }
+    else if (this.notesHit / this.totalNotes >= 68) {
+      grade.innerHTML = 'C'
+    }
+    else if (this.notesHit / this.totalNotes >= 58) {
+      grade.innerHTML = 'D'
+    }
+    else if (this.notesHit / this.totalNotes >= 48) {
+      grade.innerHTML = 'F'
+    }
   }
 
   playSong() {
