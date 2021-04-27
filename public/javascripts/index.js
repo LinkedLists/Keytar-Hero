@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let wheelPrev = document.getElementById('selection-prev-btn')
   let carouselWheel = document.getElementsByClassName('selection-circle')[0]
   let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
-  let wheelBtns = document.getElementsByClassName('carousel-wheel-btn-container')[0]
   let preview = document.getElementsByClassName('preview-carousel-container')[0]
   let previewCarousel = document.getElementsByClassName('preview-carousel')[0]
   let previewCarouselItems = document.querySelectorAll('.preview-img-container');
@@ -36,37 +35,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // open wheel
   startBtn.addEventListener('click', () => {
-    //this is useless now
     selectCircle.classList.add('song-selection-container-open')
     selectCircle.classList.remove('song-selection-container-closed')
     selectCircle.classList.remove('hidden')
-    ////
     
     carouselWheel.classList.remove('circleClose')
     carouselWheel.classList.add('circleOpen')
-
-    // wheelBtns.classList.remove('btnClose')
-    // wheelBtns.classList.add('btnOpen')
 
     preview.classList.remove('carouselClosed')
     preview.classList.add('carouselOpen')
 
     cartWheelIn()
-    // audio.currentTime = 0
-    // if (audio.paused) audio.play()
-    // volumeUp()
-    // audioPreview()
     audioPreviewLoop()
 
-    // selectCircle.classList.remove('circleClose')
-    // selectCircle.classList.add('circleOpen')
 
     mainMenuL.classList.remove('Lopen')
     mainMenuR.classList.remove('Ropen')
     mainMenuL.classList.add('Lclose')
     mainMenuR.classList.add('Rclose')
     
-    // try not to click this too fast lol
     setTimeout(() => {
       mainMenu.classList.add('hidden')
       mainMenuL.classList.remove('Lclose')
@@ -86,9 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     carouselWheel.classList.remove('circleOpen')
     carouselWheel.classList.add('circleClose')
-
-    // wheelBtns.classList.remove('btnOpen')
-    // wheelBtns.classList.add('btnClose')
 
     mainMenu.classList.remove('hidden')
 
@@ -111,8 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(() => {
       selectCircle.classList.add('hidden')
-      // carouselWheel.classList.remove('circleOpen')
-      // carouselWheel.classList.add('circleClose')
     }, 450)
 
     setTimeout(() => {
@@ -169,8 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let centerx = parseFloat(getComputedStyle(songCarouselWheelItems[0]).left) 
     let centery = parseFloat(getComputedStyle(songCarouselWheelItems[0]).top) 
-    // let centerx = parseFloat(getComputedStyle(songCarouselWheelItems[0]).left) 
-    // let centery = parseFloat(getComputedStyle(songCarouselWheelItems[0]).top) 
 
     let thetaRad = (Math.PI / 180.0) * (360 / carouselWheelLength)
   
@@ -181,7 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
       songItem.style.left = `${centerx + (radius) * Math.cos(thetaRad * (i))}px`
       songItem.style.top = `${centery - (radius) * Math.sin(thetaRad * (i))}px`
       if (i !== 0) {
-        // songItem.style.transform = `rotate(${-1.0 * i * 360 / carouselWheelLength}deg) translateY(-50%)`
         songItem.style.transform = `rotate(${-1.0 * i * 360 / carouselWheelLength}deg) perspective(200px) rotateY(28deg) translate(-50%, -50%)`
       } else {
         songItem.style.transform = `rotate(0deg)  translate(-50%, -50%)`
@@ -200,7 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
     wheelIndex -= 1
     selectable()
     selectWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg)`
-    // carouselWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg) translateX(-50%)`
     previewCarousel.style.transform = `rotateX(${wheelIndex/6 * 360}deg)`
   })
 
@@ -210,7 +188,6 @@ document.addEventListener('DOMContentLoaded', () => {
     wheelIndex += 1
     selectable()
     selectWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg)`
-    // carouselWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg) translateX(-50%)`
 
     previewCarousel.style.transform = `rotateX(${wheelIndex/6 * 360}deg)`
   })
@@ -242,7 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let previewTimeout
   function audioPreview(index = currentPreviewIndex) {
-    // audio.pause()
     currentPreviewIndex = index
     previewTimeout = setTimeout( () => {
       audio.src = audioUrls[index]
@@ -253,7 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let intervalUp
   function volumeUp() {
-    // audio.volume = 0
     clearInterval(intervalDown)
     clearInterval(intervalUp)
     intervalUp = setInterval(() => {
@@ -277,12 +252,10 @@ document.addEventListener('DOMContentLoaded', () => {
     intervalDown = setInterval(() => {
       if (audio.volume >= currentVolume/60 ) {
         if (currentVolume/60 === 0 ) {
-          // audio.pause()
           clearInterval(intervalDown)
         }
         audio.volume -= currentVolume/60 
       } else {
-        // audio.pause()
         audio.volume = 0
         clearInterval(intervalDown)
       }
@@ -386,6 +359,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   canvas.style.backgroundSize = "100% 100%";
-  // new Game(canvas);
   modalHandler()
 })

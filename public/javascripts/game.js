@@ -14,7 +14,6 @@ export default class Game {
     this.isPlaying = false;
     this.visibleNotes = this.generateNoteArray();
     this.missedNotes = [];
-    // this.allNotes = song.notes.slice()
     this.allNotes = []
     this.totalNotes = 0
     this.notesHit = 0
@@ -311,16 +310,6 @@ export default class Game {
     let max = document.getElementById('max-streak'); 
     streak.innerHTML = this.streak;
     max.innerHTML = this.maxStreak;
-    // let img = document.getElementById('streak-img')
-    // if ( this.streak >=5 && this.streak < 20) {
-    //   img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/1.png';
-    // }
-    // if ( this.streak >= 20 && this.streak < 65) {
-    //   img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/2.png';
-    // }
-    // if ( this.streak >=65) {
-    //   img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/3.png';
-    // }
   }
 
   resetStreak() {
@@ -371,7 +360,6 @@ export default class Game {
     this.audio.pause();
     this.pause.classList.add("hidden")
     this.resume.classList.remove("hidden")
-    // startButton()
     this.intervalValue %= this.currentSong.tempo
     this.isPlaying = false;
     clearInterval(this.callGenerateNotes)
@@ -416,7 +404,7 @@ export default class Game {
       let missedValue = document.getElementById('missed-value')
       scoreValue.innerHTML = this.score
       comboValue.innerHTML = this.maxStreak
-      percentValue.innerHTML = (this.notesHit * 100 / this.totalNotes).toFixed(1)
+      percentValue.innerHTML = (this.notesHit * 100 / this.totalNotes).toFixed(1) + ' %'
       hitValue.innerHTML = this.notesHit
       missedValue.innerHTML = this.totalNotes - this.notesHit
 
@@ -463,14 +451,10 @@ export default class Game {
     // intro takes 5709ms until a note should be playble
     this.audio = document.getElementById('audio');
     this.restart = document.getElementById('restart');
-    // let pause = document.getElementById('pause');
-    // let resume = document.getElementById('resume');
     let mute = document.getElementById('mute');
     let unmute = document.getElementById('unmute');
     
     this.back = document.getElementById('back');
-    // let startBtn = document.getElementById('start-btn')
-    // let previewCarousel = document.getElementsByClassName('preview-carousel')[0]
     let homePage = document.getElementsByClassName('homepage-container')[0]
     let gameView = document.getElementsByClassName('game-view')[0]
     let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
@@ -489,9 +473,6 @@ export default class Game {
     }, 1500)
 
     this.back.addEventListener('click', () => {
-      // resume.classList.add("hidden")
-      
-
       window.removeEventListener('keydown', this.handleKeyDown)
       window.removeEventListener('keyup', this.handleKeyUp)
       this.pause.removeEventListener('click', this.pauseEventListener)
@@ -519,7 +500,6 @@ export default class Game {
         this.maxStreak = 0;
         selectCircle.classList.add('song-selection-container-open')
         selectCircle.classList.remove('song-selection-container-closed')
-        // startBtn.click()
         this.pause.classList.remove("hidden")
         this.resume.classList.add("hidden")
 

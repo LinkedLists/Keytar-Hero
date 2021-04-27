@@ -3,7 +3,6 @@
   background-size: cover;
   height: 100vh;
   width: 100vw;
-  /* position: relative; */
   overflow: hidden;
   top: 0;
   bottom: 0;
@@ -23,13 +22,9 @@
 }
 
 #start-btn {
-  /* height: 30px; */
-  /* width: 90px; */
   background: none;
   border: none;
   outline: 0;
-  /* color: white; */
-  /* font-size: 32px; */
   cursor: pointer;
   padding: 10px 0px;
   margin-bottom: 10px;

@@ -89,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let wheelPrev = document.getElementById('selection-prev-btn')
   let carouselWheel = document.getElementsByClassName('selection-circle')[0]
   let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
-  let wheelBtns = document.getElementsByClassName('carousel-wheel-btn-container')[0]
   let preview = document.getElementsByClassName('preview-carousel-container')[0]
   let previewCarousel = document.getElementsByClassName('preview-carousel')[0]
   let previewCarouselItems = document.querySelectorAll('.preview-img-container');
@@ -110,37 +109,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // open wheel
   startBtn.addEventListener('click', () => {
-    //this is useless now
     selectCircle.classList.add('song-selection-container-open')
     selectCircle.classList.remove('song-selection-container-closed')
     selectCircle.classList.remove('hidden')
-    ////
     
     carouselWheel.classList.remove('circleClose')
     carouselWheel.classList.add('circleOpen')
-
-    // wheelBtns.classList.remove('btnClose')
-    // wheelBtns.classList.add('btnOpen')
 
     preview.classList.remove('carouselClosed')
     preview.classList.add('carouselOpen')
 
     cartWheelIn()
-    // audio.currentTime = 0
-    // if (audio.paused) audio.play()
-    // volumeUp()
-    // audioPreview()
     audioPreviewLoop()
 
-    // selectCircle.classList.remove('circleClose')
-    // selectCircle.classList.add('circleOpen')
 
     mainMenuL.classList.remove('Lopen')
     mainMenuR.classList.remove('Ropen')
     mainMenuL.classList.add('Lclose')
     mainMenuR.classList.add('Rclose')
     
-    // try not to click this too fast lol
     setTimeout(() => {
       mainMenu.classList.add('hidden')
       mainMenuL.classList.remove('Lclose')
@@ -160,9 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     carouselWheel.classList.remove('circleOpen')
     carouselWheel.classList.add('circleClose')
-
-    // wheelBtns.classList.remove('btnOpen')
-    // wheelBtns.classList.add('btnClose')
 
     mainMenu.classList.remove('hidden')
 
@@ -185,8 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(() => {
       selectCircle.classList.add('hidden')
-      // carouselWheel.classList.remove('circleOpen')
-      // carouselWheel.classList.add('circleClose')
     }, 450)
 
     setTimeout(() => {
@@ -243,8 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let centerx = parseFloat(getComputedStyle(songCarouselWheelItems[0]).left) 
     let centery = parseFloat(getComputedStyle(songCarouselWheelItems[0]).top) 
-    // let centerx = parseFloat(getComputedStyle(songCarouselWheelItems[0]).left) 
-    // let centery = parseFloat(getComputedStyle(songCarouselWheelItems[0]).top) 
 
     let thetaRad = (Math.PI / 180.0) * (360 / carouselWheelLength)
   
@@ -255,7 +235,6 @@ document.addEventListener('DOMContentLoaded', () => {
       songItem.style.left = `${centerx + (radius) * Math.cos(thetaRad * (i))}px`
       songItem.style.top = `${centery - (radius) * Math.sin(thetaRad * (i))}px`
       if (i !== 0) {
-        // songItem.style.transform = `rotate(${-1.0 * i * 360 / carouselWheelLength}deg) translateY(-50%)`
         songItem.style.transform = `rotate(${-1.0 * i * 360 / carouselWheelLength}deg) perspective(200px) rotateY(28deg) translate(-50%, -50%)`
       } else {
         songItem.style.transform = `rotate(0deg)  translate(-50%, -50%)`
@@ -274,7 +253,6 @@ document.addEventListener('DOMContentLoaded', () => {
     wheelIndex -= 1
     selectable()
     selectWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg)`
-    // carouselWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg) translateX(-50%)`
     previewCarousel.style.transform = `rotateX(${wheelIndex/6 * 360}deg)`
   })
 
@@ -284,7 +262,6 @@ document.addEventListener('DOMContentLoaded', () => {
     wheelIndex += 1
     selectable()
     selectWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg)`
-    // carouselWheel.style.transform = `rotate(${-1.0 * thetaDeg * wheelIndex}deg) translateX(-50%)`
 
     previewCarousel.style.transform = `rotateX(${wheelIndex/6 * 360}deg)`
   })
@@ -316,7 +293,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let previewTimeout
   function audioPreview(index = currentPreviewIndex) {
-    // audio.pause()
     currentPreviewIndex = index
     previewTimeout = setTimeout( () => {
       audio.src = audioUrls[index]
@@ -327,7 +303,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let intervalUp
   function volumeUp() {
-    // audio.volume = 0
     clearInterval(intervalDown)
     clearInterval(intervalUp)
     intervalUp = setInterval(() => {
@@ -351,12 +326,10 @@ document.addEventListener('DOMContentLoaded', () => {
     intervalDown = setInterval(() => {
       if (audio.volume >= currentVolume/60 ) {
         if (currentVolume/60 === 0 ) {
-          // audio.pause()
           clearInterval(intervalDown)
         }
         audio.volume -= currentVolume/60 
       } else {
-        // audio.pause()
         audio.volume = 0
         clearInterval(intervalDown)
       }
@@ -460,7 +433,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   canvas.style.backgroundSize = "100% 100%";
-  // new Game(canvas);
   Object(__WEBPACK_IMPORTED_MODULE_2__modal__["a" /* modalHandler */])()
 })
 
@@ -490,7 +462,6 @@ class Game {
     this.isPlaying = false;
     this.visibleNotes = this.generateNoteArray();
     this.missedNotes = [];
-    // this.allNotes = song.notes.slice()
     this.allNotes = []
     this.totalNotes = 0
     this.notesHit = 0
@@ -787,16 +758,6 @@ class Game {
     let max = document.getElementById('max-streak'); 
     streak.innerHTML = this.streak;
     max.innerHTML = this.maxStreak;
-    // let img = document.getElementById('streak-img')
-    // if ( this.streak >=5 && this.streak < 20) {
-    //   img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/1.png';
-    // }
-    // if ( this.streak >= 20 && this.streak < 65) {
-    //   img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/2.png';
-    // }
-    // if ( this.streak >=65) {
-    //   img.src = 'https://keytar-hero-seed.s3-us-west-1.amazonaws.com/3.png';
-    // }
   }
 
   resetStreak() {
@@ -847,7 +808,6 @@ class Game {
     this.audio.pause();
     this.pause.classList.add("hidden")
     this.resume.classList.remove("hidden")
-    // startButton()
     this.intervalValue %= this.currentSong.tempo
     this.isPlaying = false;
     clearInterval(this.callGenerateNotes)
@@ -892,7 +852,7 @@ class Game {
       let missedValue = document.getElementById('missed-value')
       scoreValue.innerHTML = this.score
       comboValue.innerHTML = this.maxStreak
-      percentValue.innerHTML = (this.notesHit * 100 / this.totalNotes).toFixed(1)
+      percentValue.innerHTML = (this.notesHit * 100 / this.totalNotes).toFixed(1) + ' %'
       hitValue.innerHTML = this.notesHit
       missedValue.innerHTML = this.totalNotes - this.notesHit
 
@@ -939,14 +899,10 @@ class Game {
     // intro takes 5709ms until a note should be playble
     this.audio = document.getElementById('audio');
     this.restart = document.getElementById('restart');
-    // let pause = document.getElementById('pause');
-    // let resume = document.getElementById('resume');
     let mute = document.getElementById('mute');
     let unmute = document.getElementById('unmute');
     
     this.back = document.getElementById('back');
-    // let startBtn = document.getElementById('start-btn')
-    // let previewCarousel = document.getElementsByClassName('preview-carousel')[0]
     let homePage = document.getElementsByClassName('homepage-container')[0]
     let gameView = document.getElementsByClassName('game-view')[0]
     let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
@@ -965,9 +921,6 @@ class Game {
     }, 1500)
 
     this.back.addEventListener('click', () => {
-      // resume.classList.add("hidden")
-      
-
       window.removeEventListener('keydown', this.handleKeyDown)
       window.removeEventListener('keyup', this.handleKeyUp)
       this.pause.removeEventListener('click', this.pauseEventListener)
@@ -995,7 +948,6 @@ class Game {
         this.maxStreak = 0;
         selectCircle.classList.add('song-selection-container-open')
         selectCircle.classList.remove('song-selection-container-closed')
-        // startBtn.click()
         this.pause.classList.remove("hidden")
         this.resume.classList.add("hidden")
 

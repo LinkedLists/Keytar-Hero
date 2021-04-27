@@ -2,20 +2,14 @@
 }
 
 .selection-circle {
-  /* position: relative; */
   position: absolute;
-  /* left: -150px; */
   transform: translateX(-50%);
-  /* top: 100px; */
   top: 0%;
   bottom: 0%;
   margin: auto;
   width: 25vw;
-  /* height: 300px; */
   border-radius: 50%;
-  /* border: 2px solid #fff; */
   border: 20px solid #57071d;
-  /* background: linear-gradient(to right, red, purple); */
   z-index: 20;
   transition: 0.7s;
 }
@@ -29,15 +23,11 @@
 }
 
 .circleClose {
-  /* left: -1000px; */
   animation: circleOut;
   animation-duration: 1s;
 }
 
 .circleOpen {
-  /* left: -150px; */
-  /* left: 30%;
-  top: 30%; */
   animation: circleIn;
   animation-duration: 1s;
 }
@@ -47,24 +37,18 @@
 
 @keyframes circleIn {
   0% {
-    /* font-size: 60px; */
-    /* left: -1000px; */
     transform: translateX(-500%);
   }
   100% {
-    /* left: -150px; */
     transform: translateX(-50%);
   }
 }
 
 @keyframes circleOut {
   0% {
-    /* font-size: 60px; */
-    /* left: -150px; */
     transform: translateX(-50%);
   }
   100% {
-    /* left: -1000px; */
     transform: translateX(-500%);
   }
 }
@@ -76,21 +60,10 @@
   left: -40%;
   right: 0;
   margin: auto;
-  /* left: 250px; */
-  /* left: 200px; */
-  /* left: -700px; */
-  width: 240px;
-  /* top: 100px; */
-  /* transform: translateX(600%); */
-  /* position: absolute; */
-  /* top: 50%; */
-  /* left: 10%; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   z-index: 10;
-
-  /* height: 450px; */
   height: 423px;
   width: 423px;
 
@@ -110,7 +83,6 @@
 
 @keyframes btnIn {
   0% {
-    /* font-size: 60px; */
     left: -835px;
   }
   100% {
@@ -120,7 +92,6 @@
 
 @keyframes btnOut {
   0% {
-    /* font-size: 60px; */
     left: 200px;
   }
   100% {
@@ -130,23 +101,12 @@
 
 .carousel-wheel-btn-container button {
   font-size: 18px;
-  /* padding: 30px 0px; */
   border: none;
   outline: 0;
   height: 82px;
   width: 17vw;
   position: relative;
   cursor: pointer;
-}
-
-.carousel-wheel-btn-container button:hover {
-  /* box-shadow: 0px 0px 10px 1px rgba(56, 56, 56, 0.603); */
-}
-
-.carousel-wheel-btn-container button:last-child {
-  /* margin-top: 100px; */
-  /* height: 25px; */
-  /* width: 50px; */
 }
 
 #selection-next-btn {
@@ -198,18 +158,15 @@
 
 .song-carousel-item {
   color: white;
-  /* border: 1px solid #de0b46; */
   box-shadow: 0px 0px 12px 1px #de0b46;
   background: rgb(30, 30, 31);
   font-size: 16px;
   width: 200px;
-  /* height: 30px; */
   line-height: 30px;
   text-align: left;
   padding: 20px;
   padding-left: 35px;
   border-radius: 100px;
-  /* background: rgba(197, 226, 159, 0.5); */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -225,7 +182,6 @@
 }
 
 .title {
-  /* left: 20px; */
   font-family: 'Nosifer';
 }
 
@@ -272,14 +228,6 @@
   /* box-shadow: 0px 1px 7px 4px aliceblue; */
 }
 
-/* .preview-img:active {
-  transform: scale(0.9);
-} */
-
-/* .preview-shadow:active {
-  transform: scale(0.9);
-} */
-
 .selectable-preview {
   bottom: 0;
   height: 100%;
@@ -303,15 +251,8 @@
   bottom: 0;
   height: 100%;
   width: 100%;
-  /* z-index: 100; */
-  /* opacity: 0; */
   box-shadow: 0px 0px 14px 1px #bde0ff;
   transition: 0.2s;
-}
-
-.preview-shadow:hover {
-  /* opacity: 1; */
-  /* background: linear-gradient(to bottom, #afafaf00 50%, #00000087 100%); */
 }
 
 .playbtn-container {
@@ -329,11 +270,6 @@
   -o-transition: background 0.2s ease-out;
   transition: background 0.2s ease-out;
 }
-
-/* .playbtn-container:hover {
-  opacity: 1;
-  background:rgba(68, 68, 68, 0.336);
-} */
 
 .playbtn {
   position: absolute;
@@ -402,24 +338,13 @@
   top: 0;
   bottom: 0;
   left: 0;
-  right: 0;
-  margin: auto;
-  /* left: 250px; */
-  /* left: 200px; */
   right: -700px;
+  margin: auto;
+  height: 450px;
   width: 200px;
-  /* top: 100px; */
-  /* transform: translateX(600%); */
-  /* position: absolute; */
-  /* top: 50%; */
-  /* left: 10%; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   z-index: 10;
-
-  height: 450px;
-
-  display: flex;
   transition: 0.7s;
 }
