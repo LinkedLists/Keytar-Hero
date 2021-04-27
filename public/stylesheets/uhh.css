@@ -36,7 +36,7 @@ body {
 }
 
 #canvas {
-  background-image: url('https://keytar-hero-seed.s3-us-west-1.amazonaws.com/canvas.png');
+  background-image: url('https://keytar-hero-seed.s3-us-west-1.amazonaws.com/test2.png');
   background-size: cover;
   position: absolute;
   /* z-index: 1000; */

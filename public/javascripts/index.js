@@ -320,15 +320,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     songCarouselWheelItems[index].classList.remove("selectable")
     songCarouselWheelItems[index].style.transform = `rotate(${degrees[index]}deg) perspective(200px) rotateY(28deg) translate(-50%, -50%)`
-    songCarouselWheelItems[index].style.opacity = `0.6`
+    songCarouselWheelItems[index].style.opacity = `0.4`
     previewCarouselItems[index].style.cursor = 'default'
     previewCarouselItems[index].style.opacity = '0.6'
     previewCarouselImg[index].classList.remove("selectable-preview")
     volumeDown()
   }
 
-  // let selectSong = document.getElementById('halsey')
-  // let selectSong = document.getElementsByClassName('selectable')[0]
   let newGame
   //play song
   const canvas = document.getElementById('canvas');
@@ -384,28 +382,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   previewCarouselItems.forEach( (preview, i) => {
     preview.style.transform = `rotateX(${60 * i}deg) translateZ(${zDeg}px)`
-
-    // preview.addEventListener('click', () => {
-    //   if (preview.classList.contains('selectable')) {
-    //     homePage.classList.remove('fadeIn')
-    //     homePage.classList.add('fadeOut')
-    //     selectCircle.classList.remove('song-selection-container-open')
-    //     selectCircle.classList.add('song-selection-container-closed')
-    //     clearInterval(loop)
-    //     volumeDown()
-    //     setTimeout(() => {
-    //       volumeUp()
-    //       audio.pause()
-    //       audio.currentTime = 0
-    //       newGame = new Game(canvas, 'song' + (i + 1).toString());
-    //       homePage.classList.add('hidden')
-    //       homePage.classList.remove('fadeOut')
-    
-    //       gameView.classList.remove('hidden')
-    //       gameView.classList.add('fadeIn')
-    //     }, 666)
-    //   }
-    // })
   })
 
 

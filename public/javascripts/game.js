@@ -426,7 +426,6 @@ export default class Game {
 
   calculateGrade() {
     let grade = document.getElementsByClassName('game-end-score')[0]
-    debugger
     if ((this.notesHit / this.totalNotes) * 100 >= 88) {
       grade.innerHTML = 'A'
     }
