@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let startBtn = document.getElementById('start-btn')
   let selectBtn = document.getElementById('selection-back-btn')
   let audio = document.getElementById('audio')
-  audio.volume = 0.8
+  audio.volume = 0.7
   let currentVolume = audio.volume
   let currentPreviewIndex = 0
 
@@ -32,6 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let mainMenuR = document.getElementsByClassName('main-menu-r-container')[0]
   let homePage = document.getElementsByClassName('homepage-container')[0]
   let gameView = document.getElementsByClassName('game-view')[0]
+  let selectMenuVolume = document.getElementById('select-menu-volume')
+  selectMenuVolume.defaultValue = 70
+
+  selectMenuVolume.addEventListener('change', (e) => {
+    audio.volume = e.target.value / 100
+  })
 
   // open wheel
   startBtn.addEventListener('click', () => {
@@ -242,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
         audio.volume = currentVolume
         clearInterval(intervalUp)
       }
-    }, 15)
+    }, 13)
   }
 
   let intervalDown
@@ -259,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
         audio.volume = 0
         clearInterval(intervalDown)
       }
-    }, 10)
+    }, 13)
   }
 
   //make current wheel item clickable

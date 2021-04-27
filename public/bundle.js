@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let startBtn = document.getElementById('start-btn')
   let selectBtn = document.getElementById('selection-back-btn')
   let audio = document.getElementById('audio')
-  audio.volume = 0.8
+  audio.volume = 0.7
   let currentVolume = audio.volume
   let currentPreviewIndex = 0
 
@@ -106,6 +106,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let mainMenuR = document.getElementsByClassName('main-menu-r-container')[0]
   let homePage = document.getElementsByClassName('homepage-container')[0]
   let gameView = document.getElementsByClassName('game-view')[0]
+  let selectMenuVolume = document.getElementById('select-menu-volume')
+  selectMenuVolume.defaultValue = 70
+
+  selectMenuVolume.addEventListener('change', (e) => {
+    audio.volume = e.target.value / 100
+  })
 
   // open wheel
   startBtn.addEventListener('click', () => {
@@ -316,7 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
         audio.volume = currentVolume
         clearInterval(intervalUp)
       }
-    }, 15)
+    }, 13)
   }
 
   let intervalDown
@@ -333,7 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
         audio.volume = 0
         clearInterval(intervalDown)
       }
-    }, 10)
+    }, 13)
   }
 
   //make current wheel item clickable
@@ -590,7 +596,6 @@ class Game {
         if (subArr[0].holdValue !== 0 && subArr[0].outOfBoundsTail(this.dimensions.height)) {
           this.resetStreak();
           subArr[0].color = 'gray';
-          console.log("note is unshifted");
           this.missedNotes.push(subArr.shift());
           
           if(i === 0) clearInterval(this.score1)
@@ -607,7 +612,6 @@ class Game {
         else if (subArr[0].holdValue === 0 && subArr[0].outOfBounds(this.dimensions.height)) {
           this.resetStreak();
           subArr[0].color = 'gray';
-          console.log("note is unshifted");
           subArr.shift();
         }
         // If a holding note was not hit then gray it out
@@ -639,8 +643,6 @@ class Game {
         // the hit was successful!
         if (note.color !== "black" && note.color !== "gray") {
           if (note.holdValue !== 0 && !note.outOfBoundsHoldingNoteHead(this.dimensions.height)) {
-            console.log("holding")
-
             if(x === 0) this.score1 = this.scoreIncrementer()
             if(x === 1) this.score2 = this.scoreIncrementer()
             if(x === 2) this.score3 = this.scoreIncrementer()
@@ -653,7 +655,6 @@ class Game {
           } else {
             this.streak += 1;
             if (this.streak > this.maxStreak) this.maxStreak = this.streak;
-            console.log("hit")
             this.targets[x].successfulHit = true
             this.score += 20;
             this.notesHit += 1
@@ -681,20 +682,20 @@ class Game {
         this.streak += 1;
         this.notesHit += 1
         if (this.streak > this.maxStreak) this.maxStreak = this.streak;
-        console.log("hold released")
         note.holdFlag = false;
         this.visibleNotes[x].shift();
       }
       else if (note.holdFlag && !note.inBoundsTail(this.dimensions.height)) {
         this.resetStreak();
         note.color = 'black';
-        console.log("missed")
         note.holdFlag = false;
       }
     }
   }
 
   handleKeyDown(e) {
+    // Keydown will continue to listen if pressed
+    // so keyLock will prevent the event from continuing
     if (e.key == "1" && !this.keyLock1) {
       this.keyLock1 = true;
       this.checkCollisionDown(0)
@@ -741,9 +742,6 @@ class Game {
   }
 
   addTargetListeners() {
-    // Keydown will continue to listen if pressed
-    // so keyLock will prevent the event from continuing
-
     window.addEventListener('keydown', e => this.handleKeyDown(e))
     window.addEventListener('keyup', e => this.handleKeyUp(e))
   }
@@ -852,7 +850,7 @@ class Game {
       let missedValue = document.getElementById('missed-value')
       scoreValue.innerHTML = this.score
       comboValue.innerHTML = this.maxStreak
-      percentValue.innerHTML = (this.notesHit * 100 / this.totalNotes).toFixed(1) + ' %'
+      percentValue.innerHTML = (this.notesHit * 100 / this.totalNotes).toFixed(1) + '%'
       hitValue.innerHTML = this.notesHit
       missedValue.innerHTML = this.totalNotes - this.notesHit
 
@@ -901,7 +899,8 @@ class Game {
     this.restart = document.getElementById('restart');
     let mute = document.getElementById('mute');
     let unmute = document.getElementById('unmute');
-    
+    let volume = document.getElementById('game-volume')
+    volume.value = this.audio.volume * 100
     this.back = document.getElementById('back');
     let homePage = document.getElementsByClassName('homepage-container')[0]
     let gameView = document.getElementsByClassName('game-view')[0]
@@ -919,6 +918,10 @@ class Game {
       }
       //fade delay
     }, 1500)
+
+    volume.addEventListener('change', (e) => {
+      this.audio.volume = e.target.value / 100
+    })
 
     this.back.addEventListener('click', () => {
       window.removeEventListener('keydown', this.handleKeyDown)
