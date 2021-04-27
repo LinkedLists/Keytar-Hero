@@ -447,6 +447,7 @@ export default class Game {
     let mute = document.getElementById('mute');
     let unmute = document.getElementById('unmute');
     let volume = document.getElementById('game-volume')
+
     this.back = document.getElementById('back');
     let homePage = document.getElementsByClassName('homepage-container')[0]
     let gameView = document.getElementsByClassName('game-view')[0]
@@ -464,7 +465,9 @@ export default class Game {
       }
       //fade delay
     }, 1500)
-
+    let selectMenuVolume = document.getElementById('select-menu-volume')
+    volume.value = selectMenuVolume.value
+    console.log(volume.value)
     volume.addEventListener('change', (e) => {
       this.audio.volume = e.target.value / 100
     })

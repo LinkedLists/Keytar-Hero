@@ -326,9 +326,10 @@ document.addEventListener('DOMContentLoaded', () => {
       selectCircle.classList.add('song-selection-container-closed')
       clearInterval(loop)
       volumeDown()
-      let volume = document.getElementById('game-volume')
-      volume.value = selectMenuVolume.value
+      // console.log(volume.value + "wtf")
       setTimeout(() => {
+        // let volume = document.getElementById('game-volume')
+        // volume.value = selectMenuVolume.value
         volumeUp()
         audio.pause()
         audio.currentTime = 0
