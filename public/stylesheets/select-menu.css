@@ -348,3 +348,7 @@
   z-index: 10;
   transition: 0.7s;
 }
+
+#select-menu-volume::-webkit-slider-runnable-track {
+  /* background-color: #de0b46; */
+}

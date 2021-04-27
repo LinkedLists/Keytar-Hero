@@ -446,7 +446,7 @@ export default class Game {
     let mute = document.getElementById('mute');
     let unmute = document.getElementById('unmute');
     let volume = document.getElementById('game-volume')
-    volume.value = this.audio.volume * 100
+    // volume.value = this.audio.volume * 100
     this.back = document.getElementById('back');
     let homePage = document.getElementsByClassName('homepage-container')[0]
     let gameView = document.getElementsByClassName('game-view')[0]
@@ -483,6 +483,9 @@ export default class Game {
       this.audio.pause()
       this.audio.currentTime = 0
       this.audio.muted = false
+
+      let selectMenuVolume = document.getElementById('select-menu-volume')
+      selectMenuVolume.value = this.audio.volume * 100
       
       clearInterval(this.callGenerateNotes)
       clearTimeout(this.startTimeout)

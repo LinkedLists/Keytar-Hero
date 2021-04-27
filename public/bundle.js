@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectBtn = document.getElementById('selection-back-btn')
   let audio = document.getElementById('audio')
   audio.volume = 0.7
-  let currentVolume = audio.volume
+  // let currentVolume = audio.volume
   let currentPreviewIndex = 0
 
   // carousel wheel elements
@@ -107,10 +107,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let homePage = document.getElementsByClassName('homepage-container')[0]
   let gameView = document.getElementsByClassName('game-view')[0]
   let selectMenuVolume = document.getElementById('select-menu-volume')
-  selectMenuVolume.defaultValue = 70
 
+  selectMenuVolume.defaultValue = 70
+  let currentVolume = selectMenuVolume.value / 100
   selectMenuVolume.addEventListener('change', (e) => {
     audio.volume = e.target.value / 100
+    currentVolume = audio.volume
   })
 
   // open wheel
@@ -391,6 +393,8 @@ document.addEventListener('DOMContentLoaded', () => {
       selectCircle.classList.add('song-selection-container-closed')
       clearInterval(loop)
       volumeDown()
+      let volume = document.getElementById('game-volume')
+      volume.value = selectMenuVolume.value
       setTimeout(() => {
         volumeUp()
         audio.pause()
@@ -900,7 +904,7 @@ class Game {
     let mute = document.getElementById('mute');
     let unmute = document.getElementById('unmute');
     let volume = document.getElementById('game-volume')
-    volume.value = this.audio.volume * 100
+    // volume.value = this.audio.volume * 100
     this.back = document.getElementById('back');
     let homePage = document.getElementsByClassName('homepage-container')[0]
     let gameView = document.getElementsByClassName('game-view')[0]
@@ -937,6 +941,9 @@ class Game {
       this.audio.pause()
       this.audio.currentTime = 0
       this.audio.muted = false
+
+      let selectMenuVolume = document.getElementById('select-menu-volume')
+      selectMenuVolume.value = this.audio.volume * 100
       
       clearInterval(this.callGenerateNotes)
       clearTimeout(this.startTimeout)
