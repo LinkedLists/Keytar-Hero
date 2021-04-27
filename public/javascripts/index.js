@@ -368,6 +368,34 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
 
+  let mute = document.getElementById('carousel-mute');
+  let unmute = document.getElementById('carousel-unmute');
+
+  audio.addEventListener('volumechange', () => {
+    if (audio.muted) {
+      unmute.classList.remove("hidden")
+      mute.classList.add("hidden")
+    } else {
+      mute.classList.remove("hidden")
+      unmute.classList.add("hidden")
+    }
+  })
+
+  mute.addEventListener('click', () => {
+    if (!audio.muted) {
+      audio.muted = true;
+      mute.classList.add("hidden")
+      unmute.classList.remove("hidden")
+    } 
+  });
+  unmute.addEventListener('click', () => {
+    if (audio.muted) {
+      audio.muted = false;
+      unmute.classList.add("hidden")
+      mute.classList.remove("hidden")
+    } 
+  });
+
 
   let zDeg = 235 * 6 / Math.PI
 

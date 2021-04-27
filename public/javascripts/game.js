@@ -465,6 +465,15 @@ export default class Game {
       }
       //fade delay
     }, 1500)
+
+    if (this.audio.muted) {
+      unmute.classList.remove("hidden")
+      mute.classList.add("hidden")
+    } else {
+      mute.classList.remove("hidden")
+      unmute.classList.add("hidden")
+    }
+
     let selectMenuVolume = document.getElementById('select-menu-volume')
     volume.value = selectMenuVolume.value
     console.log(volume.value)
@@ -485,10 +494,9 @@ export default class Game {
       this.isPlaying = false;
       this.audio.pause()
       this.audio.currentTime = 0
-      this.audio.muted = false
+      // this.audio.muted = false
 
-      let selectMenuVolume = document.getElementById('select-menu-volume')
-      selectMenuVolume.value = this.audio.volume * 100
+      selectMenuVolume.value = volume.value
       
       clearInterval(this.callGenerateNotes)
       clearTimeout(this.startTimeout)

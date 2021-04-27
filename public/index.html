@@ -69,10 +69,13 @@
 
           <div class='preview-btn-container'>
             <button class='carousel-wheel-btn game-btns' id='selection-back-btn'>Back</button>
-            <button class='carousel-wheel-btn game-btns' id='select-menu-volume-btn'>
-              <i class="fas fa-volume-up"></i>
+
+            <div class='carousel-wheel-btn game-btns' id='select-menu-volume-btn'>
+              <i class="fas fa-volume-up" id='carousel-mute'></i>
+              <i class="fas fa-volume-off hidden" id='carousel-unmute' ></i>
               <input id='select-menu-volume' type="range" min="0" max="100">
-            </button>
+            </div>
+
             <button class='carousel-wheel-btn game-btns open-modal'>Instructions</button>
           </div>
 
@@ -176,12 +179,15 @@
           <button class="game-btns" id='restart'>Restart</button>
           <button class="game-btns" id='pause'><i class="fas fa-pause"></i></button>
           <button class="game-btns hidden" id='resume'><i class="fas fa-play"></i></button>
-          <button class="game-btns" id='mute'><i class="fas fa-volume-up"></i></button>
-          <button class="game-btns hidden" id='unmute'><i class="fas fa-volume-off"></i></button>
-          <button class="game-btns" id='game-volume-btn'>
-            <i class="fas fa-volume-up"></i>
+          <!-- <button class="game-btns" id='mute'><i class="fas fa-volume-up"></i></button> -->
+          <!-- <button class="game-btns hidden" id='unmute'><i class="fas fa-volume-off"></i></button> -->
+
+          <div class="game-btns" id='game-volume-btn'>
+            <i class="fas fa-volume-up" id='mute'></i>
+            <i class="fas fa-volume-off hidden" id='unmute' ></i>
             <input id='game-volume' type="range" min="0" max="100">
-          </button>
+          </div>
+
         </div>
         <div class='score-wrapper'>
           <div class='score'>Score </div>

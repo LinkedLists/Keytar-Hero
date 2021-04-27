@@ -148,6 +148,10 @@
   width: 13px;
 }
 
+#selection-next-btn:hover:after, #selection-prev-btn:hover:after {
+  border-color: #de0b46;
+}
+
 
 .selection-circle-ul {
   position: absolute;
@@ -365,7 +369,7 @@
   cursor: default;
 }
 
-#select-menu-volume {
+#select-menu-volume, #game-volume {
   cursor: pointer;
 }
 

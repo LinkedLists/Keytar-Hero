@@ -55,7 +55,15 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none!important;
+}
+
+.fas {
+  cursor: pointer;
+}
+
+.fas:hover {
+  text-shadow: 0px 0px 10px #55e2f9;
 }
 
 .fadeOut{
