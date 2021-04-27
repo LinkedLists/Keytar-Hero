@@ -76,9 +76,9 @@
   border: 1px solid black;
   background: black;
   border: 1px solid black;
-  bottom: 0;
+  bottom: 10%;
   right: 8%;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
   position: absolute;
   background: black;
 }
