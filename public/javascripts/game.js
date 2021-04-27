@@ -360,7 +360,8 @@ export default class Game {
 
   firstGenerationNotes() {
     this.generateNotes()
-
+    this.pause.style.background = 'black'
+    this.pause.style.opacity = '1'
     this.pause.addEventListener('click', this.pauseEventListener);
   }
       

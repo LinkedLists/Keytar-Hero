@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let wheelIndex = 0
   let thetaDeg = (360 / carouselWheelLength)
 
+  let linksNav = document.getElementsByClassName('links-container-nav')[0]
   let mainMenu = document.getElementsByClassName('main-menu-container')[0]
   let mainMenuL = document.getElementsByClassName('main-menu-l-container')[0]
   let mainMenuR = document.getElementsByClassName('main-menu-r-container')[0]
@@ -52,6 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     preview.classList.remove('carouselClosed')
     preview.classList.add('carouselOpen')
+
+    linksNav.classList.remove('navOut')
+    linksNav.classList.add('navIn')
 
     cartWheelIn()
     audioPreviewLoop()
@@ -81,6 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     carouselWheel.classList.remove('circleOpen')
     carouselWheel.classList.add('circleClose')
+    
+    linksNav.classList.remove('navIn')
+    linksNav.classList.add('navOut')
 
     mainMenu.classList.remove('hidden')
 

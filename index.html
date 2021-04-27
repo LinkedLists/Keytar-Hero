@@ -13,6 +13,13 @@
 
     <audio id='audio' src="https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Marshmello+Halsey++Be+Kind+Halsey+Lyric+Video.mp3"></audio>
     
+    <!-- <div class="links-container-nav">
+      <a href="https://angel.co/u/kenny-zeng"><img src='./public/assets/angellist2.png' class="link-imgs" /></a>
+      <a href="https://github.com/LinkedLists/js"><img src='./public/assets/github2.png' class="link-imgs" /></a>
+      <a href="https://www.linkedin.com/in/kenny-z-96a742208/"><img src='./public/assets/linkedin2.png' class="link-imgs" /></a>
+    </div> -->
+
+
     <!-- main menu -->
     <div class='homepage-container'>
       <div class='main-menu-container'>
@@ -28,7 +35,7 @@
               <!-- <div class="links-wrapper"> -->
                 <a href="https://angel.co/u/kenny-zeng"><img src='./public/assets/angellist.png' class="link-imgs" /></a>
                 <a href="https://github.com/LinkedLists/js"><img src='./public/assets/github.png' class="link-imgs" /></a>
-                <a href="https://www.linkedin.com/in/kenny-z-96a742208/"><img src='./public/assets/linkedin.png' class="link-imgs" /></a>
+                <a href="https://www.linkedin.com/in/k-z-96a742208/"><img src='./public/assets/linkedin.png' class="link-imgs" /></a>
               <!-- </div> -->
             </div>
           </div>
@@ -36,13 +43,11 @@
       </div>
       <!-- song selection -->
       <div class='song-selection-container-closed hidden'>
-        <!-- <div class='carousel-wheel-btn-container btnClose'> -->
-          <!-- <button class='carousel-wheel-btn' id='selection-back-btn'>back</button> -->
-          <!-- <button class='carousel-wheel-btn' id='selection-next-btn'></button> -->
-          <!-- <button class='carousel-wheel-btn' id='selection-prev-btn'></button> -->
-        <!-- </div> -->
-        
-
+        <div class="links-container-nav navOut">
+          <a href="https://angel.co/u/kenny-zeng"><img src='./public/assets/angellist2.png' class="link-imgs" /></a>
+          <a href="https://github.com/LinkedLists/js"><img src='./public/assets/github2.png' class="link-imgs" /></a>
+          <a href="https://www.linkedin.com/in/k-z-96a742208/"><img src='./public/assets/linkedin2.png' class="link-imgs" /></a>
+        </div>
         <div class='selection-circle circleClose'>
           <div class='blackout'></div>
           <ul class='selection-circle-ul'>
@@ -55,8 +60,6 @@
           </ul>
         </div>
 
-
-
         <div class='preview-carousel-container carouselClosed'>
           <div class='carousel-wheel-btn-container '>
             <button class='carousel-wheel-btn' id='selection-next-btn'></button>
@@ -65,7 +68,7 @@
 
           <div class='preview-btn-container'>
             <button class='carousel-wheel-btn game-btns' id='selection-back-btn'>Back</button>
-            <button class='carousel-wheel-btn game-btns'>
+            <button class='carousel-wheel-btn game-btns' id='select-menu-volume-btn'>
               Volume
               <input id='select-menu-volume' type="range" min="0" max="100">
             </button>
@@ -136,9 +139,6 @@
 
           </div>
         </div>
-
-
-
       </div>
     </div>
 
@@ -177,8 +177,9 @@
           <button class="game-btns hidden" id='resume'>Resume</button>
           <button class="game-btns" id='mute'>Mute</button>
           <button class="game-btns hidden" id='unmute'>Unmute</button>
-          <button class="game-btns">
+          <button class="game-btns" id='game-volume-btn'>
             Volume
+            <i class="fas fa-volume-up"></i>
             <input id='game-volume' type="range" min="0" max="100">
           </button>
         </div>
@@ -197,13 +198,11 @@
             <div class='streak' id='max-streak'></div>
           </div>
         </div>
-        <div class="links-container">
-          <!-- <div class="links-wrapper"> -->
-            <a href="https://angel.co/u/kenny-zeng"><img src='./public/assets/angellist.png' class="link-imgs" /></a>
-            <a href="https://github.com/LinkedLists/js"><img src='./public/assets/github.png' class="link-imgs" /></a>
-            <a href="https://www.linkedin.com/in/kenny-z-96a742208/"><img src='./public/assets/linkedin.png' class="link-imgs" /></a>
-          <!-- </div> -->
-        </div>
+        <!-- <div class="links-container">
+            <a href="https://angel.co/u/kenny-zeng"><img src='./public/assets/angellist2.png' class="link-imgs" /></a>
+            <a href="https://github.com/LinkedLists/js"><img src='./public/assets/github2.png' class="link-imgs" /></a>
+            <a href="https://www.linkedin.com/in/kenny-z-96a742208/"><img src='./public/assets/linkedin2.png' class="link-imgs" /></a>
+        </div> -->
       </div>
     </div>
 
