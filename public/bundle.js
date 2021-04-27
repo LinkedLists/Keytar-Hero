@@ -70,8 +70,8 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__game__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__wheel__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modal__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__wheel__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modal__ = __webpack_require__(17);
 
 
 
@@ -547,26 +547,26 @@ class Game {
     if (songId === 'song1') {
       this.currentSong = __WEBPACK_IMPORTED_MODULE_2__song_song1__["a" /* song1 */]
       this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song1__["a" /* song1 */].notes.slice()
-      this.totalNotes = __WEBPACK_IMPORTED_MODULE_2__song_song1__["a" /* song1 */].notes.length
+      this.totalNotes = __WEBPACK_IMPORTED_MODULE_2__song_song1__["a" /* song1 */].totalNotes
       this.animate();
       this.playSong();
     }
     // else if (songId === 'song2') {
     //   this.allNotes = song2.notes.slice()
-    //   this.totalNotes = song2.notes.length
+    //   this.totalNotes = song2.totalNotes
     //   this.animate();
     //   this.playSong();
     // }
     // else if (songId === 'song3') {
     //   this.allNotes = song3.notes.slice()
-    //   this.totalNotes = song3.notes.length
+    //   this.totalNotes = song3.totalNotes
     //   this.animate();
     //   this.playSong();
     // }
     else if (songId === 'song4') {
       this.currentSong = __WEBPACK_IMPORTED_MODULE_3__song_song4__["a" /* song4 */]
       this.allNotes = __WEBPACK_IMPORTED_MODULE_3__song_song4__["a" /* song4 */].notes.slice()
-      this.totalNotes = __WEBPACK_IMPORTED_MODULE_3__song_song4__["a" /* song4 */].notes.length
+      this.totalNotes = __WEBPACK_IMPORTED_MODULE_3__song_song4__["a" /* song4 */].totalNotes
       this.animate();
       this.playSong();
     }
@@ -665,10 +665,10 @@ class Game {
             this.targets[x].successfulHit = true
           } else {
             this.streak += 1;
+            this.notesHit += 1
             if (this.streak > this.maxStreak) this.maxStreak = this.streak;
             this.targets[x].successfulHit = true
             this.score += 20;
-            this.notesHit += 1
             this.visibleNotes[x].shift();
             setTimeout(() => {this.targets[x].successfulHit = false}, 80)
           }
@@ -1296,11 +1296,14 @@ const CONSTANTS = {
   pos5: 510,
 }
 
+
+
 const song1 = {
   notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__be_kind_verse_1__["a" /* verse_1 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_3__be_kind_verse_2__["a" /* verse_2 */], __WEBPACK_IMPORTED_MODULE_1__be_kind_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_4__be_kind_chorus__["a" /* chorus */], __WEBPACK_IMPORTED_MODULE_2__be_kind_bridge_2__["a" /* bridge_2 */], __WEBPACK_IMPORTED_MODULE_5__be_kind_chorus_2__["a" /* chorus_2 */], __WEBPACK_IMPORTED_MODULE_6__be_kind_ending__["a" /* ending */]),
   introDelay: 3604,
   tempo: 319,
-  dy: 8
+  dy: 8,
+  totalNotes: 360
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = song1;
 
@@ -1908,8 +1911,8 @@ const ending = [
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jojo_intro__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__jojo_verse1__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__jojo_bridge__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__jojo_verse1__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__jojo_bridge__ = __webpack_require__(15);
 
 
 
@@ -1926,9 +1929,9 @@ const CONSTANTS = {
 const song4 = {
   notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__jojo_intro__["a" /* intro */], __WEBPACK_IMPORTED_MODULE_1__jojo_verse1__["a" /* verse1 */], __WEBPACK_IMPORTED_MODULE_2__jojo_bridge__["a" /* bridge */]),
   introDelay: 643,
-  // tempo: 222
   tempo: 100,
-  dy: 9
+  dy: 9,
+  totalNotes: 359
 
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = song4;
@@ -1963,7 +1966,6 @@ const intro = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { kill: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
@@ -1983,7 +1985,6 @@ const intro = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { kill: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
@@ -2004,7 +2005,6 @@ const intro = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { kill: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
@@ -2023,7 +2023,6 @@ const intro = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { kill: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
@@ -2042,7 +2041,6 @@ const intro = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { kill: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
@@ -2061,7 +2059,6 @@ const intro = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { kill: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
@@ -2080,7 +2077,6 @@ const intro = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { kill: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
@@ -2113,7 +2109,6 @@ const intro = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { kill: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
@@ -2132,7 +2127,6 @@ const intro = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { kill: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
@@ -2153,7 +2147,6 @@ const intro = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { kill: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
@@ -2173,7 +2166,6 @@ const intro = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { kill: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
@@ -2194,7 +2186,6 @@ const intro = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { kill: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
@@ -2213,7 +2204,6 @@ const intro = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { kill: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
@@ -2232,7 +2222,6 @@ const intro = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { kill: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
@@ -2256,118 +2245,6 @@ const intro = [
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-///USE THIS LATER MAYBE
-class Wheel {
-  constructor() {
-    // carousel wheel elements
-    this.wheelNext = document.getElementById('selection-next-btn')
-    this.wheelPrev = document.getElementById('selection-prev-btn')
-    this.carouselWheel = document.getElementsByClassName('selection-circle')[0]
-    this.selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
-    this.songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
-      // make first item selectable
-      this.songCarouselWheelItems[0].classList.add("selectable")
-      this.carouselWheelLength = this.songCarouselWheelItems.length
-    this.carouselPositionsSet = false
-
-    this.wheelIndex = 0
-    this.thetaDeg = (360 / this.carouselWheelLength)
-    this.thetaRad = (Math.PI / 180.0) * (360 / this.carouselWheelLength)
-
-    this.setCarouselPositions = this.setCarouselPositions.bind(this)
-    this.addListeners = this.addListeners.bind(this)
-    this.addListeners()
-  }
-
-  setCarouselPositions() {
-    let centerx = parseFloat(getComputedStyle(this.songCarouselWheelItems[0]).left) 
-    let centery = parseFloat(getComputedStyle(this.songCarouselWheelItems[0]).top) 
-
-    this.songCarouselWheelItems.forEach( (songItem, i) => {
-      songItem.style.left = `${centerx + 200 * Math.cos(this.thetaRad * (i))}px`
-      songItem.style.top = `${centery - 200 * Math.sin(this.thetaRad * (i))}px`
-      songItem.style.transform = `rotate(${-1.0 * i * 360 / this.carouselWheelLength}deg)`
-    })
-  }
-
-  addListeners() {
-    this.wheelNext.addEventListener('click', () => {
-      this.removeSelectable()
-      this.wheelIndex -= 1
-      this.selectable()
-      this.carouselWheel.style.transform = `rotate(${-1.0 * this.thetaDeg * this.wheelIndex}deg)`
-    })
-  
-    this.wheelPrev.addEventListener('click', () => {
-      this.removeSelectable()
-      this.wheelIndex += 1
-      this.selectable()
-      this.carouselWheel.style.transform = `rotate(${-1.0 * this.thetaDeg * this.wheelIndex}deg)`
-    })
-  }
-
-  //make current wheel item clickable
-  selectable() {
-    let index = this.wheelIndex % this.carouselWheelLength
-    if (index < 0) {
-      index *= -1
-    }
-    else if (index > 0) {
-      index = 6 - index
-    }
-    this.songCarouselWheelItems[index].classList.add("selectable")
-  }
-  //make prev item nonclickable
-  removeSelectable() {
-    let index = this.wheelIndex % this.carouselWheelLength 
-    if (index <= 0) {
-      index *= -1
-      this.songCarouselWheelItems[index].classList.remove("selectable")
-    } else {
-      this.songCarouselWheelItems[6 - index].classList.remove("selectable")
-    }
-  }
-}
-/* unused harmony export default */
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const modalHandler = () => {
-  // const openBtn = document.getElementById("open-modal");
-  const openBtns = document.querySelectorAll(".open-modal");
-  const modalScreen = document.getElementsByClassName("modal-screen")[0];
-  const modal = document.getElementsByClassName("modal")[0];
-  const closeBtn = document.getElementById("modal-close-btn");
-
-  modalScreen.onclick = e => {
-    if (e.target === modalScreen) {
-      modal.classList.remove("open")
-    }
-  }
-  
-  openBtns.forEach( openBtn => {
-    openBtn.onclick = e => {
-        modal.classList.add('open')
-    }
-  })
-
-
-  closeBtn.onclick = e => {
-    modal.classList.remove('open')
-}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = modalHandler;
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 const CONSTANTS = {
   pos1: 30,
   pos2: 150,
@@ -2379,7 +2256,6 @@ const CONSTANTS = {
 const verse1 = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
@@ -2392,7 +2268,6 @@ const verse1 = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
@@ -2401,14 +2276,12 @@ const verse1 = [
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { tempo: 1, hold: 0, chain: false, rest: true },
 
 ///////
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
@@ -2421,7 +2294,6 @@ const verse1 = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
@@ -2430,14 +2302,12 @@ const verse1 = [
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { tempo: 1, hold: 0, chain: false, rest: true },
 
 ///////
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
@@ -2450,7 +2320,6 @@ const verse1 = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
@@ -2459,14 +2328,12 @@ const verse1 = [
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { tempo: 1, hold: 0, chain: false, rest: true },
 
 ///////
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
@@ -2479,7 +2346,6 @@ const verse1 = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
@@ -2488,14 +2354,12 @@ const verse1 = [
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { tempo: 1, hold: 0, chain: false, rest: true },
 
 ///////
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
@@ -2508,7 +2372,6 @@ const verse1 = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
@@ -2517,14 +2380,12 @@ const verse1 = [
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { tempo: 1, hold: 0, chain: false, rest: true },
 
 ///////
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
@@ -2537,7 +2398,6 @@ const verse1 = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
@@ -2546,14 +2406,12 @@ const verse1 = [
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { tempo: 1, hold: 0, chain: false, rest: true },
 
 ///////
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
@@ -2566,7 +2424,6 @@ const verse1 = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
@@ -2575,14 +2432,12 @@ const verse1 = [
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { tempo: 2, hold: 0, chain: false, rest: true },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { tempo: 1, hold: 0, chain: false, rest: true },
 
 ///////
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
@@ -2595,7 +2450,6 @@ const verse1 = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
@@ -2613,7 +2467,7 @@ const verse1 = [
 
 
 /***/ }),
-/* 17 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2721,6 +2575,118 @@ const bridge = [
   
 ]
 /* harmony export (immutable) */ __webpack_exports__["a"] = bridge;
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+///USE THIS LATER MAYBE
+class Wheel {
+  constructor() {
+    // carousel wheel elements
+    this.wheelNext = document.getElementById('selection-next-btn')
+    this.wheelPrev = document.getElementById('selection-prev-btn')
+    this.carouselWheel = document.getElementsByClassName('selection-circle')[0]
+    this.selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
+    this.songCarouselWheelItems = document.querySelectorAll('.song-carousel-item')
+      // make first item selectable
+      this.songCarouselWheelItems[0].classList.add("selectable")
+      this.carouselWheelLength = this.songCarouselWheelItems.length
+    this.carouselPositionsSet = false
+
+    this.wheelIndex = 0
+    this.thetaDeg = (360 / this.carouselWheelLength)
+    this.thetaRad = (Math.PI / 180.0) * (360 / this.carouselWheelLength)
+
+    this.setCarouselPositions = this.setCarouselPositions.bind(this)
+    this.addListeners = this.addListeners.bind(this)
+    this.addListeners()
+  }
+
+  setCarouselPositions() {
+    let centerx = parseFloat(getComputedStyle(this.songCarouselWheelItems[0]).left) 
+    let centery = parseFloat(getComputedStyle(this.songCarouselWheelItems[0]).top) 
+
+    this.songCarouselWheelItems.forEach( (songItem, i) => {
+      songItem.style.left = `${centerx + 200 * Math.cos(this.thetaRad * (i))}px`
+      songItem.style.top = `${centery - 200 * Math.sin(this.thetaRad * (i))}px`
+      songItem.style.transform = `rotate(${-1.0 * i * 360 / this.carouselWheelLength}deg)`
+    })
+  }
+
+  addListeners() {
+    this.wheelNext.addEventListener('click', () => {
+      this.removeSelectable()
+      this.wheelIndex -= 1
+      this.selectable()
+      this.carouselWheel.style.transform = `rotate(${-1.0 * this.thetaDeg * this.wheelIndex}deg)`
+    })
+  
+    this.wheelPrev.addEventListener('click', () => {
+      this.removeSelectable()
+      this.wheelIndex += 1
+      this.selectable()
+      this.carouselWheel.style.transform = `rotate(${-1.0 * this.thetaDeg * this.wheelIndex}deg)`
+    })
+  }
+
+  //make current wheel item clickable
+  selectable() {
+    let index = this.wheelIndex % this.carouselWheelLength
+    if (index < 0) {
+      index *= -1
+    }
+    else if (index > 0) {
+      index = 6 - index
+    }
+    this.songCarouselWheelItems[index].classList.add("selectable")
+  }
+  //make prev item nonclickable
+  removeSelectable() {
+    let index = this.wheelIndex % this.carouselWheelLength 
+    if (index <= 0) {
+      index *= -1
+      this.songCarouselWheelItems[index].classList.remove("selectable")
+    } else {
+      this.songCarouselWheelItems[6 - index].classList.remove("selectable")
+    }
+  }
+}
+/* unused harmony export default */
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const modalHandler = () => {
+  // const openBtn = document.getElementById("open-modal");
+  const openBtns = document.querySelectorAll(".open-modal");
+  const modalScreen = document.getElementsByClassName("modal-screen")[0];
+  const modal = document.getElementsByClassName("modal")[0];
+  const closeBtn = document.getElementById("modal-close-btn");
+
+  modalScreen.onclick = e => {
+    if (e.target === modalScreen) {
+      modal.classList.remove("open")
+    }
+  }
+  
+  openBtns.forEach( openBtn => {
+    openBtn.onclick = e => {
+        modal.classList.add('open')
+    }
+  })
+
+
+  closeBtn.onclick = e => {
+    modal.classList.remove('open')
+}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = modalHandler;
 
 
 /***/ })

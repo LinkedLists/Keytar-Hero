@@ -82,26 +82,26 @@ export default class Game {
     if (songId === 'song1') {
       this.currentSong = song1
       this.allNotes = song1.notes.slice()
-      this.totalNotes = song1.notes.length
+      this.totalNotes = song1.totalNotes
       this.animate();
       this.playSong();
     }
     // else if (songId === 'song2') {
     //   this.allNotes = song2.notes.slice()
-    //   this.totalNotes = song2.notes.length
+    //   this.totalNotes = song2.totalNotes
     //   this.animate();
     //   this.playSong();
     // }
     // else if (songId === 'song3') {
     //   this.allNotes = song3.notes.slice()
-    //   this.totalNotes = song3.notes.length
+    //   this.totalNotes = song3.totalNotes
     //   this.animate();
     //   this.playSong();
     // }
     else if (songId === 'song4') {
       this.currentSong = song4
       this.allNotes = song4.notes.slice()
-      this.totalNotes = song4.notes.length
+      this.totalNotes = song4.totalNotes
       this.animate();
       this.playSong();
     }
@@ -200,10 +200,10 @@ export default class Game {
             this.targets[x].successfulHit = true
           } else {
             this.streak += 1;
+            this.notesHit += 1
             if (this.streak > this.maxStreak) this.maxStreak = this.streak;
             this.targets[x].successfulHit = true
             this.score += 20;
-            this.notesHit += 1
             this.visibleNotes[x].shift();
             setTimeout(() => {this.targets[x].successfulHit = false}, 80)
           }
