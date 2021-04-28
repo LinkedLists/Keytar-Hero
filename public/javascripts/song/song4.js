@@ -1,6 +1,7 @@
 import { intro } from './jojo/intro'
 import { verse1 } from './jojo/verse1'
 import { bridge } from './jojo/bridge'
+import { bridge2 } from './jojo/bridge2'
 
 
 const CONSTANTS = {
@@ -12,7 +13,7 @@ const CONSTANTS = {
 }
 
 export const song4 = {
-  notes: [].concat(intro, verse1, bridge),
+  notes: [].concat(intro, verse1, bridge, bridge2),
   introDelay: 643,
   tempo: 100,
   dy: 9,
