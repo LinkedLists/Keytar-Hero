@@ -196,7 +196,7 @@
 .preview-carousel {
   width: 450px;
   height: 450px;
-
+  z-index: 200;
   position: absolute;
   top: 0;
   bottom: 0;

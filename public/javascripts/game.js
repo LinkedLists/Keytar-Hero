@@ -2,6 +2,7 @@ import Note from './note'
 import Target from './target'
 import { song1 } from './song/song1'
 import { song4 } from './song/song4'
+import { song5 } from './song/song5'
 
 export default class Game {
   constructor(canvas, songId) {
@@ -102,6 +103,13 @@ export default class Game {
       this.currentSong = song4
       this.allNotes = song4.notes.slice()
       this.totalNotes = song4.totalNotes
+      this.animate();
+      this.playSong();
+    }
+    else if (songId === 'song5') {
+      this.currentSong = song5
+      this.allNotes = song5.notes.slice()
+      this.totalNotes = song5.totalNotes
       this.animate();
       this.playSong();
     }
