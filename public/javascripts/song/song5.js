@@ -15,11 +15,11 @@ const CONSTANTS = {
 }
 
 export const song5 = {
-  notes: [].concat(bridge, ),
-  // notes: [].concat(bridge2),
+  notes: [].concat(intro, verse1, bridge, bridge2, outro),
+  // notes: [].concat(bridge2, outro),
   introDelay: 643,
   tempo: 100,
   dy: 9,
-  totalNotes: 483
+  totalNotes: 250
 
 }

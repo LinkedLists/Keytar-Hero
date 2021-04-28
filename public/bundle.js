@@ -1984,7 +1984,7 @@ const song4 = {
   introDelay: 643,
   tempo: 100,
   dy: 9,
-  totalNotes: 483
+  totalNotes: 487
 
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = song4;
@@ -2822,54 +2822,60 @@ const bridge2 = [
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 2, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: true },
   { tempo: 4, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 3, chain: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 3, chain: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 2, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 2, chain: true },
   { tempo: 7, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 3, chain: false },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: false },
   { tempo: 7, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 3, chain: false },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 2, chain: false },
   { tempo: 7, hold: 0, chain: false, rest: true },
 
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
   { tempo: 3, hold: 0, chain: false, rest: true },
 
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 4, chain: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 4, chain: true },
-  { tempo: 10, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 5, chain: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 5, chain: true },
-  { tempo: 13, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 2, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: true },
+  { tempo: 9, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 8, hold: 0, chain: false, rest: true },
 
   //////
 
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 2, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: true },
   { tempo: 4, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 3, chain: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 3, chain: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 2, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 2, chain: true },
   { tempo: 7, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 3, chain: false },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: false },
   { tempo: 7, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 3, chain: false },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 2, chain: false },
   { tempo: 7, hold: 0, chain: false, rest: true },
 
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
   { tempo: 3, hold: 0, chain: false, rest: true },
 
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 4, chain: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 4, chain: true },
-  { tempo: 10, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 5, chain: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 5, chain: true },
-  { tempo: 14, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 2, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: true },
+  { tempo: 9, hold: 0, chain: false, rest: true },
 
-  //////
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 10, hold: 0, chain: false, rest: true },
 
 ]
 /* harmony export (immutable) */ __webpack_exports__["a"] = bridge2;
@@ -2902,12 +2908,12 @@ const CONSTANTS = {
 }
 
 const song5 = {
-  notes: [].concat(__WEBPACK_IMPORTED_MODULE_2__jojo_easy_bridge__["a" /* bridge */], ),
-  // notes: [].concat(bridge2),
+  notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__jojo_easy_intro__["a" /* intro */], __WEBPACK_IMPORTED_MODULE_1__jojo_easy_verse1__["a" /* verse1 */], __WEBPACK_IMPORTED_MODULE_2__jojo_easy_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__jojo_easy_bridge2__["a" /* bridge2 */], __WEBPACK_IMPORTED_MODULE_4__jojo_easy_outro__["a" /* outro */]),
+  // notes: [].concat(bridge2, outro),
   introDelay: 643,
   tempo: 100,
   dy: 9,
-  totalNotes: 483
+  totalNotes: 250
 
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = song5;
@@ -3098,7 +3104,7 @@ const intro = [
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
   { tempo: 8, hold: 0, chain: false, rest: true },
 ]
-/* unused harmony export intro */
+/* harmony export (immutable) */ __webpack_exports__["a"] = intro;
 
 
 /***/ }),
@@ -3115,216 +3121,76 @@ const CONSTANTS = {
 }
 
 const verse1 = [
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 4, chain: false },
+  { tempo: 14, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 3, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 3, chain: true },
+  { tempo: 8, hold: 0, chain: false, rest: true },
 
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: false },
   { tempo: 1, hold: 0, chain: false, rest: true },
-
-///////
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
   { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 10, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 10, chain: true },
+  { tempo: 32, hold: 0, chain: false, rest: true },
+  ///////
 
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
+  
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 4, chain: false },
+  { tempo: 14, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 3, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 3, chain: true },
+  { tempo: 8, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: false },
   { tempo: 1, hold: 0, chain: false, rest: true },
-
-///////
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
   { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 10, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 10, chain: true },
+  { tempo: 32, hold: 0, chain: false, rest: true },
+  ///////
 
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
+  
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 4, chain: false },
+  { tempo: 14, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 3, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 3, chain: true },
+  { tempo: 8, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: false },
   { tempo: 1, hold: 0, chain: false, rest: true },
-
-///////
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
   { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 10, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 10, chain: true },
+  { tempo: 32, hold: 0, chain: false, rest: true },
+  ///////
 
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
+  
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 4, chain: false },
+  { tempo: 14, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 3, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 3, chain: true },
+  { tempo: 8, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: false },
   { tempo: 1, hold: 0, chain: false, rest: true },
-
-///////
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { tempo: 1, hold: 0, chain: false, rest: true },
-
-///////
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { tempo: 1, hold: 0, chain: false, rest: true },
-
-///////
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { tempo: 1, hold: 0, chain: false, rest: true },
-
-///////
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-
   { tempo: 2, hold: 0, chain: false, rest: true },
 
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 10, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 10, chain: true },
+  { tempo: 32, hold: 0, chain: false, rest: true },
+  ///////
 
-///////
-
+  
 ]
-/* unused harmony export verse1 */
+/* harmony export (immutable) */ __webpack_exports__["a"] = verse1;
 
 
 /***/ }),
@@ -3350,21 +3216,14 @@ const bridge = [
   { tempo: 4, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 5, hold: 0, chain: false, rest: true },
+  { tempo: 6, hold: 0, chain: false, rest: true },
 
-  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  // { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-
-  // { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: false },
   { tempo: 1, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+
   { tempo: 6, hold: 0, chain: false, rest: true },
 
   /////////////
@@ -3378,21 +3237,15 @@ const bridge = [
   { tempo: 4, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 5, hold: 0, chain: false, rest: true },
+  { tempo: 6, hold: 0, chain: false, rest: true },
 
-  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  // { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
-  // { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: false },
   { tempo: 1, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+
   { tempo: 6, hold: 0, chain: false, rest: true },
   ////////
 
@@ -3405,21 +3258,15 @@ const bridge = [
   { tempo: 4, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 5, hold: 0, chain: false, rest: true },
+  { tempo: 6, hold: 0, chain: false, rest: true },
 
-  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
-  // { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
-  // { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: false },
   { tempo: 1, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
   { tempo: 2, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
-  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+
   { tempo: 6, hold: 0, chain: false, rest: true },
 
   
@@ -3454,10 +3301,10 @@ const bridge2 = [
 
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
+  { tempo: 3, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
+  { tempo: 3, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
   { tempo: 4, hold: 0, chain: false, rest: true },
@@ -3465,57 +3312,65 @@ const bridge2 = [
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 2, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: true },
   { tempo: 4, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 3, chain: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 3, chain: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 2, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 2, chain: true },
   { tempo: 7, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 3, chain: false },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: false },
   { tempo: 7, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 3, chain: false },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 2, chain: false },
   { tempo: 7, hold: 0, chain: false, rest: true },
 
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
   { tempo: 3, hold: 0, chain: false, rest: true },
 
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 4, chain: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 4, chain: true },
-  { tempo: 10, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 5, chain: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 5, chain: true },
-  { tempo: 13, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 2, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: true },
+  { tempo: 9, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 8, hold: 0, chain: false, rest: true },
 
   //////
 
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 2, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: true },
   { tempo: 4, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 3, chain: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 3, chain: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 2, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 2, chain: true },
   { tempo: 7, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 3, chain: false },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: false },
   { tempo: 7, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 3, chain: false },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 2, chain: false },
   { tempo: 7, hold: 0, chain: false, rest: true },
 
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
   { tempo: 3, hold: 0, chain: false, rest: true },
 
-  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 4, chain: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 4, chain: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 2, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 2, chain: true },
+  { tempo: 9, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
   { tempo: 10, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 5, chain: true },
-  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 5, chain: true },
-  { tempo: 14, hold: 0, chain: false, rest: true },
 
   //////
 
 ]
-/* unused harmony export bridge2 */
+/* harmony export (immutable) */ __webpack_exports__["a"] = bridge2;
 
 
 /***/ }),
@@ -3617,7 +3472,7 @@ const outro = [
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 2, hold: 0, chain: false },
   { tempo: 8, hold: 0, chain: false, rest: true },
 ]
-/* unused harmony export outro */
+/* harmony export (immutable) */ __webpack_exports__["a"] = outro;
 
 
 /***/ }),
