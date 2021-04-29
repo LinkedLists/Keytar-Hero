@@ -491,8 +491,10 @@ document.addEventListener('DOMContentLoaded', () => {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__note__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__target__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__song_song1__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__song_song4__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__song_song5__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__song_song2__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__song_song4__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__song_song5__ = __webpack_require__(18);
+
 
 
 
@@ -582,12 +584,13 @@ class Game {
       this.animate();
       this.playSong();
     }
-    // else if (songId === 'song2') {
-    //   this.allNotes = song2.notes.slice()
-    //   this.totalNotes = song2.totalNotes
-    //   this.animate();
-    //   this.playSong();
-    // }
+    else if (songId === 'song2') {
+      this.currentSong = __WEBPACK_IMPORTED_MODULE_3__song_song2__["a" /* song2 */]
+      this.allNotes = __WEBPACK_IMPORTED_MODULE_3__song_song2__["a" /* song2 */].notes.slice()
+      this.totalNotes = __WEBPACK_IMPORTED_MODULE_3__song_song2__["a" /* song2 */].totalNotes
+      this.animate();
+      this.playSong();
+    }
     // else if (songId === 'song3') {
     //   this.allNotes = song3.notes.slice()
     //   this.totalNotes = song3.totalNotes
@@ -595,16 +598,16 @@ class Game {
     //   this.playSong();
     // }
     else if (songId === 'song4') {
-      this.currentSong = __WEBPACK_IMPORTED_MODULE_3__song_song4__["a" /* song4 */]
-      this.allNotes = __WEBPACK_IMPORTED_MODULE_3__song_song4__["a" /* song4 */].notes.slice()
-      this.totalNotes = __WEBPACK_IMPORTED_MODULE_3__song_song4__["a" /* song4 */].totalNotes
+      this.currentSong = __WEBPACK_IMPORTED_MODULE_4__song_song4__["a" /* song4 */]
+      this.allNotes = __WEBPACK_IMPORTED_MODULE_4__song_song4__["a" /* song4 */].notes.slice()
+      this.totalNotes = __WEBPACK_IMPORTED_MODULE_4__song_song4__["a" /* song4 */].totalNotes
       this.animate();
       this.playSong();
     }
     else if (songId === 'song5') {
-      this.currentSong = __WEBPACK_IMPORTED_MODULE_4__song_song5__["a" /* song5 */]
-      this.allNotes = __WEBPACK_IMPORTED_MODULE_4__song_song5__["a" /* song5 */].notes.slice()
-      this.totalNotes = __WEBPACK_IMPORTED_MODULE_4__song_song5__["a" /* song5 */].totalNotes
+      this.currentSong = __WEBPACK_IMPORTED_MODULE_5__song_song5__["a" /* song5 */]
+      this.allNotes = __WEBPACK_IMPORTED_MODULE_5__song_song5__["a" /* song5 */].notes.slice()
+      this.totalNotes = __WEBPACK_IMPORTED_MODULE_5__song_song5__["a" /* song5 */].totalNotes
       this.animate();
       this.playSong();
     }
@@ -3585,6 +3588,314 @@ const modalHandler = () => {
 }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = modalHandler;
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__evangelion_intro__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__evangelion_verse1__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__evangelion_outro__ = __webpack_require__(29);
+
+
+
+
+
+const CONSTANTS = {
+  pos1: 30,
+  pos2: 150,
+  pos3: 270,
+  pos4: 390,
+  pos5: 510,
+}
+
+
+
+const song2 = {
+  notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__evangelion_intro__["a" /* intro */], __WEBPACK_IMPORTED_MODULE_1__evangelion_verse1__["a" /* verse1 */]),
+  introDelay: 12770,
+  tempo: 156,
+  dy: 8,
+  totalNotes: 234
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = song2;
+
+
+
+
+
+/***/ }),
+/* 27 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const CONSTANTS = {
+  pos1: 30,
+  pos2: 150,
+  pos3: 270,
+  pos4: 390,
+  pos5: 510,
+}
+
+const intro = [
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+
+  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: true },
+  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+
+  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
+
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 2, hold: 0, chain: false },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 2, hold: 0, chain: false },
+  /////////
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 2, hold: 0, chain: false },
+
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+
+
+
+]
+/* harmony export (immutable) */ __webpack_exports__["a"] = intro;
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const CONSTANTS = {
+  pos1: 30,
+  pos2: 150,
+  pos3: 270,
+  pos4: 390,
+  pos5: 510,
+}
+
+
+const verse1 = [
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 6, chain: false },
+  { tempo: 7, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 6, chain: false },
+]
+/* harmony export (immutable) */ __webpack_exports__["a"] = verse1;
+
+
+/***/ }),
+/* 29 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const CONSTANTS = {
+  pos1: 30,
+  pos2: 150,
+  pos3: 270,
+  pos4: 390,
+  pos5: 510,
+}
+
+const intro = [
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+
+  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: true },
+  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+
+  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
+
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 2, hold: 0, chain: false },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 2, hold: 0, chain: false },
+  /////////
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 2, hold: 0, chain: false },
+
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+
+
+  //////////////
+
+
+
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+
+  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: true },
+  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+
+  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
+
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 2, hold: 0, chain: false },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 2, hold: 0, chain: false },
+  /////////
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 2, hold: 0, chain: false },
+
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+
+
+
+]
+/* unused harmony export intro */
 
 
 /***/ })

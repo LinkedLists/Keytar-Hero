@@ -1,6 +1,7 @@
 import Note from './note'
 import Target from './target'
 import { song1 } from './song/song1'
+import { song2 } from './song/song2'
 import { song4 } from './song/song4'
 import { song5 } from './song/song5'
 
@@ -87,12 +88,13 @@ export default class Game {
       this.animate();
       this.playSong();
     }
-    // else if (songId === 'song2') {
-    //   this.allNotes = song2.notes.slice()
-    //   this.totalNotes = song2.totalNotes
-    //   this.animate();
-    //   this.playSong();
-    // }
+    else if (songId === 'song2') {
+      this.currentSong = song2
+      this.allNotes = song2.notes.slice()
+      this.totalNotes = song2.totalNotes
+      this.animate();
+      this.playSong();
+    }
     // else if (songId === 'song3') {
     //   this.allNotes = song3.notes.slice()
     //   this.totalNotes = song3.totalNotes
