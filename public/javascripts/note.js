@@ -9,8 +9,6 @@ export default class Note {
     this.color = color;
     this.originalColor;
     this.holdFlag = false;
-    // this.dy = 8;
-
 
     this.generateNote = this.generateNote.bind(this);
     this.generateHoldingNote = this.generateHoldingNote.bind(this);

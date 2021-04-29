@@ -79,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectBtn = document.getElementById('selection-back-btn')
   let audio = document.getElementById('audio')
   audio.volume = 0.6
-  // let currentVolume = audio.volume
   let currentPreviewIndex = 0
 
   // carousel wheel elements
@@ -286,7 +285,6 @@ document.addEventListener('DOMContentLoaded', () => {
     "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+JoJo+Part+5+OST++Il+vento+doro+Improved+MET+Ver.mp3",
     "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Breaking+the+Law.mp3",
     "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+The+Weeknd++Save+Your+Tears+Audio.mp3",
-    // "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Ariana+Grande++positions+Lyrics.mp3",
   ]
 
   let loop
@@ -369,7 +367,6 @@ document.addEventListener('DOMContentLoaded', () => {
       songCarouselWheelItems[index].classList.add("selectable")
       previewCarouselImg[index].classList.add("selectable-preview")
     }, 500)
-    // audioPreview(index)
     audioPreviewLoop(index)
   }
 
@@ -391,8 +388,6 @@ document.addEventListener('DOMContentLoaded', () => {
     previewCarouselImg[index].classList.remove("selectable-preview")
     volumeDown()
   }
-
-  // let game = new Game(canvas)
 
   //play song
   const canvas = document.getElementById('canvas');
@@ -1143,8 +1138,6 @@ class Note {
     this.color = color;
     this.originalColor;
     this.holdFlag = false;
-    // this.dy = 8;
-
 
     this.generateNote = this.generateNote.bind(this);
     this.generateHoldingNote = this.generateHoldingNote.bind(this);

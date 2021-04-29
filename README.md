@@ -1,11 +1,21 @@
 # Keytar Hero
 [Live](https://linkedlists.github.io/Keytar-Hero/)
 
-Keytar Hero is a Javascript and HTML Canvas game that imitates Guitar Hero. Players play through a song by timing the correct keypresses for each note at the right time.
+## Description
+<img src='public/assets/home.gif'/>
+<img src='public/assets/home2.gif'/>
+
+Keytar Hero is a Javascript and HTML Canvas music and rhythm game that is inspired by Guitar Hero. Players play through a song by timing the correct keypresses for each note at the right time.
+
+<img src='public/assets/menu.jpg'/>
 
 ## Features
 * Instructions modal
 * Option to mute or change the volume of the song
 * Play the game by timing notes that correspond to a keypress.
 
-An additional feature will include the option to pause the game.
+## Gameplay
+<img src='public/assets/gameplay.gif'/>
+
+## Future Features
+* Increased score variations depending on the player's accuracy
