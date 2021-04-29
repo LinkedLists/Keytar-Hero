@@ -6,6 +6,14 @@ const COLORS = {
   5: 'orange',
 }
 
+// const COLORS = {
+//   1: '#55f96b',
+//   2: '#de0b4794',
+//   3: '#f9f455',
+//   4: '#55e2f9',
+//   5: '#f99255',
+// }
+
 export default class Target {
   constructor(context, num) {
     this.context = context;

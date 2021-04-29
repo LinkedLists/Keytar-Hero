@@ -1,5 +1,4 @@
 import Game from './game';
-import Wheel from './wheel';
 import { modalHandler } from './modal';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -321,37 +320,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('canvas');
   songCarouselWheelItems.forEach( song => { song.addEventListener('click', () => {
     if (song.classList.contains('selectable')) {
-      homePage.classList.remove('fadeIn')
-      homePage.classList.add('fadeOut')
-      selectCircle.classList.remove('song-selection-container-open')
-      selectCircle.classList.add('song-selection-container-closed')
-      clearInterval(loop)
-      volumeDown()
-      new Game(canvas, song.id);
-      setTimeout(() => {
-        volumeUp()
-        audio.pause()
-        audio.currentTime = 0
-        homePage.classList.add('hidden')
-        homePage.classList.remove('fadeOut')
-  
-        gameView.classList.remove('hidden')
-        gameView.classList.add('fadeIn')
-      }, 666)
-    }
-    }) 
-  })
-
-  previewCarouselImg.forEach( (preview, i) => {
-    preview.addEventListener('click', () => {
-      if (preview.classList.contains('selectable-preview')) {
+      if (song.id !== 'song5' && song.id !== 'song6') {
         homePage.classList.remove('fadeIn')
         homePage.classList.add('fadeOut')
         selectCircle.classList.remove('song-selection-container-open')
         selectCircle.classList.add('song-selection-container-closed')
         clearInterval(loop)
         volumeDown()
-        new Game(canvas, 'song' + (i + 1).toString());
+        new Game(canvas, song.id);
         setTimeout(() => {
           volumeUp()
           audio.pause()
@@ -362,6 +338,33 @@ document.addEventListener('DOMContentLoaded', () => {
           gameView.classList.remove('hidden')
           gameView.classList.add('fadeIn')
         }, 666)
+      }
+    }
+    }) 
+  })
+
+  previewCarouselImg.forEach( (preview, i) => {
+    preview.addEventListener('click', () => {
+      if (preview.classList.contains('selectable-preview')) {
+        if (i !== 4 && i !== 5) {
+          homePage.classList.remove('fadeIn')
+          homePage.classList.add('fadeOut')
+          selectCircle.classList.remove('song-selection-container-open')
+          selectCircle.classList.add('song-selection-container-closed')
+          clearInterval(loop)
+          volumeDown()
+          new Game(canvas, 'song' + (i + 1).toString());
+          setTimeout(() => {
+            volumeUp()
+            audio.pause()
+            audio.currentTime = 0
+            homePage.classList.add('hidden')
+            homePage.classList.remove('fadeOut')
+          
+            gameView.classList.remove('hidden')
+            gameView.classList.add('fadeIn')
+          }, 666)
+      }
       }
     })
   })
