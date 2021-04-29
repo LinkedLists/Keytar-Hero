@@ -8,6 +8,7 @@
 Keytar Hero is a Javascript and HTML Canvas music and rhythm game that is inspired by Guitar Hero. Players play through a song by timing the correct keypresses for each note at the right time.
 
 <img src='public/assets/menu.jpg'/>
+<img src='public/assets/menu2.jpg'/>
 
 ## Features
 * Instructions modal
@@ -15,7 +16,6 @@ Keytar Hero is a Javascript and HTML Canvas music and rhythm game that is inspir
 * Play the game by timing notes that correspond to a keypress.
 
 ## Gameplay
-<img src='public/assets/gameplay.gif'/>
 
 ## Future Features
 * Increased score variations depending on the player's accuracy
