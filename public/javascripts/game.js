@@ -35,6 +35,7 @@ export default class Game {
     this.targets = this.generateTargets();
     this.streakBoard = this.streakBoard.bind(this)
     this.resetStreak = this.resetStreak.bind(this)
+    this.clearGame = this.clearGame.bind(this)
 
     this.selectSong = this.selectSong.bind(this)
     this.selectSong(songId)
@@ -42,8 +43,7 @@ export default class Game {
     this.callGenerateNotes;
     this.counter = 0;
 
-    // Will need variables to save each intervalID when calling
-    // setInterval when incrementing the score for holding notes
+    // setIntervals to be stored when calculating scores
     this.score1;
     this.score2;
     this.score3;
@@ -71,11 +71,16 @@ export default class Game {
     this.scoreContainer = document.getElementsByClassName('game-end-container')[0]
     this.restart;
     this.back;
+    this.selectMenuVolume
     this.pauseEventListener = this.pauseEventListener.bind(this)
-    this.handleRestart = this.handleRestart.bind(this)
+    this.handleMute = this.handleMute.bind(this)
     this.endListener = this.endListener.bind(this)
     this.calculateGrade = this.calculateGrade.bind(this)
     this.scoreBtnListener = this.scoreBtnListener.bind(this)
+    this.homePage = document.getElementsByClassName('homepage-container')[0]
+    this.gameView = document.getElementsByClassName('game-view')[0]
+    this.selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
+
   }
 
   selectSong(songId) {
@@ -289,39 +294,6 @@ export default class Game {
     } 
   }
 
-  handleRestart() {
-    if (this.currentSong !== "undefined" && this.currentSong !== "" ) {
-      this.allNotes = this.currentSong.notes.slice()
-      this.scoreContainer.style.display = 'none'
-      this.score = 0;
-      this.streak = 0;
-      this.maxStreak = 0;
-      this.notesHit = 0
-      this.visibleNotes = this.generateNoteArray();
-      this.missedNotes = [];
-      this.counter = 0
-      this.pause.removeEventListener('click', this.pauseEventListener)
-      this.pause.classList.remove("hidden")
-      this.resume.classList.add("hidden")
-      this.pause.style.background = 'rgb(65, 65, 65)'
-      this.pause.style.opacity = '0.7'
-      clearInterval(this.callGenerateNotes)
-      clearTimeout(this.restartTimeout)
-      clearTimeout(this.startTimeout)
-      if (!this.isPlaying) {
-        this.isPlaying = true;
-        requestAnimationFrame(this.animate)
-      }
-      this.audio.currentTime = 0
-      if (this.audio.paused) {
-        this.audio.play().then(this.restartTimeout = setTimeout(this.firstGenerationNotes, this.currentSong.introDelay));
-      } else {
-        this.restartTimeout = setTimeout(this.firstGenerationNotes, this.currentSong.introDelay)
-      }
-      this.isPlaying = true;
-    }
-  }
-
   addTargetListeners() {
     window.addEventListener('keydown', e => this.handleKeyDown(e))
     window.addEventListener('keyup', e => this.handleKeyUp(e))
@@ -475,16 +447,15 @@ export default class Game {
   playSong() {
     this.audio = document.getElementById('audio');
     this.restart = document.getElementById('restart');
-    let mute = document.getElementById('mute');
-    let unmute = document.getElementById('unmute');
     let volume = document.getElementById('game-volume')
-  
     this.back = document.getElementById('back');
-    let homePage = document.getElementsByClassName('homepage-container')[0]
-    let gameView = document.getElementsByClassName('game-view')[0]
-    let selectCircle = document.getElementsByClassName('song-selection-container-closed')[0]
+
     this.endListener()
     this.scoreBtnListener()
+    this.handleMute()
+
+    const handleRestart = this.handleRestart.bind(this)
+    const handleResume = this.handleResume.bind(this)
 
     setTimeout(() => {
       if (this.audio.currentTime === 0) {
@@ -497,16 +468,9 @@ export default class Game {
       //fade delay
     }, 1500)
 
-    if (this.audio.muted) {
-      unmute.classList.remove("hidden")
-      mute.classList.add("hidden")
-    } else {
-      mute.classList.remove("hidden")
-      unmute.classList.add("hidden")
-    }
+    this.selectMenuVolume = document.getElementById('select-menu-volume')
 
-    let selectMenuVolume = document.getElementById('select-menu-volume')
-    volume.value = selectMenuVolume.value
+    volume.value = this.selectMenuVolume.value
     volume.addEventListener('change', (e) => {
       this.audio.volume = e.target.value / 100
     })
@@ -515,47 +479,30 @@ export default class Game {
       window.removeEventListener('keydown', this.handleKeyDown)
       window.removeEventListener('keyup', this.handleKeyUp)
       this.pause.removeEventListener('click', this.pauseEventListener)
-      this.restart.removeEventListener('click', this.handleRestart);
-      this.currentSong = '';
-      this.allNotes = []
-      this.visibleNotes = this.generateNoteArray();
-      this.missedNotes = [];
-      this.totalNotes = 0
-      this.notesHit = 0
-      this.isPlaying = false;
-      this.audio.pause()
-      this.audio.currentTime = 0
-
-      selectMenuVolume.value = volume.value
-      
-      clearInterval(this.callGenerateNotes)
-      clearTimeout(this.startTimeout)
-      gameView.classList.remove('fadeIn')
-      gameView.classList.add('fadeOut')
-
+      this.restart.removeEventListener('click', handleRestart);
+      this.resume.removeEventListener('click', handleResume);
+      this.selectMenuVolume.value = volume.value
+      this.clearGame()
       //clear notes in settime out or everything zeros out before fade away
-      setTimeout(() => {
-        this.scoreContainer.style.display = 'none'
-        this.score = 0;
-        this.streak = 0;
-        this.maxStreak = 0;
-        selectCircle.classList.add('song-selection-container-open')
-        selectCircle.classList.remove('song-selection-container-closed')
-        this.pause.classList.remove("hidden")
-        this.resume.classList.add("hidden")
-
-        homePage.classList.remove('hidden')
-        homePage.classList.add('fadeIn')
-        gameView.classList.add('hidden')
-        gameView.classList.remove('fadeOut')
-        if (!this.audio.paused) {
-          this.audio.pause()
-          this.audio.currentTime = 0
-        }
-      }, 666)
+      setTimeout(() => this.handleBack(), 666)
     })
 
-    this.restart.addEventListener('click', () => this.handleRestart());
+    this.restart.addEventListener('click', handleRestart);
+
+    resume.addEventListener('click', handleResume)
+  }
+
+  handleMute() {
+    let mute = document.getElementById('mute');
+    let unmute = document.getElementById('unmute');
+
+    if (this.audio.muted) {
+      unmute.classList.remove("hidden")
+      mute.classList.add("hidden")
+    } else {
+      mute.classList.remove("hidden")
+      unmute.classList.add("hidden")
+    }
 
     mute.addEventListener('click', () => {
       if (!this.audio.muted) {
@@ -571,28 +518,96 @@ export default class Game {
         mute.classList.remove("hidden")
       } 
     });
-
-    resume.addEventListener('click', () => {
-      let dif = this.currentSong.tempo - this.intervalValue - 45
-      dif = dif < 0 ? 0 : dif
-      this.resumeTimeout = setTimeout( () => {
-          this.playNotes()
-          this.callGenerateNotes = setInterval( () => {
-          this.playNotes()
-        }, this.currentSong.tempo)
-      }, dif)
-
-      this.pause.classList.remove("hidden")
-      this.resume.classList.add("hidden")
-
-      this.audio.play();
-      this.isPlaying = true;
-
-      requestAnimationFrame(this.animate)
-    })
   }
 
+  clearGame() {
+    this.currentSong = '';
+    this.allNotes = []
+    this.visibleNotes = this.generateNoteArray();
+    this.missedNotes = [];
+    this.totalNotes = 0
+    this.notesHit = 0
+    this.isPlaying = false;
+    this.audio.pause()
+    this.audio.currentTime = 0
+    
+    clearInterval(this.callGenerateNotes)
+    clearTimeout(this.startTimeout)
+    this.gameView.classList.remove('fadeIn')
+    this.gameView.classList.add('fadeOut')
+  }
 
+  handleBack() {
+    this.scoreContainer.style.display = 'none'
+    this.score = 0;
+    this.streak = 0;
+    this.maxStreak = 0;
+    this.selectCircle.classList.add('song-selection-container-open')
+    this.selectCircle.classList.remove('song-selection-container-closed')
+    this.pause.classList.remove("hidden")
+    this.resume.classList.add("hidden")
+
+    this.homePage.classList.remove('hidden')
+    this.homePage.classList.add('fadeIn')
+    this.gameView.classList.add('hidden')
+    this.gameView.classList.remove('fadeOut')
+    if (!this.audio.paused) {
+      this.audio.pause()
+      this.audio.currentTime = 0
+    }
+  }
+
+  handleResume() {
+    let dif = this.currentSong.tempo - this.intervalValue - 45
+    dif = dif < 0 ? 0 : dif
+    this.resumeTimeout = setTimeout( () => {
+        this.playNotes()
+        this.callGenerateNotes = setInterval( () => {
+        this.playNotes()
+      }, this.currentSong.tempo)
+    }, dif)
+  
+    this.pause.classList.remove("hidden")
+    this.resume.classList.add("hidden")
+  
+    this.audio.play();
+    this.isPlaying = true;
+  
+    requestAnimationFrame(this.animate)
+  }
+  
+  handleRestart() {
+    if (this.currentSong !== "undefined" && this.currentSong !== "" ) {
+      this.allNotes = this.currentSong.notes.slice()
+      this.scoreContainer.style.display = 'none'
+      this.score = 0;
+      this.streak = 0;
+      this.maxStreak = 0;
+      this.notesHit = 0
+      this.visibleNotes = this.generateNoteArray();
+      this.missedNotes = [];
+      this.counter = 0
+      this.pause.removeEventListener('click', this.pauseEventListener)
+      this.pause.classList.remove("hidden")
+      this.resume.classList.add("hidden")
+      this.pause.style.background = 'rgb(65, 65, 65)'
+      this.pause.style.opacity = '0.7'
+      clearInterval(this.callGenerateNotes)
+      clearTimeout(this.restartTimeout)
+      clearTimeout(this.startTimeout)
+      if (!this.isPlaying) {
+        this.isPlaying = true;
+        requestAnimationFrame(this.animate)
+      }
+      this.audio.currentTime = 0
+      if (this.audio.paused) {
+        this.audio.play().then(this.restartTimeout = setTimeout(this.firstGenerationNotes, this.currentSong.introDelay));
+      } else {
+        this.restartTimeout = setTimeout(this.firstGenerationNotes, this.currentSong.introDelay)
+      }
+      this.isPlaying = true;
+    }
+  }
 
   generateTargets() {
     const targets = []
@@ -607,6 +622,4 @@ export default class Game {
     c.rect(0, 0, 0, 0);
     c.stroke();
   }
-
-
 } 
