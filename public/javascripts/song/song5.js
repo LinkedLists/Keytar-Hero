@@ -20,6 +20,6 @@ export const song5 = {
   introDelay: 643,
   tempo: 100,
   dy: 9,
-  totalNotes: 250
+  totalNotes: 306
 
 }
