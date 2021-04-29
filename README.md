@@ -1,5 +1,5 @@
 # Keytar Hero
-[Live](https://linkedlists.github.io/js/)
+[Live](https://linkedlists.github.io/Keytar-Hero/)
 
 Keytar Hero is a Javascript and HTML Canvas game that imitates Guitar Hero. Players play through a song by timing the correct keypresses for each note at the right time.
 
