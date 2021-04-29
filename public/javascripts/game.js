@@ -486,7 +486,6 @@ export default class Game {
 
     let selectMenuVolume = document.getElementById('select-menu-volume')
     volume.value = selectMenuVolume.value
-    console.log(volume.value)
     volume.addEventListener('change', (e) => {
       this.audio.volume = e.target.value / 100
     })

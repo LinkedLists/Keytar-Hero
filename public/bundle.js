@@ -982,7 +982,6 @@ class Game {
 
     let selectMenuVolume = document.getElementById('select-menu-volume')
     volume.value = selectMenuVolume.value
-    console.log(volume.value)
     volume.addEventListener('change', (e) => {
       this.audio.volume = e.target.value / 100
     })
@@ -3618,11 +3617,11 @@ const CONSTANTS = {
 const song2 = {
   // notes: [].concat(verse1),
   // introDelay: 1500,
-  notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__evangelion_intro__["a" /* intro */], __WEBPACK_IMPORTED_MODULE_1__evangelion_verse1__["a" /* verse1 */], __WEBPACK_IMPORTED_MODULE_2__evangelion_verse2__["a" /* verse2 */], __WEBPACK_IMPORTED_MODULE_3__evangelion_outro__["outro"]),
-  introDelay: 12770,
+  notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__evangelion_intro__["a" /* intro */], __WEBPACK_IMPORTED_MODULE_1__evangelion_verse1__["a" /* verse1 */], __WEBPACK_IMPORTED_MODULE_2__evangelion_verse2__["a" /* verse2 */], __WEBPACK_IMPORTED_MODULE_3__evangelion_outro__["a" /* outro */]),
+  introDelay: 12780,
   tempo: 156,
   dy: 8,
-  totalNotes: 234
+  totalNotes: 205
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = song2;
 
@@ -3655,11 +3654,7 @@ const intro = [
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
 
-  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: true },
-  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: true },
   { tempo: 4, hold: 0, chain: false, rest: true },
-
-  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
 
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
@@ -3711,9 +3706,6 @@ const intro = [
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
   { tempo: 1, hold: 0, chain: false, rest: true },
 
-
-
-
 ]
 /* harmony export (immutable) */ __webpack_exports__["a"] = intro;
 
@@ -3746,10 +3738,10 @@ const verse1 = [
   { tempo: 4, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
-  { tempo: 8, hold: 0, chain: false, rest: true },
+  { tempo: 9, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 6, chain: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 6, chain: true },
-  { tempo: 12, hold: 0, chain: false, rest: true },
+  { tempo: 11, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 3, chain: false },
   { tempo: 4, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 3, chain: false },
@@ -3779,10 +3771,10 @@ const verse1 = [
   { tempo: 4, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
-  { tempo: 8, hold: 0, chain: false, rest: true },
+  { tempo: 9, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 6, chain: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 6, chain: true },
-  { tempo: 12, hold: 0, chain: false, rest: true },
+  { tempo: 11, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 3, chain: false },
   { tempo: 4, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 3, chain: false },
@@ -3825,7 +3817,7 @@ const CONSTANTS = {
   pos5: 510,
 }
 
-const intro = [
+const outro = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
   { tempo: 1, hold: 0, chain: false, rest: true },
@@ -3837,11 +3829,8 @@ const intro = [
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
 
-  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: true },
-  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: true },
   { tempo: 4, hold: 0, chain: false, rest: true },
 
-  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
 
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
@@ -3855,6 +3844,43 @@ const intro = [
   { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: false },
   { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 2, hold: 0, chain: false },
+  /////////
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 2, hold: 0, chain: false },
+
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
   /////////
 
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
@@ -3911,11 +3937,8 @@ const intro = [
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
 
-  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: true },
-  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: true },
   { tempo: 4, hold: 0, chain: false, rest: true },
 
-  // { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: false },
 
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
@@ -3966,12 +3989,45 @@ const intro = [
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
   { tempo: 1, hold: 0, chain: false, rest: true },
+  /////////
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 2, hold: 0, chain: false },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 2, hold: 0, chain: false },
 
 
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
 
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
 
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
 ]
-/* unused harmony export intro */
+/* harmony export (immutable) */ __webpack_exports__["a"] = outro;
 
 
 /***/ }),
@@ -3989,9 +4045,6 @@ const CONSTANTS = {
 
 
 const verse2 = [
-
-
-
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
   { tempo: 4, hold: 0, chain: false, rest: true },
@@ -4003,10 +4056,7 @@ const verse2 = [
   { tempo: 4, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 1, hold: 0, chain: true },
-  { tempo: 4, hold: 0, chain: false, rest: true },
-  // { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
-  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 2, hold: 0, chain: false, rest: true },
+  { tempo: 6, hold: 0, chain: false, rest: true },
 
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
@@ -4034,29 +4084,17 @@ const verse2 = [
   { tempo: 4, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
-  { tempo: 4, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
-  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 1, hold: 0, chain: true },
-  { tempo: 4, hold: 0, chain: false, rest: true },
-  // { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
-  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 4, hold: 0, chain: false, rest: true },
+  { tempo: 16, hold: 0, chain: false, rest: true },
+
 
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
-  // { tempo: 1, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  // { tempo: 1, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
-  { tempo: 2, hold: 0, chain: false, rest: true },
-  // { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
-  // { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 1, hold: 0, chain: true },
-  // { tempo: 1, hold: 0, chain: false, rest: true },
-  // { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
-  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  // { tempo: 8, hold: 0, chain: false, rest: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
   ////////////
 ]
 /* harmony export (immutable) */ __webpack_exports__["a"] = verse2;
