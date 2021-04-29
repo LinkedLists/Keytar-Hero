@@ -6,16 +6,6 @@ import { chorus } from './be_kind/chorus';
 import { chorus_2 } from './be_kind/chorus_2';
 import { ending } from './be_kind/ending';
 
-const CONSTANTS = {
-  pos1: 30,
-  pos2: 150,
-  pos3: 270,
-  pos4: 390,
-  pos5: 510,
-}
-
-
-
 export const song1 = {
   notes: [].concat(verse_1, bridge, chorus, verse_2, bridge, chorus, bridge_2, chorus_2, ending),
   introDelay: 3604,

@@ -277,6 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   //make current wheel item clickable
+  let selectableTimeout
   function selectable() {
     let index = wheelIndex % carouselWheelLength
     if (index < 0) {
@@ -285,12 +286,16 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (index > 0) {
       index = 6 - index
     }
-    songCarouselWheelItems[index].classList.add("selectable")
     songCarouselWheelItems[index].style.transform = `rotate(${degrees[index]}deg) perspective(0px) rotateY(0deg) translate(-50%, -50%)`
     songCarouselWheelItems[index].style.opacity = `1`
     previewCarouselItems[index].style.cursor = 'pointer'
     previewCarouselItems[index].style.opacity = '0.92'
-    previewCarouselImg[index].classList.add("selectable-preview")
+
+    clearTimeout(selectableTimeout)
+    selectableTimeout = setTimeout(() => {
+      songCarouselWheelItems[index].classList.add("selectable")
+      previewCarouselImg[index].classList.add("selectable-preview")
+    }, 500)
     // audioPreview(index)
     audioPreviewLoop(index)
   }

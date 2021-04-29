@@ -350,6 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   //make current wheel item clickable
+  let selectableTimeout
   function selectable() {
     let index = wheelIndex % carouselWheelLength
     if (index < 0) {
@@ -358,12 +359,16 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (index > 0) {
       index = 6 - index
     }
-    songCarouselWheelItems[index].classList.add("selectable")
     songCarouselWheelItems[index].style.transform = `rotate(${degrees[index]}deg) perspective(0px) rotateY(0deg) translate(-50%, -50%)`
     songCarouselWheelItems[index].style.opacity = `1`
     previewCarouselItems[index].style.cursor = 'pointer'
     previewCarouselItems[index].style.opacity = '0.92'
-    previewCarouselImg[index].classList.add("selectable-preview")
+
+    clearTimeout(selectableTimeout)
+    selectableTimeout = setTimeout(() => {
+      songCarouselWheelItems[index].classList.add("selectable")
+      previewCarouselImg[index].classList.add("selectable-preview")
+    }, 500)
     // audioPreview(index)
     audioPreviewLoop(index)
   }
@@ -561,6 +566,7 @@ class Game {
     this.keyLock4 = false;
     this.keyLock5 = false;
 
+    // DOM elements and their event listeners
     this.pause = document.getElementById('pause');
     this.resume = document.getElementById('resume');
     this.scoreContainer = document.getElementsByClassName('game-end-container')[0]
@@ -602,13 +608,6 @@ class Game {
       this.animate();
       this.playSong();
     }
-    // else if (songId === 'song5') {
-    //   this.currentSong = song5
-    //   this.allNotes = song5.notes.slice()
-    //   this.totalNotes = song5.totalNotes
-    //   this.animate();
-    //   this.playSong();
-    // }
   }
 
   animate() {
@@ -975,10 +974,6 @@ class Game {
   }
 
   playSong() {
-    // looks like this is never used
-    // const delay = 5709 - (innerHeight / 8) / 60 * 1000 ;
-    // console.log("your canvas height in pixels is " + innerHeight);
-    // intro takes 5709ms until a note should be playble
     this.audio = document.getElementById('audio');
     this.restart = document.getElementById('restart');
     let mute = document.getElementById('mute');
@@ -1031,7 +1026,6 @@ class Game {
       this.isPlaying = false;
       this.audio.pause()
       this.audio.currentTime = 0
-      // this.audio.muted = false
 
       selectMenuVolume.value = volume.value
       
@@ -1350,16 +1344,6 @@ class Target {
 
 
 
-
-
-
-const CONSTANTS = {
-  pos1: 30,
-  pos2: 150,
-  pos3: 270,
-  pos4: 390,
-  pos5: 510,
-}
 
 
 
@@ -1984,20 +1968,7 @@ const ending = [
 
 
 
-
-const CONSTANTS = {
-  pos1: 30,
-  pos2: 150,
-  pos3: 270,
-  pos4: 390,
-  pos5: 510,
-}
-
-
-
 const song2 = {
-  // notes: [].concat(verse1),
-  // introDelay: 1500,
   notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__evangelion_intro__["a" /* intro */], __WEBPACK_IMPORTED_MODULE_1__evangelion_verse1__["a" /* verse1 */], __WEBPACK_IMPORTED_MODULE_2__evangelion_verse2__["a" /* verse2 */], __WEBPACK_IMPORTED_MODULE_3__evangelion_outro__["a" /* outro */]),
   introDelay: 12780,
   tempo: 156,
@@ -2497,19 +2468,8 @@ const outro = [
 
 
 
-
-
-const CONSTANTS = {
-  pos1: 30,
-  pos2: 150,
-  pos3: 270,
-  pos4: 390,
-  pos5: 510,
-}
-
 const song3 = {
   notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__jojo_easy_intro__["a" /* intro */], __WEBPACK_IMPORTED_MODULE_1__jojo_easy_verse1__["a" /* verse1 */], __WEBPACK_IMPORTED_MODULE_2__jojo_easy_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__jojo_easy_bridge2__["a" /* bridge2 */], __WEBPACK_IMPORTED_MODULE_4__jojo_easy_outro__["a" /* outro */]),
-  // notes: [].concat(bridge2, outro),
   introDelay: 643,
   tempo: 100,
   dy: 9,
@@ -3187,15 +3147,6 @@ const outro = [
 
 
 
-
-
-const CONSTANTS = {
-  pos1: 30,
-  pos2: 150,
-  pos3: 270,
-  pos4: 390,
-  pos5: 510,
-}
 
 const song4 = {
   notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__jojo_intro__["a" /* intro */], __WEBPACK_IMPORTED_MODULE_2__jojo_verse1__["a" /* verse1 */], __WEBPACK_IMPORTED_MODULE_3__jojo_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_4__jojo_bridge2__["a" /* bridge2 */], __WEBPACK_IMPORTED_MODULE_1__jojo_outro__["a" /* outro */]),

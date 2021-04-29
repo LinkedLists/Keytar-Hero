@@ -65,6 +65,7 @@ export default class Game {
     this.keyLock4 = false;
     this.keyLock5 = false;
 
+    // DOM elements and their event listeners
     this.pause = document.getElementById('pause');
     this.resume = document.getElementById('resume');
     this.scoreContainer = document.getElementsByClassName('game-end-container')[0]
@@ -106,13 +107,6 @@ export default class Game {
       this.animate();
       this.playSong();
     }
-    // else if (songId === 'song5') {
-    //   this.currentSong = song5
-    //   this.allNotes = song5.notes.slice()
-    //   this.totalNotes = song5.totalNotes
-    //   this.animate();
-    //   this.playSong();
-    // }
   }
 
   animate() {
@@ -479,10 +473,6 @@ export default class Game {
   }
 
   playSong() {
-    // looks like this is never used
-    // const delay = 5709 - (innerHeight / 8) / 60 * 1000 ;
-    // console.log("your canvas height in pixels is " + innerHeight);
-    // intro takes 5709ms until a note should be playble
     this.audio = document.getElementById('audio');
     this.restart = document.getElementById('restart');
     let mute = document.getElementById('mute');
@@ -535,7 +525,6 @@ export default class Game {
       this.isPlaying = false;
       this.audio.pause()
       this.audio.currentTime = 0
-      // this.audio.muted = false
 
       selectMenuVolume.value = volume.value
       
