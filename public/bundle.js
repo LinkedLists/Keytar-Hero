@@ -389,6 +389,8 @@ document.addEventListener('DOMContentLoaded', () => {
     volumeDown()
   }
 
+  // let game = new Game(canvas)
+
   //play song
   const canvas = document.getElementById('canvas');
   songCarouselWheelItems.forEach( song => { song.addEventListener('click', () => {
@@ -399,11 +401,8 @@ document.addEventListener('DOMContentLoaded', () => {
       selectCircle.classList.add('song-selection-container-closed')
       clearInterval(loop)
       volumeDown()
-      // console.log(volume.value + "wtf")
       new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, song.id);
       setTimeout(() => {
-        // let volume = document.getElementById('game-volume')
-        // volume.value = selectMenuVolume.value
         volumeUp()
         audio.pause()
         audio.currentTime = 0
@@ -544,9 +543,6 @@ class Game {
     this.score3;
     this.score4;
     this.score5;
-
-    // this.animate();
-    // this.playSong();
 
     this.intervalValue = 0
     this.resumeTimeout
@@ -794,33 +790,36 @@ class Game {
   }
 
   handleRestart() {
-    this.allNotes = this.currentSong.notes.slice()
-    this.scoreContainer.style.display = 'none'
-    this.score = 0;
-    this.streak = 0;
-    this.maxStreak = 0;
-    this.notesHit = 0
-    this.visibleNotes = this.generateNoteArray();
-    this.missedNotes = [];
-    this.counter = 0
-    this.pause.classList.remove("hidden")
-    this.resume.classList.add("hidden")
-    this.pause.style.background = 'rgb(65, 65, 65)'
-    this.pause.style.opacity = '0.7'
-    clearInterval(this.callGenerateNotes)
-    clearTimeout(this.restartTimeout)
-    clearTimeout(this.startTimeout)
-    if (!this.isPlaying) {
+    if (this.currentSong !== "undefined" && this.currentSong !== "" ) {
+      this.allNotes = this.currentSong.notes.slice()
+      this.scoreContainer.style.display = 'none'
+      this.score = 0;
+      this.streak = 0;
+      this.maxStreak = 0;
+      this.notesHit = 0
+      this.visibleNotes = this.generateNoteArray();
+      this.missedNotes = [];
+      this.counter = 0
+      this.pause.removeEventListener('click', this.pauseEventListener)
+      this.pause.classList.remove("hidden")
+      this.resume.classList.add("hidden")
+      this.pause.style.background = 'rgb(65, 65, 65)'
+      this.pause.style.opacity = '0.7'
+      clearInterval(this.callGenerateNotes)
+      clearTimeout(this.restartTimeout)
+      clearTimeout(this.startTimeout)
+      if (!this.isPlaying) {
+        this.isPlaying = true;
+        requestAnimationFrame(this.animate)
+      }
+      this.audio.currentTime = 0
+      if (this.audio.paused) {
+        this.audio.play().then(this.restartTimeout = setTimeout(this.firstGenerationNotes, this.currentSong.introDelay));
+      } else {
+        this.restartTimeout = setTimeout(this.firstGenerationNotes, this.currentSong.introDelay)
+      }
       this.isPlaying = true;
-      requestAnimationFrame(this.animate)
     }
-    this.audio.currentTime = 0
-    if (this.audio.paused) {
-      this.audio.play().then(this.restartTimeout = setTimeout(this.firstGenerationNotes, this.currentSong.introDelay));
-    } else {
-      this.restartTimeout = setTimeout(this.firstGenerationNotes, this.currentSong.introDelay)
-    }
-    this.isPlaying = true;
   }
 
   addTargetListeners() {
@@ -1063,10 +1062,6 @@ class Game {
 
     this.restart.addEventListener('click', () => this.handleRestart());
 
-    // let kill = document.getElementById('kill')
-    // kill.addEventListener('click', this.restart.removeEventListener('click', this.handleRestart))
-    
-    
     mute.addEventListener('click', () => {
       if (!this.audio.muted) {
         this.audio.muted = true;

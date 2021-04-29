@@ -315,6 +315,8 @@ document.addEventListener('DOMContentLoaded', () => {
     volumeDown()
   }
 
+  // let game = new Game(canvas)
+
   //play song
   const canvas = document.getElementById('canvas');
   songCarouselWheelItems.forEach( song => { song.addEventListener('click', () => {
@@ -325,11 +327,8 @@ document.addEventListener('DOMContentLoaded', () => {
       selectCircle.classList.add('song-selection-container-closed')
       clearInterval(loop)
       volumeDown()
-      // console.log(volume.value + "wtf")
       new Game(canvas, song.id);
       setTimeout(() => {
-        // let volume = document.getElementById('game-volume')
-        // volume.value = selectMenuVolume.value
         volumeUp()
         audio.pause()
         audio.currentTime = 0
