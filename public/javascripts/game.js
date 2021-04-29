@@ -2,8 +2,8 @@ import Note from './note'
 import Target from './target'
 import { song1 } from './song/song1'
 import { song2 } from './song/song2'
+import { song3 } from './song/song3'
 import { song4 } from './song/song4'
-import { song5 } from './song/song5'
 
 export default class Game {
   constructor(canvas, songId) {
@@ -74,11 +74,11 @@ export default class Game {
     this.restart;
     this.back;
     this.pauseEventListener = this.pauseEventListener.bind(this)
+    this.handleRestart = this.handleRestart.bind(this)
     this.endListener = this.endListener.bind(this)
     this.calculateGrade = this.calculateGrade.bind(this)
     this.scoreBtnListener = this.scoreBtnListener.bind(this)
   }
-
 
   selectSong(songId) {
     if (songId === 'song1') {
@@ -95,12 +95,13 @@ export default class Game {
       this.animate();
       this.playSong();
     }
-    // else if (songId === 'song3') {
-    //   this.allNotes = song3.notes.slice()
-    //   this.totalNotes = song3.totalNotes
-    //   this.animate();
-    //   this.playSong();
-    // }
+    else if (songId === 'song3') {
+      this.currentSong = song3
+      this.allNotes = song3.notes.slice()
+      this.totalNotes = song3.totalNotes
+      this.animate();
+      this.playSong();
+    }
     else if (songId === 'song4') {
       this.currentSong = song4
       this.allNotes = song4.notes.slice()
@@ -108,13 +109,13 @@ export default class Game {
       this.animate();
       this.playSong();
     }
-    else if (songId === 'song5') {
-      this.currentSong = song5
-      this.allNotes = song5.notes.slice()
-      this.totalNotes = song5.totalNotes
-      this.animate();
-      this.playSong();
-    }
+    // else if (songId === 'song5') {
+    //   this.currentSong = song5
+    //   this.allNotes = song5.notes.slice()
+    //   this.totalNotes = song5.totalNotes
+    //   this.animate();
+    //   this.playSong();
+    // }
   }
 
   animate() {
@@ -297,6 +298,36 @@ export default class Game {
     } 
   }
 
+  handleRestart() {
+    this.allNotes = this.currentSong.notes.slice()
+    this.scoreContainer.style.display = 'none'
+    this.score = 0;
+    this.streak = 0;
+    this.maxStreak = 0;
+    this.notesHit = 0
+    this.visibleNotes = this.generateNoteArray();
+    this.missedNotes = [];
+    this.counter = 0
+    this.pause.classList.remove("hidden")
+    this.resume.classList.add("hidden")
+    this.pause.style.background = 'rgb(65, 65, 65)'
+    this.pause.style.opacity = '0.7'
+    clearInterval(this.callGenerateNotes)
+    clearTimeout(this.restartTimeout)
+    clearTimeout(this.startTimeout)
+    if (!this.isPlaying) {
+      this.isPlaying = true;
+      requestAnimationFrame(this.animate)
+    }
+    this.audio.currentTime = 0
+    if (this.audio.paused) {
+      this.audio.play().then(this.restartTimeout = setTimeout(this.firstGenerationNotes, this.currentSong.introDelay));
+    } else {
+      this.restartTimeout = setTimeout(this.firstGenerationNotes, this.currentSong.introDelay)
+    }
+    this.isPlaying = true;
+  }
+
   addTargetListeners() {
     window.addEventListener('keydown', e => this.handleKeyDown(e))
     window.addEventListener('keyup', e => this.handleKeyUp(e))
@@ -457,7 +488,7 @@ export default class Game {
     let mute = document.getElementById('mute');
     let unmute = document.getElementById('unmute');
     let volume = document.getElementById('game-volume')
-
+  
     this.back = document.getElementById('back');
     let homePage = document.getElementsByClassName('homepage-container')[0]
     let gameView = document.getElementsByClassName('game-view')[0]
@@ -494,7 +525,8 @@ export default class Game {
       window.removeEventListener('keydown', this.handleKeyDown)
       window.removeEventListener('keyup', this.handleKeyUp)
       this.pause.removeEventListener('click', this.pauseEventListener)
-
+      this.restart.removeEventListener('click', this.handleRestart);
+      this.currentSong = '';
       this.allNotes = []
       this.visibleNotes = this.generateNoteArray();
       this.missedNotes = [];
@@ -534,33 +566,11 @@ export default class Game {
       }, 666)
     })
 
-    this.restart.addEventListener('click', () => {
-      this.allNotes = this.currentSong.notes.slice()
-      this.scoreContainer.style.display = 'none'
-      this.score = 0;
-      this.streak = 0;
-      this.maxStreak = 0;
-      this.notesHit = 0
-      this.visibleNotes = this.generateNoteArray();
-      this.missedNotes = [];
-      this.counter = 0
-      this.pause.classList.remove("hidden")
-      this.resume.classList.add("hidden")
-      clearInterval(this.callGenerateNotes)
-      clearTimeout(this.restartTimeout)
-      clearTimeout(this.startTimeout)
-      if (!this.isPlaying) {
-        this.isPlaying = true;
-        requestAnimationFrame(this.animate)
-      }
-      this.audio.currentTime = 0
-      if (this.audio.paused) {
-        this.audio.play().then(this.restartTimeout = setTimeout(this.generateNotes, this.currentSong.introDelay));
-      } else {
-        this.restartTimeout = setTimeout(this.generateNotes, this.currentSong.introDelay)
-      }
-      this.isPlaying = true;
-    });
+    this.restart.addEventListener('click', () => this.handleRestart());
+
+    // let kill = document.getElementById('kill')
+    // kill.addEventListener('click', this.restart.removeEventListener('click', this.handleRestart))
+    
     
     mute.addEventListener('click', () => {
       if (!this.audio.muted) {

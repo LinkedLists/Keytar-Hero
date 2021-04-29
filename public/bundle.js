@@ -284,9 +284,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let audioUrls = [
     "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Marshmello+Halsey++Be+Kind+Halsey+Lyric+Video.mp3",
     "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Neon+Genesis+Evangelion++Opening++1080p+Japanese.mp3",
+    "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+JoJo+Part+5+OST++Il+vento+doro+Improved+MET+Ver.mp3",
+    "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+JoJo+Part+5+OST++Il+vento+doro+Improved+MET+Ver.mp3",
     "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Breaking+the+Law.mp3",
-    "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+JoJo+Part+5+OST++Il+vento+doro+Improved+MET+Ver.mp3",
-    "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+JoJo+Part+5+OST++Il+vento+doro+Improved+MET+Ver.mp3",
     "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+The+Weeknd++Save+Your+Tears+Audio.mp3",
     // "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Ariana+Grande++positions+Lyrics.mp3",
   ]
@@ -389,7 +389,6 @@ document.addEventListener('DOMContentLoaded', () => {
     volumeDown()
   }
 
-  let newGame
   //play song
   const canvas = document.getElementById('canvas');
   songCarouselWheelItems.forEach( song => { song.addEventListener('click', () => {
@@ -401,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
       clearInterval(loop)
       volumeDown()
       // console.log(volume.value + "wtf")
-      newGame = new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, song.id);
+      new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, song.id);
       setTimeout(() => {
         // let volume = document.getElementById('game-volume')
         // volume.value = selectMenuVolume.value
@@ -427,7 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
         selectCircle.classList.add('song-selection-container-closed')
         clearInterval(loop)
         volumeDown()
-        newGame = new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, 'song' + (i + 1).toString());
+        new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, 'song' + (i + 1).toString());
         setTimeout(() => {
           volumeUp()
           audio.pause()
@@ -492,8 +491,8 @@ document.addEventListener('DOMContentLoaded', () => {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__target__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__song_song1__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__song_song2__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__song_song4__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__song_song5__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__song_song3__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__song_song4__ = __webpack_require__(12);
 
 
 
@@ -570,11 +569,11 @@ class Game {
     this.restart;
     this.back;
     this.pauseEventListener = this.pauseEventListener.bind(this)
+    this.handleRestart = this.handleRestart.bind(this)
     this.endListener = this.endListener.bind(this)
     this.calculateGrade = this.calculateGrade.bind(this)
     this.scoreBtnListener = this.scoreBtnListener.bind(this)
   }
-
 
   selectSong(songId) {
     if (songId === 'song1') {
@@ -591,26 +590,27 @@ class Game {
       this.animate();
       this.playSong();
     }
-    // else if (songId === 'song3') {
-    //   this.allNotes = song3.notes.slice()
-    //   this.totalNotes = song3.totalNotes
+    else if (songId === 'song3') {
+      this.currentSong = __WEBPACK_IMPORTED_MODULE_4__song_song3__["a" /* song3 */]
+      this.allNotes = __WEBPACK_IMPORTED_MODULE_4__song_song3__["a" /* song3 */].notes.slice()
+      this.totalNotes = __WEBPACK_IMPORTED_MODULE_4__song_song3__["a" /* song3 */].totalNotes
+      this.animate();
+      this.playSong();
+    }
+    else if (songId === 'song4') {
+      this.currentSong = __WEBPACK_IMPORTED_MODULE_5__song_song4__["a" /* song4 */]
+      this.allNotes = __WEBPACK_IMPORTED_MODULE_5__song_song4__["a" /* song4 */].notes.slice()
+      this.totalNotes = __WEBPACK_IMPORTED_MODULE_5__song_song4__["a" /* song4 */].totalNotes
+      this.animate();
+      this.playSong();
+    }
+    // else if (songId === 'song5') {
+    //   this.currentSong = song5
+    //   this.allNotes = song5.notes.slice()
+    //   this.totalNotes = song5.totalNotes
     //   this.animate();
     //   this.playSong();
     // }
-    else if (songId === 'song4') {
-      this.currentSong = __WEBPACK_IMPORTED_MODULE_4__song_song4__["a" /* song4 */]
-      this.allNotes = __WEBPACK_IMPORTED_MODULE_4__song_song4__["a" /* song4 */].notes.slice()
-      this.totalNotes = __WEBPACK_IMPORTED_MODULE_4__song_song4__["a" /* song4 */].totalNotes
-      this.animate();
-      this.playSong();
-    }
-    else if (songId === 'song5') {
-      this.currentSong = __WEBPACK_IMPORTED_MODULE_5__song_song5__["a" /* song5 */]
-      this.allNotes = __WEBPACK_IMPORTED_MODULE_5__song_song5__["a" /* song5 */].notes.slice()
-      this.totalNotes = __WEBPACK_IMPORTED_MODULE_5__song_song5__["a" /* song5 */].totalNotes
-      this.animate();
-      this.playSong();
-    }
   }
 
   animate() {
@@ -793,6 +793,36 @@ class Game {
     } 
   }
 
+  handleRestart() {
+    this.allNotes = this.currentSong.notes.slice()
+    this.scoreContainer.style.display = 'none'
+    this.score = 0;
+    this.streak = 0;
+    this.maxStreak = 0;
+    this.notesHit = 0
+    this.visibleNotes = this.generateNoteArray();
+    this.missedNotes = [];
+    this.counter = 0
+    this.pause.classList.remove("hidden")
+    this.resume.classList.add("hidden")
+    this.pause.style.background = 'rgb(65, 65, 65)'
+    this.pause.style.opacity = '0.7'
+    clearInterval(this.callGenerateNotes)
+    clearTimeout(this.restartTimeout)
+    clearTimeout(this.startTimeout)
+    if (!this.isPlaying) {
+      this.isPlaying = true;
+      requestAnimationFrame(this.animate)
+    }
+    this.audio.currentTime = 0
+    if (this.audio.paused) {
+      this.audio.play().then(this.restartTimeout = setTimeout(this.firstGenerationNotes, this.currentSong.introDelay));
+    } else {
+      this.restartTimeout = setTimeout(this.firstGenerationNotes, this.currentSong.introDelay)
+    }
+    this.isPlaying = true;
+  }
+
   addTargetListeners() {
     window.addEventListener('keydown', e => this.handleKeyDown(e))
     window.addEventListener('keyup', e => this.handleKeyUp(e))
@@ -953,7 +983,7 @@ class Game {
     let mute = document.getElementById('mute');
     let unmute = document.getElementById('unmute');
     let volume = document.getElementById('game-volume')
-
+  
     this.back = document.getElementById('back');
     let homePage = document.getElementsByClassName('homepage-container')[0]
     let gameView = document.getElementsByClassName('game-view')[0]
@@ -990,7 +1020,8 @@ class Game {
       window.removeEventListener('keydown', this.handleKeyDown)
       window.removeEventListener('keyup', this.handleKeyUp)
       this.pause.removeEventListener('click', this.pauseEventListener)
-
+      this.restart.removeEventListener('click', this.handleRestart);
+      this.currentSong = '';
       this.allNotes = []
       this.visibleNotes = this.generateNoteArray();
       this.missedNotes = [];
@@ -1030,33 +1061,11 @@ class Game {
       }, 666)
     })
 
-    this.restart.addEventListener('click', () => {
-      this.allNotes = this.currentSong.notes.slice()
-      this.scoreContainer.style.display = 'none'
-      this.score = 0;
-      this.streak = 0;
-      this.maxStreak = 0;
-      this.notesHit = 0
-      this.visibleNotes = this.generateNoteArray();
-      this.missedNotes = [];
-      this.counter = 0
-      this.pause.classList.remove("hidden")
-      this.resume.classList.add("hidden")
-      clearInterval(this.callGenerateNotes)
-      clearTimeout(this.restartTimeout)
-      clearTimeout(this.startTimeout)
-      if (!this.isPlaying) {
-        this.isPlaying = true;
-        requestAnimationFrame(this.animate)
-      }
-      this.audio.currentTime = 0
-      if (this.audio.paused) {
-        this.audio.play().then(this.restartTimeout = setTimeout(this.generateNotes, this.currentSong.introDelay));
-      } else {
-        this.restartTimeout = setTimeout(this.generateNotes, this.currentSong.introDelay)
-      }
-      this.isPlaying = true;
-    });
+    this.restart.addEventListener('click', () => this.handleRestart());
+
+    // let kill = document.getElementById('kill')
+    // kill.addEventListener('click', this.restart.removeEventListener('click', this.handleRestart))
+    
     
     mute.addEventListener('click', () => {
       if (!this.audio.muted) {
@@ -2900,44 +2909,7 @@ const bridge2 = [
 
 
 /***/ }),
-/* 18 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jojo_easy_intro__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__jojo_easy_verse1__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__jojo_easy_bridge__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__jojo_easy_bridge2__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__jojo_easy_outro__ = __webpack_require__(23);
-
-
-
-
-
-
-
-
-const CONSTANTS = {
-  pos1: 30,
-  pos2: 150,
-  pos3: 270,
-  pos4: 390,
-  pos5: 510,
-}
-
-const song5 = {
-  notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__jojo_easy_intro__["a" /* intro */], __WEBPACK_IMPORTED_MODULE_1__jojo_easy_verse1__["a" /* verse1 */], __WEBPACK_IMPORTED_MODULE_2__jojo_easy_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__jojo_easy_bridge2__["a" /* bridge2 */], __WEBPACK_IMPORTED_MODULE_4__jojo_easy_outro__["a" /* outro */]),
-  // notes: [].concat(bridge2, outro),
-  introDelay: 643,
-  tempo: 100,
-  dy: 9,
-  totalNotes: 306
-
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = song5;
-
-
-/***/ }),
+/* 18 */,
 /* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4134,7 +4106,7 @@ const outro = [
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
 
-  { tempo: 1, hold: 0, chain: false, rest: true },
+  // { tempo: 1, hold: 0, chain: false, rest: true },
 
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
@@ -4211,6 +4183,44 @@ const verse2 = [
   ////////////
 ]
 /* harmony export (immutable) */ __webpack_exports__["a"] = verse2;
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__jojo_easy_intro__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__jojo_easy_verse1__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__jojo_easy_bridge__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__jojo_easy_bridge2__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__jojo_easy_outro__ = __webpack_require__(23);
+
+
+
+
+
+
+
+
+const CONSTANTS = {
+  pos1: 30,
+  pos2: 150,
+  pos3: 270,
+  pos4: 390,
+  pos5: 510,
+}
+
+const song3 = {
+  notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__jojo_easy_intro__["a" /* intro */], __WEBPACK_IMPORTED_MODULE_1__jojo_easy_verse1__["a" /* verse1 */], __WEBPACK_IMPORTED_MODULE_2__jojo_easy_bridge__["a" /* bridge */], __WEBPACK_IMPORTED_MODULE_3__jojo_easy_bridge2__["a" /* bridge2 */], __WEBPACK_IMPORTED_MODULE_4__jojo_easy_outro__["a" /* outro */]),
+  // notes: [].concat(bridge2, outro),
+  introDelay: 643,
+  tempo: 100,
+  dy: 9,
+  totalNotes: 306
+
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = song3;
 
 
 /***/ })

@@ -210,9 +210,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let audioUrls = [
     "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Marshmello+Halsey++Be+Kind+Halsey+Lyric+Video.mp3",
     "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Neon+Genesis+Evangelion++Opening++1080p+Japanese.mp3",
+    "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+JoJo+Part+5+OST++Il+vento+doro+Improved+MET+Ver.mp3",
+    "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+JoJo+Part+5+OST++Il+vento+doro+Improved+MET+Ver.mp3",
     "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Breaking+the+Law.mp3",
-    "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+JoJo+Part+5+OST++Il+vento+doro+Improved+MET+Ver.mp3",
-    "https://keytar-hero-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+JoJo+Part+5+OST++Il+vento+doro+Improved+MET+Ver.mp3",
     "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+The+Weeknd++Save+Your+Tears+Audio.mp3",
     // "https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Ariana+Grande++positions+Lyrics.mp3",
   ]
@@ -315,7 +315,6 @@ document.addEventListener('DOMContentLoaded', () => {
     volumeDown()
   }
 
-  let newGame
   //play song
   const canvas = document.getElementById('canvas');
   songCarouselWheelItems.forEach( song => { song.addEventListener('click', () => {
@@ -327,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
       clearInterval(loop)
       volumeDown()
       // console.log(volume.value + "wtf")
-      newGame = new Game(canvas, song.id);
+      new Game(canvas, song.id);
       setTimeout(() => {
         // let volume = document.getElementById('game-volume')
         // volume.value = selectMenuVolume.value
@@ -353,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
         selectCircle.classList.add('song-selection-container-closed')
         clearInterval(loop)
         volumeDown()
-        newGame = new Game(canvas, 'song' + (i + 1).toString());
+        new Game(canvas, 'song' + (i + 1).toString());
         setTimeout(() => {
           volumeUp()
           audio.pause()

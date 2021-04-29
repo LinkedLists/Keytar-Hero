@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Keytar Hero</title>
-    <script type="text/javascript" src="./public/bundle.js"></script>
-    <link rel="stylesheet" href="./public/stylesheets/uhh.css">
+    <script type="text/javascript" src="./bundle.js"></script>
+    <link rel="stylesheet" href="./stylesheets/uhh.css">
     <link rel="shortcut icon" href="#">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css"/>
@@ -15,9 +15,9 @@
     <audio id='audio' src="https://fsp-seed.s3-us-west-1.amazonaws.com/yt1s.com+-+Marshmello+Halsey++Be+Kind+Halsey+Lyric+Video.mp3"></audio>
     
     <!-- <div class="links-container-nav">
-      <a href="https://angel.co/u/kenny-zeng"><img src='./public/assets/angellist2.png' class="link-imgs" /></a>
-      <a href="https://github.com/LinkedLists/js"><img src='./public/assets/github2.png' class="link-imgs" /></a>
-      <a href="https://www.linkedin.com/in/kenny-z-96a742208/"><img src='./public/assets/linkedin2.png' class="link-imgs" /></a>
+      <a href="https://angel.co/u/kenny-zeng"><img src='./assets/angellist2.png' class="link-imgs" /></a>
+      <a href="https://github.com/LinkedLists/js"><img src='./assets/github2.png' class="link-imgs" /></a>
+      <a href="https://www.linkedin.com/in/kenny-z-96a742208/"><img src='./assets/linkedin2.png' class="link-imgs" /></a>
     </div> -->
 
 
@@ -34,9 +34,9 @@
             <button class='open-modal' id='start-btn'>instructions</button>
             <div class="links-container" id='links-container-homepage'>
               <!-- <div class="links-wrapper"> -->
-                <a href="https://angel.co/u/kenny-zeng"><img src='./public/assets/angellist.png' class="link-imgs" /></a>
-                <a href="https://github.com/LinkedLists/js"><img src='./public/assets/github.png' class="link-imgs" /></a>
-                <a href="https://www.linkedin.com/in/k-z-96a742208/"><img src='./public/assets/linkedin.png' class="link-imgs" /></a>
+                <a href="https://angel.co/u/kenny-zeng"><img src='./assets/angellist.png' class="link-imgs" /></a>
+                <a href="https://github.com/LinkedLists/js"><img src='./assets/github.png' class="link-imgs" /></a>
+                <a href="https://www.linkedin.com/in/k-z-96a742208/"><img src='./assets/linkedin.png' class="link-imgs" /></a>
               <!-- </div> -->
             </div>
           </div>
@@ -45,19 +45,19 @@
       <!-- song selection -->
       <div class='song-selection-container-closed hidden'>
         <div class="links-container-nav navOut">
-          <a href="https://angel.co/u/kenny-zeng"><img src='./public/assets/angellist2.png' class="link-imgs" /></a>
-          <a href="https://github.com/LinkedLists/js"><img src='./public/assets/github2.png' class="link-imgs" /></a>
-          <a href="https://www.linkedin.com/in/k-z-96a742208/"><img src='./public/assets/linkedin2.png' class="link-imgs" /></a>
+          <a href="https://angel.co/u/kenny-zeng"><img src='./assets/angellist2.png' class="link-imgs" /></a>
+          <a href="https://github.com/LinkedLists/js"><img src='./assets/github2.png' class="link-imgs" /></a>
+          <a href="https://www.linkedin.com/in/k-z-96a742208/"><img src='./assets/linkedin2.png' class="link-imgs" /></a>
         </div>
         <div class='selection-circle circleClose'>
           <div class='blackout'></div>
           <ul class='selection-circle-ul'>
-            <li class='song-carousel-item' id='song1'><span class='title'>Halsey - Be Kind [<span style='color: #55e2f9'>Normal</span> 2:53]</span></li>
-            <li class='song-carousel-item' id='song2'><span class='title'>Yoko Takahashi - A Cruel Angel's Thesis (In Progress)</span></li>
-            <li class='song-carousel-item' id='song3'><span class='title'>Judas Priest - Breaking the Law (SOON)</span></li>
+            <li class='song-carousel-item' id='song1'><span class='title'>Halsey - Be Kind [<span style='color: #55f96b'>Easy</span> 2:53]</span></li>
+            <li class='song-carousel-item' id='song2'><span class='title'>Yoko Takahashi - A Cruel Angel's Thesis [<span style='color: #55e2f9'>Normal</span> 1:30]</span></li>
+            <li class='song-carousel-item' id='song3'><span class='title'>Yugo Kanno - Il vento d'oro [<span style='color: #55e2f9'>Normal</span> 1:39]</span></li>
             <li class='song-carousel-item' id='song4'><span class='title'>Yugo Kanno - Il vento d'oro [<span style='color: #de0b46'>HARD</span> 1:39]</span></li>
-            <li class='song-carousel-item' id='song5'><span class='title'>Yugo Kanno - Il vento d'oro [<span style='color: #55f96b'>Easy</span> 1:39]</span></li>
-            <li class='song-carousel-item' id='song6'><span class='title'>placeholder</span></li>
+            <li class='song-carousel-item' id='song3'><span class='title'>Judas Priest - Breaking the Law (SOON)</span></li>
+            <li class='song-carousel-item' id='song6'><span class='title'>The Weekend - Save Your Tears (SOON)</span></li>
           </ul>
         </div>
 
@@ -100,16 +100,6 @@
                 </div>
               </div>
             </div>
-            
-            <div class='preview-img-container'>
-              <div class='preview-shadow'>
-                <img src="https://keytar-hero-seed.s3-us-west-1.amazonaws.com/british+steel.jpg" class="preview-img"/>
-                <div class='playbtn-container'>
-                  <div class='playbtn'>
-                  </div>
-                </div>
-              </div>
-            </div>
               
             <div class='preview-img-container'>
               <div class='preview-shadow'>
@@ -130,10 +120,20 @@
                 </div>
               </div>
             </div>
+                        
+            <div class='preview-img-container'>
+              <div class='preview-shadow'>
+                <img src="https://keytar-hero-seed.s3-us-west-1.amazonaws.com/british+steel.jpg" class="preview-img"/>
+                <div class='playbtn-container'>
+                  <div class='playbtn'>
+                  </div>
+                </div>
+              </div>
+            </div>
             
             <div class='preview-img-container'>
               <div class='preview-shadow'>
-                <img src="https://keytar-hero-seed.s3-us-west-1.amazonaws.com/jojo.png" class="preview-img"/>
+                <img src="https://fsp-seed.s3-us-west-1.amazonaws.com/The_Weeknd_-_After_Hours.png" class="preview-img"/>
                 <div class='playbtn-container'>
                   <div class='playbtn'>
                   </div>
@@ -160,7 +160,7 @@
           </div>
           <div class="instructions">Time your button presses to the beat</div>
           <div class="instructions">And...</div>
-          <img src="./public/assets/holding.png" class="holding-img" />
+          <img src="./assets/holding.png" class="holding-img" />
           <div class="instructions">Remember to hold your press for these long notes</div>
           <button id="modal-close-btn">Got it</button>
         </div>
@@ -205,9 +205,9 @@
           </div>
         </div>
         <!-- <div class="links-container">
-            <a href="https://angel.co/u/kenny-zeng"><img src='./public/assets/angellist2.png' class="link-imgs" /></a>
-            <a href="https://github.com/LinkedLists/js"><img src='./public/assets/github2.png' class="link-imgs" /></a>
-            <a href="https://www.linkedin.com/in/kenny-z-96a742208/"><img src='./public/assets/linkedin2.png' class="link-imgs" /></a>
+            <a href="https://angel.co/u/kenny-zeng"><img src='./assets/angellist2.png' class="link-imgs" /></a>
+            <a href="https://github.com/LinkedLists/js"><img src='./assets/github2.png' class="link-imgs" /></a>
+            <a href="https://www.linkedin.com/in/kenny-z-96a742208/"><img src='./assets/linkedin2.png' class="link-imgs" /></a>
         </div> -->
       </div>
     </div>
