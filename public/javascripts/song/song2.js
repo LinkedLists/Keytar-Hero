@@ -1,5 +1,6 @@
 import { intro } from './evangelion/intro';
 import { verse1 } from './evangelion/verse1'
+import { verse2 } from './evangelion/verse2'
 import { outro } from './evangelion/outro'
 
 
@@ -14,7 +15,9 @@ const CONSTANTS = {
 
 
 export const song2 = {
-  notes: [].concat(intro, verse1),
+  // notes: [].concat(verse1),
+  // introDelay: 1500,
+  notes: [].concat(intro, verse1, verse2, outro),
   introDelay: 12770,
   tempo: 156,
   dy: 8,

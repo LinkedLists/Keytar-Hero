@@ -401,13 +401,13 @@ document.addEventListener('DOMContentLoaded', () => {
       clearInterval(loop)
       volumeDown()
       // console.log(volume.value + "wtf")
+      newGame = new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, song.id);
       setTimeout(() => {
         // let volume = document.getElementById('game-volume')
         // volume.value = selectMenuVolume.value
         volumeUp()
         audio.pause()
         audio.currentTime = 0
-        newGame = new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, song.id);
         homePage.classList.add('hidden')
         homePage.classList.remove('fadeOut')
   
@@ -427,11 +427,11 @@ document.addEventListener('DOMContentLoaded', () => {
         selectCircle.classList.add('song-selection-container-closed')
         clearInterval(loop)
         volumeDown()
+        newGame = new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, 'song' + (i + 1).toString());
         setTimeout(() => {
           volumeUp()
           audio.pause()
           audio.currentTime = 0
-          newGame = new __WEBPACK_IMPORTED_MODULE_0__game__["a" /* default */](canvas, 'song' + (i + 1).toString());
           homePage.classList.add('hidden')
           homePage.classList.remove('fadeOut')
     
@@ -3597,7 +3597,9 @@ const modalHandler = () => {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__evangelion_intro__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__evangelion_verse1__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__evangelion_outro__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__evangelion_verse2__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__evangelion_outro__ = __webpack_require__(29);
+
 
 
 
@@ -3614,7 +3616,9 @@ const CONSTANTS = {
 
 
 const song2 = {
-  notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__evangelion_intro__["a" /* intro */], __WEBPACK_IMPORTED_MODULE_1__evangelion_verse1__["a" /* verse1 */]),
+  // notes: [].concat(verse1),
+  // introDelay: 1500,
+  notes: [].concat(__WEBPACK_IMPORTED_MODULE_0__evangelion_intro__["a" /* intro */], __WEBPACK_IMPORTED_MODULE_1__evangelion_verse1__["a" /* verse1 */], __WEBPACK_IMPORTED_MODULE_2__evangelion_verse2__["a" /* verse2 */], __WEBPACK_IMPORTED_MODULE_3__evangelion_outro__["outro"]),
   introDelay: 12770,
   tempo: 156,
   dy: 8,
@@ -3729,9 +3733,81 @@ const CONSTANTS = {
 
 
 const verse1 = [
-  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 6, chain: false },
-  { tempo: 7, hold: 0, chain: false, rest: true },
-  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 6, chain: false },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 6.5, chain: false },
+  { tempo: 12, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 5.5, chain: false },
+  { tempo: 10, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 8, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 6, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 6, chain: true },
+  { tempo: 12, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 3, chain: false },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 3, chain: false },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 5, chain: false },
+  { tempo: 10, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+
+
+  ////////////
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 5.5, chain: false },
+  { tempo: 10, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 4.5, chain: false },
+  { tempo: 9, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 8, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 6, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 6, chain: true },
+  { tempo: 12, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 3, chain: false },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 3, chain: false },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 5, chain: false },
+  { tempo: 10, hold: 0, chain: false, rest: true },
+
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 8, hold: 0, chain: false, rest: true },
+  ////////////
 ]
 /* harmony export (immutable) */ __webpack_exports__["a"] = verse1;
 
@@ -3896,6 +3972,94 @@ const intro = [
 
 ]
 /* unused harmony export intro */
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const CONSTANTS = {
+  pos1: 30,
+  pos2: 150,
+  pos3: 270,
+  pos4: 390,
+  pos5: 510,
+}
+
+
+const verse2 = [
+
+
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  // { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 1, hold: 0, chain: true },
+  { tempo: 1, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 8, hold: 0, chain: false, rest: true },
+  ////////////
+
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+  // { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 4, hold: 0, chain: false, rest: true },
+
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  // { tempo: 1, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  // { tempo: 1, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
+  { tempo: 2, hold: 0, chain: false, rest: true },
+  // { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  // { x: CONSTANTS.pos5, y: 0, pos: 4, tempo: 1, hold: 0, chain: true },
+  // { tempo: 1, hold: 0, chain: false, rest: true },
+  // { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: true },
+  // { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  // { tempo: 8, hold: 0, chain: false, rest: true },
+  ////////////
+]
+/* harmony export (immutable) */ __webpack_exports__["a"] = verse2;
 
 
 /***/ })

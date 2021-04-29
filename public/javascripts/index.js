@@ -327,13 +327,13 @@ document.addEventListener('DOMContentLoaded', () => {
       clearInterval(loop)
       volumeDown()
       // console.log(volume.value + "wtf")
+      newGame = new Game(canvas, song.id);
       setTimeout(() => {
         // let volume = document.getElementById('game-volume')
         // volume.value = selectMenuVolume.value
         volumeUp()
         audio.pause()
         audio.currentTime = 0
-        newGame = new Game(canvas, song.id);
         homePage.classList.add('hidden')
         homePage.classList.remove('fadeOut')
   
@@ -353,11 +353,11 @@ document.addEventListener('DOMContentLoaded', () => {
         selectCircle.classList.add('song-selection-container-closed')
         clearInterval(loop)
         volumeDown()
+        newGame = new Game(canvas, 'song' + (i + 1).toString());
         setTimeout(() => {
           volumeUp()
           audio.pause()
           audio.currentTime = 0
-          newGame = new Game(canvas, 'song' + (i + 1).toString());
           homePage.classList.add('hidden')
           homePage.classList.remove('fadeOut')
     
