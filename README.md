@@ -2,20 +2,154 @@
 [Live](https://linkedlists.github.io/Keytar-Hero/)
 
 ## Description
-<img src='public/assets/home.gif'/>
-<img src='public/assets/home2.gif'/>
 
 Keytar Hero is a Javascript and HTML Canvas music and rhythm game that is inspired by Guitar Hero. Players play through a song by timing the correct keypresses for each note at the right time.
 
-<img src='public/assets/menu.jpg'/>
-<img src='public/assets/menu2.jpg'/>
+<img src='public/assets/home2.gif'/>
 
 ## Features
 * Instructions modal
 * Option to mute or change the volume of the song
-* Play the game by timing notes that correspond to a keypress.
+* A 2D and 3D carousel wheel for song selection
+* 12 second preview of songs that also implements volume swelling for gradual fade in and fade out of the song
+* Game logic to handle single, multiple, and holding notes
 
 ## Gameplay
+To play the game first select a song from either the 3D or 2D carousel wheels. Then when notes fall towards the center of the five colored targets, press the number key on the keyboard corresponding to the target to score points. For long notes you must hold down the key and release the key when the tail end of the note is near the center of the target.
+<img src='public/assets/instructions.jpg'/>
+
+### Selecting Songs
+<img src='public/assets/menu2.jpg'/>
+
+* Rotate the wheel
+* Selectable timeout spam
+
+```js
+  let selectableTimeout
+  function selectable() {
+    let index = wheelIndex % carouselWheelLength
+    if (index < 0) {
+      index *= -1
+    }
+    else if (index > 0) {
+      index = 6 - index
+    }
+    songCarouselWheelItems[index].style.transform = `rotate(${degrees[index]}deg) perspective(0px) rotateY(0deg) translate(-50%, -50%)`
+    songCarouselWheelItems[index].style.opacity = `1`
+    previewCarouselItems[index].style.cursor = 'pointer'
+    previewCarouselItems[index].style.opacity = '0.92'
+
+    clearTimeout(selectableTimeout)
+    selectableTimeout = setTimeout(() => {
+      songCarouselWheelItems[index].classList.add("selectable")
+      previewCarouselImg[index].classList.add("selectable-preview")
+    }, 500)
+    audioPreviewLoop(index)
+  }
+```
+* Selectable preview only
+* Swells and their `clearInterval`
+
+```js
+  let loop
+  function audioPreviewLoop(index = currentPreviewIndex) {
+    clearInterval(loop)
+    clearTimeout(previewTimeout)
+    volumeDown()
+    audioPreview(index)
+    loop = setInterval( () => {
+      clearTimeout(previewTimeout)
+      clearInterval(intervalDown)
+      clearInterval(intervalUp)
+      volumeDown()
+      audioPreview(index)
+    }, 12000)
+  }
+```
+
+
+### Notes
+
+* Position, tempo, rest, chain, hold
+* Rest tempo
+
+```js
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+  { tempo: 6, hold: 0, chain: false, rest: true },
+```
+
+### Note Rendering
+
+* `setInterval`
+
+```js
+  generateNotes() {
+    this.callGenerateNotes = setInterval( () => {
+      this.playNotes()
+    }, this.currentSong.tempo)
+  }
+```
+* `this.intervalValue`
+* `this.counter` 1 or 2
+
+```js
+  playNotes() {
+    this.intervalValue += 1
+    this.counter++;
+    if (this.allNotes.length > 0) {
+      if (this.allNotes[0].rest) {
+        this.counter -= this.allNotes[0].tempo;
+        this.allNotes.shift();
+      }
+      else if (this.allNotes[0].kill) {
+        this.counter += 1;
+        this.allNotes.shift();
+      }
+      if (this.counter === 1 && this.allNotes[0].tempo > 1) {
+        this.noteGrabber();
+        this.counter = 0;
+      }
+      else if (this.counter === 2) {
+        this.counter = 0;
+        this.noteGrabber();
+      }
+    }
+  }
+```
+### Note Collision
+
+* Key lock for holds
+
+```js
+  handleKeyDown(e) {
+    if (e.key == "1" && !this.keyLock1) {
+      this.keyLock1 = true;
+      this.checkCollisionDown(0)
+    }
+    .
+    .
+  }
+```
+
+
+## Technical Challenges
+Sync issues
+### Pause/Resume
+
+* `setInterval` difference
+
+```js
+  let dif = this.currentSong.tempo - this.intervalValue - 45
+  dif = dif < 0 ? 0 : dif
+  this.resumeTimeout = setTimeout( () => {
+      this.playNotes()
+      this.callGenerateNotes = setInterval( () => {
+      this.playNotes()
+    }, this.currentSong.tempo)
+  }, dif)
+```
 
 ## Future Features
-* Increased score variations depending on the player's accuracy
+* Increased score variations depending on the player's accuracy and combo number
+* An indicator to let the user know if a note was hit or missed

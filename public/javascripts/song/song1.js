@@ -13,5 +13,3 @@ export const song1 = {
   dy: 8,
   totalNotes: 360
 }
-
-
