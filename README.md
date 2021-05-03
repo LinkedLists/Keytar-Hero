@@ -126,7 +126,7 @@ with another note.
 ```
 ### Note Collision
 
-To check for note collision, an event listener is tied to each number key on `keydown`  which calls `checkCollisionDown` to see if the note is inbounds of its target.
+To check for note collision, an event listener is tied to each number key on `keydown`  which calls `checkCollisionDown` to see if the note is in bounds of its target.
 
 ```js
   handleKeyDown(e) {
@@ -170,5 +170,6 @@ Sync issues
 
 ## Future Features
 * Increased score variations depending on the player's accuracy and combo number
-* Improved indication to let the user know if a note was hit or missed
+* Improved indication to let the player know if a note was hit or missed
 * Sound effects
+* A progress bar to let the player know the remaining time of a game.
