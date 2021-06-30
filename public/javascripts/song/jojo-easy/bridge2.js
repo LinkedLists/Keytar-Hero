@@ -77,7 +77,7 @@ export const bridge2 = [
 
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 4, hold: 0, chain: false, rest: true },
+  { tempo: 6, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
   { tempo: 8, hold: 0, chain: false, rest: true },

@@ -584,30 +584,25 @@ class Game {
       this.currentSong = __WEBPACK_IMPORTED_MODULE_2__song_song1__["a" /* song1 */]
       this.allNotes = __WEBPACK_IMPORTED_MODULE_2__song_song1__["a" /* song1 */].notes.slice()
       this.totalNotes = __WEBPACK_IMPORTED_MODULE_2__song_song1__["a" /* song1 */].totalNotes
-      this.animate();
-      this.playSong();
     }
     else if (songId === 'song2') {
       this.currentSong = __WEBPACK_IMPORTED_MODULE_3__song_song2__["a" /* song2 */]
       this.allNotes = __WEBPACK_IMPORTED_MODULE_3__song_song2__["a" /* song2 */].notes.slice()
       this.totalNotes = __WEBPACK_IMPORTED_MODULE_3__song_song2__["a" /* song2 */].totalNotes
-      this.animate();
-      this.playSong();
     }
     else if (songId === 'song3') {
       this.currentSong = __WEBPACK_IMPORTED_MODULE_4__song_song3__["a" /* song3 */]
       this.allNotes = __WEBPACK_IMPORTED_MODULE_4__song_song3__["a" /* song3 */].notes.slice()
       this.totalNotes = __WEBPACK_IMPORTED_MODULE_4__song_song3__["a" /* song3 */].totalNotes
-      this.animate();
-      this.playSong();
     }
     else if (songId === 'song4') {
       this.currentSong = __WEBPACK_IMPORTED_MODULE_5__song_song4__["a" /* song4 */]
       this.allNotes = __WEBPACK_IMPORTED_MODULE_5__song_song4__["a" /* song4 */].notes.slice()
       this.totalNotes = __WEBPACK_IMPORTED_MODULE_5__song_song4__["a" /* song4 */].totalNotes
-      this.animate();
-      this.playSong();
     }
+    this.allNotes.reverse()
+    this.animate();
+    this.playSong();
   }
 
   animate() {
@@ -825,16 +820,17 @@ class Game {
   playNotes() {
     this.intervalValue += 1
     this.counter++;
-    if (this.allNotes.length > 0) {
-      if (this.allNotes[0].rest) {
-        this.counter -= this.allNotes[0].tempo;
-        this.allNotes.shift();
+    let remainingNotesNum = this.allNotes.length
+    if (remainingNotesNum > 0) {
+      if (this.allNotes[remainingNotesNum - 1].rest) {
+        this.counter -= this.allNotes[remainingNotesNum - 1].tempo;
+        this.allNotes.pop();
       }
-      else if (this.allNotes[0].kill) {
+      else if (this.allNotes[remainingNotesNum - 1].kill) {
         this.counter += 1;
-        this.allNotes.shift();
+        this.allNotes.pop();
       }
-      if (this.counter === 1 && this.allNotes[0].tempo > 1) {
+      if (this.counter === 1 && this.allNotes[remainingNotesNum - 1].tempo > 1) {
         this.noteGrabber();
         this.counter = 0;
       }
@@ -869,11 +865,11 @@ class Game {
   }
       
   noteGrabber() {
-    let noteParams = this.allNotes.shift();
+    let noteParams = this.allNotes.pop();
     let note = new __WEBPACK_IMPORTED_MODULE_0__note__["a" /* default */](noteParams.x, noteParams.y, this.c, this.returnColor(noteParams.x), noteParams.hold)
     this.visibleNotes[noteParams.pos].push(note);
     if (noteParams.chain) {
-      let noteParams2 = this.allNotes.shift();
+      let noteParams2 = this.allNotes.pop();
       let note2 = new __WEBPACK_IMPORTED_MODULE_0__note__["a" /* default */](noteParams2.x, noteParams2.y, this.c, this.returnColor(noteParams2.x), noteParams.hold)
       this.visibleNotes[noteParams2.pos].push(note2);
     }
@@ -1075,6 +1071,7 @@ class Game {
   handleRestart() {
     if (this.currentSong !== "undefined" && this.currentSong !== "" ) {
       this.allNotes = this.currentSong.notes.slice()
+      this.allNotes.reverse()
       this.scoreContainer.style.display = 'none'
       this.score = 0;
       this.streak = 0;
@@ -2978,7 +2975,7 @@ const bridge2 = [
 
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 4, hold: 0, chain: false, rest: true },
+  { tempo: 6, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
   { tempo: 8, hold: 0, chain: false, rest: true },
@@ -3161,7 +3158,7 @@ const song4 = {
   introDelay: 643,
   tempo: 100,
   dy: 9,
-  totalNotes: 485
+  totalNotes: 487
 
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = song4;
@@ -3863,7 +3860,10 @@ const verse1 = [
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 2, hold: 0, chain: false },
   { x: CONSTANTS.pos2, y: 0, pos: 1, tempo: 1, hold: 0, chain: false },
 
-  { tempo: 6, hold: 0, chain: false, rest: true },
+  { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
+  { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
+
+  { tempo: 4, hold: 0, chain: false, rest: true },
 
 ///////
 
@@ -4065,7 +4065,7 @@ const bridge2 = [
 
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos3, y: 0, pos: 2, tempo: 1, hold: 0, chain: true },
-  { tempo: 4, hold: 0, chain: false, rest: true },
+  { tempo: 6, hold: 0, chain: false, rest: true },
   { x: CONSTANTS.pos1, y: 0, pos: 0, tempo: 1, hold: 0, chain: true },
   { x: CONSTANTS.pos4, y: 0, pos: 3, tempo: 1, hold: 0, chain: true },
   { tempo: 8, hold: 0, chain: false, rest: true },
