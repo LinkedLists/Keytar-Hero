@@ -88,30 +88,25 @@ export default class Game {
       this.currentSong = song1
       this.allNotes = song1.notes.slice()
       this.totalNotes = song1.totalNotes
-      this.animate();
-      this.playSong();
     }
     else if (songId === 'song2') {
       this.currentSong = song2
       this.allNotes = song2.notes.slice()
       this.totalNotes = song2.totalNotes
-      this.animate();
-      this.playSong();
     }
     else if (songId === 'song3') {
       this.currentSong = song3
       this.allNotes = song3.notes.slice()
       this.totalNotes = song3.totalNotes
-      this.animate();
-      this.playSong();
     }
     else if (songId === 'song4') {
       this.currentSong = song4
       this.allNotes = song4.notes.slice()
       this.totalNotes = song4.totalNotes
-      this.animate();
-      this.playSong();
     }
+    this.allNotes.reverse()
+    this.animate();
+    this.playSong();
   }
 
   animate() {
@@ -329,16 +324,17 @@ export default class Game {
   playNotes() {
     this.intervalValue += 1
     this.counter++;
-    if (this.allNotes.length > 0) {
-      if (this.allNotes[0].rest) {
-        this.counter -= this.allNotes[0].tempo;
-        this.allNotes.shift();
+    let remainingNotesNum = this.allNotes.length
+    if (remainingNotesNum > 0) {
+      if (this.allNotes[remainingNotesNum - 1].rest) {
+        this.counter -= this.allNotes[remainingNotesNum - 1].tempo;
+        this.allNotes.pop();
       }
-      else if (this.allNotes[0].kill) {
+      else if (this.allNotes[remainingNotesNum - 1].kill) {
         this.counter += 1;
-        this.allNotes.shift();
+        this.allNotes.pop();
       }
-      if (this.counter === 1 && this.allNotes[0].tempo > 1) {
+      if (this.counter === 1 && this.allNotes[remainingNotesNum - 1].tempo > 1) {
         this.noteGrabber();
         this.counter = 0;
       }
@@ -373,11 +369,11 @@ export default class Game {
   }
       
   noteGrabber() {
-    let noteParams = this.allNotes.shift();
+    let noteParams = this.allNotes.pop();
     let note = new Note(noteParams.x, noteParams.y, this.c, this.returnColor(noteParams.x), noteParams.hold)
     this.visibleNotes[noteParams.pos].push(note);
     if (noteParams.chain) {
-      let noteParams2 = this.allNotes.shift();
+      let noteParams2 = this.allNotes.pop();
       let note2 = new Note(noteParams2.x, noteParams2.y, this.c, this.returnColor(noteParams2.x), noteParams.hold)
       this.visibleNotes[noteParams2.pos].push(note2);
     }
@@ -579,6 +575,7 @@ export default class Game {
   handleRestart() {
     if (this.currentSong !== "undefined" && this.currentSong !== "" ) {
       this.allNotes = this.currentSong.notes.slice()
+      this.allNotes.reverse()
       this.scoreContainer.style.display = 'none'
       this.score = 0;
       this.streak = 0;
